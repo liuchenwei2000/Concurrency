@@ -1,7 +1,7 @@
 /**
  * 
  */
-package thread.adv;
+package thread;
 
 /**
  * 线程的API应用
@@ -10,7 +10,7 @@ package thread.adv;
  * 
  * 创建日期：2007-8-28
  */
-public class ThreadAPITest {
+public class Others {
 	
 	/**
 	 * @param args
@@ -19,8 +19,10 @@ public class ThreadAPITest {
 		Thread dt = new Thread(new APITest());
 		
 		/** 
-		 * 守护线程的唯一作用就是为其他线程提供服务，当只剩下守护线程时，JVM就会退出。
+		 * 守护线程的唯一作用就是为其他线程提供服务，当只剩下守护线程时，JVM就会退出。计时器线程就是一个例子。
 		 * 将线程设为守护线程，必须在线程启动前设置。
+		 * 
+		 * 守护线程应该永远不去访问固有资源，如文件、数据库等，因为它会在任何时候发生中断。
 		 */
 		dt.setDaemon(true);
 		dt.start();
@@ -34,8 +36,6 @@ class APITest implements Runnable {
 		try {
 			/** 
 			 * 虽然现在已经没有强制终止线程的方法，但可以通过interrupt方法来请求终止一个线程 
-			 * 当interrupt方法在一个线程上被调用时，该线程的中断状态将会被置位。
-			 * 这是一个boolean标志，存在于每一个线程中，每个线程都应该不时检查这个标志，以判断线程是否应该被中断。
 			 */
 			Thread.currentThread().interrupt();
 			
