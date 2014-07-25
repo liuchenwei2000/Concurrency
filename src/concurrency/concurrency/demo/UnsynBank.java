@@ -1,9 +1,7 @@
 /**
  * 
  */
-package concurrency.demo.test;
-
-import concurrency.demo.Account;
+package concurrency.demo;
 
 /**
  * 不控制并发的银行类

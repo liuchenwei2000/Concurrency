@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency;
+package concurrency.volatiles;
 
 /**
  * volatileÊ¾Àý

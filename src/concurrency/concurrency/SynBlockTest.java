@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.syn;
+package concurrency;
 
 /**
  * 同步语句块
@@ -22,7 +22,7 @@ package concurrency.syn;
  *
  * 创建日期：2013-6-9
  */
-public class SynchronizedBlockTest {
+public class SynBlockTest {
 
 	/**
 	 * 锁对象
@@ -34,7 +34,7 @@ public class SynchronizedBlockTest {
 	private Object lock2 = new Object();
 	
 	/**
-	 * synchronized语句块也是JDK5.0之前的写法，5.0之后使用Lock/Condition机制加锁即可
+	 * synchronized语句块也是JDK5.0之前的写法，5.0之后也使用Lock/Condition机制加锁。
 	 */
 	public void method1() {
 		// 使用当前对象锁

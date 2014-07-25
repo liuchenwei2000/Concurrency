@@ -1,11 +1,9 @@
 /**
  * 
  */
-package concurrency.demo.test;
+package concurrency.demo;
 
 import java.util.concurrent.locks.ReentrantLock;
-
-import concurrency.demo.Account;
 
 
 /**

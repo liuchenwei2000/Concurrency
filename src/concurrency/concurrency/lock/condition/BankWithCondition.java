@@ -6,9 +6,8 @@ package concurrency.lock.condition;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+import concurrency.demo.AbstractBank;
 import concurrency.demo.Account;
-import concurrency.demo.test.AbstractBank;
-
 
 /**
  * 使用锁和条件对象的银行
@@ -49,7 +48,7 @@ public class BankWithCondition extends AbstractBank {
 			// 下面的while语句块是调用await时典型的方式，要在循环中不断检查条件是否满足
 			while (from.getBalance() < amount) {
 				try {
-					/**
+					/*
 					 * 条件对象的await方法一旦被调用，当前线程就会被阻塞，并且放弃了锁。
 					 * 
 					 * 等待获得锁的线程和调用await的线程之间有一个本质的差别：
@@ -65,14 +64,14 @@ public class BankWithCondition extends AbstractBank {
 				}
 			}
 			processAccount(from, to, amount);
-			/**
-			 * 条件对象的signalAll方法解除所有等待你此条件的线程的阻塞状态。
+			/*
+			 * 条件对象的signalAll方法解除所有等待此条件的线程的阻塞状态。
 			 * 
 			 * 当线程从等待集中被移走时，它们将再次成为可运行的，线程调度器将再次激活它们。
 			 * 此时，它们将试图重新进入对象。
-			 * 一旦锁可获得，它们中的某个线程将从await调用返回，从而获得锁并从它被阻塞的地方继续执行。
+			 * 一旦锁可获得，它们中的某个线程将从await调用返回，获得锁并从它被阻塞的地方继续执行。
 			 * 此时，线程应该再次测试条件，因为现在还不能确保条件已经满足。
-			 * signalAll方法仅仅是通知等待的线程：现在条件可能满足了，你值得再去试一下。
+			 * signalAll方法仅仅是通知等待的线程：现在条件可能满足了，你值得再去检测一下。
 			 */
 			enoughBalance.signalAll();
 		} finally {

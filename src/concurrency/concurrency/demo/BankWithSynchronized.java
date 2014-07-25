@@ -1,9 +1,8 @@
 /**
  * 
  */
-package concurrency.demo.test;
+package concurrency.demo;
 
-import concurrency.demo.Account;
 
 /**
  * 使用synchronized关键字控制并发的银行

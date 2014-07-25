@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency;
+package concurrency.lock;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -53,10 +53,6 @@ public class SynchronizedAndLockTest {
 			// do something
 			// condition.signal();
 			condition.signalAll();
-			/**
-			 * 因为wait和notify、notifyAll方法属于Object类，所以Condition的方法只能用await和signal、signalAll命名
-			 * 这样就不会和Object类中的方法名冲突了。
-			 */
 		} finally {
 			lock.unlock();
 		}

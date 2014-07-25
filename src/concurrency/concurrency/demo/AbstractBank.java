@@ -1,10 +1,7 @@
 /**
  * 
  */
-package concurrency.demo.test;
-
-import concurrency.demo.Account;
-import concurrency.demo.Bank;
+package concurrency.demo;
 
 /**
  * 银行基类

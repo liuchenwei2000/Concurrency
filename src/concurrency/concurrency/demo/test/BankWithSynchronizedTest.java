@@ -4,6 +4,7 @@
 package concurrency.demo.test;
 
 import concurrency.demo.Bank;
+import concurrency.demo.BankWithSynchronized;
 import concurrency.demo.TransferTest;
 
 /**

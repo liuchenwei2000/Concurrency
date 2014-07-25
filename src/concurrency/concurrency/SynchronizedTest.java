@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.syn;
+package concurrency;
 
 /**
  * synchronized关键字特点
@@ -53,9 +53,10 @@ public class SynchronizedTest {
 	/**
 	 * 当没有明确的对象作为锁，只是想让一段代码同步时，可以创建一个特殊的instance变量(它得是一个对象)来充当锁。
 	 */
+	// 特殊的实例变量(这种类型开销最少)
+	private byte[] lock = new byte[0];
+	
 	public void method3() {
-		// 特殊的实例变量(这种类型开销最少)
-		byte[] lock = new byte[0];
 		synchronized (lock) {
 			// ...
 		}
@@ -69,7 +70,7 @@ public class SynchronizedTest {
 	}
 
 	/**
-	 * 和同步的static方法产生的效果是一样的
+	 * 和synchronized static方法产生的效果是一样的
 	 */
 	public static void method44() {
 		// 锁住的是 class对象

@@ -20,7 +20,6 @@ public class Others {
 	 * <p>
 	 * 公平锁策略会优待那些等待了最长时间的线程，但是保证公平可能会极大影响性能(比普通锁慢很多)。
 	 * 另外，即便使用了公平锁，也不能保证线程调度器是公平的。
-	 * 如果线程调度器选择忽略一个等待了很长时间的线程，那此线程根本没机会得到锁的公平对待。
 	 */
 	private ReentrantLock lock = new ReentrantLock(true);
 	
