@@ -24,12 +24,12 @@ public class Others {
 	private ReentrantLock lock = new ReentrantLock(true);
 	
 	public void method() throws InterruptedException {
-		/**
+		/*
 		 * tryLock()方法
 		 * <p>
-		 * 如果锁没有被另一个线程保持，该方法立即返回true值，当前线程将持有锁，并将锁的保持计数设置为1。
-		 * 如果当前线程已经持有锁，则将保持计数加1，该方法将返回true 。
-		 * 如果锁定被另一个线程保持，此方法将立即返回false值。
+		 * 线程在调用lock方法来获得另一个线程所持有的锁的时候，很可能发生阻塞，所以应该更谨慎的申请锁。
+		 * <p>
+		 * tryLock方法试图申请一个锁，在成功获得锁后返回true，否则立即返回false，然后线程可以立即离开去做其他事情。
 		 * 还可以为尝试获得锁的操作设定时限，到了时限还未获得则返回false。
 		 * <p>
 		 * 带一个超时参数的tryLock方法在处理公平性时和lock方法是一样的。
