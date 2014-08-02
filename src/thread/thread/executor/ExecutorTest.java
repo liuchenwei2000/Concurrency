@@ -14,7 +14,8 @@ import java.util.concurrent.Executor;
  * 通常使用 Executor而不是显式地创建线程，Executors类是创建执行器的工厂类，详见ThreadPoolTest。
  * <p>
  * 产生背景：<p>
- * 直接创建 Thread对象可以解决一些问题，因为在一些JVM中，创建 Thread是一项重量型的操作，重用现有 Thread比创建新线程要容易得多。
+ * 直接创建 Thread对象可以解决一些问题。
+ * 在一些JVM中，创建 Thread是一项重量型的操作，重用现有 Thread比创建新线程要容易得多。
  * 而在另一些 JVM中，情况正好相反：Thread是轻量型的，可以在需要时很容易地新建一个线程。
  * JDK引入了Executor接口，这是对创建新线程的一种抽象，开发人员无需直接创建 Thread。
  * 

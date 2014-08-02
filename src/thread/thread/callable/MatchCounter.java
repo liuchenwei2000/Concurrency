@@ -6,6 +6,7 @@ package thread.callable;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -41,6 +42,7 @@ public class MatchCounter implements Callable<Integer> {
 
 		// 用来存放各个线程的计算结果
 		List<Future<Integer>> results = new ArrayList<Future<Integer>>();
+		
 		for (File file : files) {
 			// 对于每一个子目录都使用一个单独的线程去执行任务
 			if (file.isDirectory()) {
@@ -65,17 +67,25 @@ public class MatchCounter implements Callable<Integer> {
 	
 	private boolean search(File file) {
 		boolean found = false;
+		BufferedReader br = null;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
+			br = new BufferedReader(new FileReader(file));
 			String temp = null;
 			while ((!found) && (temp = br.readLine()) != null) {
 				if (temp.contains(keyword)) {
 					found = true;
 				}
 			}
-			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return found;
 	}

@@ -30,10 +30,10 @@ public class CallableTest {
 		// 这里将FutureTask对象视为一个Runnable
 		new Thread(futureTask).start();
 		try {
-			/**
+			/*
 			 * 这里将FutureTask对象视为一个Futrue
 			 * <p>
-			 * Future保存异步计算的结果，当使用它时可以启动一个计算，把计算的结果（一个Future对象）交给某线程。
+			 * Future保存异步计算的结果，可以启动一个计算，把Future对象交给某线程。
 			 * 然后主线程就可以去干其他事情，等到结果计算好之后就可以得到它。
 			 */
 			// 判断任务是否已经完成
@@ -43,7 +43,7 @@ public class CallableTest {
 			// get()方法用来返回计算结果，如果计算尚未完成，该方法会阻塞直到计算完成。
 			Integer result = futureTask.get();
 			System.out.println("main:Toatl number is " + result);
-			/**
+			/*
 			 * 取消任务
 			 * <p>
 			 * 如果任务尚未开始，它被取消后就不会再开始了。
@@ -68,7 +68,7 @@ public class CallableTest {
 				e.printStackTrace();
 			}
 			int result = 10000000;
-			System.out.println("Runnable:Toatl number is " + result);
+			System.out.println("Runnable thread:Toatl number is " + result);
 		}
 	}
 
@@ -80,12 +80,12 @@ public class CallableTest {
 		@Override
 		public Integer call() throws Exception {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			int result = 10000000;
-			System.out.println("Callable:Toatl number is " + result);
+			System.out.println("Callable thread:Toatl number is " + result);
 			return result;
 		}
 	}

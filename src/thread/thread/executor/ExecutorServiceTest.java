@@ -39,22 +39,24 @@ public class ExecutorServiceTest {
 		List<Callable<Integer>> tasks = new ArrayList<Callable<Integer>>();
 		tasks.add(new LongTask());
 		for (int i = 0; i < 10; i++) {
-			tasks.add(new CallableTask());
+			tasks.add(TaskFactory.createCallable());
 		}
 		
 		try {
 			long begin = System.currentTimeMillis();
+			
 			/**
 			 * invokeAny方法
 			 * <p>
 			 * 执行给定的任务，任何(any)一个任务完成了就会立即返回结果。
 			 * 因此，无法知道它返回的具体是哪个任务，也许是最快完成的那个。
-			 * 在处理一个问题是，如果可以接受任何解决方案就可以使用这个方法。
+			 * 在处理一个问题时，如果可以接受任何解决方案就可以使用这个方法。
 			 */
 			Integer result = executorService.invokeAny(tasks);
 			System.out.println("result is " + result);
 			long end = System.currentTimeMillis();
 			System.out.println("invokeAny【" + ((end - begin) / 1000d) + "s】");
+			
 			/**
 			 * invokeAll方法
 			 * <p>
@@ -68,6 +70,7 @@ public class ExecutorServiceTest {
 			}
 			long end2 = System.currentTimeMillis();
 			System.out.println("invokeAll【" + ((end2 - end) / 1000d) + "s】");
+			
 			/**
 			 * 如上例，将结果按可获得的顺序保存起来会更有意义，可通过ExecutorCompletionService来实现排列。
 			 * 此类将安排那些完成时提交的任务，把它们放置在可使用 take 方法访问的队列上。

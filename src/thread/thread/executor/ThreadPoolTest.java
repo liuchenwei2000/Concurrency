@@ -39,7 +39,6 @@ public class ThreadPoolTest {
 		 * 对于固定数量线程池，如果提交的任务书大于空闲线程数，那么得不到服务的任务将会等待。
 		 * 当其他任务完成后，有了空闲线程，它们就能运行了。
 		 */
-		// 使用固定数量线程池做例子
 		ExecutorService pool = Executors.newFixedThreadPool(10);
 		
 		// 可以使用下面三种方法将一个Runnable或者Callable对象提交给线程池：
@@ -48,7 +47,7 @@ public class ThreadPoolTest {
 		 * <p>
 		 * 返回一个Future对象，用于查看任务执行状态，但get方法在完成时会返回null。
 		 */
-		Future<?> future1 = pool.submit(new RunnableTask());
+		Future<?> future1 = pool.submit(TaskFactory.createRunnable());
 		System.out.println("future1=" + future1.get());
 		
 		/**
@@ -56,7 +55,7 @@ public class ThreadPoolTest {
 		 * <p>
 		 * 返回一个Future对象，用于查看任务执行状态，get方法在完成时会返回参数传入的对象。
 		 */
-		Future<Object> future2 = pool.submit(new RunnableTask(), new Object());
+		Future<Object> future2 = pool.submit(TaskFactory.createRunnable(), new Object());
 		System.out.println("future2=" + future2.get());
 		
 		/**
@@ -64,7 +63,7 @@ public class ThreadPoolTest {
 		 * <p>
 		 * 返回一个Future对象，用于查看任务执行状态，get方法在完成时会返回计算结果。
 		 */
-		Future<Integer> future3 = pool.submit(new CallableTask());
+		Future<Integer> future3 = pool.submit(TaskFactory.createCallable());
 		System.out.println("future3=" + future3.get());
 		
 		/**
