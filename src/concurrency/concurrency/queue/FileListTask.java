@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * 文件枚举线程
+ * 文件枚举任务
  *
  * @author 刘晨伟
  *

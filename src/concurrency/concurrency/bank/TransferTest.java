@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.demo;
+package concurrency.bank;
 
 import java.util.Random;
 
@@ -19,7 +19,7 @@ public class TransferTest {
 	public static void run(Bank bank) {
 		Account[] accounts = bank.getAccounts();
 		for (int i = 0; i < accounts.length; i++) {
-			/**
+			/*
 			 * 每一个账户都会启动一个线程向其他账户转账
 			 * 
 			 * 当不同账户向同一个账户转账时，或者同一个账户既参与转出又参与转入时，就有可能发生冲突

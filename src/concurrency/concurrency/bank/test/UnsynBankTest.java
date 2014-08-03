@@ -1,11 +1,11 @@
 /**
  * 
  */
-package concurrency.demo.test;
+package concurrency.bank.test;
 
-import concurrency.demo.Bank;
-import concurrency.demo.TransferTest;
-import concurrency.demo.UnsynBank;
+import concurrency.bank.Bank;
+import concurrency.bank.TransferTest;
+import concurrency.bank.UnsynBank;
 
 /**
  * 没有控制并发的转账

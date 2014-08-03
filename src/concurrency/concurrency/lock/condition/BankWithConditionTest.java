@@ -3,8 +3,8 @@
  */
 package concurrency.lock.condition;
 
-import concurrency.demo.Bank;
-import concurrency.demo.TransferTest;
+import concurrency.bank.Bank;
+import concurrency.bank.TransferTest;
 
 /**
  * 使用锁和条件对象控制并发的转账

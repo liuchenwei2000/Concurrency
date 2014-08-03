@@ -6,8 +6,8 @@ package concurrency.lock.condition;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-import concurrency.demo.AbstractBank;
-import concurrency.demo.Account;
+import concurrency.bank.AbstractBank;
+import concurrency.bank.Account;
 
 /**
  * 使用锁和条件对象的银行

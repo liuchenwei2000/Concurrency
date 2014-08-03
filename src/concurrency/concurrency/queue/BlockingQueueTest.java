@@ -29,7 +29,7 @@ public class BlockingQueueTest {
 	 */
 	public static void main(String[] args) {
 		String dirPath = "./src";// 搜本Project下的源码文件
-		String keyword = "java";
+		String keyword = "Test";
 		
 		// 容量为10的阻塞队列
 		BlockingQueue<File> queue = new ArrayBlockingQueue<File>(10);

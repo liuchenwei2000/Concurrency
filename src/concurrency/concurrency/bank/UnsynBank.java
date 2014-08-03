@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.demo;
+package concurrency.bank;
 
 /**
  * 不控制并发的银行类
@@ -27,8 +27,9 @@ public class UnsynBank extends AbstractBank {
 	 *            转账金额
 	 */
 	public void transfer(Account from, Account to, double amount) {
-		if (from.getID().equals(to.getID()))
+		if (from.getID().equals(to.getID())) {
 			return;
+		}
 		processAccount(from, to, amount);
 	}
 }

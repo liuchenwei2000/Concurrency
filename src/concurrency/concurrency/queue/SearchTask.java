@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * 搜索线程
+ * 搜索任务
  *
  * @author 刘晨伟
  *

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.demo;
+package concurrency.bank;
 
 import java.util.Random;
 
