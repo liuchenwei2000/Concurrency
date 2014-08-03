@@ -41,7 +41,7 @@ class Computer {
 	private CyclicBarrier barrier;
 	
 	public Computer(int subtask) {
-		/**
+		/*
 		 * 创建一个CyclicBarrier，它将在给定数量(本例subtask)的参与者线程处于等待状态时启动。
 		 * 另外还支持一个可选的Runnable命令(本例MainTask)，在一组线程中最后一个线程到达之后
 		 * (但在释放所有线程之前)运行(该操作将由最后一个进入 barrier的线程执行)。
@@ -90,7 +90,7 @@ class Computer {
 		@Override
 		public void run() {
 			try {
-				Thread.sleep((long) (Math.random() * 10000));
+				Thread.sleep((long) (Math.random() * 5000));
 				// getNumberWaiting返回当前在屏障处等待的参与者数目
 				System.out.println("共有 " + (barrier.getNumberWaiting() + 1) + " 个线程到达栅栏在等待");
 				/**

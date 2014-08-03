@@ -114,7 +114,7 @@ class Team {
 				System.out.println(name + " 静等 Leader 布置任务...");
 				startSignal.await();// 需要等待Leader布置任务
 				System.out.println(name + " 开始干活！");
-				Thread.sleep((long) (Math.random() * 10000));
+				Thread.sleep((long) (Math.random() * 5000));
 				doneSignal.countDown();
 				System.out.println(name + " 干完活了！");
 			} catch (InterruptedException e) {

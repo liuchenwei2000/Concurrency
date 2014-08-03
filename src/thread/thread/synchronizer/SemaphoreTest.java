@@ -51,7 +51,7 @@ public class SemaphoreTest {
 		 * 请求一个蹲位，返回蹲位序号
 		 */
 		public int in() throws Exception {
-			/**
+			/*
 			 * 从信号量获取一个许可，在提供一个许可之前将一直阻塞此线程。
 			 * 获得了一个许可将立即返回，并将可用许可数减1。
 			 */
@@ -80,7 +80,7 @@ public class SemaphoreTest {
 		 */
 		public void out(int index) {
 			markUsed(index, false);
-			/**
+			/*
 			 * 释放一个许可，将信号量可用许可数加1。
 			 * 若任意线程试图获取许可，则选中一个线程并将刚刚释放的许可给予它。
 			 */

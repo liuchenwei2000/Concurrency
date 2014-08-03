@@ -17,7 +17,7 @@ import java.util.concurrent.Exchanger;
  * Exchanger类方便了两个共同操作线程之间的双向交换。
  * 这样，就像具有计数为 2的 CyclicBarrier，并且两个线程在都到达屏障时可以交换一些状态。
  * <p>
- * Exchanger通常用于一个线程填充缓冲(通过读取 socket)，而另一个线程清空缓冲(通过处理从 socket收到的命令)的情况。
+ * Exchanger通常用于一个线程填充缓冲，而另一个线程清空缓冲的情况。
  * 当两个线程在屏障处集合时，它们交换缓冲。
  * 
  * @author 刘晨伟
@@ -60,7 +60,7 @@ public class ExchangerTest {
 					DataBuffer currentBuffer = initEmptyBuffer;
 					while (currentBuffer != null) {
 						if (currentBuffer.isFull()) {
-							/**
+							/*
 							 * 等待另一个线程到达此交换点，然后将给定的对象(本例DataBuffer)传给该线程，并接受该线程的对象。
 							 * 如果还没有其他线程在交换点等待，则当前线程会处于休眠状态等待。
 							 * 

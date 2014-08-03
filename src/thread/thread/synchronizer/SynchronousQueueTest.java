@@ -58,7 +58,7 @@ public class SynchronousQueueTest {
 						double value = Math.random() * 1000;
 						Thread.sleep((long) value);
 						System.out.println("worker：put " + value);
-						/**
+						/*
 						 * put将指定元素添加到此队列，如有必要则等待另一个线程接收它。
 						 */
 						squeue.put(value + "");
@@ -79,7 +79,7 @@ public class SynchronousQueueTest {
 				while (true) {
 					try {
 						Thread.sleep((long) (Math.random() * 1000));
-						/**
+						/*
 						 * take获取并移除此队列的头，如有必要则等待另一个线程插入它。
 						 */
 						System.out.println("consumer：take " + squeue.take());
