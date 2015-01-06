@@ -15,7 +15,7 @@ package thread;
  * 
  * 创建日期：2007-8-28
  */
-public class ThreadDemo {
+public class ThreadTest {
 	
 	/**
 	 * @param args
@@ -31,12 +31,14 @@ public class ThreadDemo {
 		Thread thread2 = new ThreadExtended();
 		thread2.start();
 		
-		try {
-			thread1.join();// 当调用线程终止时该方法才返回
-			thread2.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		// 获取当前线程对象，即运行main方法的主线程
+		Thread mainThread = Thread.currentThread();
+		// 获取线程的信息
+		System.out.println("Thread ID：" + mainThread.getId());// 线程Id
+		System.out.println("Thread Name：" + mainThread.getName());// 线程名
+		System.out.println("Thread Priority：" + mainThread.getPriority());// 线程优先级
+		System.out.println("Thread Status：" + mainThread.getState());// 线程状态
+		
 		System.out.println("Main Thread Ends.");
 	}
 }
