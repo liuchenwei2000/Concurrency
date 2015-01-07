@@ -1,5 +1,3 @@
-synchronized简介
-
 
 总的说来，synchronized关键字可以作为方法的修饰符，也可作为方法内的语句，也就是平时说的同步方法和同步语句块。
 如果再细分，synchronized可作用于instance变量、object reference(对象引用)、static方法和class literals(类名称字面常量)身上。

@@ -27,14 +27,15 @@ public class SynBlockTest {
 	/**
 	 * 锁对象
 	 * 
-	 * 这是JDK5.0之前的用法，如果某个类需要多于一个的锁时，可以用这种方式创建多个锁对象，而不再使用当前对象的锁。
+	 * 这是JDK5.0之前的用法，如果某个类需要多于一个的锁时（比如需要控制两个或以上不相干属性各自的并发访问问题时），
+	 * 可以用这种方式创建多个锁对象，而不再使用当前对象的锁。
 	 */ 
 	private Object lock1 = new Object();
 	
 	private Object lock2 = new Object();
 	
 	/**
-	 * synchronized语句块也是JDK5.0之前的写法，5.0之后也使用Lock/Condition机制加锁。
+	 * synchronized语句块也是JDK5.0之前的写法，5.0之后也可使用Lock/Condition机制加锁。
 	 */
 	public void method1() {
 		// 使用当前对象锁

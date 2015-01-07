@@ -5,7 +5,6 @@ package concurrency.bank;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-
 /**
  * 使用锁的银行
  * 

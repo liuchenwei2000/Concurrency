@@ -3,7 +3,6 @@
  */
 package concurrency.bank;
 
-
 /**
  * 使用synchronized关键字控制并发的银行
  * 

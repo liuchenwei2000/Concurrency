@@ -4,7 +4,7 @@
 package concurrency;
 
 /**
- * synchronized关键字特点
+ * synchronized关键字示例
  * <p>
  * 关键是搞清楚synchronized锁定的是哪个对象。
  * 
