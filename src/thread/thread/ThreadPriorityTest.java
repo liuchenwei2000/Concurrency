@@ -6,8 +6,7 @@ package thread;
 /**
  * 线程优先级
  * <p>
- * 每一个线程都有一个优先级。
- * 对于线程调度器而言，当它有机会挑选一个新的线程运行时，就会先考虑高优先级的线程。
+ * 每一个线程都有一个优先级。对于线程调度器而言，当它有机会挑选一个新的线程运行时，就会先考虑高优先级的线程。
  * 但是，线程优先级是高度依赖操作系统的。当虚拟机依赖于宿主机平台的线程实现机制时，
  * Java线程优先级会映射到宿主机平台上的优先级，宿主机平台的优先级级别可能跟Java里不同。
  * <p>
@@ -27,12 +26,12 @@ public class ThreadPriorityTest {
 	 */
 	public static void main(String[] args) {
 		showThreadPriority();
-		/**
+		/*
 		 * 默认情况下，一个线程继承它的父线程的优先级，父线程就是启动它的那个线程。
 		 */
 		Thread t1 = new Thread(new PriorityWorker(), "t1");
 		t1.start();
-		/**
+		/*
 		 * 可以通过setPriority方法设定线程的优先级，共分十级，由Thread类中的**_PRIORITY常量表示。
 		 */
 		Thread t2 = new Thread(new PriorityWorker(), "t2");
