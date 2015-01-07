@@ -8,7 +8,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 两种不同并发控制的等价关系
+ * 两种不同并发控制机制的等价关系
  * <p>
  * 本类的两个方法，采用不同的方式进行并发控制，但效果是等价的。
  * <p>

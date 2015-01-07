@@ -23,7 +23,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class ReentrantReadWriteLockTest {
 
-	// 可重入锁
+	// 可重入读写锁
 	private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 	// 读锁，可被多个读操作共用的锁，但会排斥所有写操作
 	private Lock readLock = lock.readLock();
@@ -36,7 +36,7 @@ public class ReentrantReadWriteLockTest {
 	 * 读取数据
 	 */
 	public double getTotalNumber() {
-		/**
+		/*
 		 * 线程获取读锁的前提条件：
 		 * 1，没有其他线程持有写锁。
 		 * 2，没有写请求或者有写请求，但调用线程和持有锁的线程是同一个。
@@ -55,7 +55,7 @@ public class ReentrantReadWriteLockTest {
 	 * 修改数据
 	 */
 	public double setTotalNumber(int n) {
-		/**
+		/*
 		 * 线程进入写锁的前提条件：
 		 * 1，没有其他线程持有读锁。
 		 * 2，没有其他线程持有写锁。

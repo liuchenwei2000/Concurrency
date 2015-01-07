@@ -6,7 +6,7 @@ package concurrency.lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ReentrantLock测试
+ * ReentrantLock示例
  * <p>
  * ReentrantLock是可重入的锁。
  * 
@@ -16,7 +16,6 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ReentrantLockTest {
 
-	// 可重入锁
 	private ReentrantLock lock = new ReentrantLock();
 	
 	public void test(){
@@ -24,7 +23,7 @@ public class ReentrantLockTest {
 		lock.lock();
 		try {
 			showThreadHoldCount("test() add lock...");
-			/**
+			/*
 			 * 因为线程能够重复的获取它已经拥有的锁， 锁对象维护一个持有计数来追踪对lock方法的嵌套调用。
 			 * 线程在每次调用lock后都要调用unlock来释放锁，由于这个特性，被一个锁保护的代码可以调用另一个使用相同锁保护的方法。 
 			 * 
