@@ -1,7 +1,7 @@
 /**
  * 
  */
-package thread.timer;
+package concurrency.timer;
 
 import java.awt.Color;
 import java.awt.Font;

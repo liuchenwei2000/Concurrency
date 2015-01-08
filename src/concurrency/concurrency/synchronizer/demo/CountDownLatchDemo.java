@@ -1,7 +1,7 @@
 /**
  * 
  */
-package thread.synchronizer.demo;
+package concurrency.synchronizer.demo;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

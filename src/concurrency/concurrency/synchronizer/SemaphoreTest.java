@@ -1,18 +1,23 @@
 /**
  * 
  */
-package thread.synchronizer;
+package concurrency.synchronizer;
 
 import java.util.concurrent.Semaphore;
 
 /**
  * Semaphore示例
  * <p>
+ * 信号量是一个计数器，用来保护对一个（或多个）共享资源的访问。
  * Semaphore表示一个信号量，它管理大量的许可证，许可的数目是有限的，这样可以限制通过的线程数。
  * 实际上，没有什么许可对象，Semaphore仅维持一个计数器。
- * 如有必要，在许可可用前会阻塞每一个acquire()，然后再获取该许可。
- * 每个release()添加一个许可，从而可能释放一个正在阻塞的获取者。
- * 而且，许可不需要由获取它的线程释放，任意线程都可以释放。这种灵活性也带来了潜在的混乱。
+ * <p>
+ * 当一个线程想要访问共享资源时，首先需要向信号量获取许可，如果信号量的内部计数大于0
+ * （意味着有空闲资源可供使用）则将计数减一后允许该线程访问共享资源；
+ * 如果等于0（意味着没有空闲资源）则会将该线程阻塞直到内部计数大于0。
+ * 当线程访问共享资源结束时，必须释放持有的信号量许可，这样信号量的内部计数会加一。
+ * <p>
+ * 二进制信号量是一个特例，它保护对唯一共享资源的访问，内部计数只有0和1两个值。
  * <p>
  * 通常用于限制可以访问某些资源的线程数目。
  * 
@@ -43,20 +48,45 @@ public class SemaphoreTest {
 		private static final int MAX = 3;
 
 		// 信号量对象，本卫生间只有3个蹲位
-		private Semaphore semaphore = new Semaphore(MAX);
+		private final Semaphore semaphore = new Semaphore(MAX);
 		// 蹲位使用情况
 		private boolean[] used = new boolean[MAX];
 
 		/**
-		 * 请求一个蹲位，返回蹲位序号
+		 * 使用厕所
 		 */
-		public int in() throws Exception {
-			/*
-			 * 从信号量获取一个许可，在提供一个许可之前将一直阻塞此线程。
-			 * 获得了一个许可将立即返回，并将可用许可数减1。
+		public void use() {
+			/* 
+			 * 下面的try-catch-finally结构是使用Semaphore的典型用法：
+			 * 
+			 * 1，调用acquire()方法获取Semaphore的许可。
+			 * 2，对共享资源进行访问。
+			 * 3，调用release()方法释放持有的Semaphore许可。
 			 */
-			semaphore.acquire();
-			return getUnusedIndex();
+			try {
+				/*
+				 * 从信号量获取一个许可，在提供一个许可之前将一直阻塞此线程。
+				 * 获得了一个许可将立即返回，并将可用许可数减1。
+				 */
+				semaphore.acquire();
+				// 在信号量没有许可而导致线程阻塞等待时，可能会发生中断，使用下面的方式将会忽略中断异常。
+//				semaphore.acquireUninterruptibly();
+				// 下面的方法会测试能否获得许可，如果能则返回true（同时线程将会获得一个许可），不能则立即返回false，而不是等待其他线程释放许可。
+//				boolean result = semaphore.tryAcquire();
+				int index = getUnusedIndex();
+				System.out.println("第 " + (index + 1) + " 个蹲位使用中……");
+				Thread.sleep((long) (Math.random() * 2000));// 模拟上厕所
+				markUsed(index, false);
+				System.out.println("第 " + (index + 1) + " 个蹲位使用完毕!!!");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				/*
+				 * 释放一个许可，将信号量可用许可数加1。 
+				 * 若任意线程试图获取许可，则选中一个线程并将刚刚释放的许可给予它。
+				 */
+				semaphore.release();
+			}
 		}
 
 		/**
@@ -73,18 +103,6 @@ public class SemaphoreTest {
 				}
 			}
 			return -1;// 理应不会执行到这里
-		}
-
-		/**
-		 * 离开指定蹲位
-		 */
-		public void out(int index) {
-			markUsed(index, false);
-			/*
-			 * 释放一个许可，将信号量可用许可数加1。
-			 * 若任意线程试图获取许可，则选中一个线程并将刚刚释放的许可给予它。
-			 */
-			semaphore.release();
 		}
 
 		private synchronized void markUsed(int index, boolean b) {
@@ -109,11 +127,7 @@ public class SemaphoreTest {
 		public void run() {
 			try {
 				System.out.println(person + " 要上厕所。");
-				int index = toilet.in();
-				System.out.println(person + " 进了第 " + (index + 1) + " 个蹲位。");
-				Thread.sleep((long) (Math.random() * 2000));// 模拟上厕所
-				System.out.println(person + " 上完厕所出来了。");
-				toilet.out(index);
+				toilet.use();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

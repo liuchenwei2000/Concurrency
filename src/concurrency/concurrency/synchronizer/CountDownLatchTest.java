@@ -1,21 +1,23 @@
 /**
  * 
  */
-package thread.synchronizer;
+package concurrency.synchronizer;
 
 import java.util.concurrent.CountDownLatch;
 
 /**
  * CountDownLatch示例
  * <p>
+ * CountDownLatch 允许一个或多个线程在一系列操作完成前一直等待。
+ * <p>
+ * 构造CountDownLatch时传入的整数表示线程需要等待的操作数。
+ * 当线程需要等待这些操作完成时，可调用 CountDownLatch 的await()方法，此方法会让该线程挂起直到所需操作全部完成；
+ * 当其中某一个操作完成时，需要调用 CountDownLatch 的countDown()方法来使其内部计数器减一；
+ * 当内部计数器等于0时， CountDownLatch 会唤醒所有因调用其await()方法而挂起的线程。
+ * 这种现象只出现一次，计数无法被重置，若需要重置计数，可考虑使用CyclicBarrier。
+ * <p>
  * CountDownLatch实现了倒计数锁存器的功能，只不过这个倒计数的操作是原子操作，
  * 同时只能有一个线程去操作这个计数器，也就是同时只能有一个线程去减这个计数器里面的值。
- * <p>
- * 在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。
- * <p>
- * 用给定的计数初始化CountDownLatch实例，调用countDown()方法会将计数减1。
- * 在当前计数达到0之前，await方法会一直阻塞，之后锁存器会释放所有等待的线程，await的所有后续调用都将立即返回。
- * 这种现象只出现一次，计数无法被重置，若需要重置计数，可考虑使用CyclicBarrier。
  * <p>
  * 另外，CountDownLatch和CyclicBarrier的区别还可以从下面的角度理解：
  * <li>CountDownLatch:一个线程(或者多个)， 等待另外N个线程完成某个事情之后才能执行。
@@ -45,8 +47,7 @@ class Team {
 	/**
 	 * 任务开始信号，由Leader来发这个信号
 	 * <p>
-	 * 将计数1初始化的CountDownLatch用作一个简单的开/关锁存器(或叫入口)。
-	 * 在通过调用countDown()的线程打开入口前，所有调用await的线程将一直在入口处等待。
+	 * 1，初始值表示线程需要等待多少操作。
 	 */
 	private CountDownLatch startSignal = new CountDownLatch(1);
 	
@@ -79,17 +80,21 @@ class Team {
 			try {
 				Thread.sleep(1000);
 				System.out.println("Leader：开始布置任务...");
-				/**
-				 * 递减锁存器的计数，如果技术到达0，则释放所有等待的线程；若计数已经是0，则不发生任何操作。
-				 * <p>
+				/*
+				 * 递减锁存器的计数，如果计数到达0，则释放所有等待的线程；若计数已经是0，则不发生任何操作。
+				 * 
 				 * 调用countDown()方法的线程不需要等待，只有那些调用await方法的线程需要等待。
 				 */
 				startSignal.countDown();
 				System.out.println("Leader：任务布置完了，兄弟们开始干吧，全干完了我来验收！");
-				/**
+				/*
 				 * 使当前线程在锁存器倒计数至0之前一直等待，除非线程被中断；若计数已经是0，则立即返回。
 				 */
+				// 2，await()方法由那些需要等待所有操作完成的线程调用。
 				doneSignal.await();// 需要等待所有组员完成任务
+				
+				// 可设定超时的await()方法，如果等待超时则不会再继续等待，线程将继续向下执行。
+//				doneSignal.await(1, TimeUnit.DAYS);
 				System.out.println("Leader：我来验收了，兄弟们干的很好！");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -114,7 +119,8 @@ class Team {
 				System.out.println(name + " 静等 Leader 布置任务...");
 				startSignal.await();// 需要等待Leader布置任务
 				System.out.println(name + " 开始干活！");
-				Thread.sleep((long) (Math.random() * 5000));
+				Thread.sleep((long) (Math.random() * 2000));
+				// 3，countDown()方法在某个操作完成后被调用。
 				doneSignal.countDown();
 				System.out.println(name + " 干完活了！");
 			} catch (InterruptedException e) {

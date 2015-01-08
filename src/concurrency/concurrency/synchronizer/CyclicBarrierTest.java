@@ -1,7 +1,7 @@
 /**
  * 
  */
-package thread.synchronizer;
+package concurrency.synchronizer;
 
 import java.util.concurrent.CyclicBarrier;
 
@@ -10,13 +10,16 @@ import java.util.concurrent.CyclicBarrier;
  * <p>
  * CyclicBarrier实现了一个称为栅栏的集合点。
  * <p>
- * 它允许一组线程相互等待，直到达到某个公共屏障点(common barrier point)。
- * 在涉及一组固定大小的线程的程序中，这些线程必须不时地相互等待，此时CyclicBarrier很有用。
- * 因为CyclicBarrier在释放等待线程后可以重用，所以称它为循环的barrier。
+ * CyclicBarrier 可以由一个指定数值初始化，来作为需要在集合点等待的线程总数。
+ * 当其中一个线程到达集合点时，需要调用 CyclicBarrier 的await()方法来等待其他线程的到来，而CyclicBarrier 
+ * 会将该线程阻塞直到所需数量的线程全部到来。当最后一个线程调用 CyclicBarrier 的await()方法后，它会唤醒所有等待的其他线程。
  * <p>
+ * 另外 CyclicBarrier 可以使用一个额外的 Runnable 对象作为初始化参数，当所有线程到达集合点后，该 Runnable 
+ * 对象将被放到某个线程中执行。这个特性使得 CyclicBarrier 非常适合使用分而治之（divide and conquer）技术的并行任务。
  * 比如在一次计算中，需要大量线程运行计算的不同部分。当所有部分都准备好时，结果需要被整合才可用。
- * 当一个线程完成了它那部分任务后，就让它运行到栅栏处。
- * 一旦所有线程都到达了这个栅栏，栅栏就会被撤销，所有线程就可以继续运行。
+ * 当一个线程完成了它那部分任务后，就让它运行到栅栏处。一旦所有线程都到达了这个栅栏，栅栏就会被撤销，所有线程就可以继续运行。
+ * <p>
+ * 因为CyclicBarrier在释放等待线程后可以重用，所以称它为循环的barrier。
  * 
  * @author 刘晨伟
  * 
@@ -51,7 +54,7 @@ class Computer {
 	}
 	
 	public void doWork() {
-		// getParties返回要求启动此barrier的参与者数目
+		// getParties()返回要求启动此barrier的参与者数目
 		int total = barrier.getParties();
 		// 将任务分解成多个子任务，提高运算速度
 		for (int i = 0; i < total; i++) {
@@ -91,9 +94,9 @@ class Computer {
 		public void run() {
 			try {
 				Thread.sleep((long) (Math.random() * 5000));
-				// getNumberWaiting返回当前在屏障处等待的参与者数目
+				// getNumberWaiting() 返回当前在屏障处等待的参与者数目
 				System.out.println("共有 " + (barrier.getNumberWaiting() + 1) + " 个线程到达栅栏在等待");
-				/**
+				/*
 				 * 本线程将会在barrier上等待，直到所有参与者线程都到达barrier(即全都调用了await方法)
 				 * <p>
 				 * 如果任意一个在栅栏处等待的线程离开了(比如超时或者被中断)，那么栅栏就被破坏了。
@@ -103,6 +106,8 @@ class Computer {
 				
 				if (index == 0) {// 0表示最后一个到达
 					System.out.println(name + " 是最后一个来的");
+					// 重置 CyclicBarrier 以便继续使用
+					barrier.reset();
 				}
 				// barrier.getParties() - 1 表示第一个到达
 				if (index == barrier.getParties() - 1) {

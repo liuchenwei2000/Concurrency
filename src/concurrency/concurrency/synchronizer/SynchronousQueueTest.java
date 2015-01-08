@@ -1,7 +1,7 @@
 /**
  * 
  */
-package thread.synchronizer;
+package concurrency.synchronizer;
 
 import java.util.concurrent.SynchronousQueue;
 
