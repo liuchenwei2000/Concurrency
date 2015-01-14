@@ -8,7 +8,7 @@ import java.util.concurrent.Executor;
 /**
  * Executor执行器示例
  * <p>
- * Executor是执行已提交的 Runnable任务的对象。
+ * Executor是执行已提交 Runnable任务的对象。
  * 此接口提供一种将任务提交与每个任务将如何运行的机制(包括线程使用的细节、调度等)分离开来的方法。
  * <p>
  * 通常使用 Executor而不是显式地创建线程，Executors类是创建执行器的工厂类，详见ThreadPoolTest。
@@ -42,7 +42,7 @@ public class ExecutorTest {
 	/**
 	 * 直接执行器
 	 * <p>
-	 * Executor接口并没有严格地要求执行是异步的，执行器完全可以在调用者的线程中立即运行已提交的任务。 
+	 * Executor 接口并没有严格地要求执行是异步的，执行器完全可以在调用者的线程中运行已提交的任务。 
 	 */
 	private static class DirectExecutor implements Executor {
 		

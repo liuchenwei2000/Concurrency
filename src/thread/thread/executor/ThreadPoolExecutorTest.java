@@ -3,12 +3,14 @@
  */
 package thread.executor;
 
-import java.util.concurrent.ExecutorService;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
- * 线程池示例
+ * ThreadPoolExecutor 示例
  * <p>
  * 创建一个新线程的代价还是很高的，因为涉及与操作系统的交互。
  * 如果程序创建大量生存期很短的线程，那就应该使用线程池（Thread Pool）。
@@ -23,7 +25,7 @@ import java.util.concurrent.Future;
  * 
  * 创建日期：2013-6-17
  */
-public class ThreadPoolTest {
+public class ThreadPoolExecutorTest {
 
 	/**
 	 * 使用线程池的一般步骤：
@@ -36,10 +38,10 @@ public class ThreadPoolTest {
 		/**
 		 * 使用固定数量线程池做例子
 		 * <p>
-		 * 对于固定数量线程池，如果提交的任务书大于空闲线程数，那么得不到服务的任务将会等待。
+		 * 对于固定数量线程池，如果提交的任务数大于空闲线程数，那么得不到服务的任务将会等待。
 		 * 当其他任务完成后，有了空闲线程，它们就能运行了。
 		 */
-		ExecutorService pool = Executors.newFixedThreadPool(10);
+		ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
 		
 		// 可以使用下面三种方法将一个Runnable或者Callable对象提交给线程池：
 		/**
@@ -47,24 +49,20 @@ public class ThreadPoolTest {
 		 * <p>
 		 * 返回一个Future对象，用于查看任务执行状态，但get方法在完成时会返回null。
 		 */
-		Future<?> future1 = pool.submit(TaskFactory.createRunnable());
-		System.out.println("future1=" + future1.get());
-		
-		/**
-		 * 提交一个Runnable对象和指定结果对象
-		 * <p>
-		 * 返回一个Future对象，用于查看任务执行状态，get方法在完成时会返回参数传入的对象。
-		 */
-		Future<Object> future2 = pool.submit(TaskFactory.createRunnable(), new Object());
-		System.out.println("future2=" + future2.get());
+		pool.execute(TaskFactory.createRunnable());
 		
 		/**
 		 * 提交一个Callable对象
 		 * <p>
 		 * 返回一个Future对象，用于查看任务执行状态，get方法在完成时会返回计算结果。
 		 */
-		Future<Integer> future3 = pool.submit(TaskFactory.createCallable());
-		System.out.println("future3=" + future3.get());
+		Future<Integer> future = pool.submit(TaskFactory.createCallable());
+		System.out.println("future=" + future.get());
+		
+		// 通过下面的方法返回 线程池的信息
+		System.out.printf("Pool Size：%d\n", pool.getPoolSize());// 池内真正的线程数
+		System.out.printf("Active Count：%d\n", pool.getActiveCount());// 池内正在运行任务的线程数
+		System.out.printf("Completed Task Count：%d\n", pool.getCompletedTaskCount());// 已完成的任务数
 		
 		/**
 		 * 当用完一个连接池后，要调用下面的方法关闭连接池。
@@ -74,7 +72,17 @@ public class ThreadPoolTest {
 		
 		/**
 		 * 也可以调用下面的方法，池会取消所有还没开始的任务并试图中断正在运行的线程。
+		 * 返回值是尚未运行的任务列表。
 		 */
-		pool.shutdownNow();
+		List<Runnable> unRunTask = pool.shutdownNow();
+		System.out.println(unRunTask.size());
+		
+		// 若已调用 shutdown()或 shutdownNow()则返回 true
+		System.out.println(pool.isTerminated());
+		// 若已调用 shutdown()则返回 true
+		System.out.println(pool.isShutdown());
+		
+		// 阻塞调用线程直到超时或池内所有任务都已完成
+		pool.awaitTermination(1, TimeUnit.DAYS);
 	}
 }
