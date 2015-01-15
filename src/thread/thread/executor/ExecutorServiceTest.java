@@ -76,9 +76,8 @@ public class ExecutorServiceTest {
 			System.out.println("invokeAll【" + tc.consumeBySecond() + "s】");
 			
 			/**
-			 * 如上例，将结果按可获得的顺序保存起来会更有意义，可通过ExecutorCompletionService来实现排列。
-			 * 此类将安排那些完成时提交的任务，把它们放置在可使用 take 方法访问的队列上。
-			 * 该服务管理一个Future对象的阻塞队列，保存提交的任务的执行结果。
+			 * 如上例，将结果按可获得的顺序保存起来会更有意义，可通过 ExecutorCompletionService 来实现排列。
+			 * 该服务管理一个Future对象的阻塞队列，保存提交之任务的执行结果（当这些结果成为可用时）。
 			 */
 			tc.start();
 			ExecutorCompletionService<Integer> service = new ExecutorCompletionService<Integer>(executorService);
@@ -86,7 +85,7 @@ public class ExecutorServiceTest {
 				service.submit(task);// 提交任务
 			}
 			for (int i = 0; i < tasks.size(); i++) {
-				// take方法：移除下一个已完成的结果，如果没有任何已完成结果可用就阻塞。
+				// take方法：移除下一个可用的结果，如果没有任何可用结果就阻塞。
 				System.out.println(service.take().get());
 			}
 			tc.stop();
