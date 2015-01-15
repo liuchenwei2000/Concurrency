@@ -5,7 +5,6 @@ package thread.executor;
 
 import java.util.List;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -43,21 +42,12 @@ public class ThreadPoolExecutorTest {
 		 */
 		ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
 		
-		// 可以使用下面三种方法将一个Runnable或者Callable对象提交给线程池：
 		/**
 		 * 提交一个Runnable对象
 		 * <p>
 		 * 返回一个Future对象，用于查看任务执行状态，但get方法在完成时会返回null。
 		 */
 		pool.execute(TaskFactory.createRunnable());
-		
-		/**
-		 * 提交一个Callable对象
-		 * <p>
-		 * 返回一个Future对象，用于查看任务执行状态，get方法在完成时会返回计算结果。
-		 */
-		Future<Integer> future = pool.submit(TaskFactory.createCallable());
-		System.out.println("future=" + future.get());
 		
 		// 通过下面的方法返回 线程池的信息
 		System.out.printf("Pool Size：%d\n", pool.getPoolSize());// 池内真正的线程数

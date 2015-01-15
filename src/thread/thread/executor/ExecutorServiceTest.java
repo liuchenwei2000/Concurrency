@@ -11,6 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import util.TimeCounter;
+
 /**
  * ExecutorService示例
  * <p>
@@ -43,7 +45,8 @@ public class ExecutorServiceTest {
 		}
 		
 		try {
-			long begin = System.currentTimeMillis();
+			TimeCounter tc = new TimeCounter();
+			tc.start();
 			
 			/**
 			 * invokeAny方法
@@ -54,28 +57,30 @@ public class ExecutorServiceTest {
 			 */
 			Integer result = executorService.invokeAny(tasks);
 			System.out.println("result is " + result);
-			long end = System.currentTimeMillis();
-			System.out.println("invokeAny【" + ((end - begin) / 1000d) + "s】");
+			
+			tc.stop();
+			System.out.println("invokeAny【" + tc.consumeBySecond() + "s】");
 			
 			/**
 			 * invokeAll方法
 			 * <p>
-			 * 执行给定的任务，所有(all)任务全部完成了才会返回结果，代表所有任务的解决方案。
-			 * 该方法的缺点是，如果第一个任务恰好花去了很多时间，执行器会一直等到它执行完才执行下一个任务。
-			 * 返回列表的所有元素的 Future.isDone() 为 true。
+			 * 执行给定的任务，所有(all)任务全部完成了才会返回结果，代表所有任务的整体解决方案。
+			 * 返回结果中所有元素的 Future.isDone() 为 true。
 			 */
+			tc.start();
 			List<Future<Integer>> results = executorService.invokeAll(tasks);
 			for (Future<Integer> future : results) {
 				System.out.println("result is " + future.get());
 			}
-			long end2 = System.currentTimeMillis();
-			System.out.println("invokeAll【" + ((end2 - end) / 1000d) + "s】");
+			tc.stop();
+			System.out.println("invokeAll【" + tc.consumeBySecond() + "s】");
 			
 			/**
 			 * 如上例，将结果按可获得的顺序保存起来会更有意义，可通过ExecutorCompletionService来实现排列。
 			 * 此类将安排那些完成时提交的任务，把它们放置在可使用 take 方法访问的队列上。
 			 * 该服务管理一个Future对象的阻塞队列，保存提交的任务的执行结果。
 			 */
+			tc.start();
 			ExecutorCompletionService<Integer> service = new ExecutorCompletionService<Integer>(executorService);
 			for (Callable<Integer> task : tasks) {
 				service.submit(task);// 提交任务
@@ -84,8 +89,8 @@ public class ExecutorServiceTest {
 				// take方法：移除下一个已完成的结果，如果没有任何已完成结果可用就阻塞。
 				System.out.println(service.take().get());
 			}
-			long end3 = System.currentTimeMillis();
-			System.out.println("submit/take【" + ((end3 - end2) / 1000d) + "s】");
+			tc.stop();
+			System.out.println("submit/take【" + tc.consumeBySecond() + "s】");
 			
 			executorService.shutdown();
 		} catch (Exception e) {
