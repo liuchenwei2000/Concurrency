@@ -68,7 +68,7 @@ public class DelayQueueTest {
 		} while (queue.size() > 0);// 注意 size() 方法将返回所有元素数（包括延时对象和非延时对象）
 
 		// 完全移除此队列中的所有元素。
-//				queue.clear();
+//		queue.clear();
 		System.out.printf("Main: End of the program\n");
 	}
 	
