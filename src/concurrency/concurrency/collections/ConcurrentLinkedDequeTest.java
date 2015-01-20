@@ -1,7 +1,7 @@
 /**
  * 
  */
-package collections;
+package concurrency.collections;
 
 import java.util.concurrent.ConcurrentLinkedDeque;
 
