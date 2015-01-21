@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.queue.bank;
+package concurrency.collections.bank;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -33,7 +33,8 @@ public class TransferTask implements Runnable {
 	public void run() {
 		while(true){
 			try {
-				// 这个地方虽然控制了并发，但取到 TransferCommand 之后对Bank的操作并没有并发保护，按理说应该会有问题，但事实没有。
+				// 这个地方虽然控制了并发，但取到 TransferCommand 之后对Bank的操作并没有并发保护，
+				// 按理说应该会有问题，但事实没有。
 				TransferCommand command = commands.take();
 				Account[] accounts = bank.getAccounts();
 				bank.transfer(accounts[command.getFrom()], accounts[command.getTo()], command.getAmount());

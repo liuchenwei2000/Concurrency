@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.queue.bank;
+package concurrency.collections.bank;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

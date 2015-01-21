@@ -1,7 +1,7 @@
 /**
  * 
  */
-package concurrency.queue.bank;
+package concurrency.collections.bank;
 
 /**
  * ×ªÕËÃüÁî
