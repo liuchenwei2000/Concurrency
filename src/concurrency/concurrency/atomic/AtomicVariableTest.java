@@ -15,7 +15,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AtomicVariableTest {
 
 	/**
-	 * @param args
+	 * 一个线程不断地对IAccount中的余额执行加100操作，另一个线程则执行减100操作，各自执行10000次。
+	 * 最后看IAccount 中的余额是否是初始值1000，如果是则证明原子变量 AtomicInteger 的有效性。
 	 */
 	public static void main(String[] args) {
 		System.out.println("【Test NormalVariableAccount】");
