@@ -2,7 +2,6 @@
 CustomizingThreadPoolExecutor£ºCustomizing the ThreadPoolExecutor class
 PriorityBasedExecutor£ºImplementing a priority-based Executor class
 CustomizingThreadFactory£ºImplementing the ThreadFactory interface to generate custom threads
-£ºCustomizing tasks running in a scheduled thread pool
 
 ImplementingLock£ºImplementing a custom Lock class
 CustomizingAtomicObject£ºImplementing your own atomic object
