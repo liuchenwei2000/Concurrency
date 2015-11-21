@@ -4,16 +4,16 @@
 package thread;
 
 /**
- * ´´½¨ĞÂÏß³ÌÓĞÁ½ÖÖ·½·¨£º
- * <li>ÊµÏÖRunnable½Ó¿Ú
- * <li>¼Ì³ĞThreadÀà£¨²»ÍÆ¼ö£©
- * <p>×¢£º</br>
- * ²»ÂÛÊÇÄÇÖÖ·½·¨¶¼²»ÄÜÖ±½Óµ÷ÓÃrun()·½·¨£¬·ñÔòrun()·½·¨»áÔÚµ±Ç°µÄÏß³ÌÖĞÖ´ĞĞ²¢²»»á´´½¨ĞÂµÄÏß³Ì¡£
- * Ó¦¸Ãµ÷ÓÃstart()·½·¨À´Æô¶¯Ò»¸öĞÂµÄÏß³ÌÈ¥Ö´ĞĞrun()·½·¨¡£
+ * åˆ›å»ºæ–°çº¿ç¨‹æœ‰ä¸¤ç§æ–¹æ³•ï¼š
+ * <li>å®ç°Runnableæ¥å£
+ * <li>ç»§æ‰¿Threadç±»ï¼ˆä¸æ¨èï¼‰
+ * <p>æ³¨ï¼š</br>
+ * ä¸è®ºæ˜¯é‚£ç§æ–¹æ³•éƒ½ä¸èƒ½ç›´æ¥è°ƒç”¨run()æ–¹æ³•ï¼Œå¦åˆ™run()æ–¹æ³•ä¼šåœ¨å½“å‰çš„çº¿ç¨‹ä¸­æ‰§è¡Œå¹¶ä¸ä¼šåˆ›å»ºæ–°çš„çº¿ç¨‹ã€‚
+ * åº”è¯¥è°ƒç”¨start()æ–¹æ³•æ¥å¯åŠ¨ä¸€ä¸ªæ–°çš„çº¿ç¨‹å»æ‰§è¡Œrun()æ–¹æ³•ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-8-28
+ * åˆ›å»ºæ—¥æœŸï¼š2007-8-28
  */
 public class ThreadTest {
 	
@@ -21,33 +21,33 @@ public class ThreadTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Í¨¹ıÊµÏÖRunnable½Ó¿ÚµÄ·½·¨´´½¨Ò»¸öĞÂÏß³Ì
+		// é€šè¿‡å®ç°Runnableæ¥å£çš„æ–¹æ³•åˆ›å»ºä¸€ä¸ªæ–°çº¿ç¨‹
 		System.out.println("Thread implements Runnable:");
 		Thread thread1 = new Thread(new RunnableImpl());
 		thread1.start();
 		
-		// Í¨¹ı¼Ì³ĞThreadÀàµÄ·½·¨´´½¨Ò»¸öĞÂÏß³Ì
+		// é€šè¿‡ç»§æ‰¿Threadç±»çš„æ–¹æ³•åˆ›å»ºä¸€ä¸ªæ–°çº¿ç¨‹
 		System.out.println("Thread extends Thread:");
 		Thread thread2 = new ThreadExtended();
 		thread2.start();
 		
-		// »ñÈ¡µ±Ç°Ïß³Ì¶ÔÏó£¬¼´ÔËĞĞmain·½·¨µÄÖ÷Ïß³Ì
+		// è·å–å½“å‰çº¿ç¨‹å¯¹è±¡ï¼Œå³è¿è¡Œmainæ–¹æ³•çš„ä¸»çº¿ç¨‹
 		Thread mainThread = Thread.currentThread();
-		// »ñÈ¡Ïß³ÌµÄĞÅÏ¢
-		System.out.println("Thread ID£º" + mainThread.getId());// Ïß³ÌId
-		System.out.println("Thread Name£º" + mainThread.getName());// Ïß³ÌÃû
-		System.out.println("Thread Priority£º" + mainThread.getPriority());// Ïß³ÌÓÅÏÈ¼¶
-		System.out.println("Thread Status£º" + mainThread.getState());// Ïß³Ì×´Ì¬
+		// è·å–çº¿ç¨‹çš„ä¿¡æ¯
+		System.out.println("Thread IDï¼š" + mainThread.getId());// çº¿ç¨‹Id
+		System.out.println("Thread Nameï¼š" + mainThread.getName());// çº¿ç¨‹å
+		System.out.println("Thread Priorityï¼š" + mainThread.getPriority());// çº¿ç¨‹ä¼˜å…ˆçº§
+		System.out.println("Thread Statusï¼š" + mainThread.getState());// çº¿ç¨‹çŠ¶æ€
 		
 		System.out.println("Main Thread Ends.");
 	}
 }
 
 /**
- * Í¨¹ıÊµÏÖRunnable½Ó¿Ú´´½¨Ò»¸öĞÂµÄÏß³Ì
+ * é€šè¿‡å®ç°Runnableæ¥å£åˆ›å»ºä¸€ä¸ªæ–°çš„çº¿ç¨‹
  * <p>
- * ±ØĞëÊµÏÖrun()·½·¨£¬Ëü¿ÉÒÔµ÷ÓÃÆäËûµÄ·½·¨¡¢ÒıÓÃÆäËûÀà¡¢ÉùÃ÷±äÁ¿£¬µ±run()·µ»ØÊ±£¬¸ÃÏß³Ì½áÊø¡£
- * ½¨Á¢ĞÂµÄÏß³Ìºó£¬Ëü²¢²»ÔËĞĞÖ±µ½µ÷ÓÃÁËËüµÄstart()·½·¨£¬±¾ÖÊÉÏ£¬start()·½·¨Ö´ĞĞµÄÊÇÒ»¸ö¶Ôrun()µÄµ÷ÓÃ¡£
+ * å¿…é¡»å®ç°run()æ–¹æ³•ï¼Œå®ƒå¯ä»¥è°ƒç”¨å…¶ä»–çš„æ–¹æ³•ã€å¼•ç”¨å…¶ä»–ç±»ã€å£°æ˜å˜é‡ï¼Œå½“run()è¿”å›æ—¶ï¼Œè¯¥çº¿ç¨‹ç»“æŸã€‚
+ * å»ºç«‹æ–°çš„çº¿ç¨‹åï¼Œå®ƒå¹¶ä¸è¿è¡Œç›´åˆ°è°ƒç”¨äº†å®ƒçš„start()æ–¹æ³•ï¼Œæœ¬è´¨ä¸Šï¼Œstart()æ–¹æ³•æ‰§è¡Œçš„æ˜¯ä¸€ä¸ªå¯¹run()çš„è°ƒç”¨ã€‚
  */
 class RunnableImpl implements Runnable {
 
@@ -65,10 +65,10 @@ class RunnableImpl implements Runnable {
 }
 
 /**
- * Í¨¹ı¼Ì³ĞThreadÀà´´½¨Ò»¸öĞÂÏß³Ì
+ * é€šè¿‡ç»§æ‰¿Threadç±»åˆ›å»ºä¸€ä¸ªæ–°çº¿ç¨‹
  * <p>
- * µ±Ò»¸öÀà¼Ì³ĞThreadÀàºó£¬Ëü±ØĞëÖØÔØrun()·½·¨¡£
- * Õâ¸örun()·½·¨ÊÇĞÂÏß³ÌµÄÈë¿Ú£¬Ò²±ØĞëµ÷ÓÃstart()·½·¨À´Æô¶¯ĞÂÏß³ÌÖ´ĞĞ¡£
+ * å½“ä¸€ä¸ªç±»ç»§æ‰¿Threadç±»åï¼Œå®ƒå¿…é¡»é‡è½½run()æ–¹æ³•ã€‚
+ * è¿™ä¸ªrun()æ–¹æ³•æ˜¯æ–°çº¿ç¨‹çš„å…¥å£ï¼Œä¹Ÿå¿…é¡»è°ƒç”¨start()æ–¹æ³•æ¥å¯åŠ¨æ–°çº¿ç¨‹æ‰§è¡Œã€‚
  */
 class ThreadExtended extends Thread {
 

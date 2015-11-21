@@ -13,17 +13,17 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Ê¹ÓÃ Executor ÔËĞĞÓĞ·µ»Ø½á¹ûµÄÈÎÎñÊ¾Àı
+ * ä½¿ç”¨ Executor è¿è¡Œæœ‰è¿”å›ç»“æœçš„ä»»åŠ¡ç¤ºä¾‹
  * <p>
- * ¶ÔÓÚÓĞ·µ»Ø½á¹ûµÄÈÎÎñ£¬Ö÷ÒªÓÃµ½Á½¸ö½Ó¿Ú£º
- * 1£¬Callable
- * ÈÎÎñĞèÒªÊµÏÖ¸Ã½Ó¿Ú£¬²¢ÔÚcall()·½·¨ÖĞÊµÏÖÒµÎñÂß¼­£¬²¢·µ»ØÖµ¡£
- * 2£¬Future
- * ÄÜ¹»»ñÈ¡ Callable ¶ÔÏóµÄ·µ»Ø½á¹û£¬²¢¹ÜÀíËüµÄ×´Ì¬¡£
+ * å¯¹äºæœ‰è¿”å›ç»“æœçš„ä»»åŠ¡ï¼Œä¸»è¦ç”¨åˆ°ä¸¤ä¸ªæ¥å£ï¼š
+ * 1ï¼ŒCallable
+ * ä»»åŠ¡éœ€è¦å®ç°è¯¥æ¥å£ï¼Œå¹¶åœ¨call()æ–¹æ³•ä¸­å®ç°ä¸šåŠ¡é€»è¾‘ï¼Œå¹¶è¿”å›å€¼ã€‚
+ * 2ï¼ŒFuture
+ * èƒ½å¤Ÿè·å– Callable å¯¹è±¡çš„è¿”å›ç»“æœï¼Œå¹¶ç®¡ç†å®ƒçš„çŠ¶æ€ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ15ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ15æ—¥
  */
 public class TaskReturnsResultTest {
 
@@ -31,28 +31,28 @@ public class TaskReturnsResultTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Ê¹ÓÃ 2 ¸öÏß³ÌµÄÏß³Ì³Ø ÔËĞĞ 5 ¸ö½×³Ë¼ÆËãÈÎÎñ
+		// ä½¿ç”¨ 2 ä¸ªçº¿ç¨‹çš„çº¿ç¨‹æ±  è¿è¡Œ 5 ä¸ªé˜¶ä¹˜è®¡ç®—ä»»åŠ¡
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
 		
 		List<Future<Integer>> resultList = new ArrayList<>();
 		Random random = new Random();
 		
-		// 1£¬Ïò Executor Ìá½»È«²¿ÈÎÎñ
+		// 1ï¼Œå‘ Executor æäº¤å…¨éƒ¨ä»»åŠ¡
 		for (int i = 0; i < 5; i++) {
 			int number = random.nextInt(10);
 			FactorialCalculator task = new FactorialCalculator(number);
-			// Ïò Executor Ìá½» Callable ÈÎÎñ²¢Á¢¼´·µ»ØÒ»¸ö Future ¶ÔÏó
-			// ÔÚÍ¨¹ı Future ¶ÔÏóµÄ get()·½·¨»ñÈ¡ÕæÕı½á¹ûÊ±²Å£¨¿ÉÄÜ£©»á×èÈû¡£
+			// å‘ Executor æäº¤ Callable ä»»åŠ¡å¹¶ç«‹å³è¿”å›ä¸€ä¸ª Future å¯¹è±¡
+			// åœ¨é€šè¿‡ Future å¯¹è±¡çš„ get()æ–¹æ³•è·å–çœŸæ­£ç»“æœæ—¶æ‰ï¼ˆå¯èƒ½ï¼‰ä¼šé˜»å¡ã€‚
 			Future<Integer> result = executor.submit(task);
 			resultList.add(result);
 		}
 
-		// 2£¬¼à¿Ø ËùÓĞÈÎÎñ ÊÇ·ñÈ«²¿Íê³É
+		// 2ï¼Œç›‘æ§ æ‰€æœ‰ä»»åŠ¡ æ˜¯å¦å…¨éƒ¨å®Œæˆ
 		do {
 			System.out.printf("Main: Number of Completed Tasks: %d\n", executor.getCompletedTaskCount());
 			for (int i = 0; i < resultList.size(); i++) {
 				Future<Integer> result = resultList.get(i);
-				// ÅĞ¶Ï ÈÎÎñ ÊÇ·ñÒÑ¾­Íê³É
+				// åˆ¤æ–­ ä»»åŠ¡ æ˜¯å¦å·²ç»å®Œæˆ
 				System.out.printf("Main: Task %d: %s\n", i, result.isDone());
 			}
 
@@ -61,17 +61,17 @@ public class TaskReturnsResultTest {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		} while (executor.getCompletedTaskCount() < resultList.size());// µ±Íê³ÉÈÎÎñÊıºÍ½á¹ûÊıÏàµÈÊ±±íÃ÷ËùÓĞÈÎÎñ¶¼ÒÑÍê³É
+		} while (executor.getCompletedTaskCount() < resultList.size());// å½“å®Œæˆä»»åŠ¡æ•°å’Œç»“æœæ•°ç›¸ç­‰æ—¶è¡¨æ˜æ‰€æœ‰ä»»åŠ¡éƒ½å·²å®Œæˆ
 		
-		// 3£¬´òÓ¡ÈÎÎñ½á¹û
+		// 3ï¼Œæ‰“å°ä»»åŠ¡ç»“æœ
 		System.out.printf("Main: Results\n");
 		for (int i = 0; i < resultList.size(); i++) {
 			Future<Integer> result = resultList.get(i);
 			Integer number = null;
 			try {
-				// Future µÄ get()·½·¨»á×èÈûÖ±µ½ÈÎÎñÍê³É
+				// Future çš„ get()æ–¹æ³•ä¼šé˜»å¡ç›´åˆ°ä»»åŠ¡å®Œæˆ
 				number = result.get();
-				// Ò²¿ÉÒÔÊ¹ÓÃ ´øÓĞ³¬Ê±ÏŞÖÆµÄ°æ±¾
+				// ä¹Ÿå¯ä»¥ä½¿ç”¨ å¸¦æœ‰è¶…æ—¶é™åˆ¶çš„ç‰ˆæœ¬
 //				number = result.get(10, TimeUnit.SECONDS);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -83,7 +83,7 @@ public class TaskReturnsResultTest {
 	}
 
 	/**
-	 * ½×³Ë¼ÆËãÆ÷
+	 * é˜¶ä¹˜è®¡ç®—å™¨
 	 */
 	private static class FactorialCalculator implements Callable<Integer> {
 
@@ -94,7 +94,7 @@ public class TaskReturnsResultTest {
 		}
 
 		/**
-		 * ÊµÏÖ¾ßÌåÂß¼­²¢·µ»Ø½á¹û
+		 * å®ç°å…·ä½“é€»è¾‘å¹¶è¿”å›ç»“æœ
 		 * 
 		 * @see java.util.concurrent.Callable#call()
 		 */

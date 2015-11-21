@@ -7,16 +7,16 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * PriorityBlockingQueue Ê¾Àı
+ * PriorityBlockingQueue ç¤ºä¾‹
  * <p>
- * PriorityBlockingQueue ÊÇ²¢·¢»·¾³ÏÂÊ¹ÓÃµÄÓĞĞò£¨ÎŞ½ç£©ÁĞ±í£¬ÆäÄÚÔªËØĞèÒªÊµÏÖ Comparable ½Ó¿Ú¡£
- * µ±²åÈëÔªËØÊ±£¬PriorityBlockingQueue »á¸ù¾İÔªËØÊµÏÖµÄ compareTo() ·½·¨À´¾ö¶¨ËüµÄ²åÈëÎ»ÖÃ£¬Ô½´óµÄÔªËØÔ½¿¿ºó¡£
- * ´ËÍâ£¬PriorityBlockingQueue ÊÇ×èÈû¶ÓÁĞ£¬Èç¹ûÄ³Ğ©²Ù×÷£¨±ÈÈç¶ÓÁĞÎª¿ÕÊ±Ê¹ÓÃpoll()·½·¨
- * »ñÈ¡²¢É¾³ıÒ»¸öÔªËØ£©²»ÄÜÁ¢¼´Ö´ĞĞÔò½«»á×èÈûÏß³ÌÖ±µ½²Ù×÷Íê³É¡£
+ * PriorityBlockingQueue æ˜¯å¹¶å‘ç¯å¢ƒä¸‹ä½¿ç”¨çš„æœ‰åºï¼ˆæ— ç•Œï¼‰åˆ—è¡¨ï¼Œå…¶å†…å…ƒç´ éœ€è¦å®ç° Comparable æ¥å£ã€‚
+ * å½“æ’å…¥å…ƒç´ æ—¶ï¼ŒPriorityBlockingQueue ä¼šæ ¹æ®å…ƒç´ å®ç°çš„ compareTo() æ–¹æ³•æ¥å†³å®šå®ƒçš„æ’å…¥ä½ç½®ï¼Œè¶Šå¤§çš„å…ƒç´ è¶Šé åã€‚
+ * æ­¤å¤–ï¼ŒPriorityBlockingQueue æ˜¯é˜»å¡é˜Ÿåˆ—ï¼Œå¦‚æœæŸäº›æ“ä½œï¼ˆæ¯”å¦‚é˜Ÿåˆ—ä¸ºç©ºæ—¶ä½¿ç”¨poll()æ–¹æ³•
+ * è·å–å¹¶åˆ é™¤ä¸€ä¸ªå…ƒç´ ï¼‰ä¸èƒ½ç«‹å³æ‰§è¡Œåˆ™å°†ä¼šé˜»å¡çº¿ç¨‹ç›´åˆ°æ“ä½œå®Œæˆã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ16ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ16æ—¥
  */
 public class PriorityBlockingQueueTest {
 
@@ -26,14 +26,14 @@ public class PriorityBlockingQueueTest {
 	public static void main(String[] args) {
 		PriorityBlockingQueue<Event> queue = new PriorityBlockingQueue<>();
 		
-		// ÏÈÊ¹ÓÃ 5 ¸öÏß³ÌÌí¼ÓÔªËØ
+		// å…ˆä½¿ç”¨ 5 ä¸ªçº¿ç¨‹æ·»åŠ å…ƒç´ 
 		Thread[] threads = new Thread[5];
 		for (int i = 0; i < threads.length; i++) {
 			threads[i] = new Thread(new Task(i, queue));
 			threads[i].start();
 		}
 		
-		// µÈ´ıÏß³ÌÈ«²¿½áÊø
+		// ç­‰å¾…çº¿ç¨‹å…¨éƒ¨ç»“æŸ
 		for (Thread thread : threads) {
 			try {
 				thread.join();
@@ -43,9 +43,9 @@ public class PriorityBlockingQueueTest {
 		}
 		
 		System.out.printf("Main: Queue Size: %d\n",queue.size());
-		// Ö÷Ïß³Ì¿ªÊ¼´Ó PriorityBlockingQueue È¡³öÔªËØ
+		// ä¸»çº¿ç¨‹å¼€å§‹ä» PriorityBlockingQueue å–å‡ºå…ƒç´ 
 		for (int i = 0; i < threads.length * 100; i++) {
-			// »ñÈ¡²¢ÒÆ³ı´Ë¶ÓÁĞµÄÍ·£¬Èç¹û´Ë¶ÓÁĞÎª¿Õ£¬Ôò·µ»Ø null¡£
+			// è·å–å¹¶ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´ï¼Œå¦‚æœæ­¤é˜Ÿåˆ—ä¸ºç©ºï¼Œåˆ™è¿”å› nullã€‚
 			Event event = queue.poll();
 			System.out.println(event);
 		}
@@ -54,14 +54,14 @@ public class PriorityBlockingQueueTest {
 		System.out.printf("Main: Queue Size: %d\n", queue.size());
 		
 		try {
-			// »ñÈ¡²¢ÒÆ³ı´Ë¶ÓÁĞµÄÍ·£¬ÔÚÖ¸¶¨µÄµÈ´ıÊ±¼äÇ°µÈ´ı¿ÉÓÃµÄÔªËØ£¨Èç¹ûÓĞ±ØÒª£©¡£
+			// è·å–å¹¶ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´ï¼Œåœ¨æŒ‡å®šçš„ç­‰å¾…æ—¶é—´å‰ç­‰å¾…å¯ç”¨çš„å…ƒç´ ï¼ˆå¦‚æœæœ‰å¿…è¦ï¼‰ã€‚
 			Event event = queue.poll(5, TimeUnit.SECONDS);
 			System.out.println(event == null ? "time out" : event);
-			// »ñÈ¡²¢ÒÆ³ı´Ë¶ÓÁĞµÄÍ·²¿£¬ÔÚÔªËØ±äµÃ¿ÉÓÃÖ®Ç°Ò»Ö±µÈ´ı£¨Èç¹ûÓĞ±ØÒª£©¡£
+			// è·å–å¹¶ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´éƒ¨ï¼Œåœ¨å…ƒç´ å˜å¾—å¯ç”¨ä¹‹å‰ä¸€ç›´ç­‰å¾…ï¼ˆå¦‚æœæœ‰å¿…è¦ï¼‰ã€‚
 //			event = queue.take();
-			// »ñÈ¡µ«²»ÒÆ³ı´Ë¶ÓÁĞµÄÍ·£»Èç¹û´Ë¶ÓÁĞÎª¿Õ£¬Ôò·µ»Ø null¡£
+			// è·å–ä½†ä¸ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´ï¼›å¦‚æœæ­¤é˜Ÿåˆ—ä¸ºç©ºï¼Œåˆ™è¿”å› nullã€‚
 //			event = queue.peek();
-			// ÍêÈ«ÒÆ³ı´Ë¶ÓÁĞÖĞµÄËùÓĞÔªËØ¡£
+			// å®Œå…¨ç§»é™¤æ­¤é˜Ÿåˆ—ä¸­çš„æ‰€æœ‰å…ƒç´ ã€‚
 //			queue.clear();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -80,12 +80,12 @@ public class PriorityBlockingQueueTest {
 		}
 
 		/**
-		 * ÊµÏÖ±È½Ï·½·¨
+		 * å®ç°æ¯”è¾ƒæ–¹æ³•
 		 * <p>
-		 * ·µ»ØÖµËµÃ÷£º<p>
-		 * 1£¬±íÊ¾this¶ÔÏóĞ¡ÓÚ²ÎÊı¶ÔÏó¡£
-		 * 0£¬±íÊ¾this¶ÔÏóµÈÓÚ²ÎÊı¶ÔÏó¡£
-		 * -1£¬±íÊ¾this¶ÔÏó´óÓÚ²ÎÊı¶ÔÏó¡£
+		 * è¿”å›å€¼è¯´æ˜ï¼š<p>
+		 * 1ï¼Œè¡¨ç¤ºthiså¯¹è±¡å°äºå‚æ•°å¯¹è±¡ã€‚
+		 * 0ï¼Œè¡¨ç¤ºthiså¯¹è±¡ç­‰äºå‚æ•°å¯¹è±¡ã€‚
+		 * -1ï¼Œè¡¨ç¤ºthiså¯¹è±¡å¤§äºå‚æ•°å¯¹è±¡ã€‚
 		 * 
 		 * @see java.lang.Comparable#compareTo(java.lang.Object)
 		 */
@@ -110,7 +110,7 @@ public class PriorityBlockingQueueTest {
 	}
 
 	/**
-	 * Ìí¼ÓÔªËØµÄÈÎÎñ
+	 * æ·»åŠ å…ƒç´ çš„ä»»åŠ¡
 	 */
 	private static class Task implements Runnable {
 
@@ -126,7 +126,7 @@ public class PriorityBlockingQueueTest {
 		public void run() {
 			for (int i = 0; i < 100; i++) {
 				events.add(new Event(id, i));
-				// ½«Ö¸¶¨ÔªËØ²åÈë´ËÓÅÏÈ¼¶¶ÓÁĞ¡£¸Ã¶ÓÁĞÊÇÎŞ½çµÄ£¬ËùÒÔ´Ë·½·¨²»»á×èÈû¡£ 
+				// å°†æŒ‡å®šå…ƒç´ æ’å…¥æ­¤ä¼˜å…ˆçº§é˜Ÿåˆ—ã€‚è¯¥é˜Ÿåˆ—æ˜¯æ— ç•Œçš„ï¼Œæ‰€ä»¥æ­¤æ–¹æ³•ä¸ä¼šé˜»å¡ã€‚ 
 //				events.put(new Event(id, i));
 			}
 		}

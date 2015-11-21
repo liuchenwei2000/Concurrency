@@ -6,28 +6,28 @@ package concurrency.atomic;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Ô­×Ó±äÁ¿Ê¾Àı
+ * åŸå­å˜é‡ç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ20ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ20æ—¥
  */
 public class AtomicVariableTest {
 
 	/**
-	 * Ò»¸öÏß³Ì²»¶ÏµØ¶ÔIAccountÖĞµÄÓà¶îÖ´ĞĞ¼Ó100²Ù×÷£¬ÁíÒ»¸öÏß³ÌÔòÖ´ĞĞ¼õ100²Ù×÷£¬¸÷×ÔÖ´ĞĞ10000´Î¡£
-	 * ×îºó¿´IAccount ÖĞµÄÓà¶îÊÇ·ñÊÇ³õÊ¼Öµ1000£¬Èç¹ûÊÇÔòÖ¤Ã÷Ô­×Ó±äÁ¿ AtomicInteger µÄÓĞĞ§ĞÔ¡£
+	 * ä¸€ä¸ªçº¿ç¨‹ä¸æ–­åœ°å¯¹IAccountä¸­çš„ä½™é¢æ‰§è¡ŒåŠ 100æ“ä½œï¼Œå¦ä¸€ä¸ªçº¿ç¨‹åˆ™æ‰§è¡Œå‡100æ“ä½œï¼Œå„è‡ªæ‰§è¡Œ10000æ¬¡ã€‚
+	 * æœ€åçœ‹IAccount ä¸­çš„ä½™é¢æ˜¯å¦æ˜¯åˆå§‹å€¼1000ï¼Œå¦‚æœæ˜¯åˆ™è¯æ˜åŸå­å˜é‡ AtomicInteger çš„æœ‰æ•ˆæ€§ã€‚
 	 */
 	public static void main(String[] args) {
-		System.out.println("¡¾Test NormalVariableAccount¡¿");
+		System.out.println("ã€Test NormalVariableAccountã€‘");
 		test(new NormalVariableAccount(1000));
 
-		System.out.println("\n¡¾Test AtomicVariableAccount¡¿");
+		System.out.println("\nã€Test AtomicVariableAccountã€‘");
 		test(new AtomicVariableAccount(1000));
 	}
 
 	private static void test(IAccount account) {
-		System.out.println("Account Initial balance£º" + account.getBalance());
+		System.out.println("Account Initial balanceï¼š" + account.getBalance());
 
 		Thread company = new Company(account);
 		Thread bank = new Bank(account);
@@ -42,15 +42,15 @@ public class AtomicVariableTest {
 			e.printStackTrace();
 		}
 
-		System.out.println("Account Final balance£º" + account.getBalance());
+		System.out.println("Account Final balanceï¼š" + account.getBalance());
 	}
 
 	/**
-	 * Ê¹ÓÃ³£¹æ±äÁ¿ÊµÏÖµÄAccount£¬²»ÄÜ±£Ö¤Êı¾İÒ»ÖÂĞÔ¡£
+	 * ä½¿ç”¨å¸¸è§„å˜é‡å®ç°çš„Accountï¼Œä¸èƒ½ä¿è¯æ•°æ®ä¸€è‡´æ€§ã€‚
 	 */
 	private static class NormalVariableAccount implements IAccount {
 
-		// ÆÕÍ¨µÄ int ĞÍ±äÁ¿
+		// æ™®é€šçš„ int å‹å˜é‡
 		private int balance;
 
 		public NormalVariableAccount(int balance) {
@@ -62,7 +62,7 @@ public class AtomicVariableTest {
 		}
 
 		public void addAmount(int amount) {
-			// Õâ²½²Ù×÷±»±àÒëÊ±»á²úÉúºÃ¼¸ÌõÖ¸Áî
+			// è¿™æ­¥æ“ä½œè¢«ç¼–è¯‘æ—¶ä¼šäº§ç”Ÿå¥½å‡ æ¡æŒ‡ä»¤
 			this.balance += amount;
 		}
 
@@ -72,30 +72,30 @@ public class AtomicVariableTest {
 	}
 
 	/**
-	 * Ê¹ÓÃÔ­×Ó±äÁ¿ÊµÏÖµÄAccount£¬ÄÜ¹»±£Ö¤Êı¾İÒ»ÖÂĞÔ¡£
+	 * ä½¿ç”¨åŸå­å˜é‡å®ç°çš„Accountï¼Œèƒ½å¤Ÿä¿è¯æ•°æ®ä¸€è‡´æ€§ã€‚
 	 */
 	private static class AtomicVariableAccount implements IAccount {
 
-		// Ê¹ÓÃÔ­×Ó±äÁ¿£¬ÁíÍâ»¹ÓĞ AtomicLong¡¢AtomicBoolean¡¢AtomicReferenceµÈÔ­×Ó±äÁ¿ÊµÏÖ
+		// ä½¿ç”¨åŸå­å˜é‡ï¼Œå¦å¤–è¿˜æœ‰ AtomicLongã€AtomicBooleanã€AtomicReferenceç­‰åŸå­å˜é‡å®ç°
 		private AtomicInteger balance;
 
 		public AtomicVariableAccount(int balance) {
-			// Ê¹ÓÃ int Öµ³õÊ¼»¯Ò»¸ö AtomicInteger
+			// ä½¿ç”¨ int å€¼åˆå§‹åŒ–ä¸€ä¸ª AtomicInteger
 			this.balance = new AtomicInteger(balance);
 		}
 
 		public int getBalance() {
-			return balance.get();// ·µ»ØÔ­×Ó±äÁ¿ÖĞµÄÖµ
+			return balance.get();// è¿”å›åŸå­å˜é‡ä¸­çš„å€¼
 		}
 
 		public void addAmount(int amount) {
-			// ÒÔÔ­×Ó·½Ê½½«¸ø¶¨ÖµÓëµ±Ç°ÖµÏà¼Ó²¢·µ»Ø¸üĞÂµÄÖµ¡£ 
+			// ä»¥åŸå­æ–¹å¼å°†ç»™å®šå€¼ä¸å½“å‰å€¼ç›¸åŠ å¹¶è¿”å›æ›´æ–°çš„å€¼ã€‚ 
 			this.balance.addAndGet(amount);
-			// ÏÂÃæµÄ·½·¨Ò²¶¼±£Ö¤²Ù×÷µÄÔ­×ÓĞÔ
-//			this.balance.getAndAdd(amount);// ÒÔÔ­×Ó·½Ê½½«¸ø¶¨ÖµÓëµ±Ç°ÖµÏà¼Ó²¢·µ»ØÒÔÇ°µÄÖµ 
-//			this.balance.incrementAndGet();// ÒÔÔ­×Ó·½Ê½½«µ±Ç°Öµ¼Ó 1
-//			this.balance.decrementAndGet();// ÒÔÔ­×Ó·½Ê½½«µ±Ç°Öµ¼õ 1
-//			this.balance.getAndSet(1);// ÒÔÔ­×Ó·½Ê½ÉèÖÃÎª¸ø¶¨Öµ£¬²¢·µ»Ø¾ÉÖµ
+			// ä¸‹é¢çš„æ–¹æ³•ä¹Ÿéƒ½ä¿è¯æ“ä½œçš„åŸå­æ€§
+//			this.balance.getAndAdd(amount);// ä»¥åŸå­æ–¹å¼å°†ç»™å®šå€¼ä¸å½“å‰å€¼ç›¸åŠ å¹¶è¿”å›ä»¥å‰çš„å€¼ 
+//			this.balance.incrementAndGet();// ä»¥åŸå­æ–¹å¼å°†å½“å‰å€¼åŠ  1
+//			this.balance.decrementAndGet();// ä»¥åŸå­æ–¹å¼å°†å½“å‰å€¼å‡ 1
+//			this.balance.getAndSet(1);// ä»¥åŸå­æ–¹å¼è®¾ç½®ä¸ºç»™å®šå€¼ï¼Œå¹¶è¿”å›æ—§å€¼
 		}
 
 		public void subtractAmount(int amount) {

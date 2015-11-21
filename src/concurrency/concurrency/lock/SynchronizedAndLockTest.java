@@ -8,45 +8,45 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ���ֲ�ͬ�������ƻ��Ƶĵȼ۹�ϵ
+ * 两种不同并发控制机制的等价关系
  * <p>
- * ������������������ò�ͬ�ķ�ʽ���в������ƣ���Ч���ǵȼ۵ġ�
+ * 本类的两个方法，采用不同的方式进行并发控制，但效果是等价的。
  * <p>
- * �������ַ�ʽ��ѡ��ԭ��
- * <li>1�����synchronized�ؼ��ֿ��Թ������Ǿ�����ʹ�������������Լ��ٴ������������������
- * <li>2��ֻ���ڷǳ���ҪLock/Condition�ṹ�Ķ������Ե�ʱ���ʹ�����ǡ�
+ * 对于两种方式的选择原则：
+ * <li>1，如果synchronized关键字可以工作，那就优先使用它，这样可以减少代码数量，避免出错。
+ * <li>2，只有在非常需要Lock/Condition结构的独有特性的时候才使用它们。
  *
- * @author ����ΰ
+ * @author 刘晨伟
  *
- * �������ڣ�2013-6-8
+ * 创建日期：2013-6-8
  */
 public class SynchronizedAndLockTest {
 
 	/**
-	 * ʹ��synchronizedʵ�ֲ�������
+	 * 使用synchronized实现并发控制
 	 */
 	public synchronized void method1() throws InterruptedException {
 		// do something
-		boolean flag = true;// ģ���߳����е�ĳ������
+		boolean flag = true;// 模拟线程运行的某种条件
 		while(flag){
-			wait();// ���̼߳��뵽�ȴ�����
+			wait();// 把线程加入到等待集中
 		}
 		// do something
-		// notify();// ������һ���ȴ��̵߳�����״̬
-		notifyAll();// ������еȴ��̵߳�����״̬
+		// notify();// 解除随机一个等待线程的阻塞状态
+		notifyAll();// 解除所有等待线程的阻塞状态
 	}
 	
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
 	
 	/**
-	 * ʹ��lock����ʵ�ֲ�������
+	 * 使用lock对象实现并发控制
 	 */
 	public void method2() throws InterruptedException {
 		lock.lock();
 		try {
 			// do something
-			boolean flag = true;// ģ���߳����е�ĳ������
+			boolean flag = true;// 模拟线程运行的某种条件
 			while(flag){
 				condition.await();
 			}

@@ -9,13 +9,13 @@ import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¿ØÖÆPhaserÖĞ½×¶ÎÇĞ»»µÄÊ¾Àı
+ * æ§åˆ¶Phaserä¸­é˜¶æ®µåˆ‡æ¢çš„ç¤ºä¾‹
  * <p>
- * ×Ü¹²¿¼ÊÔ3³¡£¬Ö»ÓĞ¿¼ÍêÉÏÒ»³¡²ÅÄÜ¼ÌĞøÏòÏÂ½øĞĞ£¬Ã¿³¡¿¼ÊÔ¶¼»áĞèÒª·¢ÁîºóÍ³Ò»¿ªÊ¼¡£
+ * æ€»å…±è€ƒè¯•3åœºï¼Œåªæœ‰è€ƒå®Œä¸Šä¸€åœºæ‰èƒ½ç»§ç»­å‘ä¸‹è¿›è¡Œï¼Œæ¯åœºè€ƒè¯•éƒ½ä¼šéœ€è¦å‘ä»¤åç»Ÿä¸€å¼€å§‹ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ14ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ14æ—¥
  */
 public class OnPhaseChangeTest {
 
@@ -23,12 +23,12 @@ public class OnPhaseChangeTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// ÕâÀïÃ»ÓĞÖ¸Ã÷²ÎÓëÏß³ÌÊı
+		// è¿™é‡Œæ²¡æœ‰æŒ‡æ˜å‚ä¸çº¿ç¨‹æ•°
 		MyPhaser phaser = new MyPhaser();
 		
 		Student[] students = new Student[3];
 		students[0] = new Student("Tom", phaser);
-		phaser.register();// Ïò phaser ¶¯Ì¬×¢²áÒ»¸ö²ÎÓëÕß
+		phaser.register();// å‘ phaser åŠ¨æ€æ³¨å†Œä¸€ä¸ªå‚ä¸è€…
 		students[1] = new Student("Ann", phaser);
 		phaser.register();
 		students[2] = new Student("Lucy", phaser);
@@ -52,22 +52,22 @@ public class OnPhaseChangeTest {
 	}
 
 	/**
-	 * ×Ô¶¨ÒåPhaserÊµÏÖ
+	 * è‡ªå®šä¹‰Phaserå®ç°
 	 * <p>
-	 * PhaserÀàÌá¹©ÁËÒ»¸öonAdvance()·½·¨£¬Ëü»áÔÚÃ¿´Î½×¶Î£¨phase£©ÇĞ»»Ê±¡ª¡ª¡ª¡ªÉÏÒ»¸ö½×¶ÎÖ´ĞĞÍê±Ï¼´½«½øÈëÏÂÒ»¸ö½×¶ÎÇ°¡ª¡ª¡ª¡ª´¥·¢Ö´ĞĞ¡£
-	 * Í¨¹ıÊµÏÖ×Ô¶¨ÒåµÄPhaserÀà¿ÉÒÔ¿ØÖÆ½×¶ÎÇĞ»»£¬Ö»ÒªÖØĞ´onAdvance()·½·¨¼´¿É¡£
+	 * Phaserç±»æä¾›äº†ä¸€ä¸ªonAdvance()æ–¹æ³•ï¼Œå®ƒä¼šåœ¨æ¯æ¬¡é˜¶æ®µï¼ˆphaseï¼‰åˆ‡æ¢æ—¶â€”â€”â€”â€”ä¸Šä¸€ä¸ªé˜¶æ®µæ‰§è¡Œå®Œæ¯•å³å°†è¿›å…¥ä¸‹ä¸€ä¸ªé˜¶æ®µå‰â€”â€”â€”â€”è§¦å‘æ‰§è¡Œã€‚
+	 * é€šè¿‡å®ç°è‡ªå®šä¹‰çš„Phaserç±»å¯ä»¥æ§åˆ¶é˜¶æ®µåˆ‡æ¢ï¼Œåªè¦é‡å†™onAdvance()æ–¹æ³•å³å¯ã€‚
 	 */
 	private static class MyPhaser extends Phaser {
 
 		/**
-		 * ¸Ã·½·¨»áÔÚ½×¶ÎÇĞ»»Ç°ºÍËùÓĞ²ÎÓëÏß³Ì±»»½ĞÑÇ°£¨Òòµ÷ÓÃarriveAndAwaitAdvance()·½·¨£©±»µ÷ÓÃ¡£
+		 * è¯¥æ–¹æ³•ä¼šåœ¨é˜¶æ®µåˆ‡æ¢å‰å’Œæ‰€æœ‰å‚ä¸çº¿ç¨‹è¢«å”¤é†’å‰ï¼ˆå› è°ƒç”¨arriveAndAwaitAdvance()æ–¹æ³•ï¼‰è¢«è°ƒç”¨ã€‚
 		 * 
 		 * @param phase
-		 *            ±íÊ¾µ±Ç°½×¶ÎĞòºÅ£¨»ùÓÚ0£©
+		 *            è¡¨ç¤ºå½“å‰é˜¶æ®µåºå·ï¼ˆåŸºäº0ï¼‰
 		 * @param registeredParties
-		 *            ±íÊ¾×¢²áµÄ²ÎÓëÏß³ÌÊı¡£
-		 * @return {@code true} ±íÊ¾phaser¶ÔÏó»á»½ĞÑËùÓĞ²ÎÓëÏß³Ì£¬µ«Ëü±¾ÉíÂíÉÏ½øÈë terminated ×´Ì¬¡£</br>
-		 *         {@code false} ±íÊ¾phaser¶ÔÏó½«»á¼ÌĞøÖ´ĞĞºóÃæµÄ½×¶Î²Ù×÷¡£
+		 *            è¡¨ç¤ºæ³¨å†Œçš„å‚ä¸çº¿ç¨‹æ•°ã€‚
+		 * @return {@code true} è¡¨ç¤ºphaserå¯¹è±¡ä¼šå”¤é†’æ‰€æœ‰å‚ä¸çº¿ç¨‹ï¼Œä½†å®ƒæœ¬èº«é©¬ä¸Šè¿›å…¥ terminated çŠ¶æ€ã€‚</br>
+		 *         {@code false} è¡¨ç¤ºphaserå¯¹è±¡å°†ä¼šç»§ç»­æ‰§è¡Œåé¢çš„é˜¶æ®µæ“ä½œã€‚
 		 * @see java.util.concurrent.Phaser#onAdvance(int, int)
 		 */
 		@Override
@@ -144,7 +144,7 @@ public class OnPhaseChangeTest {
 		}
 		
 		private String getDateTime(){
-			return "¡¾" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "¡¿";
+			return "ã€" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "ã€‘";
 		}
 		
 		private void doExam1() {

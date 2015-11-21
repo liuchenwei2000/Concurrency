@@ -11,13 +11,13 @@ import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Fork/Join¿ò¼ÜÊ¹ÓÃµÄ×Ô¶¨ÒåÏß³Ì¹¤³§Ê¾Àı
+ * Fork/Joinæ¡†æ¶ä½¿ç”¨çš„è‡ªå®šä¹‰çº¿ç¨‹å·¥å‚ç¤ºä¾‹
  * <p>
  * Implementing the ThreadFactory interface to generate custom threads for the Fork/Join framework.
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ26ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ26æ—¥
  */
 public class MyWorkerThreadFactoryTest {
 
@@ -47,10 +47,10 @@ public class MyWorkerThreadFactoryTest {
 	}
 	
 	/**
-	 * ×Ô¶¨ÒåWorkerThreadFactory
+	 * è‡ªå®šä¹‰WorkerThreadFactory
 	 * <p>
-	 * ForkJoinPool ÏñÆäËûJava²¢·¢APIÒ»Ñù£¬Ê¹ÓÃ¹¤³§À´´´½¨Ïß³Ì¶ÔÏó¡£
-	 * Ïß³Ì¹¤³§ĞèÒªÊµÏÖForkJoinPool.ForkJoinWorkerThreadFactory Àà¡£
+	 * ForkJoinPool åƒå…¶ä»–Javaå¹¶å‘APIä¸€æ ·ï¼Œä½¿ç”¨å·¥å‚æ¥åˆ›å»ºçº¿ç¨‹å¯¹è±¡ã€‚
+	 * çº¿ç¨‹å·¥å‚éœ€è¦å®ç°ForkJoinPool.ForkJoinWorkerThreadFactory ç±»ã€‚
 	 */
 	private static class MyWorkerThreadFactory implements ForkJoinWorkerThreadFactory {
 
@@ -61,15 +61,15 @@ public class MyWorkerThreadFactoryTest {
 	}
 	
 	/**
-	 * ×Ô¶¨ÒåWorkerThreadÊ¾Àı
+	 * è‡ªå®šä¹‰WorkerThreadç¤ºä¾‹
 	 * <p>
-	 * Fork/Join ¿ò¼ÜÊ¹ÓÃµÄÏß³Ì³ÆÎª¹¤×÷Ïß³Ì£¨worker thread£©£¬JavaÊ¹ÓÃ¼Ì³Ğ×Ô Thread ÀàµÄ ForkJoinWorkerThread À´ÊµÏÖ¹¤×÷Ïß³Ì¡£
+	 * Fork/Join æ¡†æ¶ä½¿ç”¨çš„çº¿ç¨‹ç§°ä¸ºå·¥ä½œçº¿ç¨‹ï¼ˆworker threadï¼‰ï¼ŒJavaä½¿ç”¨ç»§æ‰¿è‡ª Thread ç±»çš„ ForkJoinWorkerThread æ¥å®ç°å·¥ä½œçº¿ç¨‹ã€‚
 	 * <p>
-	 * Í³¼Æ¹¤×÷Ïß³ÌÔËĞĞÁË¶àÉÙÈÎÎñ¡£
+	 * ç»Ÿè®¡å·¥ä½œçº¿ç¨‹è¿è¡Œäº†å¤šå°‘ä»»åŠ¡ã€‚
 	 */
 	private static class MyWorkerThread extends ForkJoinWorkerThread {
 		
-		// Ê¹ÓÃThreadLocal±äÁ¿ÊÇÎªÁËÈÃÃ¿¸öÏß³Ì¶ÀÏíÒ»¸ö¼ÆÊıÆ÷¡£
+		// ä½¿ç”¨ThreadLocalå˜é‡æ˜¯ä¸ºäº†è®©æ¯ä¸ªçº¿ç¨‹ç‹¬äº«ä¸€ä¸ªè®¡æ•°å™¨ã€‚
 		private static ThreadLocal<Integer> counter = new ThreadLocal<Integer>();
 
 		protected MyWorkerThread(ForkJoinPool pool) {
@@ -77,35 +77,35 @@ public class MyWorkerThreadFactoryTest {
 		}
 
 		/**
-		 * µ±¹¤×÷Ïß³Ì¿ªÊ¼Ö´ĞĞÊ±±»µ÷ÓÃ
+		 * å½“å·¥ä½œçº¿ç¨‹å¼€å§‹æ‰§è¡Œæ—¶è¢«è°ƒç”¨
 		 * 
 		 * @see java.util.concurrent.ForkJoinWorkerThread#onStart()
 		 */
 		@Override
 		protected void onStart() {
 			super.onStart();
-			counter.set(0);// ³õÊ¼»¯¼ÆÊıÆ÷
+			counter.set(0);// åˆå§‹åŒ–è®¡æ•°å™¨
 			System.out.printf(
 					"MyWorkerThread %d: Initializing task counter.\n", getId());
 		}
 
 		/**
-		 * µ±¹¤×÷Ïß³Ì½áÊøÔËĞĞÊ±±»µ÷ÓÃ
+		 * å½“å·¥ä½œçº¿ç¨‹ç»“æŸè¿è¡Œæ—¶è¢«è°ƒç”¨
 		 * <p>
-		 * °üÀ¨Õı³£½áÊøºÍÒì³£½áÊø£¬·½·¨²ÎÊı¼´ÊÇÒì³£½áÊøÊ±µÄException¶ÔÏó£¬Èç¹ûÆäÖµÎªnullÔò±íÃ÷ÊÇÕı³£½áÊø¡£
+		 * åŒ…æ‹¬æ­£å¸¸ç»“æŸå’Œå¼‚å¸¸ç»“æŸï¼Œæ–¹æ³•å‚æ•°å³æ˜¯å¼‚å¸¸ç»“æŸæ—¶çš„Exceptionå¯¹è±¡ï¼Œå¦‚æœå…¶å€¼ä¸ºnullåˆ™è¡¨æ˜æ˜¯æ­£å¸¸ç»“æŸã€‚
 		 * 
 		 * @see java.util.concurrent.ForkJoinWorkerThread#onTermination(java.lang.Throwable)
 		 */
 		@Override
 		protected void onTermination(Throwable exception) {
-			// ´òÓ¡¸ÃÏß³ÌÖ´ĞĞµÄÈÎÎñÊı
+			// æ‰“å°è¯¥çº¿ç¨‹æ‰§è¡Œçš„ä»»åŠ¡æ•°
 			System.out
 					.printf("MyWorkerThread %d: %d\n", getId(), counter.get());
 			super.onTermination(exception);
 		}
 
 		/**
-		 * µ±ÈÎÎñ¼ÓÈëÊ±µİÔö¼ÆÊıÆ÷
+		 * å½“ä»»åŠ¡åŠ å…¥æ—¶é€’å¢è®¡æ•°å™¨
 		 */
 		public void addTask() {
 			counter.set(counter.get() + 1);
@@ -113,17 +113,17 @@ public class MyWorkerThreadFactoryTest {
 	}
 	
 	/**
-	 * ÔÚ Fork/Join ¿ò¼ÜÖĞÔËĞĞµÄÈÎÎñ
+	 * åœ¨ Fork/Join æ¡†æ¶ä¸­è¿è¡Œçš„ä»»åŠ¡
 	 */
 	private static class MyRecursiveTask extends RecursiveTask<Integer> {
 		
 		private static final long serialVersionUID = 1L;
 
-		/** ãĞÖµ */
+		/** é˜ˆå€¼ */
 		private static final int DEFAULT_SIZE = 100;
 		
-		private int first;// µÚÒ»¸öÊıµÄË÷ÒıÖµ 
-		private int last;// ×îºóÒ»¸öÊıµÄË÷ÒıÖµ 
+		private int first;// ç¬¬ä¸€ä¸ªæ•°çš„ç´¢å¼•å€¼ 
+		private int last;// æœ€åä¸€ä¸ªæ•°çš„ç´¢å¼•å€¼ 
 		
 		public MyRecursiveTask(int first, int last) {
 			this.first = first;
@@ -131,13 +131,13 @@ public class MyWorkerThreadFactoryTest {
 		}
 
 		/**
-		 * ÖØĞ´¸Ã·½·¨£¬ÊµÏÖÌØ¶¨ÒµÎñÂß¼­
+		 * é‡å†™è¯¥æ–¹æ³•ï¼Œå®ç°ç‰¹å®šä¸šåŠ¡é€»è¾‘
 		 * 
 		 * @see java.util.concurrent.RecursiveTask#compute()
 		 */
 		@Override
 		protected Integer compute() {
-			// Ã¿ÔËĞĞÒ»´ÎÔò½«Ïß³ÌÖ´ĞĞÈÎÎñÊı +1
+			// æ¯è¿è¡Œä¸€æ¬¡åˆ™å°†çº¿ç¨‹æ‰§è¡Œä»»åŠ¡æ•° +1
 			((MyWorkerThread)Thread.currentThread()).addTask();
 			
 			Integer result = 0;

@@ -8,68 +8,68 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * ReentrantReadWriteLock²âÊÔ
+ * ReentrantReadWriteLockæµ‹è¯•
  * <p>
- * ReentrantReadWriteLockÊÇ¿ÉÖØÈëµÄ¶ÁĞ´Ëø¡£
+ * ReentrantReadWriteLockæ˜¯å¯é‡å…¥çš„è¯»å†™é”ã€‚
  * <p>
- * Ó¦ÓÃ³¡¾°£ºµ±ÓĞºÜ¶àÏß³Ì¶¼´ÓÄ³¸öÊı¾İ½á¹¹ÖĞ¶ÁÈ¡Êı¾İ¶øºÜÉÙÓĞÏß³Ì¶ÔÆä½øĞĞĞŞ¸ÄÊ±¡£
- * ÔÚÕâÖÖÇé¿öÏÂ£¬ÔÊĞí¶ÁÈ¡Ïß³Ì¹²Ïí·ÃÎÊÊÇºÏÊÊµÄ£¬µ«Ğ´ÈëÏß³ÌÒÀÈ»±ØĞëÊÇ»¥³â·ÃÎÊµÄ¡£
+ * åº”ç”¨åœºæ™¯ï¼šå½“æœ‰å¾ˆå¤šçº¿ç¨‹éƒ½ä»æŸä¸ªæ•°æ®ç»“æ„ä¸­è¯»å–æ•°æ®è€Œå¾ˆå°‘æœ‰çº¿ç¨‹å¯¹å…¶è¿›è¡Œä¿®æ”¹æ—¶ã€‚
+ * åœ¨è¿™ç§æƒ…å†µä¸‹ï¼Œå…è®¸è¯»å–çº¿ç¨‹å…±äº«è®¿é—®æ˜¯åˆé€‚çš„ï¼Œä½†å†™å…¥çº¿ç¨‹ä¾ç„¶å¿…é¡»æ˜¯äº’æ–¥è®¿é—®çš„ã€‚
  * <p>
- * ´ËËø±»´óÁ¿Ê¹ÓÃÔÚ»º´æÖĞ£¬ÒòÎª»º´æÖĞµÄ¶ÔÏó±»¹²Ïí»áÓĞ´óÁ¿µÄ¶Á²Ù×÷£¬Å¼¶û²Å»áĞŞ¸ÄÕâ¸ö¶ÔÏóÖĞµÄÊı¾İ¡£
+ * æ­¤é”è¢«å¤§é‡ä½¿ç”¨åœ¨ç¼“å­˜ä¸­ï¼Œå› ä¸ºç¼“å­˜ä¸­çš„å¯¹è±¡è¢«å…±äº«ä¼šæœ‰å¤§é‡çš„è¯»æ“ä½œï¼Œå¶å°”æ‰ä¼šä¿®æ”¹è¿™ä¸ªå¯¹è±¡ä¸­çš„æ•°æ®ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-8
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-8
  */
 public class ReentrantReadWriteLockTest {
 
-	// ¿ÉÖØÈë¶ÁĞ´Ëø
+	// å¯é‡å…¥è¯»å†™é”
 	private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-	// ¶ÁËø£¬¿É±»¶à¸ö¶Á²Ù×÷¹²ÓÃµÄËø£¬µ«»áÅÅ³âËùÓĞĞ´²Ù×÷
+	// è¯»é”ï¼Œå¯è¢«å¤šä¸ªè¯»æ“ä½œå…±ç”¨çš„é”ï¼Œä½†ä¼šæ’æ–¥æ‰€æœ‰å†™æ“ä½œ
 	private Lock readLock = lock.readLock();
-	// Ğ´Ëø£¬»áÅÅ³âËùÓĞÆäËûµÄĞ´²Ù×÷ºÍ¶Á²Ù×÷
+	// å†™é”ï¼Œä¼šæ’æ–¥æ‰€æœ‰å…¶ä»–çš„å†™æ“ä½œå’Œè¯»æ“ä½œ
 	private Lock writeLock = lock.writeLock();
 	
 	private double totalNumber = 0;
 	
 	/**
-	 * ¶ÁÈ¡Êı¾İ
+	 * è¯»å–æ•°æ®
 	 */
 	public double getTotalNumber() {
 		/*
-		 * Ïß³Ì»ñÈ¡¶ÁËøµÄÇ°ÌáÌõ¼ş£º
-		 * 1£¬Ã»ÓĞÆäËûÏß³Ì³ÖÓĞĞ´Ëø¡£
-		 * 2£¬Ã»ÓĞĞ´ÇëÇó»òÕßÓĞĞ´ÇëÇó£¬µ«µ÷ÓÃÏß³ÌºÍ³ÖÓĞËøµÄÏß³ÌÊÇÍ¬Ò»¸ö¡£
+		 * çº¿ç¨‹è·å–è¯»é”çš„å‰ææ¡ä»¶ï¼š
+		 * 1ï¼Œæ²¡æœ‰å…¶ä»–çº¿ç¨‹æŒæœ‰å†™é”ã€‚
+		 * 2ï¼Œæ²¡æœ‰å†™è¯·æ±‚æˆ–è€…æœ‰å†™è¯·æ±‚ï¼Œä½†è°ƒç”¨çº¿ç¨‹å’ŒæŒæœ‰é”çš„çº¿ç¨‹æ˜¯åŒä¸€ä¸ªã€‚
 		 */
 		readLock.lock();
-		System.out.println("Thread " + Thread.currentThread().getName() + " »ñµÃÁË¶ÁËø¡£");
+		System.out.println("Thread " + Thread.currentThread().getName() + " è·å¾—äº†è¯»é”ã€‚");
 		try {
 			return totalNumber;
 		} finally {
 			readLock.unlock();
-			System.out.println("Thread " + Thread.currentThread().getName() + " ÊÍ·ÅÁË¶ÁËø¡£");
+			System.out.println("Thread " + Thread.currentThread().getName() + " é‡Šæ”¾äº†è¯»é”ã€‚");
 		}
 	}
 
 	/**
-	 * ĞŞ¸ÄÊı¾İ
+	 * ä¿®æ”¹æ•°æ®
 	 */
 	public double setTotalNumber(int n) {
 		/*
-		 * Ïß³Ì½øÈëĞ´ËøµÄÇ°ÌáÌõ¼ş£º
-		 * 1£¬Ã»ÓĞÆäËûÏß³Ì³ÖÓĞ¶ÁËø¡£
-		 * 2£¬Ã»ÓĞÆäËûÏß³Ì³ÖÓĞĞ´Ëø¡£
+		 * çº¿ç¨‹è¿›å…¥å†™é”çš„å‰ææ¡ä»¶ï¼š
+		 * 1ï¼Œæ²¡æœ‰å…¶ä»–çº¿ç¨‹æŒæœ‰è¯»é”ã€‚
+		 * 2ï¼Œæ²¡æœ‰å…¶ä»–çº¿ç¨‹æŒæœ‰å†™é”ã€‚
 		 */
 		writeLock.lock();
-		System.out.println("Thread " + Thread.currentThread().getName() + " »ñµÃÁËĞ´Ëø¡£");
+		System.out.println("Thread " + Thread.currentThread().getName() + " è·å¾—äº†å†™é”ã€‚");
 		try {
 			totalNumber = n;
-			Thread.sleep(3);// ÎªÁËÊ¹ÔËĞĞ½á¹û¸üËæ»ú£¬ÑÓ³Ù3ºÁÃë
+			Thread.sleep(3);// ä¸ºäº†ä½¿è¿è¡Œç»“æœæ›´éšæœºï¼Œå»¶è¿Ÿ3æ¯«ç§’
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
 			writeLock.unlock();
-			System.out.println("Thread " + Thread.currentThread().getName() + " ÊÍ·ÅÁËĞ´Ëø¡£");
+			System.out.println("Thread " + Thread.currentThread().getName() + " é‡Šæ”¾äº†å†™é”ã€‚");
 		}
 		return totalNumber;
 	}
@@ -84,9 +84,9 @@ public class ReentrantReadWriteLockTest {
 		}
 
 		public void run() {
-			// ĞŞ¸ÄÊı¾İ
+			// ä¿®æ”¹æ•°æ®
 			test.setTotalNumber(random.nextInt(10));
-			// ¶ÁÈ¡Êı¾İ
+			// è¯»å–æ•°æ®
 			System.out.println("Thread "
 					+ Thread.currentThread().getName() + " : "
 					+ test.getTotalNumber());
@@ -98,7 +98,7 @@ public class ReentrantReadWriteLockTest {
 	 */
 	public static void main(String[] args) {
 		ReentrantReadWriteLockTest test = new ReentrantReadWriteLockTest();
-		// 10¸öÏß³Ì£¬¹²Í¬ĞŞ¸Ä/·ÃÎÊÍ¬Ò»¸öReentrantReadWriteLockTest¶ÔÏó
+		// 10ä¸ªçº¿ç¨‹ï¼Œå…±åŒä¿®æ”¹/è®¿é—®åŒä¸€ä¸ªReentrantReadWriteLockTestå¯¹è±¡
 		Thread[] threads = new Thread[10];
 		for (int i = 0; i < threads.length; i++) {
 			threads[i] = new Thread(new TestTask(test));
@@ -108,55 +108,55 @@ public class ReentrantReadWriteLockTest {
 			thread.start();
 		}
 		/**
-		 Ä³´ÎÊä³ö½á¹û£º
-Thread Thread-0 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-0 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-1 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-1 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-3 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-3 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-2 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-2 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-5 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-5 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-6 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-6 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-4 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-4 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-7 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-7 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-8 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-8 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-9 »ñµÃÁËĞ´Ëø¡£
-Thread Thread-9 ÊÍ·ÅÁËĞ´Ëø¡£
-Thread Thread-0 »ñµÃÁË¶ÁËø¡£
-Thread Thread-3 »ñµÃÁË¶ÁËø¡£
-Thread Thread-5 »ñµÃÁË¶ÁËø¡£
-Thread Thread-1 »ñµÃÁË¶ÁËø¡£
-Thread Thread-9 »ñµÃÁË¶ÁËø¡£
-Thread Thread-1 ÊÍ·ÅÁË¶ÁËø¡£
-Thread Thread-8 »ñµÃÁË¶ÁËø¡£
-Thread Thread-5 ÊÍ·ÅÁË¶ÁËø¡£
-Thread Thread-7 »ñµÃÁË¶ÁËø¡£
-Thread Thread-4 »ñµÃÁË¶ÁËø¡£
-Thread Thread-6 »ñµÃÁË¶ÁËø¡£
-Thread Thread-3 ÊÍ·ÅÁË¶ÁËø¡£
-Thread Thread-0 ÊÍ·ÅÁË¶ÁËø¡£
-Thread Thread-2 »ñµÃÁË¶ÁËø¡£
-Thread Thread-6 ÊÍ·ÅÁË¶ÁËø¡£
-Thread Thread-4 ÊÍ·ÅÁË¶ÁËø¡£
-Thread Thread-7 ÊÍ·ÅÁË¶ÁËø¡£
+		 æŸæ¬¡è¾“å‡ºç»“æœï¼š
+Thread Thread-0 è·å¾—äº†å†™é”ã€‚
+Thread Thread-0 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-1 è·å¾—äº†å†™é”ã€‚
+Thread Thread-1 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-3 è·å¾—äº†å†™é”ã€‚
+Thread Thread-3 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-2 è·å¾—äº†å†™é”ã€‚
+Thread Thread-2 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-5 è·å¾—äº†å†™é”ã€‚
+Thread Thread-5 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-6 è·å¾—äº†å†™é”ã€‚
+Thread Thread-6 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-4 è·å¾—äº†å†™é”ã€‚
+Thread Thread-4 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-7 è·å¾—äº†å†™é”ã€‚
+Thread Thread-7 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-8 è·å¾—äº†å†™é”ã€‚
+Thread Thread-8 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-9 è·å¾—äº†å†™é”ã€‚
+Thread Thread-9 é‡Šæ”¾äº†å†™é”ã€‚
+Thread Thread-0 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-3 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-5 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-1 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-9 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-1 é‡Šæ”¾äº†è¯»é”ã€‚
+Thread Thread-8 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-5 é‡Šæ”¾äº†è¯»é”ã€‚
+Thread Thread-7 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-4 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-6 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-3 é‡Šæ”¾äº†è¯»é”ã€‚
+Thread Thread-0 é‡Šæ”¾äº†è¯»é”ã€‚
+Thread Thread-2 è·å¾—äº†è¯»é”ã€‚
+Thread Thread-6 é‡Šæ”¾äº†è¯»é”ã€‚
+Thread Thread-4 é‡Šæ”¾äº†è¯»é”ã€‚
+Thread Thread-7 é‡Šæ”¾äº†è¯»é”ã€‚
 Thread Thread-1 : 3.0
 Thread Thread-0 : 3.0
-Thread Thread-8 ÊÍ·ÅÁË¶ÁËø¡£
-Thread Thread-9 ÊÍ·ÅÁË¶ÁËø¡£
+Thread Thread-8 é‡Šæ”¾äº†è¯»é”ã€‚
+Thread Thread-9 é‡Šæ”¾äº†è¯»é”ã€‚
 Thread Thread-8 : 3.0
 Thread Thread-5 : 3.0
 Thread Thread-3 : 3.0
 Thread Thread-4 : 3.0
 Thread Thread-7 : 3.0
 Thread Thread-6 : 3.0
-Thread Thread-2 ÊÍ·ÅÁË¶ÁËø¡£
+Thread Thread-2 é‡Šæ”¾äº†è¯»é”ã€‚
 Thread Thread-9 : 3.0
 Thread Thread-2 : 3.0 
 		 */

@@ -7,13 +7,13 @@ import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * ×ªÕËÖ¸ÁîÈÎÎñ
+ * è½¬è´¦æŒ‡ä»¤ä»»åŠ¡
  * <p>
- * ÕâÊµ¼ÊÉÏÊÇÒ»¸öÉú²úÕß½ÇÉ«¡£
+ * è¿™å®é™…ä¸Šæ˜¯ä¸€ä¸ªç”Ÿäº§è€…è§’è‰²ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê8ÔÂ3ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´8æœˆ3æ—¥
  */
 public class TransferCommandTask implements Runnable {
 	
@@ -35,7 +35,7 @@ public class TransferCommandTask implements Runnable {
 			try {
 				int to = RANDOM.nextInt(accNumber);
 				int amount = RANDOM.nextInt(100);
-				// ½«×ªÕËÖ¸Áî·ÅÈë ×èÈû¶ÓÁĞ
+				// å°†è½¬è´¦æŒ‡ä»¤æ”¾å…¥ é˜»å¡é˜Ÿåˆ—
 				commands.put(new TransferCommand(accID, to, amount));
 			} catch (InterruptedException e) {
 				e.printStackTrace();

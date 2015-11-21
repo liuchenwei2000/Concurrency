@@ -6,15 +6,15 @@ package threadlocal;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * ThreadLocalRandomÊ¾Àı
+ * ThreadLocalRandomç¤ºä¾‹
  * <p>
- * ThreadLocalRandom ÊÇJava7¿ªÊ¼²ÅÌá¹©µÄ¹¤¾ßÀà£¬ÓÃÀ´ÔÚ²¢·¢»·¾³ÏÂÉú³ÉËæ»úÊı¡£Ëü¾ÍÏñÊÇÏß³Ì¾Ö²¿±äÁ¿£¬
- * Ã¿¸öÏëÉú³ÉËæ»úÊıµÄÏß³Ì½«»á³ÖÓĞÒ»¸ö×Ô¼ºµÄÉú³ÉÆ÷£¬µ«ÕâĞ©Éú³ÉÆ÷±»ThreadLocalRandom ÀàÍ³Ò»¹ÜÀí¡ª¡ªÕâ¶Ô¿Í»§¶ËÊÇÍ¸Ã÷µÄ¡£
- * ÔÚ¶àÏß³Ì²¢·¢·ÃÎÊµÄÇé¿öÏÂ£¬Ê¹ÓÃThreadLocalRandom ±ÈÊ¹ÓÃMath.random()¿ÉÒÔ¼õÉÙ²¢·¢Ïß³ÌÖ®¼äµÄ¾ºÕù£¬´Ó¶ø»ñµÃ¸üºÃµÄĞÔÄÜ¡£
+ * ThreadLocalRandom æ˜¯Java7å¼€å§‹æ‰æä¾›çš„å·¥å…·ç±»ï¼Œç”¨æ¥åœ¨å¹¶å‘ç¯å¢ƒä¸‹ç”Ÿæˆéšæœºæ•°ã€‚å®ƒå°±åƒæ˜¯çº¿ç¨‹å±€éƒ¨å˜é‡ï¼Œ
+ * æ¯ä¸ªæƒ³ç”Ÿæˆéšæœºæ•°çš„çº¿ç¨‹å°†ä¼šæŒæœ‰ä¸€ä¸ªè‡ªå·±çš„ç”Ÿæˆå™¨ï¼Œä½†è¿™äº›ç”Ÿæˆå™¨è¢«ThreadLocalRandom ç±»ç»Ÿä¸€ç®¡ç†â€”â€”è¿™å¯¹å®¢æˆ·ç«¯æ˜¯é€æ˜çš„ã€‚
+ * åœ¨å¤šçº¿ç¨‹å¹¶å‘è®¿é—®çš„æƒ…å†µä¸‹ï¼Œä½¿ç”¨ThreadLocalRandom æ¯”ä½¿ç”¨Math.random()å¯ä»¥å‡å°‘å¹¶å‘çº¿ç¨‹ä¹‹é—´çš„ç«äº‰ï¼Œä»è€Œè·å¾—æ›´å¥½çš„æ€§èƒ½ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ30ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ30æ—¥
  */
 public class ThreadLocalRandomTest {
 
@@ -31,7 +31,7 @@ public class ThreadLocalRandomTest {
 	private static class Task implements Runnable {
 		
 		public Task() {
-			// ³õÊ¼»¯±¾Ïß³ÌÊ¹ÓÃµÄËæ»úÊıÉú³ÉÆ÷
+			// åˆå§‹åŒ–æœ¬çº¿ç¨‹ä½¿ç”¨çš„éšæœºæ•°ç”Ÿæˆå™¨
 			ThreadLocalRandom.current();
 		}
 
@@ -39,7 +39,7 @@ public class ThreadLocalRandomTest {
 		public void run() {
 			String name = Thread.currentThread().getName();
 			for (int i = 0; i < 10; i++) {
-				// Éú³É10ÒÔÄÚµÄËæ»úÊı
+				// ç”Ÿæˆ10ä»¥å†…çš„éšæœºæ•°
 				int randomInt = ThreadLocalRandom.current().nextInt(10);
 				System.out.printf("%s: %d\n", name, randomInt);
 			}

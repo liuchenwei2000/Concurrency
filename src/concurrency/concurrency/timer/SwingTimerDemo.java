@@ -15,13 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
- * Swing¶¨Ê±Æ÷TimerÀàÑİÊ¾
+ * Swingå®šæ—¶å™¨Timerç±»æ¼”ç¤º
  * <p>
- * ËüÊµ¼ÊÉÏÊÇ¹Û²ìÕâÄ£Ê½µÄÓ¦ÓÃ¡£
+ * å®ƒå®é™…ä¸Šæ˜¯è§‚å¯Ÿè¿™æ¨¡å¼çš„åº”ç”¨ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2010-6-10
+ * åˆ›å»ºæ—¥æœŸï¼š2010-6-10
  */
 public class SwingTimerDemo {
 
@@ -39,7 +39,7 @@ class ClockPanel extends JPanel {
 
 	private JLabel label;
 
-	// ¶¨Ê±Æ÷TimerÊÇ¾ßÌå±»¹Û²ìÕß½ÇÉ«
+	// å®šæ—¶å™¨Timeræ˜¯å…·ä½“è¢«è§‚å¯Ÿè€…è§’è‰²
 	private Timer timer;
 
 	private SimpleDateFormat format = new SimpleDateFormat(
@@ -48,14 +48,14 @@ class ClockPanel extends JPanel {
 	public ClockPanel() {
 		super();
 		add(getLabel());
-		// µ±µ÷ÓÃTimer¶ÔÏóµÄstart()·½·¨Ê±£¬¶¨Ê±¾Í¿ªÊ¼ÁË
+		// å½“è°ƒç”¨Timerå¯¹è±¡çš„start()æ–¹æ³•æ—¶ï¼Œå®šæ—¶å°±å¼€å§‹äº†
 		getTimer().start();
 	}
 
 	private JLabel getLabel() {
 		if (label == null) {
 			label = new JLabel(format.format(new Date()));
-			label.setFont(new Font("ËÎÌå", Font.BOLD, 22));
+			label.setFont(new Font("å®‹ä½“", Font.BOLD, 22));
 			label.setForeground(Color.RED);
 		}
 		return label;
@@ -63,18 +63,18 @@ class ClockPanel extends JPanel {
 
 	private Timer getTimer() {
 		if (timer == null) {
-			// 1ÃëÖÓ×öÒ»´ÎÊ±¼äÖØÉè
+			// 1ç§’é’Ÿåšä¸€æ¬¡æ—¶é—´é‡è®¾
 			timer = new Timer(1000, null);
-			// Ìí¼Ó¼àÌıÆ÷
+			// æ·»åŠ ç›‘å¬å™¨
 			timer.addActionListener(new TimeResetAction());
 		}
 		return timer;
 	}
 
 	/**
-	 * Ê±¼äÖØÉè¼àÌıÆ÷
+	 * æ—¶é—´é‡è®¾ç›‘å¬å™¨
 	 * <p>
-	 * ActionListenerÊÇ³éÏó¹Û²ìÕß½ÇÉ«£¬TimeResetActionÊÇ¾ßÌå¹Û²ìÕß½ÇÉ«¡£
+	 * ActionListeneræ˜¯æŠ½è±¡è§‚å¯Ÿè€…è§’è‰²ï¼ŒTimeResetActionæ˜¯å…·ä½“è§‚å¯Ÿè€…è§’è‰²ã€‚
 	 */
 	private class TimeResetAction implements ActionListener {
 

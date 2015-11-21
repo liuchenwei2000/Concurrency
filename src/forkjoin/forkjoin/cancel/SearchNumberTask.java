@@ -7,13 +7,13 @@ import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ²éÕÒÄ³ÊıÖµÔÚÊı×éÖĞ³öÏÖµÄÎ»ÖÃ
+ * æŸ¥æ‰¾æŸæ•°å€¼åœ¨æ•°ç»„ä¸­å‡ºç°çš„ä½ç½®
  * <p>
- * Ò»µ©ÕÒµ½¸ÃÊı³öÏÖµÄÒ»¸öÎ»ÖÃ¼´¿Ì·µ»Ø£¬¶ø²»ÓÃÔÙ²éÕÒÆäËûÎ»ÖÃ¡£
+ * ä¸€æ—¦æ‰¾åˆ°è¯¥æ•°å‡ºç°çš„ä¸€ä¸ªä½ç½®å³åˆ»è¿”å›ï¼Œè€Œä¸ç”¨å†æŸ¥æ‰¾å…¶ä»–ä½ç½®ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class SearchNumberTask extends RecursiveTask<Integer> {
 	
@@ -24,10 +24,10 @@ public class SearchNumberTask extends RecursiveTask<Integer> {
 	
 	public static final int NOT_FOUND = -1;
 	
-	private int[] data;// Êı¾İ
+	private int[] data;// æ•°æ®
 	private int start;
 	private int end;
-	private int number;// ´ı²éÕÒµÄÊıÖµ
+	private int number;// å¾…æŸ¥æ‰¾çš„æ•°å€¼
 
 	private TaskManager taskManager;
 	
@@ -76,7 +76,7 @@ public class SearchNumberTask extends RecursiveTask<Integer> {
 		for (int i = start; i < end; i++) {
 			if(data[i] == number) {
 				System.out.printf("Task: Number %d found in position %d\n", number, i);
-				// ÕÒµ½Ö¸¶¨ÊıÖµÔòÈ¡ÏûÆäËûÈÎÎñ
+				// æ‰¾åˆ°æŒ‡å®šæ•°å€¼åˆ™å–æ¶ˆå…¶ä»–ä»»åŠ¡
 				taskManager.cancelTasks(this);
 				return i;
 			}
@@ -90,7 +90,7 @@ public class SearchNumberTask extends RecursiveTask<Integer> {
 	}
 
 	/**
-	 * ÖØĞ´cancel·½·¨£¬ÔÚÈÎÎñ±»È¡ÏûÊ±´òÓ¡ĞÅÏ¢
+	 * é‡å†™cancelæ–¹æ³•ï¼Œåœ¨ä»»åŠ¡è¢«å–æ¶ˆæ—¶æ‰“å°ä¿¡æ¯
 	 * 
 	 * @see java.util.concurrent.ForkJoinTask#cancel(boolean)
 	 */

@@ -4,26 +4,26 @@
 package concurrency.atomic;
 
 /**
- * ÒøĞĞÕË»§
+ * é“¶è¡Œè´¦æˆ·
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ20ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ20æ—¥
  */
 public interface IAccount {
 
 	/**
-	 * ÏòÕË»§´òÇ®
+	 * å‘è´¦æˆ·æ‰“é’±
 	 */
 	public void addAmount(int amount);
 	
 	/**
-	 * ´ÓÕË»§¿ÛÇ®
+	 * ä»è´¦æˆ·æ‰£é’±
 	 */
 	public void subtractAmount(int amount);
 	
 	/**
-	 * ·µ»ØÕË»§Óà¶î
+	 * è¿”å›è´¦æˆ·ä½™é¢
 	 */
 	public int getBalance();
 }

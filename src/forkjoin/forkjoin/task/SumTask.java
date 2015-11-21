@@ -7,39 +7,39 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * ÇóºÍÈÎÎñ
+ * æ±‚å’Œä»»åŠ¡
  * <p>
- * ÇóÒ»¸öÇø¼ä·¶Î§ÄÚËùÓĞÕıÕûÊıµÄºÍ¡£
+ * æ±‚ä¸€ä¸ªåŒºé—´èŒƒå›´å†…æ‰€æœ‰æ­£æ•´æ•°çš„å’Œã€‚
  * <p>
- * ÊµÏÖ RecursiveTask µÄÍÆ¼öĞÎÊ½£º
+ * å®ç° RecursiveTask çš„æ¨èå½¢å¼ï¼š
  * <pre>
  * If (problem size > size){
- * 	tasks=divide(task);// ·Ö½âÈÎÎñ
- * 	execute(tasks);// ÔËĞĞ×ÓÈÎÎñ
- * 	groupResults()// ºÏ²¢½á¹û
+ * 	tasks=divide(task);// åˆ†è§£ä»»åŠ¡
+ * 	execute(tasks);// è¿è¡Œå­ä»»åŠ¡
+ * 	groupResults()// åˆå¹¶ç»“æœ
  * 	return result;
  * } else {
- * 	resolve problem;// ½â¾öÎÊÌâ
+ * 	resolve problem;// è§£å†³é—®é¢˜
  * 	return result;
  * }
  * </pre>
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ25ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ25æ—¥
  */
-public class SumTask extends RecursiveTask<Integer> {// ĞèÒª·µ»Ø½á¹û£¬ËùÒÔ¼Ì³ĞRecursiveTask
+public class SumTask extends RecursiveTask<Integer> {// éœ€è¦è¿”å›ç»“æœï¼Œæ‰€ä»¥ç»§æ‰¿RecursiveTask
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** ãĞÖµ */
+	/** é˜ˆå€¼ */
 	private static final int DEFAULT_SIZE = 100;
 	
-	private int first;// µÚÒ»¸öÊıµÄË÷ÒıÖµ 
-	private int last;// ×îºóÒ»¸öÊıµÄË÷ÒıÖµ 
+	private int first;// ç¬¬ä¸€ä¸ªæ•°çš„ç´¢å¼•å€¼ 
+	private int last;// æœ€åä¸€ä¸ªæ•°çš„ç´¢å¼•å€¼ 
 	
 	public SumTask(int first, int last) {
 		this.first = first;
@@ -47,14 +47,14 @@ public class SumTask extends RecursiveTask<Integer> {// ĞèÒª·µ»Ø½á¹û£¬ËùÒÔ¼Ì³ĞRe
 	}
 
 	/**
-	 * ÖØĞ´¸Ã·½·¨£¬ÊµÏÖÌØ¶¨ÒµÎñÂß¼­
+	 * é‡å†™è¯¥æ–¹æ³•ï¼Œå®ç°ç‰¹å®šä¸šåŠ¡é€»è¾‘
 	 * 
 	 * @see java.util.concurrent.RecursiveTask#compute()
 	 */
 	@Override
 	protected Integer compute() {
 		Integer result = 0;
-		// ´óÓÚãĞÖµ£¬Ôò½«ÈÎÎñ¼ÌĞø·Ö½â³É¸üĞ¡µÄÁ½¸ö£¨»òÕß¶à¸ö£©ÈÎÎñ¡£
+		// å¤§äºé˜ˆå€¼ï¼Œåˆ™å°†ä»»åŠ¡ç»§ç»­åˆ†è§£æˆæ›´å°çš„ä¸¤ä¸ªï¼ˆæˆ–è€…å¤šä¸ªï¼‰ä»»åŠ¡ã€‚
 		if(last - first > DEFAULT_SIZE) {
 			int middle = (last + first) / 2;
 			
@@ -62,27 +62,27 @@ public class SumTask extends RecursiveTask<Integer> {// ĞèÒª·µ»Ø½á¹û£¬ËùÒÔ¼Ì³ĞRe
 			SumTask task2 = new SumTask(middle + 1, last); 
 			
 			/*
-			 * ·Ö½âÈÎÎñºó£¬Í¨¹ıµ÷ÓÃForkJoinTask.invokeAll·½·¨Ö´ĞĞÁ½¸ö×ÓÈÎÎñ¡£
+			 * åˆ†è§£ä»»åŠ¡åï¼Œé€šè¿‡è°ƒç”¨ForkJoinTask.invokeAllæ–¹æ³•æ‰§è¡Œä¸¤ä¸ªå­ä»»åŠ¡ã€‚
 			 * 
-			 * ¸Ã·½·¨ÊÇÒ»¸öÍ¬²½µ÷ÓÃ£¬¸¸ÈÎÎñ»áÒ»Ö±µÈµ½×ÓÈÎÎñÈ«²¿Íê³É²Å»á¼ÌĞøÏòÏÂÖ´ĞĞ¡£
-			 * µ±¸¸ÈÎÎñµÈ´ı×ÓÈÎÎñÍê³ÉÊ±£¬ÔËĞĞ¸¸ÈÎÎñµÄworker thread»áÑ°ÕÒÆäËûµÈ´ıÔËĞĞµÄÈÎÎñ²¢ÔËĞĞËü¡£
-			 * Òò´Ë£¬Fork/Join¿ò¼ÜÌá¹©ÁË±ÈRunnableºÍCallable¸ü¸ßĞ§µÄÈÎÎñ¹ÜÀí¹¦ÄÜ¡£
+			 * è¯¥æ–¹æ³•æ˜¯ä¸€ä¸ªåŒæ­¥è°ƒç”¨ï¼Œçˆ¶ä»»åŠ¡ä¼šä¸€ç›´ç­‰åˆ°å­ä»»åŠ¡å…¨éƒ¨å®Œæˆæ‰ä¼šç»§ç»­å‘ä¸‹æ‰§è¡Œã€‚
+			 * å½“çˆ¶ä»»åŠ¡ç­‰å¾…å­ä»»åŠ¡å®Œæˆæ—¶ï¼Œè¿è¡Œçˆ¶ä»»åŠ¡çš„worker threadä¼šå¯»æ‰¾å…¶ä»–ç­‰å¾…è¿è¡Œçš„ä»»åŠ¡å¹¶è¿è¡Œå®ƒã€‚
+			 * å› æ­¤ï¼ŒFork/Joinæ¡†æ¶æä¾›äº†æ¯”Runnableå’ŒCallableæ›´é«˜æ•ˆçš„ä»»åŠ¡ç®¡ç†åŠŸèƒ½ã€‚
 			 */ 
 			invokeAll(task1, task2);
 			
 			try {
-				// ForkJoinTask ÊµÏÖÁËFuture½Ó¿Ú£¬Í¨¹ıget()·µ»ØÔËËãÖµ¡£
+				// ForkJoinTask å®ç°äº†Futureæ¥å£ï¼Œé€šè¿‡get()è¿”å›è¿ç®—å€¼ã€‚
 				Integer result1 = task1.get();
 				Integer result2 = task2.get();
-				// Ò²¿ÉÒÔÊ¹ÓÃÏÂÃæµÄ·½Ê½·µ»ØÔËËãÖµ£¬Èç¹û³¬Ê±Ôò·µ»Ønull
+				// ä¹Ÿå¯ä»¥ä½¿ç”¨ä¸‹é¢çš„æ–¹å¼è¿”å›è¿ç®—å€¼ï¼Œå¦‚æœè¶…æ—¶åˆ™è¿”å›null
 				// task1.get(100, TimeUnit.MILLISECONDS);
 				
-				// ºÏ²¢¸÷¸ö×ÓÈÎÎñµÄ½á¹û£¬ĞÎ³É±¾ÈÎÎñµÄ½á¹û
+				// åˆå¹¶å„ä¸ªå­ä»»åŠ¡çš„ç»“æœï¼Œå½¢æˆæœ¬ä»»åŠ¡çš„ç»“æœ
 				result = groupResults(result1, result2);
 			} catch (InterruptedException | ExecutionException e) {
 				e.printStackTrace();
 			}
-		} else {// Ğ¡ÓÚãĞÖµ£¬Ö±½ÓÖ´ĞĞÈÎÎñ
+		} else {// å°äºé˜ˆå€¼ï¼Œç›´æ¥æ‰§è¡Œä»»åŠ¡
 			result = sum();
 		}
 		return result;

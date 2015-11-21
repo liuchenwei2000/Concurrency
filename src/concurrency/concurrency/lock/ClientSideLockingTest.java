@@ -4,29 +4,29 @@
 package concurrency.lock;
 
 /**
- * ¿Í»§¶ËËø¶¨(Clinet-side locking)Ê¾Àý
+ * å®¢æˆ·ç«¯é”å®š(Clinet-side locking)ç¤ºä¾‹
  * <p>
- * Ê¹ÓÃÒ»¸ö¶ÔÏóµÄËøÀ´ÊµÏÖ¶îÍâµÄÔ­×Ó²Ù×÷£¬³ÆÎª¿Í»§¶ËËø¶¨¡£
- * ¶ø¸Ã¶ÔÏóÎ´±Ø»á¸ø³ö³ÐÅµËµ×Ô¼ºµÄËùÓÐ¿ÉÐÞ¸Ä·½·¨¶¼ÊÇÓÃÆä×ÔÉíµÄÄÚ²¿Ëø£¬Èç±¾ÀýPerson2Àà¡£
- * ËùÒÔ£¬¿Í»§¶ËËø¶¨ÊÇ·Ç³£´àÈõµÄ£¬²»ÍÆ¼öÊ¹ÓÃ¡£
+ * ä½¿ç”¨ä¸€ä¸ªå¯¹è±¡çš„é”æ¥å®žçŽ°é¢å¤–çš„åŽŸå­æ“ä½œï¼Œç§°ä¸ºå®¢æˆ·ç«¯é”å®šã€‚
+ * è€Œè¯¥å¯¹è±¡æœªå¿…ä¼šç»™å‡ºæ‰¿è¯ºè¯´è‡ªå·±çš„æ‰€æœ‰å¯ä¿®æ”¹æ–¹æ³•éƒ½æ˜¯ç”¨å…¶è‡ªèº«çš„å†…éƒ¨é”ï¼Œå¦‚æœ¬ä¾‹Person2ç±»ã€‚
+ * æ‰€ä»¥ï¼Œå®¢æˆ·ç«¯é”å®šæ˜¯éžå¸¸è„†å¼±çš„ï¼Œä¸æŽ¨èä½¿ç”¨ã€‚
  * <p>
- * ËøºÍÌõ¼þÊÇÏß³ÌÍ¬²½µÄÇ¿´ó¹¤¾ß£¬µ«ËüÃÇ²»ÊÇÃæÏò¶ÔÏóµÄ¡£
+ * é”å’Œæ¡ä»¶æ˜¯çº¿ç¨‹åŒæ­¥çš„å¼ºå¤§å·¥å…·ï¼Œä½†å®ƒä»¬ä¸æ˜¯é¢å‘å¯¹è±¡çš„ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê7ÔÂ26ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´7æœˆ26æ—¥
  */
 @SuppressWarnings("unused")
 public class ClientSideLockingTest {
 
 	/**
-	 * ¸Ã·½·¨Ïë¿ØÖÆ Person1¶ÔÏó setFirstName¡¢setLastNameÁ½¸ö·½·¨µÄÔ­×Ó²Ù×÷¡£
+	 * è¯¥æ–¹æ³•æƒ³æŽ§åˆ¶ Person1å¯¹è±¡ setFirstNameã€setLastNameä¸¤ä¸ªæ–¹æ³•çš„åŽŸå­æ“ä½œã€‚
 	 */
 	synchronized static void setName1(Person1 p1, String firstName,
 			String lastName) {
 		/* 
-		 * ÕâÀï²ÉÓÃÁË¶ÔPerson1¶ÔÏó¼ÓËøÀ´ÊµÏÖÁ½¸ö·½·¨µÄÔ­×Ó²Ù×÷¡£
-		 * ÒòÎªPerson1¶ÔÏóÄÚ²¿È·ÊµÊÇÊ¹ÓÃ×ÔÉí³ÖÓÐµÄËø½øÐÐ¼ÓËø²Ù×÷£¬ËùÒÔÕâÖÖ·½Ê½ÄÜ¹»´ïµ½Ô­×Ó²Ù×÷µÄÄ¿µÄ¡£
+		 * è¿™é‡Œé‡‡ç”¨äº†å¯¹Person1å¯¹è±¡åŠ é”æ¥å®žçŽ°ä¸¤ä¸ªæ–¹æ³•çš„åŽŸå­æ“ä½œã€‚
+		 * å› ä¸ºPerson1å¯¹è±¡å†…éƒ¨ç¡®å®žæ˜¯ä½¿ç”¨è‡ªèº«æŒæœ‰çš„é”è¿›è¡ŒåŠ é”æ“ä½œï¼Œæ‰€ä»¥è¿™ç§æ–¹å¼èƒ½å¤Ÿè¾¾åˆ°åŽŸå­æ“ä½œçš„ç›®çš„ã€‚
 		 */
 		synchronized (p1) {
 			p1.setFirstName(firstName);
@@ -35,13 +35,13 @@ public class ClientSideLockingTest {
 	}
 
 	/**
-	 * ¸Ã·½·¨Ïë¿ØÖÆ Person2¶ÔÏó setFirstName¡¢setLastNameÁ½¸ö·½·¨µÄÔ­×Ó²Ù×÷¡£
+	 * è¯¥æ–¹æ³•æƒ³æŽ§åˆ¶ Person2å¯¹è±¡ setFirstNameã€setLastNameä¸¤ä¸ªæ–¹æ³•çš„åŽŸå­æ“ä½œã€‚
 	 */
 	synchronized static void setName2(Person1 p2, String firstName,
 			String lastName) {
 		/* 
-		 * ÕâÀï²ÉÓÃÁË¶ÔPerson2¶ÔÏó¼ÓËøÀ´ÊµÏÖÁ½¸ö·½·¨µÄÔ­×Ó²Ù×÷¡£
-		 * ÒòÎªPerson2¶ÔÏóÄÚ²¿Ã»ÓÐÊ¹ÓÃ×ÔÉí³ÖÓÐµÄËø½øÐÐ¼ÓËø²Ù×÷£¨¶øÊÇ²ÉÓÃÒ»¸öÊµÀý¶ÔÏóµÄËø£©£¬ËùÒÔÕâÖÖ·½Ê½²»ÄÜ¹»´ïµ½Ô­×Ó²Ù×÷µÄÄ¿µÄ¡£
+		 * è¿™é‡Œé‡‡ç”¨äº†å¯¹Person2å¯¹è±¡åŠ é”æ¥å®žçŽ°ä¸¤ä¸ªæ–¹æ³•çš„åŽŸå­æ“ä½œã€‚
+		 * å› ä¸ºPerson2å¯¹è±¡å†…éƒ¨æ²¡æœ‰ä½¿ç”¨è‡ªèº«æŒæœ‰çš„é”è¿›è¡ŒåŠ é”æ“ä½œï¼ˆè€Œæ˜¯é‡‡ç”¨ä¸€ä¸ªå®žä¾‹å¯¹è±¡çš„é”ï¼‰ï¼Œæ‰€ä»¥è¿™ç§æ–¹å¼ä¸èƒ½å¤Ÿè¾¾åˆ°åŽŸå­æ“ä½œçš„ç›®çš„ã€‚
 		 */
 		synchronized (p2) {
 			p2.setFirstName(firstName);
@@ -50,7 +50,7 @@ public class ClientSideLockingTest {
 	}
 
 	/**
-	 * Õâ¸öÀàµÄ¶ÔÏóÊ¹ÓÃÁËÆä×ÔÉí³ÖÓÐµÄËø½øÐÐËø¶¨²Ù×÷¡£
+	 * è¿™ä¸ªç±»çš„å¯¹è±¡ä½¿ç”¨äº†å…¶è‡ªèº«æŒæœ‰çš„é”è¿›è¡Œé”å®šæ“ä½œã€‚
 	 */
 	static class Person1 {
 
@@ -69,11 +69,11 @@ public class ClientSideLockingTest {
 	}
 
 	/**
-	 * Õâ¸öÀàµÄ¶ÔÏóÊ¹ÓÃÁËÒ»¸öÊµÀý¶ÔÏó³ÖÓÐµÄËø½øÐÐËø¶¨²Ù×÷¡£
+	 * è¿™ä¸ªç±»çš„å¯¹è±¡ä½¿ç”¨äº†ä¸€ä¸ªå®žä¾‹å¯¹è±¡æŒæœ‰çš„é”è¿›è¡Œé”å®šæ“ä½œã€‚
 	 */
 	static class Person2 {
 
-		// lock¶ÔÏó±»´´½¨Ö»ÊÇÎªÁËÊ¹ÓÃÆä³ÖÓÐµÄÄÚ²¿Ëø
+		// lockå¯¹è±¡è¢«åˆ›å»ºåªæ˜¯ä¸ºäº†ä½¿ç”¨å…¶æŒæœ‰çš„å†…éƒ¨é”
 		private Object lock = new Object();
 
 		private String firstName;

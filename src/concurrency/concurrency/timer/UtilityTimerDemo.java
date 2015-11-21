@@ -7,11 +7,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * util°üµÄ¶¨Ê±Æ÷(timer)ÑİÊ¾Àà
+ * utilåŒ…çš„å®šæ—¶å™¨(timer)æ¼”ç¤ºç±»
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2010-6-10
+ * åˆ›å»ºæ—¥æœŸï¼š2010-6-10
  */
 public class UtilityTimerDemo {
 
@@ -20,19 +20,19 @@ public class UtilityTimerDemo {
 	 */
 	public static void main(String[] args) {
 		System.out.println("About to schedule task.(5s)");
-		new Reminder(5);// 5ÃëºóÖ´ĞĞ
+		new Reminder(5);// 5ç§’åæ‰§è¡Œ
 		System.out.println("Task scheduled.");
 	}
 }
 
 class Reminder {
 
-	// ¶¨Ê±Æ÷
+	// å®šæ—¶å™¨
 	private Timer timer;
 
 	public Reminder(int seconds) {
 		this.timer = new Timer();
-		// ÓÃÓÚ¶¨Ê±Ö´ĞĞÒ»¸öTimerTaskÀàĞÍµÄ¶ÔÏó
+		// ç”¨äºå®šæ—¶æ‰§è¡Œä¸€ä¸ªTimerTaskç±»å‹çš„å¯¹è±¡
 		timer.schedule(new RemindTask(), seconds * 1000);
 	}
 

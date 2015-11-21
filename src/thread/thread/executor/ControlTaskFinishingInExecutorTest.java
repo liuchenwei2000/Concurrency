@@ -10,14 +10,14 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¿ØÖÆ Executor ÖĞÖ´ĞĞÍê±ÏµÄÈÎÎñÊ¾Àı
+ * æ§åˆ¶ Executor ä¸­æ‰§è¡Œå®Œæ¯•çš„ä»»åŠ¡ç¤ºä¾‹
  * <p>
- * FutureTask ÀàÌá¹©µÄ done()·½·¨¿ÉÒÔÓÃÀ´ÔÚ Executor ÖĞÔËĞĞµÄÈÎÎñ½áÊøºóÔÙÖ´ĞĞÄ³Ğ©ÌØ¶¨´úÂë¡£
- * ³£±»ÓÃÀ´Ö´ĞĞÒ»Ğ©ºó´¦Àí²Ù×÷£¬±ÈÈçÉú³ÉÍ³¼Æ±¨¸æ¡¢Ê¹ÓÃEmail·¢ËÍ½á¹û»òÊÍ·ÅÄ³Ğ©×ÊÔ´¡£
+ * FutureTask ç±»æä¾›çš„ done()æ–¹æ³•å¯ä»¥ç”¨æ¥åœ¨ Executor ä¸­è¿è¡Œçš„ä»»åŠ¡ç»“æŸåå†æ‰§è¡ŒæŸäº›ç‰¹å®šä»£ç ã€‚
+ * å¸¸è¢«ç”¨æ¥æ‰§è¡Œä¸€äº›åå¤„ç†æ“ä½œï¼Œæ¯”å¦‚ç”Ÿæˆç»Ÿè®¡æŠ¥å‘Šã€ä½¿ç”¨Emailå‘é€ç»“æœæˆ–é‡Šæ”¾æŸäº›èµ„æºã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ15ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ15æ—¥
  */
 public class ControlTaskFinishingInExecutorTest {
 
@@ -31,7 +31,7 @@ public class ControlTaskFinishingInExecutorTest {
 
 		for (int i = 0; i < 5; i++) {
 			ExecutableTask executableTask = new ExecutableTask("Task " + i);
-			// Ê¹ÓÃ ResultTask ¿ØÖÆ ExecutableTask
+			// ä½¿ç”¨ ResultTask æ§åˆ¶ ExecutableTask
 			resultTasks[i] = new ResultTask(executableTask);
 			executor.submit(resultTasks[i]);
 		}
@@ -41,11 +41,11 @@ public class ControlTaskFinishingInExecutorTest {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-		// Ç¿ĞĞÈ¡ÏûÈÎÎñ
+		// å¼ºè¡Œå–æ¶ˆä»»åŠ¡
 		for (int i = 0; i < resultTasks.length; i++) {
 			resultTasks[i].cancel(true);
 		}
-		// ½«Õı³£Íê³ÉµÄÈÎÎñ½á¹û´òÓ¡³öÀ´
+		// å°†æ­£å¸¸å®Œæˆçš„ä»»åŠ¡ç»“æœæ‰“å°å‡ºæ¥
 		for (int i = 0; i < resultTasks.length; i++) {
 			try {
 				if (!resultTasks[i].isCancelled()) {
@@ -60,7 +60,7 @@ public class ControlTaskFinishingInExecutorTest {
 	}
 
 	/**
-	 * ÆÕÍ¨µÄ Callable ÈÎÎñ
+	 * æ™®é€šçš„ Callable ä»»åŠ¡
 	 */
 	private static class ExecutableTask implements Callable<String> {
 		
@@ -87,10 +87,10 @@ public class ControlTaskFinishingInExecutorTest {
 	}
 	
 	/**
-	 * FutureTask ÊµÏÖÊ¾Àı£¬ÓÃÀ´¿ØÖÆ ExecutableTask ½áÊøÊ±ĞĞÎª¡£
+	 * FutureTask å®ç°ç¤ºä¾‹ï¼Œç”¨æ¥æ§åˆ¶ ExecutableTask ç»“æŸæ—¶è¡Œä¸ºã€‚
 	 * <p>
-	 * µ± FutureTask ¿ØÖÆµÄÈÎÎñÔËĞĞ½áÊøºó£¬done()·½·¨»á±» FutureTask ¶ÔÏóÔÚÄÚ²¿×Ô¶¯µ÷ÓÃ£¬×¼È·µØËµ£¬
-	 * Ëü»áÔÚÈÎÎñ×´Ì¬ÇĞ»»µ½ isDone Ö®ºó±»µ÷ÓÃ£¬¶ø²»¹ÜÈÎÎñÊÇÕı³£½áÊø»¹ÊÇ±»È¡Ïû¡£
+	 * å½“ FutureTask æ§åˆ¶çš„ä»»åŠ¡è¿è¡Œç»“æŸåï¼Œdone()æ–¹æ³•ä¼šè¢« FutureTask å¯¹è±¡åœ¨å†…éƒ¨è‡ªåŠ¨è°ƒç”¨ï¼Œå‡†ç¡®åœ°è¯´ï¼Œ
+	 * å®ƒä¼šåœ¨ä»»åŠ¡çŠ¶æ€åˆ‡æ¢åˆ° isDone ä¹‹åè¢«è°ƒç”¨ï¼Œè€Œä¸ç®¡ä»»åŠ¡æ˜¯æ­£å¸¸ç»“æŸè¿˜æ˜¯è¢«å–æ¶ˆã€‚
 	 */
 	private static class ResultTask extends FutureTask<String> {
 
@@ -102,7 +102,7 @@ public class ControlTaskFinishingInExecutorTest {
 		}
 
 		/**
-		 * done() ·½·¨µÄÄ¬ÈÏÊµÏÖÊÇ¿ÕµÄ£¬¿ÉÒÔÍ¨¹ı¸²¸Ç¸Ã·½·¨À´ÊµÏÖÌØ¶¨ĞĞÎª¡£
+		 * done() æ–¹æ³•çš„é»˜è®¤å®ç°æ˜¯ç©ºçš„ï¼Œå¯ä»¥é€šè¿‡è¦†ç›–è¯¥æ–¹æ³•æ¥å®ç°ç‰¹å®šè¡Œä¸ºã€‚
 		 */
 		@Override
 		protected void done() {

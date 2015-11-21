@@ -8,13 +8,13 @@ import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¼à¿ØForkJoinPoolÊ¾Àı
+ * ç›‘æ§ForkJoinPoolç¤ºä¾‹
  * <p>
- * ÑİÊ¾ ForkJoinPool ¶ÔÏóËùÄÜÌá¹©µÄĞÅÏ¢ÒÔ¼°ÈçºÎ»ñÈ¡ËüÃÇ¡£
+ * æ¼”ç¤º ForkJoinPool å¯¹è±¡æ‰€èƒ½æä¾›çš„ä¿¡æ¯ä»¥åŠå¦‚ä½•è·å–å®ƒä»¬ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ27ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ27æ—¥
  */
 public class MonitoringForkJoinPoolTest {
 
@@ -30,7 +30,7 @@ public class MonitoringForkJoinPoolTest {
 		Task task = new Task(array, 0, array.length);
 		pool.execute(task);
 
-		// ÔÚÈÎÎñÔËĞĞÆÚ¼ä£¬Ã¿¸ô1Ãë´òÓ¡Ò»´Î ForkJoinPool µÄ×´Ì¬ĞÅÏ¢
+		// åœ¨ä»»åŠ¡è¿è¡ŒæœŸé—´ï¼Œæ¯éš”1ç§’æ‰“å°ä¸€æ¬¡ ForkJoinPool çš„çŠ¶æ€ä¿¡æ¯
 		while (!task.isDone()) {
 			showLog(pool);
 			TimeUnit.SECONDS.sleep(1);
@@ -47,28 +47,28 @@ public class MonitoringForkJoinPoolTest {
 		System.out.printf("**********************\n");
 		System.out.printf("Main: Fork/Join Pool log\n");
 		System.out.printf("Main: Fork/Join Pool: Parallelism: %d\n",
-				pool.getParallelism());// ·µ»Ø³ØµÄ²¢ĞĞ¼¶´Î£¨parallelism level£©
+				pool.getParallelism());// è¿”å›æ± çš„å¹¶è¡Œçº§æ¬¡ï¼ˆparallelism levelï¼‰
 		System.out.printf("Main: Fork/Join Pool: Pool Size: %d\n",
-				pool.getPoolSize());// ·µ»Ø³ØÖĞµÄ¹¤×÷Ïß³ÌÊı
+				pool.getPoolSize());// è¿”å›æ± ä¸­çš„å·¥ä½œçº¿ç¨‹æ•°
 		System.out.printf("Main: Fork/Join Pool: Active Thread Count: %d\n",
-				pool.getActiveThreadCount());// ·µ»ØÕıÔÚÖ´ĞĞÈÎÎñµÄ¹¤×÷Ïß³ÌÊı
+				pool.getActiveThreadCount());// è¿”å›æ­£åœ¨æ‰§è¡Œä»»åŠ¡çš„å·¥ä½œçº¿ç¨‹æ•°
 		System.out.printf("Main: Fork/Join Pool: Running Thread Count: %d\n",
-				pool.getRunningThreadCount());// ·µ»ØÃ»ÓĞ±»ÈÎºÎÍ¬²½»úÖÆ×èÈûµÄÏß³ÌÊı
+				pool.getRunningThreadCount());// è¿”å›æ²¡æœ‰è¢«ä»»ä½•åŒæ­¥æœºåˆ¶é˜»å¡çš„çº¿ç¨‹æ•°
 		System.out.printf("Main: Fork/Join Pool: Queued Submission: %d\n",
-				pool.getQueuedSubmissionCount());// ·µ»ØÒÑÌá½»µ½³ØÖĞµ«ÉĞÎ´Ö´ĞĞµÄÈÎÎñÊı
+				pool.getQueuedSubmissionCount());// è¿”å›å·²æäº¤åˆ°æ± ä¸­ä½†å°šæœªæ‰§è¡Œçš„ä»»åŠ¡æ•°
 		System.out.printf("Main: Fork/Join Pool: Queued Tasks: %d\n",
-				pool.getQueuedTaskCount());// ·µ»ØÒÑ¾­¿ªÊ¼Ö´ĞĞµÄÈÎÎñÊı
+				pool.getQueuedTaskCount());// è¿”å›å·²ç»å¼€å§‹æ‰§è¡Œçš„ä»»åŠ¡æ•°
 		System.out.printf("Main: Fork/Join Pool: Queued Submissions: %s\n",
-				pool.hasQueuedSubmissions());// ÅĞ¶ÏÊÇ·ñ»¹ÓĞÒÑÌá½»µ½³ØÖĞµ«ÉĞÎ´Ö´ĞĞµÄÈÎÎñ
+				pool.hasQueuedSubmissions());// åˆ¤æ–­æ˜¯å¦è¿˜æœ‰å·²æäº¤åˆ°æ± ä¸­ä½†å°šæœªæ‰§è¡Œçš„ä»»åŠ¡
 		System.out.printf("Main: Fork/Join Pool: Steal Count: %d\n",
-				pool.getStealCount());// Ïß³Ì¼ä·¢Éú¹¤×÷ÇÔÈ¡µÄ´ÎÊı
+				pool.getStealCount());// çº¿ç¨‹é—´å‘ç”Ÿå·¥ä½œçªƒå–çš„æ¬¡æ•°
 		System.out.printf("Main: Fork/Join Pool: Terminated : %s\n",
-				pool.isTerminated());// ÅĞ¶Ï³ØÊÇ·ñÒÑ½áÊøÔËĞĞ
+				pool.isTerminated());// åˆ¤æ–­æ± æ˜¯å¦å·²ç»“æŸè¿è¡Œ
 		System.out.printf("**********************\n");
 	}
 	
 	/**
-	 * ×Ô¶¨Òå RecursiveAction
+	 * è‡ªå®šä¹‰ RecursiveAction
 	 */
 	private static class Task extends RecursiveAction {
 

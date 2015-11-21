@@ -6,14 +6,14 @@ package thread.exception;
 import java.lang.Thread.UncaughtExceptionHandler;
 
 /**
- * ExceptionHandlerÊ¾Àı
+ * ExceptionHandlerç¤ºä¾‹
  * <p>
- * Èç¹ûÏß³ÌÖĞÅ×³ö·ÇÊÜ²éÒì³£¶øÓÖÃ»±»catch´¦Àí£¬Ôò³ÌĞò»áÍË³ö¡£
- * JavaÌá¹©ÁËÒ»ÖÖ»úÖÆ¿ÉÓÃÀ´catch²¢´¦Àí·ÇÊÜ²éÒì³££¬±ÜÃâÉÏÊöÇé¿öµÄ³öÏÖ¡£
+ * å¦‚æœçº¿ç¨‹ä¸­æŠ›å‡ºéå—æŸ¥å¼‚å¸¸è€Œåˆæ²¡è¢«catchå¤„ç†ï¼Œåˆ™ç¨‹åºä¼šé€€å‡ºã€‚
+ * Javaæä¾›äº†ä¸€ç§æœºåˆ¶å¯ç”¨æ¥catchå¹¶å¤„ç†éå—æŸ¥å¼‚å¸¸ï¼Œé¿å…ä¸Šè¿°æƒ…å†µçš„å‡ºç°ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ7ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ7æ—¥
  */
 public class ExceptionHandlerTest {
 
@@ -23,25 +23,25 @@ public class ExceptionHandlerTest {
 	public static void main(String[] args) {
 		Thread t = new Thread(new Task());
 		/*
-		 * Ïß³ÌÔËĞĞÇ°£¬Í¨¹ıÏÂÃæµÄ·½·¨ÎªËüÉèÖÃÄ¬ÈÏÒì³£´¦ÀíÆ÷¡£
-		 * µ±Ïß³ÌÖĞÅ×³öÎ´±»catchµÄ·ÇÊÜ²éÒì³£Ê±£¬JVM»á¼ì²é¸ÃÏß³ÌÊÇ·ñÉèÖÃÁËUncaughtExceptionHandler£¬
-		 * Èç¹ûÓĞµÄ»°£¬JVM»áµ÷ÓÃ¸ÃUncaughtExceptionHandlerµÄÏàÓ¦·½·¨²¢°ÑThread¶ÔÏóºÍException¶ÔÏó×÷Îª²ÎÊı´«Èë¡£
+		 * çº¿ç¨‹è¿è¡Œå‰ï¼Œé€šè¿‡ä¸‹é¢çš„æ–¹æ³•ä¸ºå®ƒè®¾ç½®é»˜è®¤å¼‚å¸¸å¤„ç†å™¨ã€‚
+		 * å½“çº¿ç¨‹ä¸­æŠ›å‡ºæœªè¢«catchçš„éå—æŸ¥å¼‚å¸¸æ—¶ï¼ŒJVMä¼šæ£€æŸ¥è¯¥çº¿ç¨‹æ˜¯å¦è®¾ç½®äº†UncaughtExceptionHandlerï¼Œ
+		 * å¦‚æœæœ‰çš„è¯ï¼ŒJVMä¼šè°ƒç”¨è¯¥UncaughtExceptionHandlerçš„ç›¸åº”æ–¹æ³•å¹¶æŠŠThreadå¯¹è±¡å’ŒExceptionå¯¹è±¡ä½œä¸ºå‚æ•°ä¼ å…¥ã€‚
 		 * 
-		 * JVM»áÏÈÑ°ÕÒÏß³Ì×Ô¼ºµÄÒì³£´¦ÀíÆ÷£¬Ã»ÓĞµÄ»°ÔÙÑ°ÕÒÏß³ÌËùÊôÏß³Ì×éµÄÒì³£´¦ÀíÆ÷£¬×îºóÑ°ÕÒÏß³Ì¹«¹²µÄÒì³£´¦ÀíÆ÷¡£
+		 * JVMä¼šå…ˆå¯»æ‰¾çº¿ç¨‹è‡ªå·±çš„å¼‚å¸¸å¤„ç†å™¨ï¼Œæ²¡æœ‰çš„è¯å†å¯»æ‰¾çº¿ç¨‹æ‰€å±çº¿ç¨‹ç»„çš„å¼‚å¸¸å¤„ç†å™¨ï¼Œæœ€åå¯»æ‰¾çº¿ç¨‹å…¬å…±çš„å¼‚å¸¸å¤„ç†å™¨ã€‚
 		 */
 		t.setUncaughtExceptionHandler(new MyExceptionHandler());
 		t.start();
-		// Ò²¿ÉÒÔÍ¨¹ıÏÂÃæµÄ·½Ê½ÎªËùÓĞµÄÏß³ÌÉèÖÃÄ¬ÈÏµÄ¹«¹²Òì³£´¦ÀíÆ÷
+		// ä¹Ÿå¯ä»¥é€šè¿‡ä¸‹é¢çš„æ–¹å¼ä¸ºæ‰€æœ‰çš„çº¿ç¨‹è®¾ç½®é»˜è®¤çš„å…¬å…±å¼‚å¸¸å¤„ç†å™¨
 //		Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler());
 	}
 
 	/**
-	 * ÊµÏÖ UncaughtExceptionHandler ½Ó¿ÚµÄ×Ô¶¨ÒåÒì³£´¦ÀíÆ÷
+	 * å®ç° UncaughtExceptionHandler æ¥å£çš„è‡ªå®šä¹‰å¼‚å¸¸å¤„ç†å™¨
 	 */
 	private static class MyExceptionHandler implements UncaughtExceptionHandler {
 
 		/**
-		 * Ïß³ÌÅ×³öÎ´±»catchµÄ·ÇÊÜ²éÒì³£Ê±»á±»µ÷ÓÃ
+		 * çº¿ç¨‹æŠ›å‡ºæœªè¢«catchçš„éå—æŸ¥å¼‚å¸¸æ—¶ä¼šè¢«è°ƒç”¨
 		 * 
 		 * @see java.lang.Thread.UncaughtExceptionHandler#uncaughtException(java.lang.Thread, java.lang.Throwable)
 		 */
@@ -57,7 +57,7 @@ public class ExceptionHandlerTest {
 	}
 	
 	/**
-	 * Ä£ÄâÒ»¸ö»áÅ×³ö·ÇÊÜ²éÒì³£µÄÈÎÎñ
+	 * æ¨¡æ‹Ÿä¸€ä¸ªä¼šæŠ›å‡ºéå—æŸ¥å¼‚å¸¸çš„ä»»åŠ¡
 	 */
 	private static class Task implements Runnable {
 

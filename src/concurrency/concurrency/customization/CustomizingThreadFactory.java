@@ -10,14 +10,14 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¶¨ÖÆ ThreadFactory Ê¾Àı
+ * å®šåˆ¶ ThreadFactory ç¤ºä¾‹
  * <p>
- * JavaÌá¹©ÁËThreadFactory ½Ó¿Ú£¬ÓÃÀ´ÊµÏÖÒ»¸ö Thread ¶ÔÏó¹¤³§¡£
- * Java²¢·¢APIµÄÒ»Ğ©¸ß¼¶¹¤¾ß£¬Èç Executor framework »ò Fork/Join framework ¶¼Ê¹ÓÃÏß³Ì¹¤³§´´½¨Ïß³Ì¡£
+ * Javaæä¾›äº†ThreadFactory æ¥å£ï¼Œç”¨æ¥å®ç°ä¸€ä¸ª Thread å¯¹è±¡å·¥å‚ã€‚
+ * Javaå¹¶å‘APIçš„ä¸€äº›é«˜çº§å·¥å…·ï¼Œå¦‚ Executor framework æˆ– Fork/Join framework éƒ½ä½¿ç”¨çº¿ç¨‹å·¥å‚åˆ›å»ºçº¿ç¨‹ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ22ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ22æ—¥
  */
 public class CustomizingThreadFactory {
 
@@ -27,7 +27,7 @@ public class CustomizingThreadFactory {
 	public static void main(String[] args) {
 		MyThreadFactory threadFactroy = new MyThreadFactory("mythread");
 		
-		// ¶ÀÁ¢Ê¹ÓÃ ¶¨ÖÆµÄ ThreadFactory
+		// ç‹¬ç«‹ä½¿ç”¨ å®šåˆ¶çš„ ThreadFactory
 		Thread thread = threadFactroy.newThread(new SleepOneSecondTask());
 		
 		thread.start();
@@ -40,7 +40,7 @@ public class CustomizingThreadFactory {
 		
 		System.out.printf("Main: Thread information %s\n", thread);
 		
-		// ¿ÉÒÔÍ¨¹ı ThreadFactory Óë Executor ¿ò¼Ü½øĞĞÕûºÏ
+		// å¯ä»¥é€šè¿‡ ThreadFactory ä¸ Executor æ¡†æ¶è¿›è¡Œæ•´åˆ
 		ExecutorService pool = Executors.newCachedThreadPool(threadFactroy);
 		
 		pool.submit(new SleepOneSecondTask());
@@ -56,15 +56,15 @@ public class CustomizingThreadFactory {
 	}
 	
 	/**
-	 * ×Ô¶¨Òå ThreadFactory Àà
+	 * è‡ªå®šä¹‰ ThreadFactory ç±»
 	 * <p>
-	 * Ò»µ©ÓĞÁË×Ô¶¨ÒåµÄÏß³ÌÀà£¬¾ÍĞèÒªÊµÏÖÏàÓ¦µÄÏß³Ì¹¤³§¡£µ«Õâ²¢²»ÊÇ±ØĞëµÄ¡£
-	 * Èç¹ûÏëÔÚJavaÌá¹©µÄ²¢·¢APIÖĞÊ¹ÓÃ×Ô¶¨ÒåÏß³Ì£¬Í¨³£¶¼ĞèÒªÊµÏÖÏß³Ì¹¤³§¡£
+	 * ä¸€æ—¦æœ‰äº†è‡ªå®šä¹‰çš„çº¿ç¨‹ç±»ï¼Œå°±éœ€è¦å®ç°ç›¸åº”çš„çº¿ç¨‹å·¥å‚ã€‚ä½†è¿™å¹¶ä¸æ˜¯å¿…é¡»çš„ã€‚
+	 * å¦‚æœæƒ³åœ¨Javaæä¾›çš„å¹¶å‘APIä¸­ä½¿ç”¨è‡ªå®šä¹‰çº¿ç¨‹ï¼Œé€šå¸¸éƒ½éœ€è¦å®ç°çº¿ç¨‹å·¥å‚ã€‚
 	 */
 	private static class MyThreadFactory implements ThreadFactory {
 
-		private String prefix;// Ïß³ÌÃûÇ°×º
-		private int counter;// ¼ÆÊıÆ÷
+		private String prefix;// çº¿ç¨‹åå‰ç¼€
+		private int counter;// è®¡æ•°å™¨
 		
 		public MyThreadFactory(String prefix) {
 			super();
@@ -73,7 +73,7 @@ public class CustomizingThreadFactory {
 		}
 
 		/**
-		 * Ö»ĞèÒªÊµÏÖÕâÒ»¸ö·½·¨
+		 * åªéœ€è¦å®ç°è¿™ä¸€ä¸ªæ–¹æ³•
 		 * 
 		 * @see java.util.concurrent.ThreadFactory#newThread(java.lang.Runnable)
 		 */
@@ -85,7 +85,7 @@ public class CustomizingThreadFactory {
 	
 	
 	/**
-	 * ×Ô¶¨ÒåÏß³ÌÀà£¬¾ßÓĞ¼ÇÂ¼Ïß³Ì´´½¨¡¢¿ªÊ¼¡¢½áÊøÊ±¼äµÄ¹¦ÄÜ¡£
+	 * è‡ªå®šä¹‰çº¿ç¨‹ç±»ï¼Œå…·æœ‰è®°å½•çº¿ç¨‹åˆ›å»ºã€å¼€å§‹ã€ç»“æŸæ—¶é—´çš„åŠŸèƒ½ã€‚
 	 */
 	private static class MyThread extends Thread {
 
@@ -106,7 +106,7 @@ public class CustomizingThreadFactory {
 		}
 
 		/**
-		 * ÔËĞĞÊ±³¤
+		 * è¿è¡Œæ—¶é•¿
 		 */
 		public long getExecutionTime() {
 			return finishDate.getTime() - startDate.getTime();
@@ -131,7 +131,7 @@ public class CustomizingThreadFactory {
 		@Override
 		public void run() {
 			try {
-				System.out.println("SleepOneSecondTask£ºI will sleep 1 second");
+				System.out.println("SleepOneSecondTaskï¼šI will sleep 1 second");
 				TimeUnit.SECONDS.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

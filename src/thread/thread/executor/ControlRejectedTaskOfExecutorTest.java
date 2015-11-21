@@ -9,14 +9,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¿ØÖÆ Executor ¾Ü¾ø½ÓÊÕµÄÈÎÎñÊ¾Àı
+ * æ§åˆ¶ Executor æ‹’ç»æ¥æ”¶çš„ä»»åŠ¡ç¤ºä¾‹
  * <p>
- * µ± Executor µ÷ÓÃÁËshutdown()·½·¨ºó£¬Ëü¾Í²»ÔÙ½ÓÊÕĞÂµÄÈÎÎñ¡£
- * ¿ÉÒÔÍ¨¹ıÎªÆäÉè¶¨ RejectedExecutionHandler À´¹ÜÀí±»¾Ü¾øµÄÈÎÎñ¡£
+ * å½“ Executor è°ƒç”¨äº†shutdown()æ–¹æ³•åï¼Œå®ƒå°±ä¸å†æ¥æ”¶æ–°çš„ä»»åŠ¡ã€‚
+ * å¯ä»¥é€šè¿‡ä¸ºå…¶è®¾å®š RejectedExecutionHandler æ¥ç®¡ç†è¢«æ‹’ç»çš„ä»»åŠ¡ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ15ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ15æ—¥
  */
 public class ControlRejectedTaskOfExecutorTest {
 
@@ -27,7 +27,7 @@ public class ControlRejectedTaskOfExecutorTest {
 		RejectedTaskController controller = new RejectedTaskController();
 		
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-		// Îª executor ÉèÖÃ RejectedExecutionHandler
+		// ä¸º executor è®¾ç½® RejectedExecutionHandler
 		executor.setRejectedExecutionHandler(controller);
 
 		System.out.printf("Main: Starting.\n");
@@ -42,10 +42,10 @@ public class ControlRejectedTaskOfExecutorTest {
 		System.out.printf("Main: Sending another Task.\n");
 		Task task = new Task("RejectedTask");
 		/*
-		 * ÔÚ Executor µ÷ÓÃ shutdown()ºó¼ÌĞøÌá½»ÈÎÎñ£¬¸ÃÈÎÎñ»á±»¾Ü¾ø¡£
+		 * åœ¨ Executor è°ƒç”¨ shutdown()åç»§ç»­æäº¤ä»»åŠ¡ï¼Œè¯¥ä»»åŠ¡ä¼šè¢«æ‹’ç»ã€‚
 		 * 
-		 * Èç¹û Executor ÓĞ RejectedExecutionHandler£¬ÔòÈÎÎñ±»¾Ü¾øÊ±»áµ÷ÓÃrejectedExecution()·½·¨£»
-		 * Èç¹ûÃ»ÓĞÔò»áÅ×³ö RejectedExecutionExeption¡£
+		 * å¦‚æœ Executor æœ‰ RejectedExecutionHandlerï¼Œåˆ™ä»»åŠ¡è¢«æ‹’ç»æ—¶ä¼šè°ƒç”¨rejectedExecution()æ–¹æ³•ï¼›
+		 * å¦‚æœæ²¡æœ‰åˆ™ä¼šæŠ›å‡º RejectedExecutionExeptionã€‚
 		 */
 		executor.submit(task);
 
@@ -53,17 +53,17 @@ public class ControlRejectedTaskOfExecutorTest {
 	}
 
 	/**
-	 * ±»¾Ü¾øµÄÈÎÎñ¿ØÖÆÆ÷
+	 * è¢«æ‹’ç»çš„ä»»åŠ¡æ§åˆ¶å™¨
 	 */
 	private static class RejectedTaskController implements RejectedExecutionHandler {
 
 		/**
-		 * µ±Ä³¸öÈÎÎñ±» Executor ¾Ü¾øÊ±¸Ã·½·¨¾Í»á±»µ÷ÓÃ
+		 * å½“æŸä¸ªä»»åŠ¡è¢« Executor æ‹’ç»æ—¶è¯¥æ–¹æ³•å°±ä¼šè¢«è°ƒç”¨
 		 * 
 		 * @param r
-		 *            ±»¾Ü¾øµÄÈÎÎñ
+		 *            è¢«æ‹’ç»çš„ä»»åŠ¡
 		 * @param executor
-		 *            ¾Ü¾øÁË¸ÃÈÎÎñµÄÖ´ĞĞÆ÷
+		 *            æ‹’ç»äº†è¯¥ä»»åŠ¡çš„æ‰§è¡Œå™¨
 		 */
 		@Override
 		public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
@@ -80,7 +80,7 @@ public class ControlRejectedTaskOfExecutorTest {
 	}
 	
 	/**
-	 * ÆÕÍ¨µÄÈÎÎñ
+	 * æ™®é€šçš„ä»»åŠ¡
 	 */
 	private static class Task implements Runnable {
 		

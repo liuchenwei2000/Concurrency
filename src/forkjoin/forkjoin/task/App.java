@@ -9,11 +9,11 @@ import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ForkJoinPoolÔËĞĞRecursiveTaskÊ¾Àı
+ * ForkJoinPoolè¿è¡ŒRecursiveTaskç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ25ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ25æ—¥
  */
 public class App {
 
@@ -22,24 +22,24 @@ public class App {
 	 */
 	public static void main(String[] args) {
 		int n = 10000;
-		// ´´½¨×î³õµÄTask¶ÔÏó
+		// åˆ›å»ºæœ€åˆçš„Taskå¯¹è±¡
 		RecursiveTask<Integer> task = new SumTask(0, n);
 		
-		// ´´½¨Ä¬ÈÏForkJoinPoolÊµÀı£¬ÈÎÎñ²¢ĞĞÊıµÈÓÚCPUÊı
+		// åˆ›å»ºé»˜è®¤ForkJoinPoolå®ä¾‹ï¼Œä»»åŠ¡å¹¶è¡Œæ•°ç­‰äºCPUæ•°
 		ForkJoinPool pool = new ForkJoinPool();
-		// Ö´ĞĞÈÎÎñ£¬ÕâÊÇÒ»¸öÒì²½µ÷ÓÃ£¬Ö÷Ïß³Ì»á¼ÌĞøÏòÏÂÖ´ĞĞ¡£
+		// æ‰§è¡Œä»»åŠ¡ï¼Œè¿™æ˜¯ä¸€ä¸ªå¼‚æ­¥è°ƒç”¨ï¼Œä¸»çº¿ç¨‹ä¼šç»§ç»­å‘ä¸‹æ‰§è¡Œã€‚
 		pool.execute(task);
 		
-		// ¼à¿ØForkJoinPoolµÄÔËĞĞÊ±²ÎÊı
+		// ç›‘æ§ForkJoinPoolçš„è¿è¡Œæ—¶å‚æ•°
 		do {
 			try {
 				TimeUnit.MILLISECONDS.sleep(5);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		} while (!task.isDone());// ÅĞ¶ÏÈÎÎñÊÇ·ñÒÑ¾­½áÊø£¨°üÀ¨Õı³£½áÊø¡¢Òì³£ÖĞÖ¹¡¢ÈÎÎñÈ¡Ïû£©
+		} while (!task.isDone());// åˆ¤æ–­ä»»åŠ¡æ˜¯å¦å·²ç»ç»“æŸï¼ˆåŒ…æ‹¬æ­£å¸¸ç»“æŸã€å¼‚å¸¸ä¸­æ­¢ã€ä»»åŠ¡å–æ¶ˆï¼‰
 		
-		// Í£Ö¹poolµÄÔËĞĞ
+		// åœæ­¢poolçš„è¿è¡Œ
 		pool.shutdown();
 		
 		try {
@@ -48,14 +48,14 @@ public class App {
 			e.printStackTrace();
 		}
 		
-		// ²âÊÔÈÎÎñËù×öµÄ²Ù×÷ÊÇ·ñÕıÈ·
+		// æµ‹è¯•ä»»åŠ¡æ‰€åšçš„æ“ä½œæ˜¯å¦æ­£ç¡®
 		try {
-			System.out.printf("¡¾ForkJoinPool¡¿Sum of %d: %d\n", n, task.get());
+			System.out.printf("ã€ForkJoinPoolã€‘Sum of %d: %d\n", n, task.get());
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.printf("¡¾Formula¡¿Sum of %d: %d\n", n, n*(n-1)/2);
+		System.out.printf("ã€Formulaã€‘Sum of %d: %d\n", n, n*(n-1)/2);
 		System.out.println("Main: End of the program.\n");
 	}
 }

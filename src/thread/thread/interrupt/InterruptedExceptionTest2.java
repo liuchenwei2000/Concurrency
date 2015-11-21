@@ -6,14 +6,14 @@ package thread.interrupt;
 import java.util.concurrent.TimeUnit;
 
 /**
- * InterruptedExceptionÑİÊ¾
+ * InterruptedExceptionæ¼”ç¤º
  * <p>
- * Èç¹ûÒ»¸öÏß³Ì±»×èÈûÁË£¬Ëü¾ÍÎŞ·¨¼ì²éÖĞ¶Ï×´Ì¬£¬´ËÊ±»áÅ×³öInterruptedException¡£
- * µ±ÔÚÒ»¸ö±»×èÈûµÄÏß³ÌÉÏµ÷ÓÃinterrupt·½·¨Ê±£¬×èÈûµ÷ÓÃ£¨ÀıÈçsleep»òwait£©»á±»InterruptedExceptionÁ¢¼´ÖĞ¶Ï¡£
+ * å¦‚æœä¸€ä¸ªçº¿ç¨‹è¢«é˜»å¡äº†ï¼Œå®ƒå°±æ— æ³•æ£€æŸ¥ä¸­æ–­çŠ¶æ€ï¼Œæ­¤æ—¶ä¼šæŠ›å‡ºInterruptedExceptionã€‚
+ * å½“åœ¨ä¸€ä¸ªè¢«é˜»å¡çš„çº¿ç¨‹ä¸Šè°ƒç”¨interruptæ–¹æ³•æ—¶ï¼Œé˜»å¡è°ƒç”¨ï¼ˆä¾‹å¦‚sleepæˆ–waitï¼‰ä¼šè¢«InterruptedExceptionç«‹å³ä¸­æ–­ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-6
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-6
  */
 public class InterruptedExceptionTest2 {
 
@@ -27,7 +27,7 @@ public class InterruptedExceptionTest2 {
 			public void run() {
 				try {
 					System.out.println("sleep..zzzzZ");
-					// ĞİÃß10s
+					// ä¼‘çœ 10s
 					TimeUnit.SECONDS.sleep(10);
 					System.out.println("wake up.");
 				} catch (InterruptedException e) {
@@ -36,7 +36,7 @@ public class InterruptedExceptionTest2 {
 			}
 		});
 		
-		// ÔÚmainÏß³ÌÖĞÆô¶¯t1Ïß³Ì
+		// åœ¨mainçº¿ç¨‹ä¸­å¯åŠ¨t1çº¿ç¨‹
 		t1.start();
 
 		try {

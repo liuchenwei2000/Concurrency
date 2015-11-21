@@ -7,41 +7,41 @@ import java.util.List;
 import java.util.concurrent.RecursiveAction;
 
 /**
- * ¸üĞÂ¼Û¸ñÈÎÎñ
+ * æ›´æ–°ä»·æ ¼ä»»åŠ¡
  * <p>
- * ÅúÁ¿¸üĞÂ´óÊı¾İÁ¿ProductµÄ¼Û¸ñ¡£
+ * æ‰¹é‡æ›´æ–°å¤§æ•°æ®é‡Productçš„ä»·æ ¼ã€‚
  * <p>
- * ÊµÏÖ RecursiveAction µÄÍÆ¼öĞÎÊ½£º
+ * å®ç° RecursiveAction çš„æ¨èå½¢å¼ï¼š
  * <pre>
  * If (problem size > default size){
- * 	tasks=divide(task);// ·Ö½âÈÎÎñ
- * 	execute(tasks);// ÔËĞĞ×ÓÈÎÎñ
+ * 	tasks=divide(task);// åˆ†è§£ä»»åŠ¡
+ * 	execute(tasks);// è¿è¡Œå­ä»»åŠ¡
  * } else {
- * 	resolve problem using another algorithm;// ÕæÕı½â¾öÎÊÌâ
+ * 	resolve problem using another algorithm;// çœŸæ­£è§£å†³é—®é¢˜
  * }
  * </pre>
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ25ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ25æ—¥
  */
-public class UpdatePriceTask extends RecursiveAction {// ²»ĞèÒª·µ»Ø½á¹û£¬ËùÒÔ¼Ì³ĞRecursiveAction
+public class UpdatePriceTask extends RecursiveAction {// ä¸éœ€è¦è¿”å›ç»“æœï¼Œæ‰€ä»¥ç»§æ‰¿RecursiveAction
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** ãĞÖµ */
+	/** é˜ˆå€¼ */
 	private static final int DEFAULT_SIZE = 10;
 	
-	// ´ı´¦ÀíµÄËùÓĞProduct
+	// å¾…å¤„ç†çš„æ‰€æœ‰Product
 	private List<Product> products;
 	
-	private int first;// ÆğÊ¼ProductµÄË÷ÒıÖµ 
-	private int last;// Ä©Î²ProductµÄË÷ÒıÖµ 
+	private int first;// èµ·å§‹Productçš„ç´¢å¼•å€¼ 
+	private int last;// æœ«å°¾Productçš„ç´¢å¼•å€¼ 
 	
-	private double increment;// ¼Û¸ñÔö·ù
+	private double increment;// ä»·æ ¼å¢å¹…
 	
 	public UpdatePriceTask(List<Product> products, int first, int last,
 			double increment) {
@@ -52,27 +52,27 @@ public class UpdatePriceTask extends RecursiveAction {// ²»ĞèÒª·µ»Ø½á¹û£¬ËùÒÔ¼Ì³
 	}
 
 	/**
-	 * ÖØĞ´¸Ã·½·¨£¬ÊµÏÖÌØ¶¨ÒµÎñÂß¼­
+	 * é‡å†™è¯¥æ–¹æ³•ï¼Œå®ç°ç‰¹å®šä¸šåŠ¡é€»è¾‘
 	 * 
 	 * @see java.util.concurrent.RecursiveAction#compute()
 	 */
 	@Override
 	protected void compute() {
-		// ´óÓÚãĞÖµ£¬Ôò½«ÈÎÎñ¼ÌĞø·Ö½â³É¸üĞ¡µÄÁ½¸ö£¨»òÕß¶à¸ö£©ÈÎÎñ¡£
+		// å¤§äºé˜ˆå€¼ï¼Œåˆ™å°†ä»»åŠ¡ç»§ç»­åˆ†è§£æˆæ›´å°çš„ä¸¤ä¸ªï¼ˆæˆ–è€…å¤šä¸ªï¼‰ä»»åŠ¡ã€‚
 		if(last - first > DEFAULT_SIZE) {
 			int middle = (last + first)/2;
 			System.out.printf("Task:Pending tasks %s%n", getQueuedTaskCount());
 			UpdatePriceTask task1 = new UpdatePriceTask(products, first, middle + 1, increment);
 			UpdatePriceTask task2 = new UpdatePriceTask(products, middle + 1, last, increment); 
 			/*
-			 * ·Ö½âÈÎÎñºó£¬Í¨¹ıµ÷ÓÃForkJoinTask.invokeAll·½·¨Ö´ĞĞÁ½¸ö×ÓÈÎÎñ¡£
+			 * åˆ†è§£ä»»åŠ¡åï¼Œé€šè¿‡è°ƒç”¨ForkJoinTask.invokeAllæ–¹æ³•æ‰§è¡Œä¸¤ä¸ªå­ä»»åŠ¡ã€‚
 			 * 
-			 * ¸Ã·½·¨ÊÇÒ»¸öÍ¬²½µ÷ÓÃ£¬¸¸ÈÎÎñ»áÒ»Ö±µÈµ½×ÓÈÎÎñÈ«²¿Íê³É²Å»á¼ÌĞøÏòÏÂÖ´ĞĞ¡£
-			 * µ±¸¸ÈÎÎñµÈ´ı×ÓÈÎÎñÍê³ÉÊ±£¬ÔËĞĞ¸¸ÈÎÎñµÄworker thread»áÑ°ÕÒÆäËûµÈ´ıÔËĞĞµÄÈÎÎñ²¢ÔËĞĞËü¡£
-			 * Òò´Ë£¬Fork/Join¿ò¼ÜÌá¹©ÁË±ÈRunnableºÍCallable¸ü¸ßĞ§µÄÈÎÎñ¹ÜÀí¹¦ÄÜ¡£
+			 * è¯¥æ–¹æ³•æ˜¯ä¸€ä¸ªåŒæ­¥è°ƒç”¨ï¼Œçˆ¶ä»»åŠ¡ä¼šä¸€ç›´ç­‰åˆ°å­ä»»åŠ¡å…¨éƒ¨å®Œæˆæ‰ä¼šç»§ç»­å‘ä¸‹æ‰§è¡Œã€‚
+			 * å½“çˆ¶ä»»åŠ¡ç­‰å¾…å­ä»»åŠ¡å®Œæˆæ—¶ï¼Œè¿è¡Œçˆ¶ä»»åŠ¡çš„worker threadä¼šå¯»æ‰¾å…¶ä»–ç­‰å¾…è¿è¡Œçš„ä»»åŠ¡å¹¶è¿è¡Œå®ƒã€‚
+			 * å› æ­¤ï¼ŒFork/Joinæ¡†æ¶æä¾›äº†æ¯”Runnableå’ŒCallableæ›´é«˜æ•ˆçš„ä»»åŠ¡ç®¡ç†åŠŸèƒ½ã€‚
 			 */ 
 			invokeAll(task1, task2);
-		} else {// Ğ¡ÓÚãĞÖµ£¬Ö±½ÓÖ´ĞĞÈÎÎñ
+		} else {// å°äºé˜ˆå€¼ï¼Œç›´æ¥æ‰§è¡Œä»»åŠ¡
 			updatePrices();
 		}
 	}

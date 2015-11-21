@@ -4,13 +4,13 @@
 package concurrency.atomic;
 
 /**
- * ¹«Ë¾
+ * å…¬å¸
  * <p>
- * ÕâÊÇ»áÒ»Ö±´òÇ®£¨ĞŞ¸Ä IAccount ±äÁ¿£©µÄÏß³Ì¡£
+ * è¿™æ˜¯ä¼šä¸€ç›´æ‰“é’±ï¼ˆä¿®æ”¹ IAccount å˜é‡ï¼‰çš„çº¿ç¨‹ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ20ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ20æ—¥
  */
 public class Company extends Thread {
 
@@ -22,7 +22,7 @@ public class Company extends Thread {
 
 	@Override
 	public void run() {
-		// ´òÇ® 10000 ´Î£¬Ã¿´Î´ò 100
+		// æ‰“é’± 10000 æ¬¡ï¼Œæ¯æ¬¡æ‰“ 100
 		for (int i = 0; i < 10000; i++) {
 			account.addAmount(100);
 		}

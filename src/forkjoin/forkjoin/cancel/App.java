@@ -7,11 +7,11 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ÔÚÊı×éÖĞ²éÕÒÖ¸¶¨ÊıÖµµÄË÷Òı
+ * åœ¨æ•°ç»„ä¸­æŸ¥æ‰¾æŒ‡å®šæ•°å€¼çš„ç´¢å¼•
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class App {
 

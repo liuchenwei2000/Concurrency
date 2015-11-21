@@ -9,22 +9,22 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * ÎÄ¼ş´¦ÀíÆ÷
+ * æ–‡ä»¶å¤„ç†å™¨
  * <p>
- * ¿ÉÒÔ²éÕÒÖ¸¶¨Â·¾¶ÏÂËùÓĞ·ûºÏÀ©Õ¹ÃûµÄÎÄ¼ş¡£
+ * å¯ä»¥æŸ¥æ‰¾æŒ‡å®šè·¯å¾„ä¸‹æ‰€æœ‰ç¬¦åˆæ‰©å±•åçš„æ–‡ä»¶ã€‚
  * <p>
- * µ±ÔÚForkJoinPoolÖĞÔËĞĞÒ»¸öForkJoinTaskÊ±£¬¿ÉÒÔÑ¡ÔñÍ¬²½Ä£Ê½»òÕßÒì²½Ä£Ê½¡£
+ * å½“åœ¨ForkJoinPoolä¸­è¿è¡Œä¸€ä¸ªForkJoinTaskæ—¶ï¼Œå¯ä»¥é€‰æ‹©åŒæ­¥æ¨¡å¼æˆ–è€…å¼‚æ­¥æ¨¡å¼ã€‚
  * <li>
- * Ñ¡ÔñÍ¬²½Ä£Ê½Ê±£¨Èçµ÷ÓÃForkJoinTask.invokeAll()·½·¨£©£¬·½·¨Ö±µ½ÈÎÎñÔËĞĞ½áÊø²Å»á·µ»Ø£¬
- * ²¢ÇÒÕâÖÖÄ£Ê½ÔÊĞíForkJoinPoolÊ¹ÓÃ¹¤×÷ÇÔÈ¡Ëã·¨£¨ÎªÄ³¸öÕıÔÚµÈ´ıÈÎÎñÍê³ÉµÄ¹¤×÷Ïß³Ì·ÖÅäĞÂµÄÈÎÎñ£©£»
+ * é€‰æ‹©åŒæ­¥æ¨¡å¼æ—¶ï¼ˆå¦‚è°ƒç”¨ForkJoinTask.invokeAll()æ–¹æ³•ï¼‰ï¼Œæ–¹æ³•ç›´åˆ°ä»»åŠ¡è¿è¡Œç»“æŸæ‰ä¼šè¿”å›ï¼Œ
+ * å¹¶ä¸”è¿™ç§æ¨¡å¼å…è®¸ForkJoinPoolä½¿ç”¨å·¥ä½œçªƒå–ç®—æ³•ï¼ˆä¸ºæŸä¸ªæ­£åœ¨ç­‰å¾…ä»»åŠ¡å®Œæˆçš„å·¥ä½œçº¿ç¨‹åˆ†é…æ–°çš„ä»»åŠ¡ï¼‰ï¼›
  * <li>
- * Ñ¡ÔñÒì²½Ä£Ê½Ê±£¨Èçµ÷ÓÃForkJoinTask.fork()·½·¨£©£¬·½·¨Ö±½Ó·µ»Ø£¬ÈÎÎñ»á¼ÌĞøÏòÏÂÖ´ĞĞ£¬
- * ´ËÊ±ForkJoinPool²»ÄÜÊ¹ÓÃ¹¤×÷ÇÔÈ¡Ëã·¨Ìá¸ßĞÔÄÜ£¬Ö»ÓĞÔÚµ÷ÓÃForkJoinTask.join()»òForkJoinTask.get()·½·¨
- * µÈ´ıÈÎÎñÍê³ÉµÄÊ±ºò£¬ForkJoinPool²Å»áÊ¹ÓÃ¹¤×÷ÇÔÈ¡Ëã·¨¡£
+ * é€‰æ‹©å¼‚æ­¥æ¨¡å¼æ—¶ï¼ˆå¦‚è°ƒç”¨ForkJoinTask.fork()æ–¹æ³•ï¼‰ï¼Œæ–¹æ³•ç›´æ¥è¿”å›ï¼Œä»»åŠ¡ä¼šç»§ç»­å‘ä¸‹æ‰§è¡Œï¼Œ
+ * æ­¤æ—¶ForkJoinPoolä¸èƒ½ä½¿ç”¨å·¥ä½œçªƒå–ç®—æ³•æé«˜æ€§èƒ½ï¼Œåªæœ‰åœ¨è°ƒç”¨ForkJoinTask.join()æˆ–ForkJoinTask.get()æ–¹æ³•
+ * ç­‰å¾…ä»»åŠ¡å®Œæˆçš„æ—¶å€™ï¼ŒForkJoinPoolæ‰ä¼šä½¿ç”¨å·¥ä½œçªƒå–ç®—æ³•ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class FileProcessor extends RecursiveTask<List<String>> {
 
@@ -33,8 +33,8 @@ public class FileProcessor extends RecursiveTask<List<String>> {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String path;// Ä¿Â¼
-	private String extension;// À©Õ¹Ãû
+	private String path;// ç›®å½•
+	private String extension;// æ‰©å±•å
 	
 	public FileProcessor(String path, String extension) {
 		this.path = path;
@@ -42,15 +42,15 @@ public class FileProcessor extends RecursiveTask<List<String>> {
 	}
 
 	/**
-	 * ÊµÏÖcompute()·½·¨£¬·µ»ØList<String>±íÊ¾ËùÓĞ·ûºÏÀ©Õ¹ÃûµÄÎÄ¼şÂ·¾¶¡£
+	 * å®ç°compute()æ–¹æ³•ï¼Œè¿”å›List<String>è¡¨ç¤ºæ‰€æœ‰ç¬¦åˆæ‰©å±•åçš„æ–‡ä»¶è·¯å¾„ã€‚
 	 * 
 	 * @see java.util.concurrent.RecursiveTask#compute()
 	 */
 	@Override
 	protected List<String> compute() {
-		// Ã¿Ò»¸ö×ÓÄ¿Â¼»áÊ¹ÓÃÒ»¸ö×ÓÈÎÎñ½øĞĞ²éÕÒ
+		// æ¯ä¸€ä¸ªå­ç›®å½•ä¼šä½¿ç”¨ä¸€ä¸ªå­ä»»åŠ¡è¿›è¡ŒæŸ¥æ‰¾
 		List<FileProcessor> tasks = new ArrayList<>();
-		// ·ûºÏÀ©Õ¹ÃûµÄÎÄ¼şÂ·¾¶ÁĞ±í
+		// ç¬¦åˆæ‰©å±•åçš„æ–‡ä»¶è·¯å¾„åˆ—è¡¨
 		List<String> result = new ArrayList<>();
 		
 		File file = new File(path);
@@ -59,12 +59,12 @@ public class FileProcessor extends RecursiveTask<List<String>> {
 		if(children != null) {
 			for (File child : children) {
 				/*
-				 * Èç¹û×ÓÎÄ¼şÊÇÄ¿Â¼£¬±¾ÈÎÎñ¾Í»á´´½¨ÁíÒ»¸ö×ÓÈÎÎñÀ´´¦ÀíÕâ¸ö×ÓÄ¿Â¼£¬²¢ÇÒÍ¨¹ıµ÷ÓÃÆäfork()·½·¨½«
-				 * Æä¼ÓÈëµ½ForkJoinPoolÖĞ£¬poolÈç¹ûÓĞ¿ÕÏĞµÄ¹¤×÷Ïß³Ì»òÕß¿ÉÒÔ´´½¨Ò»¸öĞÂ¹¤×÷Ïß³ÌÔò»áÖ´ĞĞ¸Ã×ÓÈÎÎñ¡£
-				 * fork()·½·¨»áÁ¢¼´·µ»Ø£¬ËùÒÔ±¾ÈÎÎñ¿ÉÒÔ¼ÌĞø½øĞĞÏÂÃæµÄ´¦Àí¡£
+				 * å¦‚æœå­æ–‡ä»¶æ˜¯ç›®å½•ï¼Œæœ¬ä»»åŠ¡å°±ä¼šåˆ›å»ºå¦ä¸€ä¸ªå­ä»»åŠ¡æ¥å¤„ç†è¿™ä¸ªå­ç›®å½•ï¼Œå¹¶ä¸”é€šè¿‡è°ƒç”¨å…¶fork()æ–¹æ³•å°†
+				 * å…¶åŠ å…¥åˆ°ForkJoinPoolä¸­ï¼Œpoolå¦‚æœæœ‰ç©ºé—²çš„å·¥ä½œçº¿ç¨‹æˆ–è€…å¯ä»¥åˆ›å»ºä¸€ä¸ªæ–°å·¥ä½œçº¿ç¨‹åˆ™ä¼šæ‰§è¡Œè¯¥å­ä»»åŠ¡ã€‚
+				 * fork()æ–¹æ³•ä¼šç«‹å³è¿”å›ï¼Œæ‰€ä»¥æœ¬ä»»åŠ¡å¯ä»¥ç»§ç»­è¿›è¡Œä¸‹é¢çš„å¤„ç†ã€‚
 				 */
 				if (child.isDirectory()) {
-					// ¶ÔÃ¿¸ö×ÓÄ¿Â¼£¬¶¼Ê¹ÓÃÒì²½µ÷ÓÃ(fork())Ö´ĞĞ×ÓÈÎÎñ
+					// å¯¹æ¯ä¸ªå­ç›®å½•ï¼Œéƒ½ä½¿ç”¨å¼‚æ­¥è°ƒç”¨(fork())æ‰§è¡Œå­ä»»åŠ¡
 					FileProcessor subTask = new FileProcessor(child.getAbsolutePath(), extension);
 					subTask.fork();
 					tasks.add(subTask);
@@ -76,8 +76,8 @@ public class FileProcessor extends RecursiveTask<List<String>> {
 			}
 		}
 		/*
-		 * Ò»µ©±¾ÈÎÎñ´¦ÀíÍêËùÓĞµÄÄ¿Â¼£¨¼°Æä×ÓÄ¿Â¼£©£¬Í¨¹ıµ÷ÓÃjoin()·½·¨µÈ´ıForkJoinPoolÖĞËùÓĞÈÎÎñµÄÍê³É£¬¸Ã·½·¨»á·µ»ØÆä¶ÔÓ¦ÈÎÎñµÄcompute()·½·¨µÄ·µ»ØÖµ¡£
-		 * ±¾ÈÎÎñ»á½«Æä×ÔÉí¼ÆËã½á¹ûºÍÆä´´½¨µÄËùÓĞ×ÓÈÎÎñµÄ¼ÆËã½á¹ûºÏ²¢£¬×÷ÎªËüµÄcompute()·½·¨µÄ·µ»ØÖµ¡£
+		 * ä¸€æ—¦æœ¬ä»»åŠ¡å¤„ç†å®Œæ‰€æœ‰çš„ç›®å½•ï¼ˆåŠå…¶å­ç›®å½•ï¼‰ï¼Œé€šè¿‡è°ƒç”¨join()æ–¹æ³•ç­‰å¾…ForkJoinPoolä¸­æ‰€æœ‰ä»»åŠ¡çš„å®Œæˆï¼Œè¯¥æ–¹æ³•ä¼šè¿”å›å…¶å¯¹åº”ä»»åŠ¡çš„compute()æ–¹æ³•çš„è¿”å›å€¼ã€‚
+		 * æœ¬ä»»åŠ¡ä¼šå°†å…¶è‡ªèº«è®¡ç®—ç»“æœå’Œå…¶åˆ›å»ºçš„æ‰€æœ‰å­ä»»åŠ¡çš„è®¡ç®—ç»“æœåˆå¹¶ï¼Œä½œä¸ºå®ƒçš„compute()æ–¹æ³•çš„è¿”å›å€¼ã€‚
 		 */
 		addResultsFromTasks(result, tasks);
 		
@@ -91,13 +91,13 @@ public class FileProcessor extends RecursiveTask<List<String>> {
 	private void addResultsFromTasks(List<String> result, List<FileProcessor> tasks) {
 		for (FileProcessor task : tasks) {
 			/*
-			 * ³ıÁËÊ¹ÓÃjoin()·½·¨µÈ´ıÈÎÎñ½áÊø»ñµÃ½á¹ûÖ®Íâ£¬»¹¿ÉÒÔÊ¹ÓÃget()·½·¨´ï³ÉÄ¿µÄ£º
-			 * get()·½·¨»áÔÚÈÎÎñ½áÊøÊ±·µ»Øcompute()·½·¨µÄ·µ»ØÖµ£¬·ñÔòÒ»Ö±µÈ´ıÈÎÎñ½áÊø¡£
-			 * get(long timeout, TimeUnit unit)·½·¨¿ÉÒÔÉèÖÃ³¬Ê±Ê±¼ä£¬Ò»µ©³¬Ê±Ôò·µ»Ønull¡£
+			 * é™¤äº†ä½¿ç”¨join()æ–¹æ³•ç­‰å¾…ä»»åŠ¡ç»“æŸè·å¾—ç»“æœä¹‹å¤–ï¼Œè¿˜å¯ä»¥ä½¿ç”¨get()æ–¹æ³•è¾¾æˆç›®çš„ï¼š
+			 * get()æ–¹æ³•ä¼šåœ¨ä»»åŠ¡ç»“æŸæ—¶è¿”å›compute()æ–¹æ³•çš„è¿”å›å€¼ï¼Œå¦åˆ™ä¸€ç›´ç­‰å¾…ä»»åŠ¡ç»“æŸã€‚
+			 * get(long timeout, TimeUnit unit)æ–¹æ³•å¯ä»¥è®¾ç½®è¶…æ—¶æ—¶é—´ï¼Œä¸€æ—¦è¶…æ—¶åˆ™è¿”å›nullã€‚
 			 * 
-			 * join()ºÍget()·½·¨µÄÇø±ğÔÚÓÚ£º
-			 * 1£¬join()ÊÇ²»¿É±»ÖĞ¶Ï(interrupted)µÄ£¬Èç¹ûÖĞ¶ÏÖ´ĞĞjoin()·½·¨µÄÏß³ÌÔò»áÅ×³öInterruptedException¡£
-			 * 2£¬¶ÔÓÚÈÎÎñÖĞÅ×³öµÄ·ÇÊÜ²éÒì³££¬get()·½·¨»á·µ»ØExecutionException£¬¶øjoin()»á·µ»ØRuntimeException¡£
+			 * join()å’Œget()æ–¹æ³•çš„åŒºåˆ«åœ¨äºï¼š
+			 * 1ï¼Œjoin()æ˜¯ä¸å¯è¢«ä¸­æ–­(interrupted)çš„ï¼Œå¦‚æœä¸­æ–­æ‰§è¡Œjoin()æ–¹æ³•çš„çº¿ç¨‹åˆ™ä¼šæŠ›å‡ºInterruptedExceptionã€‚
+			 * 2ï¼Œå¯¹äºä»»åŠ¡ä¸­æŠ›å‡ºçš„éå—æŸ¥å¼‚å¸¸ï¼Œget()æ–¹æ³•ä¼šè¿”å›ExecutionExceptionï¼Œè€Œjoin()ä¼šè¿”å›RuntimeExceptionã€‚
 			 */
 			result.addAll(task.join());
 		}

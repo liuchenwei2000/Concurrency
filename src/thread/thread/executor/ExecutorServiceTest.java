@@ -14,20 +14,20 @@ import java.util.concurrent.Future;
 import util.TimeCounter;
 
 /**
- * ExecutorServiceÊ¾Àý
+ * ExecutorServiceç¤ºä¾‹
  * <p>
- * ExecutorService½Ó¿Ú¼Ì³Ð×ÔExecutor½Ó¿Ú£¬ËüµÄÖ÷Òª×÷ÓÃÓÐÁ½¸ö£º
- * <li>1£¬×÷ÎªÏß³Ì³ØÀ´Ê¹ÓÃ£¬Ôö¼ÓÈÎÎñÖ´ÐÐµÄÐ§ÂÊ¡£
- * <li>2£¬ÓÃÀ´¿ØÖÆÒ»×éÏà¹ØµÄÏß³Ì£¬±ÈÈçÈ¡ÏûËùÓÐÈÎÎñµÈµÈ¡£
+ * ExecutorServiceæŽ¥å£ç»§æ‰¿è‡ªExecutoræŽ¥å£ï¼Œå®ƒçš„ä¸»è¦ä½œç”¨æœ‰ä¸¤ä¸ªï¼š
+ * <li>1ï¼Œä½œä¸ºçº¿ç¨‹æ± æ¥ä½¿ç”¨ï¼Œå¢žåŠ ä»»åŠ¡æ‰§è¡Œçš„æ•ˆçŽ‡ã€‚
+ * <li>2ï¼Œç”¨æ¥æŽ§åˆ¶ä¸€ç»„ç›¸å…³çš„çº¿ç¨‹ï¼Œæ¯”å¦‚å–æ¶ˆæ‰€æœ‰ä»»åŠ¡ç­‰ç­‰ã€‚
  * <p>
- * ²úÉú±³¾°£º<p>
- * ¾¡¹Ü²»±Øµ£ÐÄ ThreadÀ´×ÔºÎ´¦£¬µ« Executor½Ó¿ÚÈ±·¦¿ª·¢ÈËÔ±¿ÉÄÜÆÚÍûµÄÄ³ÖÖ¹¦ÄÜ:
- * ±ÈÈç½«Ö´ÐÐÐèÒª·ÃÎÊÊý¾Ý¿âµÄ UI²Ù×÷£¬Èç¹û¸Ã²Ù×÷»¨·ÑÁËºÜ³¤Ê±¼ä£¬¿ÉÄÜÏ£ÍûÔÚËüÍê³ÉÖ®Ç°È¡ÏûËü¡£
- * Îª´ËJDK´´½¨ÁËÒ»¸ö¸ü¼ÓÓÐÓÃµÄ³éÏó(ExecutorService½Ó¿Ú)£¬Ëü½«Ïß³ÌÆô¶¯¹¤³§½¨Ä£ÎªÒ»¸ö¿É¼¯ÖÐ¿ØÖÆµÄ·þÎñ¡£
+ * äº§ç”ŸèƒŒæ™¯ï¼š<p>
+ * å°½ç®¡ä¸å¿…æ‹…å¿ƒ Threadæ¥è‡ªä½•å¤„ï¼Œä½† ExecutoræŽ¥å£ç¼ºä¹å¼€å‘äººå‘˜å¯èƒ½æœŸæœ›çš„æŸç§åŠŸèƒ½:
+ * æ¯”å¦‚å°†æ‰§è¡Œéœ€è¦è®¿é—®æ•°æ®åº“çš„ UIæ“ä½œï¼Œå¦‚æžœè¯¥æ“ä½œèŠ±è´¹äº†å¾ˆé•¿æ—¶é—´ï¼Œå¯èƒ½å¸Œæœ›åœ¨å®ƒå®Œæˆä¹‹å‰å–æ¶ˆå®ƒã€‚
+ * ä¸ºæ­¤JDKåˆ›å»ºäº†ä¸€ä¸ªæ›´åŠ æœ‰ç”¨çš„æŠ½è±¡(ExecutorServiceæŽ¥å£)ï¼Œå®ƒå°†çº¿ç¨‹å¯åŠ¨å·¥åŽ‚å»ºæ¨¡ä¸ºä¸€ä¸ªå¯é›†ä¸­æŽ§åˆ¶çš„æœåŠ¡ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-25
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-25
  */
 public class ExecutorServiceTest {
 
@@ -35,9 +35,9 @@ public class ExecutorServiceTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Ò»¸öExecutorService¶ÔÏó
+		// ä¸€ä¸ªExecutorServiceå¯¹è±¡
 		ExecutorService executorService = Executors.newCachedThreadPool();
-		// ´´½¨10¸öÈÎÎñ
+		// åˆ›å»º10ä¸ªä»»åŠ¡
 		List<Callable<Integer>> tasks = new ArrayList<Callable<Integer>>();
 		tasks.add(new LongTask());
 		for (int i = 0; i < 10; i++) {
@@ -49,23 +49,23 @@ public class ExecutorServiceTest {
 			tc.start();
 			
 			/**
-			 * invokeAny·½·¨
+			 * invokeAnyæ–¹æ³•
 			 * <p>
-			 * Ö´ÐÐ¸ø¶¨µÄÈÎÎñ£¬ÈÎºÎ(any)Ò»¸öÈÎÎñÍê³ÉÁË¾Í»áÁ¢¼´·µ»Ø½á¹û¡£
-			 * Òò´Ë£¬ÎÞ·¨ÖªµÀËü·µ»ØµÄ¾ßÌåÊÇÄÄ¸öÈÎÎñ£¬Ò²ÐíÊÇ×î¿ìÍê³ÉµÄÄÇ¸ö¡£
-			 * ÔÚ´¦ÀíÒ»¸öÎÊÌâÊ±£¬Èç¹û¿ÉÒÔ½ÓÊÜÈÎºÎ½â¾ö·½°¸¾Í¿ÉÒÔÊ¹ÓÃÕâ¸ö·½·¨¡£
+			 * æ‰§è¡Œç»™å®šçš„ä»»åŠ¡ï¼Œä»»ä½•(any)ä¸€ä¸ªä»»åŠ¡å®Œæˆäº†å°±ä¼šç«‹å³è¿”å›žç»“æžœã€‚
+			 * å› æ­¤ï¼Œæ— æ³•çŸ¥é“å®ƒè¿”å›žçš„å…·ä½“æ˜¯å“ªä¸ªä»»åŠ¡ï¼Œä¹Ÿè®¸æ˜¯æœ€å¿«å®Œæˆçš„é‚£ä¸ªã€‚
+			 * åœ¨å¤„ç†ä¸€ä¸ªé—®é¢˜æ—¶ï¼Œå¦‚æžœå¯ä»¥æŽ¥å—ä»»ä½•è§£å†³æ–¹æ¡ˆå°±å¯ä»¥ä½¿ç”¨è¿™ä¸ªæ–¹æ³•ã€‚
 			 */
 			Integer result = executorService.invokeAny(tasks);
 			System.out.println("result is " + result);
 			
 			tc.stop();
-			System.out.println("invokeAny¡¾" + tc.consumeBySecond() + "s¡¿");
+			System.out.println("invokeAnyã€" + tc.consumeBySecond() + "sã€‘");
 			
 			/**
-			 * invokeAll·½·¨
+			 * invokeAllæ–¹æ³•
 			 * <p>
-			 * Ö´ÐÐ¸ø¶¨µÄÈÎÎñ£¬ËùÓÐ(all)ÈÎÎñÈ«²¿Íê³ÉÁË²Å»á·µ»Ø½á¹û£¬´ú±íËùÓÐÈÎÎñµÄÕûÌå½â¾ö·½°¸¡£
-			 * ·µ»Ø½á¹ûÖÐËùÓÐÔªËØµÄ Future.isDone() Îª true¡£
+			 * æ‰§è¡Œç»™å®šçš„ä»»åŠ¡ï¼Œæ‰€æœ‰(all)ä»»åŠ¡å…¨éƒ¨å®Œæˆäº†æ‰ä¼šè¿”å›žç»“æžœï¼Œä»£è¡¨æ‰€æœ‰ä»»åŠ¡çš„æ•´ä½“è§£å†³æ–¹æ¡ˆã€‚
+			 * è¿”å›žç»“æžœä¸­æ‰€æœ‰å…ƒç´ çš„ Future.isDone() ä¸º trueã€‚
 			 */
 			tc.start();
 			List<Future<Integer>> results = executorService.invokeAll(tasks);
@@ -73,23 +73,23 @@ public class ExecutorServiceTest {
 				System.out.println("result is " + future.get());
 			}
 			tc.stop();
-			System.out.println("invokeAll¡¾" + tc.consumeBySecond() + "s¡¿");
+			System.out.println("invokeAllã€" + tc.consumeBySecond() + "sã€‘");
 			
 			/**
-			 * ÈçÉÏÀý£¬½«½á¹û°´¿É»ñµÃµÄË³Ðò±£´æÆðÀ´»á¸üÓÐÒâÒå£¬¿ÉÍ¨¹ý ExecutorCompletionService À´ÊµÏÖÅÅÁÐ¡£
-			 * ¸Ã·þÎñ¹ÜÀíÒ»¸öFuture¶ÔÏóµÄ×èÈû¶ÓÁÐ£¬±£´æÌá½»Ö®ÈÎÎñµÄÖ´ÐÐ½á¹û£¨µ±ÕâÐ©½á¹û³ÉÎª¿ÉÓÃÊ±£©¡£
+			 * å¦‚ä¸Šä¾‹ï¼Œå°†ç»“æžœæŒ‰å¯èŽ·å¾—çš„é¡ºåºä¿å­˜èµ·æ¥ä¼šæ›´æœ‰æ„ä¹‰ï¼Œå¯é€šè¿‡ ExecutorCompletionService æ¥å®žçŽ°æŽ’åˆ—ã€‚
+			 * è¯¥æœåŠ¡ç®¡ç†ä¸€ä¸ªFutureå¯¹è±¡çš„é˜»å¡žé˜Ÿåˆ—ï¼Œä¿å­˜æäº¤ä¹‹ä»»åŠ¡çš„æ‰§è¡Œç»“æžœï¼ˆå½“è¿™äº›ç»“æžœæˆä¸ºå¯ç”¨æ—¶ï¼‰ã€‚
 			 */
 			tc.start();
 			ExecutorCompletionService<Integer> service = new ExecutorCompletionService<Integer>(executorService);
 			for (Callable<Integer> task : tasks) {
-				service.submit(task);// Ìá½»ÈÎÎñ
+				service.submit(task);// æäº¤ä»»åŠ¡
 			}
 			for (int i = 0; i < tasks.size(); i++) {
-				// take·½·¨£ºÒÆ³ýÏÂÒ»¸ö¿ÉÓÃµÄ½á¹û£¬Èç¹ûÃ»ÓÐÈÎºÎ¿ÉÓÃ½á¹û¾Í×èÈû¡£
+				// takeæ–¹æ³•ï¼šç§»é™¤ä¸‹ä¸€ä¸ªå¯ç”¨çš„ç»“æžœï¼Œå¦‚æžœæ²¡æœ‰ä»»ä½•å¯ç”¨ç»“æžœå°±é˜»å¡žã€‚
 				System.out.println(service.take().get());
 			}
 			tc.stop();
-			System.out.println("submit/take¡¾" + tc.consumeBySecond() + "s¡¿");
+			System.out.println("submit/takeã€" + tc.consumeBySecond() + "sã€‘");
 			
 			executorService.shutdown();
 		} catch (Exception e) {

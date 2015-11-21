@@ -6,24 +6,24 @@ package concurrency.synchronizer;
 import java.util.concurrent.Semaphore;
 
 /**
- * SemaphoreÊ¾Àý
+ * Semaphoreç¤ºä¾‹
  * <p>
- * ÐÅºÅÁ¿ÊÇÒ»¸ö¼ÆÊýÆ÷£¬ÓÃÀ´±£»¤¶ÔÒ»¸ö£¨»ò¶à¸ö£©¹²Ïí×ÊÔ´µÄ·ÃÎÊ¡£
- * Semaphore±íÊ¾Ò»¸öÐÅºÅÁ¿£¬Ëü¹ÜÀí´óÁ¿µÄÐí¿ÉÖ¤£¬Ðí¿ÉµÄÊýÄ¿ÊÇÓÐÏÞµÄ£¬ÕâÑù¿ÉÒÔÏÞÖÆÍ¨¹ýµÄÏß³ÌÊý¡£
- * Êµ¼ÊÉÏ£¬Ã»ÓÐÊ²Ã´Ðí¿É¶ÔÏó£¬Semaphore½öÎ¬³ÖÒ»¸ö¼ÆÊýÆ÷¡£
+ * ä¿¡å·é‡æ˜¯ä¸€ä¸ªè®¡æ•°å™¨ï¼Œç”¨æ¥ä¿æŠ¤å¯¹ä¸€ä¸ªï¼ˆæˆ–å¤šä¸ªï¼‰å…±äº«èµ„æºçš„è®¿é—®ã€‚
+ * Semaphoreè¡¨ç¤ºä¸€ä¸ªä¿¡å·é‡ï¼Œå®ƒç®¡ç†å¤§é‡çš„è®¸å¯è¯ï¼Œè®¸å¯çš„æ•°ç›®æ˜¯æœ‰é™çš„ï¼Œè¿™æ ·å¯ä»¥é™åˆ¶é€šè¿‡çš„çº¿ç¨‹æ•°ã€‚
+ * å®žé™…ä¸Šï¼Œæ²¡æœ‰ä»€ä¹ˆè®¸å¯å¯¹è±¡ï¼ŒSemaphoreä»…ç»´æŒä¸€ä¸ªè®¡æ•°å™¨ã€‚
  * <p>
- * µ±Ò»¸öÏß³ÌÏëÒª·ÃÎÊ¹²Ïí×ÊÔ´Ê±£¬Ê×ÏÈÐèÒªÏòÐÅºÅÁ¿»ñÈ¡Ðí¿É£¬Èç¹ûÐÅºÅÁ¿µÄÄÚ²¿¼ÆÊý´óÓÚ0
- * £¨ÒâÎ¶×ÅÓÐ¿ÕÏÐ×ÊÔ´¿É¹©Ê¹ÓÃ£©Ôò½«¼ÆÊý¼õÒ»ºóÔÊÐí¸ÃÏß³Ì·ÃÎÊ¹²Ïí×ÊÔ´£»
- * Èç¹ûµÈÓÚ0£¨ÒâÎ¶×ÅÃ»ÓÐ¿ÕÏÐ×ÊÔ´£©Ôò»á½«¸ÃÏß³Ì×èÈûÖ±µ½ÄÚ²¿¼ÆÊý´óÓÚ0¡£
- * µ±Ïß³Ì·ÃÎÊ¹²Ïí×ÊÔ´½áÊøÊ±£¬±ØÐëÊÍ·Å³ÖÓÐµÄÐÅºÅÁ¿Ðí¿É£¬ÕâÑùÐÅºÅÁ¿µÄÄÚ²¿¼ÆÊý»á¼ÓÒ»¡£
+ * å½“ä¸€ä¸ªçº¿ç¨‹æƒ³è¦è®¿é—®å…±äº«èµ„æºæ—¶ï¼Œé¦–å…ˆéœ€è¦å‘ä¿¡å·é‡èŽ·å–è®¸å¯ï¼Œå¦‚æžœä¿¡å·é‡çš„å†…éƒ¨è®¡æ•°å¤§äºŽ0
+ * ï¼ˆæ„å‘³ç€æœ‰ç©ºé—²èµ„æºå¯ä¾›ä½¿ç”¨ï¼‰åˆ™å°†è®¡æ•°å‡ä¸€åŽå…è®¸è¯¥çº¿ç¨‹è®¿é—®å…±äº«èµ„æºï¼›
+ * å¦‚æžœç­‰äºŽ0ï¼ˆæ„å‘³ç€æ²¡æœ‰ç©ºé—²èµ„æºï¼‰åˆ™ä¼šå°†è¯¥çº¿ç¨‹é˜»å¡žç›´åˆ°å†…éƒ¨è®¡æ•°å¤§äºŽ0ã€‚
+ * å½“çº¿ç¨‹è®¿é—®å…±äº«èµ„æºç»“æŸæ—¶ï¼Œå¿…é¡»é‡Šæ”¾æŒæœ‰çš„ä¿¡å·é‡è®¸å¯ï¼Œè¿™æ ·ä¿¡å·é‡çš„å†…éƒ¨è®¡æ•°ä¼šåŠ ä¸€ã€‚
  * <p>
- * ¶þ½øÖÆÐÅºÅÁ¿ÊÇÒ»¸öÌØÀý£¬Ëü±£»¤¶ÔÎ¨Ò»¹²Ïí×ÊÔ´µÄ·ÃÎÊ£¬ÄÚ²¿¼ÆÊýÖ»ÓÐ0ºÍ1Á½¸öÖµ¡£
+ * äºŒè¿›åˆ¶ä¿¡å·é‡æ˜¯ä¸€ä¸ªç‰¹ä¾‹ï¼Œå®ƒä¿æŠ¤å¯¹å”¯ä¸€å…±äº«èµ„æºçš„è®¿é—®ï¼Œå†…éƒ¨è®¡æ•°åªæœ‰0å’Œ1ä¸¤ä¸ªå€¼ã€‚
  * <p>
- * Í¨³£ÓÃÓÚÏÞÖÆ¿ÉÒÔ·ÃÎÊÄ³Ð©×ÊÔ´µÄÏß³ÌÊýÄ¿¡£
+ * é€šå¸¸ç”¨äºŽé™åˆ¶å¯ä»¥è®¿é—®æŸäº›èµ„æºçš„çº¿ç¨‹æ•°ç›®ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-28
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-28
  */
 public class SemaphoreTest {
 
@@ -31,7 +31,7 @@ public class SemaphoreTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Ä£Äâ8¸öÈËÉÏÍ¬Ò»¸öÎÀÉú¼äµÄ¾ºÕùÇé¿ö
+		// æ¨¡æ‹Ÿ8ä¸ªäººä¸ŠåŒä¸€ä¸ªå«ç”Ÿé—´çš„ç«žäº‰æƒ…å†µ
 		Toilet toilet = new Toilet();
 		for (int i = 0; i < 8; i++) {
 			new Thread(new ToToiletTask("Person" + (i + 1), toilet)).start();
@@ -39,61 +39,61 @@ public class SemaphoreTest {
 	}
 
 	/**
-	 * ÎÀÉú¼ä
+	 * å«ç”Ÿé—´
 	 * <p>
-	 * ÕâÊÇÒ»¸öÏ¡È±µÄ×ÊÔ´£¬¶à¸öÈËÒ»ÆðÀ´µÄÊ±ºò£¬±ØÐëµÃÅÅ¶ÓÊ¹ÓÃ£¬±¾ÀàÄ£ÄâÕâ¸ö¹ý³Ì¡£
+	 * è¿™æ˜¯ä¸€ä¸ªç¨€ç¼ºçš„èµ„æºï¼Œå¤šä¸ªäººä¸€èµ·æ¥çš„æ—¶å€™ï¼Œå¿…é¡»å¾—æŽ’é˜Ÿä½¿ç”¨ï¼Œæœ¬ç±»æ¨¡æ‹Ÿè¿™ä¸ªè¿‡ç¨‹ã€‚
 	 */
 	private static class Toilet {
 
 		private static final int MAX = 3;
 
-		// ÐÅºÅÁ¿¶ÔÏó£¬±¾ÎÀÉú¼äÖ»ÓÐ3¸ö¶×Î»
+		// ä¿¡å·é‡å¯¹è±¡ï¼Œæœ¬å«ç”Ÿé—´åªæœ‰3ä¸ªè¹²ä½
 		private final Semaphore semaphore = new Semaphore(MAX);
-		// ¶×Î»Ê¹ÓÃÇé¿ö
+		// è¹²ä½ä½¿ç”¨æƒ…å†µ
 		private boolean[] used = new boolean[MAX];
 
 		/**
-		 * Ê¹ÓÃ²ÞËù
+		 * ä½¿ç”¨åŽ•æ‰€
 		 */
 		public void use() {
 			/* 
-			 * ÏÂÃæµÄtry-catch-finally½á¹¹ÊÇÊ¹ÓÃSemaphoreµÄµäÐÍÓÃ·¨£º
+			 * ä¸‹é¢çš„try-catch-finallyç»“æž„æ˜¯ä½¿ç”¨Semaphoreçš„å…¸åž‹ç”¨æ³•ï¼š
 			 * 
-			 * 1£¬µ÷ÓÃacquire()·½·¨»ñÈ¡SemaphoreµÄÐí¿É¡£
-			 * 2£¬¶Ô¹²Ïí×ÊÔ´½øÐÐ·ÃÎÊ¡£
-			 * 3£¬µ÷ÓÃrelease()·½·¨ÊÍ·Å³ÖÓÐµÄSemaphoreÐí¿É¡£
+			 * 1ï¼Œè°ƒç”¨acquire()æ–¹æ³•èŽ·å–Semaphoreçš„è®¸å¯ã€‚
+			 * 2ï¼Œå¯¹å…±äº«èµ„æºè¿›è¡Œè®¿é—®ã€‚
+			 * 3ï¼Œè°ƒç”¨release()æ–¹æ³•é‡Šæ”¾æŒæœ‰çš„Semaphoreè®¸å¯ã€‚
 			 */
 			try {
 				/*
-				 * ´ÓÐÅºÅÁ¿»ñÈ¡Ò»¸öÐí¿É£¬ÔÚÌá¹©Ò»¸öÐí¿ÉÖ®Ç°½«Ò»Ö±×èÈû´ËÏß³Ì¡£
-				 * »ñµÃÁËÒ»¸öÐí¿É½«Á¢¼´·µ»Ø£¬²¢½«¿ÉÓÃÐí¿ÉÊý¼õ1¡£
+				 * ä»Žä¿¡å·é‡èŽ·å–ä¸€ä¸ªè®¸å¯ï¼Œåœ¨æä¾›ä¸€ä¸ªè®¸å¯ä¹‹å‰å°†ä¸€ç›´é˜»å¡žæ­¤çº¿ç¨‹ã€‚
+				 * èŽ·å¾—äº†ä¸€ä¸ªè®¸å¯å°†ç«‹å³è¿”å›žï¼Œå¹¶å°†å¯ç”¨è®¸å¯æ•°å‡1ã€‚
 				 */
 				semaphore.acquire();
-				// ÔÚÐÅºÅÁ¿Ã»ÓÐÐí¿É¶øµ¼ÖÂÏß³Ì×èÈûµÈ´ýÊ±£¬¿ÉÄÜ»á·¢ÉúÖÐ¶Ï£¬Ê¹ÓÃÏÂÃæµÄ·½Ê½½«»áºöÂÔÖÐ¶ÏÒì³£¡£
+				// åœ¨ä¿¡å·é‡æ²¡æœ‰è®¸å¯è€Œå¯¼è‡´çº¿ç¨‹é˜»å¡žç­‰å¾…æ—¶ï¼Œå¯èƒ½ä¼šå‘ç”Ÿä¸­æ–­ï¼Œä½¿ç”¨ä¸‹é¢çš„æ–¹å¼å°†ä¼šå¿½ç•¥ä¸­æ–­å¼‚å¸¸ã€‚
 //				semaphore.acquireUninterruptibly();
-				// ÏÂÃæµÄ·½·¨»á²âÊÔÄÜ·ñ»ñµÃÐí¿É£¬Èç¹ûÄÜÔò·µ»Øtrue£¨Í¬Ê±Ïß³Ì½«»á»ñµÃÒ»¸öÐí¿É£©£¬²»ÄÜÔòÁ¢¼´·µ»Øfalse£¬¶ø²»ÊÇµÈ´ýÆäËûÏß³ÌÊÍ·ÅÐí¿É¡£
+				// ä¸‹é¢çš„æ–¹æ³•ä¼šæµ‹è¯•èƒ½å¦èŽ·å¾—è®¸å¯ï¼Œå¦‚æžœèƒ½åˆ™è¿”å›žtrueï¼ˆåŒæ—¶çº¿ç¨‹å°†ä¼šèŽ·å¾—ä¸€ä¸ªè®¸å¯ï¼‰ï¼Œä¸èƒ½åˆ™ç«‹å³è¿”å›žfalseï¼Œè€Œä¸æ˜¯ç­‰å¾…å…¶ä»–çº¿ç¨‹é‡Šæ”¾è®¸å¯ã€‚
 //				boolean result = semaphore.tryAcquire();
 				int index = getUnusedIndex();
-				System.out.println("µÚ " + (index + 1) + " ¸ö¶×Î»Ê¹ÓÃÖÐ¡­¡­");
-				Thread.sleep((long) (Math.random() * 2000));// Ä£ÄâÉÏ²ÞËù
+				System.out.println("ç¬¬ " + (index + 1) + " ä¸ªè¹²ä½ä½¿ç”¨ä¸­â€¦â€¦");
+				Thread.sleep((long) (Math.random() * 2000));// æ¨¡æ‹Ÿä¸ŠåŽ•æ‰€
 				markUsed(index, false);
-				System.out.println("µÚ " + (index + 1) + " ¸ö¶×Î»Ê¹ÓÃÍê±Ï!!!");
+				System.out.println("ç¬¬ " + (index + 1) + " ä¸ªè¹²ä½ä½¿ç”¨å®Œæ¯•!!!");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} finally {
 				/*
-				 * ÊÍ·ÅÒ»¸öÐí¿É£¬½«ÐÅºÅÁ¿¿ÉÓÃÐí¿ÉÊý¼Ó1¡£ 
-				 * ÈôÈÎÒâÏß³ÌÊÔÍ¼»ñÈ¡Ðí¿É£¬ÔòÑ¡ÖÐÒ»¸öÏß³Ì²¢½«¸Õ¸ÕÊÍ·ÅµÄÐí¿É¸øÓèËü¡£
+				 * é‡Šæ”¾ä¸€ä¸ªè®¸å¯ï¼Œå°†ä¿¡å·é‡å¯ç”¨è®¸å¯æ•°åŠ 1ã€‚ 
+				 * è‹¥ä»»æ„çº¿ç¨‹è¯•å›¾èŽ·å–è®¸å¯ï¼Œåˆ™é€‰ä¸­ä¸€ä¸ªçº¿ç¨‹å¹¶å°†åˆšåˆšé‡Šæ”¾çš„è®¸å¯ç»™äºˆå®ƒã€‚
 				 */
 				semaphore.release();
 			}
 		}
 
 		/**
-		 * ÐÅºÅÁ¿·â×°ËùÐèµÄÍ¬²½£¬ÓÃÀ´ÏÞÖÆ¶ÔÎÀÉú¼äµÄ·ÃÎÊ£¬ÕâÍ¬Î¬³ÖÎÀÉú¼ä±¾ÉíÒ»ÖÂÐÔËùÐèµÄÍ¬²½ÊÇ·Ö¿ªµÄ¡£
-		 * »»¾ä»°Ëµ£¬ÐÅºÅÁ¿µÄÍ¬²½±£Ö¤ÁËÍ¬Ê±Ö»ÄÜÓÐÓÐÏÞµÄÏß³Ì·ÃÎÊ×ÊÔ´(ÎÀÉú¼ä)£¬
-		 * ¶ø×ÊÔ´×ÔÉíµÄÍ¬²½ÊÇÎªÁË±£Ö¤ÕâÓÐÏÞµÄÏß³ÌÖ®¼ä¾ºÕù(¶×Î»)Ê±µÄÊý¾ÝÒ»ÖÂÐÔ¡£
-		 * Èç¹ûÃ»ÓÐ×ÊÔ´×ÔÉíµÄÍ¬²½£¬¿ÉÄÜ»áµ¼ÖÂÁ½¸öÈËÉÏÎÀÉú¼äµÄÍ¬Ò»¸ö¶×Î»¡£
+		 * ä¿¡å·é‡å°è£…æ‰€éœ€çš„åŒæ­¥ï¼Œç”¨æ¥é™åˆ¶å¯¹å«ç”Ÿé—´çš„è®¿é—®ï¼Œè¿™åŒç»´æŒå«ç”Ÿé—´æœ¬èº«ä¸€è‡´æ€§æ‰€éœ€çš„åŒæ­¥æ˜¯åˆ†å¼€çš„ã€‚
+		 * æ¢å¥è¯è¯´ï¼Œä¿¡å·é‡çš„åŒæ­¥ä¿è¯äº†åŒæ—¶åªèƒ½æœ‰æœ‰é™çš„çº¿ç¨‹è®¿é—®èµ„æº(å«ç”Ÿé—´)ï¼Œ
+		 * è€Œèµ„æºè‡ªèº«çš„åŒæ­¥æ˜¯ä¸ºäº†ä¿è¯è¿™æœ‰é™çš„çº¿ç¨‹ä¹‹é—´ç«žäº‰(è¹²ä½)æ—¶çš„æ•°æ®ä¸€è‡´æ€§ã€‚
+		 * å¦‚æžœæ²¡æœ‰èµ„æºè‡ªèº«çš„åŒæ­¥ï¼Œå¯èƒ½ä¼šå¯¼è‡´ä¸¤ä¸ªäººä¸Šå«ç”Ÿé—´çš„åŒä¸€ä¸ªè¹²ä½ã€‚
 		 */
 		private synchronized int getUnusedIndex() {
 			for (int i = 0; i < used.length; i++) {
@@ -102,7 +102,7 @@ public class SemaphoreTest {
 					return i;
 				}
 			}
-			return -1;// ÀíÓ¦²»»áÖ´ÐÐµ½ÕâÀï
+			return -1;// ç†åº”ä¸ä¼šæ‰§è¡Œåˆ°è¿™é‡Œ
 		}
 
 		private synchronized void markUsed(int index, boolean b) {
@@ -111,7 +111,7 @@ public class SemaphoreTest {
 	}
 
 	/**
-	 * Ä£ÄâÈËÉÏÎÀÉú¼äµÄ¹ý³Ì
+	 * æ¨¡æ‹Ÿäººä¸Šå«ç”Ÿé—´çš„è¿‡ç¨‹
 	 */
 	private static class ToToiletTask implements Runnable {
 
@@ -126,7 +126,7 @@ public class SemaphoreTest {
 		@Override
 		public void run() {
 			try {
-				System.out.println(person + " ÒªÉÏ²ÞËù¡£");
+				System.out.println(person + " è¦ä¸ŠåŽ•æ‰€ã€‚");
 				toilet.use();
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -8,17 +8,17 @@ import java.util.List;
 import java.util.concurrent.ForkJoinTask;
 
 /**
- * ÈÎÎñ¹ÜÀíÆ÷
+ * ä»»åŠ¡ç®¡ç†å™¨
  * <p>
- * Fork/Join¿ò¼ÜÈ¡ÏûÈÎÎñµÄÁ½µãÏÞÖÆ£º
- * 1£¬ForkJoinPool²»Ìá¹©È¡ÏûËùÓÐ³ØÖÐÈÎÎñ£¨²»ÂÛÊÇÔËÐÐÌ¬»¹ÊÇµÈ´ýÌ¬£©µÄ·½·¨¡£
- * 2£¬È¡ÏûÒ»¸öÈÎÎñÊ±£¬²¢²»»áÈ¡Ïû¸ÃÈÎÎñ´´½¨µÄ×ÓÈÎÎñ¡£
+ * Fork/Joinæ¡†æž¶å–æ¶ˆä»»åŠ¡çš„ä¸¤ç‚¹é™åˆ¶ï¼š
+ * 1ï¼ŒForkJoinPoolä¸æä¾›å–æ¶ˆæ‰€æœ‰æ± ä¸­ä»»åŠ¡ï¼ˆä¸è®ºæ˜¯è¿è¡Œæ€è¿˜æ˜¯ç­‰å¾…æ€ï¼‰çš„æ–¹æ³•ã€‚
+ * 2ï¼Œå–æ¶ˆä¸€ä¸ªä»»åŠ¡æ—¶ï¼Œå¹¶ä¸ä¼šå–æ¶ˆè¯¥ä»»åŠ¡åˆ›å»ºçš„å­ä»»åŠ¡ã€‚
  * <p>
- * »ùÓÚÒÔÉÏÁ½µãÏÞÖÆ£¬ÎªÁË¹ÜÀíËùÓÐÈÎÎñ£¬²ÅÓÐÁË±¾Àà¡£
+ * åŸºäºŽä»¥ä¸Šä¸¤ç‚¹é™åˆ¶ï¼Œä¸ºäº†ç®¡ç†æ‰€æœ‰ä»»åŠ¡ï¼Œæ‰æœ‰äº†æœ¬ç±»ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class TaskManager {
 
@@ -37,15 +37,15 @@ public class TaskManager {
 	}
 
 	/**
-	 * È¡Ïû³ýÁË²ÎÊýÈÎÎñÍâµÄÆäËüËùÓÐÈÎÎñ¡£
+	 * å–æ¶ˆé™¤äº†å‚æ•°ä»»åŠ¡å¤–çš„å…¶å®ƒæ‰€æœ‰ä»»åŠ¡ã€‚
 	 */
 	public void cancelTasks(ForkJoinTask<Integer> task) {
 		for (ForkJoinTask<Integer> t : tasks) {
 			if (t != task) {
 				/* 
-				 * ForkJoinTaskÖ»ÔÊÐíÈ¡ÏûÉÐÎ´ÔËÐÐµÄÈÎÎñ£¬¶ÔÓÚÒÑ¾­¿ªÊ¼ÔËÐÐµÄÈÎÎñµ÷ÓÃcancel()·½·¨Ã»ÓÐÈÎºÎÐ§¹û¡£
-				 * Èç¹ûÈÎÎñ³É¹¦±»È¡ÏûÔò·µ»Øtrue£¬Èç¹ûÈÎÎñÒÑ¾­¿ªÊ¼Ö´ÐÐ»òÕßÖ´ÐÐ½áÊø£¬Ôò·µ»Øfalse¡£
-				 * ²ÎÊýÖµ boolean mayInterruptIfRunning ÔÚÄ¿Ç°ForkJoinTaskµÄÊµÏÖÖÐÃ»ÓÐÊ²Ã´×÷ÓÃ¡£
+				 * ForkJoinTaskåªå…è®¸å–æ¶ˆå°šæœªè¿è¡Œçš„ä»»åŠ¡ï¼Œå¯¹äºŽå·²ç»å¼€å§‹è¿è¡Œçš„ä»»åŠ¡è°ƒç”¨cancel()æ–¹æ³•æ²¡æœ‰ä»»ä½•æ•ˆæžœã€‚
+				 * å¦‚æžœä»»åŠ¡æˆåŠŸè¢«å–æ¶ˆåˆ™è¿”å›žtrueï¼Œå¦‚æžœä»»åŠ¡å·²ç»å¼€å§‹æ‰§è¡Œæˆ–è€…æ‰§è¡Œç»“æŸï¼Œåˆ™è¿”å›žfalseã€‚
+				 * å‚æ•°å€¼ boolean mayInterruptIfRunning åœ¨ç›®å‰ForkJoinTaskçš„å®žçŽ°ä¸­æ²¡æœ‰ä»€ä¹ˆä½œç”¨ã€‚
 				 */
 				t.cancel(true);
 			}

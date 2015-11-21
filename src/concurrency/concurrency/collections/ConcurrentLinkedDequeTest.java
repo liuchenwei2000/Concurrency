@@ -6,14 +6,14 @@ package concurrency.collections;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
- * ConcurrentLinkedDeque Ê¾Àı
+ * ConcurrentLinkedDeque ç¤ºä¾‹
  * <p>
- * ²¢·¢ListÔÊĞí¶à¸öÏß³ÌÍ¬Ê±Ôö¼Ó»òÉ¾³ıÔªËØ¶ø²»»áÔì³ÉÊı¾İ²»Ò»ÖÂ¡£
- * Java7ÒıÈëµÄ ConcurrentLinkedDeque ÊµÏÖÁË·Ç×èÈû²¢·¢List¹¦ÄÜ¡£
+ * å¹¶å‘Listå…è®¸å¤šä¸ªçº¿ç¨‹åŒæ—¶å¢åŠ æˆ–åˆ é™¤å…ƒç´ è€Œä¸ä¼šé€ æˆæ•°æ®ä¸ä¸€è‡´ã€‚
+ * Java7å¼•å…¥çš„ ConcurrentLinkedDeque å®ç°äº†éé˜»å¡å¹¶å‘ListåŠŸèƒ½ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ16ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ16æ—¥
  */
 public class ConcurrentLinkedDequeTest {
 
@@ -23,7 +23,7 @@ public class ConcurrentLinkedDequeTest {
 	public static void main(String[] args) {
 		ConcurrentLinkedDeque<String> list = new ConcurrentLinkedDeque<>();
 		
-		// ÏÈÊ¹ÓÃ 100 ¸öÏß³ÌÌí¼ÓÔªËØ
+		// å…ˆä½¿ç”¨ 100 ä¸ªçº¿ç¨‹æ·»åŠ å…ƒç´ 
 		Thread[] addTasks = new Thread[100];
 		for (int i = 0; i < addTasks.length; i++) {
 			addTasks[i] = new Thread(new AddTask(list));
@@ -31,7 +31,7 @@ public class ConcurrentLinkedDequeTest {
 		}
 		System.out.printf("Main: %d AddTask threads have been launched\n", addTasks.length);
 		
-		// µÈ´ıÏß³ÌÈ«²¿½áÊø
+		// ç­‰å¾…çº¿ç¨‹å…¨éƒ¨ç»“æŸ
 		for (Thread thread : addTasks) {
 			try {
 				thread.join();
@@ -40,12 +40,12 @@ public class ConcurrentLinkedDequeTest {
 			}
 		}
 		/*
-		 * »ñÈ¡ListÔªËØÊıÁ¿¿ÉÒÔÍ¨¹ı size() ·½·¨£¬µ«Òª¼Ç×¡¸Ã·½·¨µÄ·µ»ØÖµ²¢·ÇÊÇÍêÈ«×¼È·µÄ£¬ÌØ±ğÊÇ
-		 * µ±µ÷ÓÃ¸Ã·½·¨Ê±ÉĞÓĞÆäËûÏß³ÌÔö¼Ó»òÉ¾³ıÔªËØ¡£ËùÒÔÖ»ÓĞÔÚÈ·±£Ã»ÓĞÆäËûÏß³ÌĞŞ¸ÄListÊ±£¬¸Ã·½·¨²Å»á·µ»Ø×¼È·µÄÖµ¡£
+		 * è·å–Listå…ƒç´ æ•°é‡å¯ä»¥é€šè¿‡ size() æ–¹æ³•ï¼Œä½†è¦è®°ä½è¯¥æ–¹æ³•çš„è¿”å›å€¼å¹¶éæ˜¯å®Œå…¨å‡†ç¡®çš„ï¼Œç‰¹åˆ«æ˜¯
+		 * å½“è°ƒç”¨è¯¥æ–¹æ³•æ—¶å°šæœ‰å…¶ä»–çº¿ç¨‹å¢åŠ æˆ–åˆ é™¤å…ƒç´ ã€‚æ‰€ä»¥åªæœ‰åœ¨ç¡®ä¿æ²¡æœ‰å…¶ä»–çº¿ç¨‹ä¿®æ”¹Listæ—¶ï¼Œè¯¥æ–¹æ³•æ‰ä¼šè¿”å›å‡†ç¡®çš„å€¼ã€‚
 		 */
-		System.out.printf("Main: Size of the List: %d\n", list.size());// ÕâÀïÓ¦¸Ã·µ»Ø 10000
+		System.out.printf("Main: Size of the List: %d\n", list.size());// è¿™é‡Œåº”è¯¥è¿”å› 10000
 		
-		// ÔÙÓÃ 100 ¸öÏß³ÌÉ¾³ıÔªËØ
+		// å†ç”¨ 100 ä¸ªçº¿ç¨‹åˆ é™¤å…ƒç´ 
 		Thread[] pollTasks = new Thread[100];
 		for (int i = 0; i < pollTasks.length; i++) {
 			pollTasks[i] = new Thread(new PollTask(list));
@@ -53,7 +53,7 @@ public class ConcurrentLinkedDequeTest {
 		}
 		System.out.printf("Main: %d PollTask threads have been launched\n", pollTasks.length);
 		
-		// µÈ´ıÏß³ÌÈ«²¿½áÊø
+		// ç­‰å¾…çº¿ç¨‹å…¨éƒ¨ç»“æŸ
 		for (Thread thread : pollTasks) {
 			try {
 				thread.join();
@@ -61,12 +61,12 @@ public class ConcurrentLinkedDequeTest {
 				e.printStackTrace();
 			}
 		}
-		System.out.printf("Main: Size of the List: %d\n", list.size());// ÕâÀïÓ¦¸Ã·µ»Ø 0
+		System.out.printf("Main: Size of the List: %d\n", list.size());// è¿™é‡Œåº”è¯¥è¿”å› 0
 		
 	}
 
 	/**
-	 * Ìí¼ÓÔªËØµÄÈÎÎñ
+	 * æ·»åŠ å…ƒç´ çš„ä»»åŠ¡
 	 */
 	private static class AddTask implements Runnable {
 
@@ -86,7 +86,7 @@ public class ConcurrentLinkedDequeTest {
 	}
 	
 	/**
-	 * É¾³ıÔªËØµÄÈÎÎñ
+	 * åˆ é™¤å…ƒç´ çš„ä»»åŠ¡
 	 */
 	private static class PollTask implements Runnable {
 
@@ -99,19 +99,19 @@ public class ConcurrentLinkedDequeTest {
 		@Override
 		public void run() {
 			for (int i = 0; i < 50; i++) {
-				// ÏÂÃæµÄ·½·¨¿ÉÒÔ»ñÈ¡ÔªËØ²¢É¾³ı£¬Èç¹ûÁĞ±íÎª¿ÕÔò·µ»Ø null
-				list.pollFirst();// Ê×¸öÔªËØ
-				list.pollLast();// ×îºóµÄÔªËØ
+				// ä¸‹é¢çš„æ–¹æ³•å¯ä»¥è·å–å…ƒç´ å¹¶åˆ é™¤ï¼Œå¦‚æœåˆ—è¡¨ä¸ºç©ºåˆ™è¿”å› null
+				list.pollFirst();// é¦–ä¸ªå…ƒç´ 
+				list.pollLast();// æœ€åçš„å…ƒç´ 
 				
-				// ÏÂÃæµÄ·½·¨¿ÉÒÔÖ»»ñÈ¡ÔªËØ¶ø²»×öÆäËû²Ù×÷£¬Èç¹ûÁĞ±íÎª¿ÕÔòÅ×³ö NoSuchElementExcpetion
+				// ä¸‹é¢çš„æ–¹æ³•å¯ä»¥åªè·å–å…ƒç´ è€Œä¸åšå…¶ä»–æ“ä½œï¼Œå¦‚æœåˆ—è¡¨ä¸ºç©ºåˆ™æŠ›å‡º NoSuchElementExcpetion
 //				list.getFirst();
 //				list.getLast();
 				
-				// ÏÂÃæµÄ·½·¨¿ÉÒÔÖ»»ñÈ¡ÔªËØ¶ø²»×öÆäËû²Ù×÷£¬Èç¹ûÁĞ±íÎª¿ÕÔò·µ»Ø null
+				// ä¸‹é¢çš„æ–¹æ³•å¯ä»¥åªè·å–å…ƒç´ è€Œä¸åšå…¶ä»–æ“ä½œï¼Œå¦‚æœåˆ—è¡¨ä¸ºç©ºåˆ™è¿”å› null
 //				list.peekFirst();
 //				list.peekLast();
 				
-				// ÏÂÃæµÄ·½·¨¿ÉÒÔ»ñÈ¡ÔªËØ²¢É¾³ı£¬Èç¹ûÁĞ±íÎª¿ÕÔòÅ×³ö NoSuchElementExcpetion
+				// ä¸‹é¢çš„æ–¹æ³•å¯ä»¥è·å–å…ƒç´ å¹¶åˆ é™¤ï¼Œå¦‚æœåˆ—è¡¨ä¸ºç©ºåˆ™æŠ›å‡º NoSuchElementExcpetion
 //				list.removeFirst();
 //				list.removeLast();
 			}

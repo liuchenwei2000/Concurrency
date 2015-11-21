@@ -9,14 +9,14 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 /**
- * DelayQueue Ê¾Àı
+ * DelayQueue ç¤ºä¾‹
  * <p>
- * DelayQueue ÀàÊÇ Delayed ÔªËØµÄÒ»¸öÎŞ½ç×èÈû¶ÓÁĞ£¬Ö»ÓĞÔÚÑÓ³ÙÆÚÂúÊ±²ÅÄÜ´ÓÖĞÌáÈ¡¸ÃÔªËØ¡£
- * ±éÀú¶ÓÁĞµÄÏà¹Ø·½·¨»áºöÂÔÄÇĞ©ÑÓ³ÙµÄ¶ÔÏó£¬Ö±µ½ÕâĞ©¶ÔÏóÒòÎªÆÚÂú±»¼¤»î¡£
+ * DelayQueue ç±»æ˜¯ Delayed å…ƒç´ çš„ä¸€ä¸ªæ— ç•Œé˜»å¡é˜Ÿåˆ—ï¼Œåªæœ‰åœ¨å»¶è¿ŸæœŸæ»¡æ—¶æ‰èƒ½ä»ä¸­æå–è¯¥å…ƒç´ ã€‚
+ * éå†é˜Ÿåˆ—çš„ç›¸å…³æ–¹æ³•ä¼šå¿½ç•¥é‚£äº›å»¶è¿Ÿçš„å¯¹è±¡ï¼Œç›´åˆ°è¿™äº›å¯¹è±¡å› ä¸ºæœŸæ»¡è¢«æ¿€æ´»ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ16ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ16æ—¥
  */
 public class DelayQueueTest {
 
@@ -26,14 +26,14 @@ public class DelayQueueTest {
 	public static void main(String[] args) {
 		DelayQueue<Event> queue = new DelayQueue<>();
 
-		// ÏÈÊ¹ÓÃ 5 ¸öÏß³ÌÌí¼ÓÔªËØ
+		// å…ˆä½¿ç”¨ 5 ä¸ªçº¿ç¨‹æ·»åŠ å…ƒç´ 
 		Thread[] threads = new Thread[5];
 		for (int i = 0; i < threads.length; i++) {
 			threads[i] = new Thread(new Task(i, queue));
 			threads[i].start();
 		}
 
-		// µÈ´ıÏß³ÌÈ«²¿½áÊø
+		// ç­‰å¾…çº¿ç¨‹å…¨éƒ¨ç»“æŸ
 		for (Thread thread : threads) {
 			try {
 				thread.join();
@@ -44,16 +44,16 @@ public class DelayQueueTest {
 
 		System.out.printf("Main: Queue Size: %d\n", queue.size());
 		
-		// Ã¿¸ô 500ms ´òÓ¡Ò»´Î¶ÓÁĞÄÚµÄÔªËØ
+		// æ¯éš” 500ms æ‰“å°ä¸€æ¬¡é˜Ÿåˆ—å†…çš„å…ƒç´ 
 		do {
 			int counter = 0;
 			Event event;
 			do {
-				// »ñÈ¡²¢ÒÆ³ı´Ë¶ÓÁĞµÄÍ·£¬Èç¹û´Ë¶ÓÁĞ²»°üº¬¾ßÓĞÒÑµ½ÆÚÑÓ³ÙÊ±¼äµÄÔªËØ£¬Ôò·µ»Ø null¡£
+				// è·å–å¹¶ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´ï¼Œå¦‚æœæ­¤é˜Ÿåˆ—ä¸åŒ…å«å…·æœ‰å·²åˆ°æœŸå»¶è¿Ÿæ—¶é—´çš„å…ƒç´ ï¼Œåˆ™è¿”å› nullã€‚
 				event = queue.poll();
-				// »ñÈ¡²¢ÒÆ³ı´Ë¶ÓÁĞµÄÍ·²¿£¬ÔÚ¿É´Ó´Ë¶ÓÁĞ»ñµÃµ½ÆÚÑÓ³ÙµÄÔªËØÖ®Ç°Ò»Ö±µÈ´ı£¨ÈçÓĞ±ØÒª£©¡£
+				// è·å–å¹¶ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´éƒ¨ï¼Œåœ¨å¯ä»æ­¤é˜Ÿåˆ—è·å¾—åˆ°æœŸå»¶è¿Ÿçš„å…ƒç´ ä¹‹å‰ä¸€ç›´ç­‰å¾…ï¼ˆå¦‚æœ‰å¿…è¦ï¼‰ã€‚
 //				event = queue.take();
-				// »ñÈ¡µ«²»ÒÆ³ı´Ë¶ÓÁĞµÄÍ·²¿£»Èç¹û´Ë¶ÓÁĞÎª¿Õ£¬Ôò·µ»Ø null¡£
+				// è·å–ä½†ä¸ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´éƒ¨ï¼›å¦‚æœæ­¤é˜Ÿåˆ—ä¸ºç©ºï¼Œåˆ™è¿”å› nullã€‚
 //				event = queue.peek();
 				if (event != null) {
 					counter++;
@@ -65,26 +65,26 @@ public class DelayQueueTest {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		} while (queue.size() > 0);// ×¢Òâ size() ·½·¨½«·µ»ØËùÓĞÔªËØÊı£¨°üÀ¨ÑÓÊ±¶ÔÏóºÍ·ÇÑÓÊ±¶ÔÏó£©
+		} while (queue.size() > 0);// æ³¨æ„ size() æ–¹æ³•å°†è¿”å›æ‰€æœ‰å…ƒç´ æ•°ï¼ˆåŒ…æ‹¬å»¶æ—¶å¯¹è±¡å’Œéå»¶æ—¶å¯¹è±¡ï¼‰
 
-		// ÍêÈ«ÒÆ³ı´Ë¶ÓÁĞÖĞµÄËùÓĞÔªËØ¡£
+		// å®Œå…¨ç§»é™¤æ­¤é˜Ÿåˆ—ä¸­çš„æ‰€æœ‰å…ƒç´ ã€‚
 //		queue.clear();
 		System.out.printf("Main: End of the program\n");
 	}
 	
 	/**
-	 * ´æÈë DelayQueue µÄÔªËØĞèÒªÊµÏÖ Delayed ½Ó¿Ú£¬¸Ã½Ó¿ÚÓÃÀ´±ê¼ÇÄÇĞ©Ó¦¸ÃÔÚ¸ø¶¨ÑÓ³ÙÊ±¼äÖ®ºóÖ´ĞĞµÄ¶ÔÏó¡£
+	 * å­˜å…¥ DelayQueue çš„å…ƒç´ éœ€è¦å®ç° Delayed æ¥å£ï¼Œè¯¥æ¥å£ç”¨æ¥æ ‡è®°é‚£äº›åº”è¯¥åœ¨ç»™å®šå»¶è¿Ÿæ—¶é—´ä¹‹åæ‰§è¡Œçš„å¯¹è±¡ã€‚
 	 */
 	private static class Event implements Delayed {
 
-		private Date activationDate;// ¶ÔÏó¼¤»îÈÕÆÚ
+		private Date activationDate;// å¯¹è±¡æ¿€æ´»æ—¥æœŸ
 
 		public Event(Date activationDate) {
 			this.activationDate = activationDate;
 		}
 
 		/**
-		 * ·µ»ØÓë´Ë¶ÔÏóÏà¹ØµÄÊ£ÓàÑÓ³ÙÊ±¼ä£¬ÒÔ¸ø¶¨µÄÊ±¼äµ¥Î»±íÊ¾¡£
+		 * è¿”å›ä¸æ­¤å¯¹è±¡ç›¸å…³çš„å‰©ä½™å»¶è¿Ÿæ—¶é—´ï¼Œä»¥ç»™å®šçš„æ—¶é—´å•ä½è¡¨ç¤ºã€‚
 		 * 
 		 * @see java.util.concurrent.Delayed#getDelay(java.util.concurrent.TimeUnit)
 		 */
@@ -96,7 +96,7 @@ public class DelayQueueTest {
 		}
 		
 		/**
-		 * Delayed ½Ó¿Ú¼Ì³Ğ×Ô Comparable ½Ó¿Ú£¬ËùÒÔÒªÊµÏÖÏÂÃæµÄ±È½Ï·½·¨
+		 * Delayed æ¥å£ç»§æ‰¿è‡ª Comparable æ¥å£ï¼Œæ‰€ä»¥è¦å®ç°ä¸‹é¢çš„æ¯”è¾ƒæ–¹æ³•
 		 * 
 		 * @see java.lang.Comparable#compareTo(java.lang.Object)
 		 */
@@ -114,7 +114,7 @@ public class DelayQueueTest {
 	}
 
 	/**
-	 * Ìí¼ÓÔªËØµÄÈÎÎñ
+	 * æ·»åŠ å…ƒç´ çš„ä»»åŠ¡
 	 */
 	private static class Task implements Runnable {
 
@@ -131,10 +131,10 @@ public class DelayQueueTest {
 			Date now = new Date();
 			Date delay = new Date(now.getTime() + (id * 1000));
 			System.out.printf("Thread %s: %s\n", id, delay);
-			// Ìí¼Ó 100 ¸öÑÓÊ±¶ÔÏó
+			// æ·»åŠ  100 ä¸ªå»¶æ—¶å¯¹è±¡
 			for (int i = 0; i < 100; i++) {
 				queue.add(new Event(delay));
-				// ½«Ö¸¶¨ÔªËØ²åÈë´ËÑÓ³Ù¶ÓÁĞ¡£ 
+				// å°†æŒ‡å®šå…ƒç´ æ’å…¥æ­¤å»¶è¿Ÿé˜Ÿåˆ—ã€‚ 
 //				events.put(new Event(id, i));
 			}
 		}

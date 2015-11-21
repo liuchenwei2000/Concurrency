@@ -4,16 +4,16 @@
 package concurrency.bank;
 
 /**
- * ÒøĞĞÕË»§
+ * é“¶è¡Œè´¦æˆ·
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public class Account {
 
-	private String id;// ÕË»§ID
-	private double balance;// ÕË»§Óà¶î
+	private String id;// è´¦æˆ·ID
+	private double balance;// è´¦æˆ·ä½™é¢
 
 	public Account(String id, double balance) {
 		this.id = id;
@@ -29,20 +29,20 @@ public class Account {
 	}
 	
 	/**
-	 * ´æÇ®»òÕß×ªÈë²Ù×÷
+	 * å­˜é’±æˆ–è€…è½¬å…¥æ“ä½œ
 	 * 
 	 * @param amount
-	 *            ×ªÈë½ğ¶î
+	 *            è½¬å…¥é‡‘é¢
 	 */
 	public void in(double amount) {
 		balance += amount;
 	}
 
 	/**
-	 * È¡Ç®»òÕß×ª³ö²Ù×÷
+	 * å–é’±æˆ–è€…è½¬å‡ºæ“ä½œ
 	 * 
 	 * @param amount
-	 *            ×ª³ö½ğ¶î
+	 *            è½¬å‡ºé‡‘é¢
 	 */
 	public void out(double amount) {
 		balance -= amount;

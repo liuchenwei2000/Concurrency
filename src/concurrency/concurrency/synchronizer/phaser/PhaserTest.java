@@ -7,19 +7,19 @@ import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
 /**
- * PhaserÊ¾Àı
+ * Phaserç¤ºä¾‹
  * <p>
- * µ±Ò»Ğ©²¢·¢ÈÎÎñ¿ÉÒÔ·Ö½â³É¼¸¸ö²½Öè£¨step£©Ê±£¬Phaser Àà»áºÜÓĞÓÃ¡£
- * Phaser Ìá¹©ÁËÕâÑùÒ»ÖÖ»úÖÆ£ºËü¿ÉÒÔÈÃÖ´ĞĞ²¢·¢ÈÎÎñµÄÏß³ÌÔÚÃ¿¸ö²½Öè£¨step£©µÄ½áÊøµã±£³ÖÍ¬²½£¬
- * Ò²¾ÍÊÇËµÖ±µ½ËùÓĞµÄÏß³Ì¶¼Ö´ĞĞÍêÉÏÒ»²½£¨step£©²Ù×÷ºóÏß³Ì²Å»á¿ªÊ¼Ö´ĞĞÏÂÒ»²½²Ù×÷¡£
+ * å½“ä¸€äº›å¹¶å‘ä»»åŠ¡å¯ä»¥åˆ†è§£æˆå‡ ä¸ªæ­¥éª¤ï¼ˆstepï¼‰æ—¶ï¼ŒPhaser ç±»ä¼šå¾ˆæœ‰ç”¨ã€‚
+ * Phaser æä¾›äº†è¿™æ ·ä¸€ç§æœºåˆ¶ï¼šå®ƒå¯ä»¥è®©æ‰§è¡Œå¹¶å‘ä»»åŠ¡çš„çº¿ç¨‹åœ¨æ¯ä¸ªæ­¥éª¤ï¼ˆstepï¼‰çš„ç»“æŸç‚¹ä¿æŒåŒæ­¥ï¼Œ
+ * ä¹Ÿå°±æ˜¯è¯´ç›´åˆ°æ‰€æœ‰çš„çº¿ç¨‹éƒ½æ‰§è¡Œå®Œä¸Šä¸€æ­¥ï¼ˆstepï¼‰æ“ä½œåçº¿ç¨‹æ‰ä¼šå¼€å§‹æ‰§è¡Œä¸‹ä¸€æ­¥æ“ä½œã€‚
  * <p>
- * ¿ÉÒÔÔÚ´´½¨ Phaser ¶ÔÏóÊ±Ö¸¶¨²ÎÓëÍ¬²½²Ù×÷µÄÏß³ÌÊı£¬µ«Ò²¿ÉÒÔ¶¯Ì¬µÄÔö¼Ó»ò¼õÉÙÕâ¸öÊıÄ¿¡£
- * Õâ¸öÊıÒ²±íÊ¾ Phaser¶ÔÏóÔÚÇĞ»»µ½ÏÂ½×¶Î²Ù×÷Ç°¸÷¸ö²ÎÓëÏß³ÌĞèÒªµ÷ÓÃarriveAndAwaitAdvance()·½·¨µÄ´ÎÊı£¬
- * µ÷ÓÃ´ÎÊıÒ»µ©´ïµ½£¬ Phaser½«»½ĞÑËùÓĞÕıÔÚĞİÃßµÈ´ıµÄÏß³Ì£¬½øÈëÏÂÒ»½×¶Î²Ù×÷µÄÖ´ĞĞ¡£
+ * å¯ä»¥åœ¨åˆ›å»º Phaser å¯¹è±¡æ—¶æŒ‡å®šå‚ä¸åŒæ­¥æ“ä½œçš„çº¿ç¨‹æ•°ï¼Œä½†ä¹Ÿå¯ä»¥åŠ¨æ€çš„å¢åŠ æˆ–å‡å°‘è¿™ä¸ªæ•°ç›®ã€‚
+ * è¿™ä¸ªæ•°ä¹Ÿè¡¨ç¤º Phaserå¯¹è±¡åœ¨åˆ‡æ¢åˆ°ä¸‹é˜¶æ®µæ“ä½œå‰å„ä¸ªå‚ä¸çº¿ç¨‹éœ€è¦è°ƒç”¨arriveAndAwaitAdvance()æ–¹æ³•çš„æ¬¡æ•°ï¼Œ
+ * è°ƒç”¨æ¬¡æ•°ä¸€æ—¦è¾¾åˆ°ï¼Œ Phaserå°†å”¤é†’æ‰€æœ‰æ­£åœ¨ä¼‘çœ ç­‰å¾…çš„çº¿ç¨‹ï¼Œè¿›å…¥ä¸‹ä¸€é˜¶æ®µæ“ä½œçš„æ‰§è¡Œã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ9ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ9æ—¥
  */
 public class PhaserTest {
 
@@ -27,9 +27,9 @@ public class PhaserTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// 5¸ö²ÎÓëÕß
+		// 5ä¸ªå‚ä¸è€…
 		Phaser phaser = new Phaser(5);
-		// »ñÈ¡ Phaser ÖĞ×¢²áµÄÏß³ÌÊı
+		// è·å– Phaser ä¸­æ³¨å†Œçš„çº¿ç¨‹æ•°
 		Thread[] threads = new Thread[phaser.getRegisteredParties()];
 		
 		for (int i = 0; i < threads.length; i++) {
@@ -46,17 +46,17 @@ public class PhaserTest {
 		}
 		
 		/* 
-		 * µ± Phaser ÖĞÃ»ÓĞ²ÎÓëÕßÏß³ÌÊ±£¬Ëü¾Í½øÈëTermination×´Ì¬£¬ÏÂÃæµÄ·½·¨»á·µ»Øtrue¡£
-		 * ÔÚÕâ¸ö×´Ì¬ÏÂ£¬¶Ô Phaser ¶ÔÏóµÄÈÎºÎÍ¬²½·½·¨£¨Èç awaitAdvance()¡¢arriveAndAwaitAdvance()£©
-		 * µ÷ÓÃ¶¼»áÁ¢¼´·µ»Ø£¨·µ»ØÖµÊÇÒ»¸ö¸ºÊı£¬·ÇTermination×´Ì¬Ôò»á·µ»ØÒ»¸öÕıÊı£©¶ø²»×öÈÎºÎÍ¬²½²Ù×÷¡£
+		 * å½“ Phaser ä¸­æ²¡æœ‰å‚ä¸è€…çº¿ç¨‹æ—¶ï¼Œå®ƒå°±è¿›å…¥TerminationçŠ¶æ€ï¼Œä¸‹é¢çš„æ–¹æ³•ä¼šè¿”å›trueã€‚
+		 * åœ¨è¿™ä¸ªçŠ¶æ€ä¸‹ï¼Œå¯¹ Phaser å¯¹è±¡çš„ä»»ä½•åŒæ­¥æ–¹æ³•ï¼ˆå¦‚ awaitAdvance()ã€arriveAndAwaitAdvance()ï¼‰
+		 * è°ƒç”¨éƒ½ä¼šç«‹å³è¿”å›ï¼ˆè¿”å›å€¼æ˜¯ä¸€ä¸ªè´Ÿæ•°ï¼ŒéTerminationçŠ¶æ€åˆ™ä¼šè¿”å›ä¸€ä¸ªæ­£æ•°ï¼‰è€Œä¸åšä»»ä½•åŒæ­¥æ“ä½œã€‚
 		 */
 		System.out.println("Terminated: "+ phaser.isTerminated());
-		// Ç¿ÖÆ Phaser¶ÔÏó£¨¶ÀÁ¢ÓÚ¸÷²ÎÓëÕß£©½øÈë Termination×´Ì¬£¬ÕâÔÚÄ³¸ö²ÎÓëÕß³öÏÖ´íÎó»áÓĞÓÃ
+		// å¼ºåˆ¶ Phaserå¯¹è±¡ï¼ˆç‹¬ç«‹äºå„å‚ä¸è€…ï¼‰è¿›å…¥ TerminationçŠ¶æ€ï¼Œè¿™åœ¨æŸä¸ªå‚ä¸è€…å‡ºç°é”™è¯¯ä¼šæœ‰ç”¨
 //		phaser.forceTermination();
 	}
 
 	/**
-	 * ¶à²½ÖèµÄÈÎÎñ
+	 * å¤šæ­¥éª¤çš„ä»»åŠ¡
 	 */
 	private static class StepByStepTask implements Runnable {
 
@@ -71,36 +71,36 @@ public class PhaserTest {
 		@Override
 		public void run() {
 			/*
-			 * µ±Ä³¸öÏß³Ìµ÷ÓÃarriveAndAwaitAdvance()·½·¨Ê±£¬Phaser ¶ÔÏó»á½«´Ë½×¶Î²ÎÓëÏß³ÌµÄ×ÜÊı¼õÒ»£¬
-			 * È»ºó¸ÃÏß³Ì½«ĞİÃßÖ±µ½ËùÓĞÆäËû²ÎÓëÏß³ÌÍê³ÉÁËÕâ½×¶Î¹¤×÷¡£
+			 * å½“æŸä¸ªçº¿ç¨‹è°ƒç”¨arriveAndAwaitAdvance()æ–¹æ³•æ—¶ï¼ŒPhaser å¯¹è±¡ä¼šå°†æ­¤é˜¶æ®µå‚ä¸çº¿ç¨‹çš„æ€»æ•°å‡ä¸€ï¼Œ
+			 * ç„¶åè¯¥çº¿ç¨‹å°†ä¼‘çœ ç›´åˆ°æ‰€æœ‰å…¶ä»–å‚ä¸çº¿ç¨‹å®Œæˆäº†è¿™é˜¶æ®µå·¥ä½œã€‚
 			 */
-			// ÕâÀï±íÊ¾ËùÓĞµÄÏß³Ì»áÍ¬Ê±¿ªÊ¼Ö´ĞĞ
+			// è¿™é‡Œè¡¨ç¤ºæ‰€æœ‰çš„çº¿ç¨‹ä¼šåŒæ—¶å¼€å§‹æ‰§è¡Œ
 			phaser.arriveAndAwaitAdvance();
 			step1();
-			// ÕâÀï±íÊ¾ËùÓĞµÄÏß³ÌÍê³Éstep1()Ö®ºó£¬²Å»á¼ÌĞøÖ´ĞĞÏÂÃæµÄ²Ù×÷
+			// è¿™é‡Œè¡¨ç¤ºæ‰€æœ‰çš„çº¿ç¨‹å®Œæˆstep1()ä¹‹åï¼Œæ‰ä¼šç»§ç»­æ‰§è¡Œä¸‹é¢çš„æ“ä½œ
 			phaser.arriveAndAwaitAdvance();
 			boolean result = step2();
 			if (result) {
-				System.out.println(name + "£ºno result after step " + phaser.getPhase());
+				System.out.println(name + "ï¼šno result after step " + phaser.getPhase());
 				/*
-				 * µ±Ä³¸öÏß³Ìµ÷ÓÃarriveAndDeregister()·½·¨Ê±£¬Phaser ¶ÔÏó»á½«´Ë½×¶Î²ÎÓëÏß³ÌµÄ×ÜÊı¼õÒ»£¬
-				 * Õâ±íÊ¾Ïß³ÌÒÑ¾­Íê³ÉÁË¸Ã½×¶Î²Ù×÷£¬µ«ÊÇ²»±Ø²ÎÓëÊ£ÏÂ½×¶ÎµÄ²Ù×÷£¬ËùÒÔ Phaser ¶ÔÏóÔÚ¼ÌĞøÏòÏÂÖ´ĞĞÇ°Ò²²»»áÔÙµÈ´ı¸ÃÏß³Ì¡£
+				 * å½“æŸä¸ªçº¿ç¨‹è°ƒç”¨arriveAndDeregister()æ–¹æ³•æ—¶ï¼ŒPhaser å¯¹è±¡ä¼šå°†æ­¤é˜¶æ®µå‚ä¸çº¿ç¨‹çš„æ€»æ•°å‡ä¸€ï¼Œ
+				 * è¿™è¡¨ç¤ºçº¿ç¨‹å·²ç»å®Œæˆäº†è¯¥é˜¶æ®µæ“ä½œï¼Œä½†æ˜¯ä¸å¿…å‚ä¸å‰©ä¸‹é˜¶æ®µçš„æ“ä½œï¼Œæ‰€ä»¥ Phaser å¯¹è±¡åœ¨ç»§ç»­å‘ä¸‹æ‰§è¡Œå‰ä¹Ÿä¸ä¼šå†ç­‰å¾…è¯¥çº¿ç¨‹ã€‚
 				 */
-				// ¼òµ¥µØËµ£¬Ïàµ±ÓÚÔÚ Phaser ÖĞ×¢ÏúÁË×Ô¼º£¬¶¯Ì¬¼õÉÙÁË Phaser ÖĞµÄÏß³ÌÊı¡£
+				// ç®€å•åœ°è¯´ï¼Œç›¸å½“äºåœ¨ Phaser ä¸­æ³¨é”€äº†è‡ªå·±ï¼ŒåŠ¨æ€å‡å°‘äº† Phaser ä¸­çš„çº¿ç¨‹æ•°ã€‚
 				phaser.arriveAndDeregister();
-				System.out.println(name + "£ºI have gone. " + phaser.getRegisteredParties() + " threads left.");
+				System.out.println(name + "ï¼šI have gone. " + phaser.getRegisteredParties() + " threads left.");
 				return;
 			} 
 			phaser.arriveAndAwaitAdvance();
 			step3();
 			phaser.arriveAndDeregister();
-			System.out.println(name + "£ºWork completed.");
+			System.out.println(name + "ï¼šWork completed.");
 		}
 
 		private void step1() {
 			try {
 				TimeUnit.MILLISECONDS.sleep((long) (Math.random()*1000));
-				System.out.println(name + "£ºstep1 complete.");
+				System.out.println(name + "ï¼šstep1 complete.");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -110,7 +110,7 @@ public class PhaserTest {
 			long ms = (long) (Math.random()*1000);
 			try {
 				TimeUnit.MILLISECONDS.sleep(ms);
-				System.out.println(name + "£ºstep2 complete.");
+				System.out.println(name + "ï¼šstep2 complete.");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -120,7 +120,7 @@ public class PhaserTest {
 		private void step3() {
 			try {
 				TimeUnit.MILLISECONDS.sleep((long) (Math.random()*1000));
-				System.out.println(name + "£ºstep3 complete.");
+				System.out.println(name + "ï¼šstep3 complete.");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

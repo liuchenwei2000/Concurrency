@@ -6,11 +6,11 @@ package concurrency.bank;
 import java.util.Random;
 
 /**
- * ÒøĞĞ×ªÕË²âÊÔÆ÷
+ * é“¶è¡Œè½¬è´¦æµ‹è¯•å™¨
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public class TransferTest {
 	
@@ -20,9 +20,9 @@ public class TransferTest {
 		Account[] accounts = bank.getAccounts();
 		for (int i = 0; i < accounts.length; i++) {
 			/*
-			 * Ã¿Ò»¸öÕË»§¶¼»áÆô¶¯Ò»¸öÏß³ÌÏòÆäËûÕË»§×ªÕË
+			 * æ¯ä¸€ä¸ªè´¦æˆ·éƒ½ä¼šå¯åŠ¨ä¸€ä¸ªçº¿ç¨‹å‘å…¶ä»–è´¦æˆ·è½¬è´¦
 			 * 
-			 * µ±²»Í¬ÕË»§ÏòÍ¬Ò»¸öÕË»§×ªÕËÊ±£¬»òÕßÍ¬Ò»¸öÕË»§¼È²ÎÓë×ª³öÓÖ²ÎÓë×ªÈëÊ±£¬¾ÍÓĞ¿ÉÄÜ·¢Éú³åÍ»
+			 * å½“ä¸åŒè´¦æˆ·å‘åŒä¸€ä¸ªè´¦æˆ·è½¬è´¦æ—¶ï¼Œæˆ–è€…åŒä¸€ä¸ªè´¦æˆ·æ—¢å‚ä¸è½¬å‡ºåˆå‚ä¸è½¬å…¥æ—¶ï¼Œå°±æœ‰å¯èƒ½å‘ç”Ÿå†²çª
 			 */
 			TransferThread t = new TransferThread(bank, accounts[i], RANDOM.nextInt(100));
 			t.start();

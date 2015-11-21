@@ -4,11 +4,11 @@
 package concurrency.bank;
 
 /**
- * ²»¿ØÖÆ²¢·¢µÄÒøĞĞÀà
+ * ä¸æ§åˆ¶å¹¶å‘çš„é“¶è¡Œç±»
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public class UnsynBank extends AbstractBank {
 
@@ -17,14 +17,14 @@ public class UnsynBank extends AbstractBank {
 	}
 
 	/**
-	 * ×ªÕË²Ù×÷
+	 * è½¬è´¦æ“ä½œ
 	 * 
 	 * @param from
-	 *            ×ª³öÕË»§
+	 *            è½¬å‡ºè´¦æˆ·
 	 * @param to
-	 *            ×ªÈëÕË»§
+	 *            è½¬å…¥è´¦æˆ·
 	 * @param amount
-	 *            ×ªÕË½ğ¶î
+	 *            è½¬è´¦é‡‘é¢
 	 */
 	public void transfer(Account from, Account to, double amount) {
 		if (from.getID().equals(to.getID())) {

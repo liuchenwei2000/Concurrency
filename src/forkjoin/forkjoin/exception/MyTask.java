@@ -7,15 +7,15 @@ import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * »áÅ×³ö·ÇÊÜ²éÒì³£µÄÈÎÎñÊ¾Àı
+ * ä¼šæŠ›å‡ºéå—æŸ¥å¼‚å¸¸çš„ä»»åŠ¡ç¤ºä¾‹
  * <p>
- * µ±ÈÎÎñÅ×³ö·ÇÊÜ²éÒì³£Ê±£¬³ÌĞò²»»á½áÊøÔËĞĞ£¬¿ØÖÆÌ¨Ò²²»»á¿´µ½Òì³£ĞÅÏ¢¡£
- * µ±Ä³¸öÈÎÎñTÅ×³ö·ÇÊÜ²éÒì³£Ê±£¬Õâ»áÓ°ÏìËüµÄ¸¸ÈÎÎñ£¨½«ÈÎÎñT¼ÓÈëµ½ForkJoinPoolµÄÈÎÎñ£©¼°¸¸ÈÎÎñµÄ¸¸ÈÎÎñ£¬ÒÔ´ËÀàÍÆ¡£
- * ÕâĞ©ÈÎÎñ¶¼²»ÄÜÕı³£½áÊø¡£
+ * å½“ä»»åŠ¡æŠ›å‡ºéå—æŸ¥å¼‚å¸¸æ—¶ï¼Œç¨‹åºä¸ä¼šç»“æŸè¿è¡Œï¼Œæ§åˆ¶å°ä¹Ÿä¸ä¼šçœ‹åˆ°å¼‚å¸¸ä¿¡æ¯ã€‚
+ * å½“æŸä¸ªä»»åŠ¡TæŠ›å‡ºéå—æŸ¥å¼‚å¸¸æ—¶ï¼Œè¿™ä¼šå½±å“å®ƒçš„çˆ¶ä»»åŠ¡ï¼ˆå°†ä»»åŠ¡TåŠ å…¥åˆ°ForkJoinPoolçš„ä»»åŠ¡ï¼‰åŠçˆ¶ä»»åŠ¡çš„çˆ¶ä»»åŠ¡ï¼Œä»¥æ­¤ç±»æ¨ã€‚
+ * è¿™äº›ä»»åŠ¡éƒ½ä¸èƒ½æ­£å¸¸ç»“æŸã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class MyTask extends RecursiveTask<Integer> {
 	
@@ -44,11 +44,11 @@ public class MyTask extends RecursiveTask<Integer> {
 			MyTask task2 = new MyTask(data, middle, end);
 			invokeAll(task1, task2);
 		} else {
-			// ¼ÙÉèµÚËÄ¸öÈÎÎñ³öÏÖÒì³£
+			// å‡è®¾ç¬¬å››ä¸ªä»»åŠ¡å‡ºç°å¼‚å¸¸
 			if (start < 3 && end > 3) {
 //				throw new RuntimeException("This task throws an"
 //						+ "Exception: Task from " + start + " to " + end);
-				// »òÕßÊ¹ÓÃÏÂÃæµÄ·½Ê½
+				// æˆ–è€…ä½¿ç”¨ä¸‹é¢çš„æ–¹å¼
 				Exception ex = new RuntimeException("This task throws an" + "Exception: Task from " + start + " to " + end);
 				completeExceptionally(ex);
 			}

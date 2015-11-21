@@ -8,13 +8,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * ÏÖÊµÊ¹ÓÃCountDownLatchµÄ³¡¾°
+ * ç°å®ä½¿ç”¨CountDownLatchçš„åœºæ™¯
  * <p>
- * ±¾ÀıÊ¹ÓÃCountDownLatchÊµÏÖÁË¹ú¼ÒÍ³¼Æ¾ÖÍ³¼ÆGDPµÄ¹¦ÄÜ¡£
+ * æœ¬ä¾‹ä½¿ç”¨CountDownLatchå®ç°äº†å›½å®¶ç»Ÿè®¡å±€ç»Ÿè®¡GDPçš„åŠŸèƒ½ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-25
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-25
  */
 public class CountDownLatchDemo {
 
@@ -26,37 +26,37 @@ public class CountDownLatchDemo {
 	}
 	
 	/**
-	 * Ä£Äâ¹ú¼ÒÍ³¼Æ¾Ö£¬ÓÃÀ´Í³¼Æ¸÷Ê¡ÊĞ(±¾ÀıÖ»ÓÃÈı¸öÖ±Ï½ÊĞ½øĞĞÄ£Äâ)µÄGDP×ÜºÍ¡£
+	 * æ¨¡æ‹Ÿå›½å®¶ç»Ÿè®¡å±€ï¼Œç”¨æ¥ç»Ÿè®¡å„çœå¸‚(æœ¬ä¾‹åªç”¨ä¸‰ä¸ªç›´è¾–å¸‚è¿›è¡Œæ¨¡æ‹Ÿ)çš„GDPæ€»å’Œã€‚
 	 * <p>
-	 * ÒòÎª¸÷Ê¡ÊĞµÄGDP¶¼´æÔÚ×Ô¼ºµÄÊı¾İ¿âÖĞ£¬ËùÒÔ¸÷Ê¡ÊĞ¶ÀÁ¢Í³¼ÆÆäGDP£¬
-	 * È»ºó½«Êı¾İÌá½»¸ø¹ú¼ÒÍ³¼Æ¾Ö£¬Í³¼Æ¾ÖÔÚËùÓĞÊı¾İ»ã¼¯Ö®ºó¶ÔGDP½øĞĞºÏ¼Æ¡£
+	 * å› ä¸ºå„çœå¸‚çš„GDPéƒ½å­˜åœ¨è‡ªå·±çš„æ•°æ®åº“ä¸­ï¼Œæ‰€ä»¥å„çœå¸‚ç‹¬ç«‹ç»Ÿè®¡å…¶GDPï¼Œ
+	 * ç„¶åå°†æ•°æ®æäº¤ç»™å›½å®¶ç»Ÿè®¡å±€ï¼Œç»Ÿè®¡å±€åœ¨æ‰€æœ‰æ•°æ®æ±‡é›†ä¹‹åå¯¹GDPè¿›è¡Œåˆè®¡ã€‚
 	 */
 	static class Statistic {
 
-		// ¹²ÏíÄÚ´æ£¬ÓÃÓÚ´æ·Å¸÷Ê¡µÄGDPÊı¾İ
+		// å…±äº«å†…å­˜ï¼Œç”¨äºå­˜æ”¾å„çœçš„GDPæ•°æ®
 		private Map<String, Double> province_gdp_map = new ConcurrentHashMap<String, Double>();
-		// ÈÎÎñ¿ªÊ¼ĞÅºÅ
+		// ä»»åŠ¡å¼€å§‹ä¿¡å·
 		private CountDownLatch startSignal = new CountDownLatch(1);
-		// ÈÎÎñÍê³ÉĞÅºÅ
+		// ä»»åŠ¡å®Œæˆä¿¡å·
 		private CountDownLatch doneSignal = new CountDownLatch(3);
 
 		/**
-		 * ºÏ¼Æ¸÷Ê¡ÊĞGDP
+		 * åˆè®¡å„çœå¸‚GDP
 		 */
 		public void totalGDP() {
 			try {
-				// ·Ö±ğ¼ÆËã¸÷Ê¡ÊĞGDP
+				// åˆ†åˆ«è®¡ç®—å„çœå¸‚GDP
 				new Thread(new ProvinceStatTask(new BeiJingGDPService())).start();
 				new Thread(new ProvinceStatTask(new ShangHaiGDPService())).start();
 				new Thread(new ProvinceStatTask(new TianJinGDPService())).start();
 				
-				System.out.println("¸÷Ê¡¿ªÊ¼Í³¼ÆGDP......");
+				System.out.println("å„çœå¼€å§‹ç»Ÿè®¡GDP......");
 				Thread.sleep(1000);
-				startSignal.countDown();// Í¨Öª¸÷Ê¡ÊĞ¿ªÊ¼Ö´ĞĞÍ³¼ÆÈÎÎñ
+				startSignal.countDown();// é€šçŸ¥å„çœå¸‚å¼€å§‹æ‰§è¡Œç»Ÿè®¡ä»»åŠ¡
 				
-				doneSignal.await();// µÈ´ı¸÷Ê¡ÊĞÈÎÎñÈ«²¿Íê³É
+				doneSignal.await();// ç­‰å¾…å„çœå¸‚ä»»åŠ¡å…¨éƒ¨å®Œæˆ
 				
-				System.out.println("¸÷Ê¡GDPÊÕ¼¯Íê±Ï£¬¿ªÊ¼¼ÆËã......");
+				System.out.println("å„çœGDPæ”¶é›†å®Œæ¯•ï¼Œå¼€å§‹è®¡ç®—......");
 				double total = 0;
 				for (Double value : province_gdp_map.values()) {
 					total += value;
@@ -68,7 +68,7 @@ public class CountDownLatchDemo {
 		}
 
 		/**
-		 * ¸÷Ê¡ÊĞGDPÍ³¼ÆÈÎÎñ
+		 * å„çœå¸‚GDPç»Ÿè®¡ä»»åŠ¡
 		 */
 		class ProvinceStatTask implements Runnable {
 
@@ -84,12 +84,12 @@ public class CountDownLatchDemo {
 					startSignal.await();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				}// µÈ´ıÍ³¼ÆÈÎÎñ¿ªÊ¼
+				}// ç­‰å¾…ç»Ÿè®¡ä»»åŠ¡å¼€å§‹
 				double gdp = service.getGDP();
-				System.out.println(service.getName() + " GDP Í³¼ÆÍê±Ï......");
+				System.out.println(service.getName() + " GDP ç»Ÿè®¡å®Œæ¯•......");
 				province_gdp_map.put(service.getName(), gdp);
-				doneSignal.countDown();// Í¨Öª×Ô¼ºµÄÍ³¼ÆÈÎÎñ½áÊø
-				System.out.println(service.getName() + " ÈÎÎñ½áÊø.");
+				doneSignal.countDown();// é€šçŸ¥è‡ªå·±çš„ç»Ÿè®¡ä»»åŠ¡ç»“æŸ
+				System.out.println(service.getName() + " ä»»åŠ¡ç»“æŸ.");
 			}
 		}
 	}

@@ -6,16 +6,16 @@ package forkjoin.cancel;
 import java.util.Random;
 
 /**
- * Êı×éÉú³ÉÆ÷
+ * æ•°ç»„ç”Ÿæˆå™¨
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class ArrayGenerator {
 
 	/**
-	 * Éú³ÉÖ¸¶¨³¤¶ÈµÄÊı×é£¬ÔªËØ¶¼ÊÇ¸³µÄËæ»úÊıÖµ
+	 * ç”ŸæˆæŒ‡å®šé•¿åº¦çš„æ•°ç»„ï¼Œå…ƒç´ éƒ½æ˜¯èµ‹çš„éšæœºæ•°å€¼
 	 */
 	public int[] generate(int size) {
 		int[] array = new int[size];

@@ -9,11 +9,11 @@ import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ForkJoinPoolÔËĞĞRecursiveActionÊ¾Àı
+ * ForkJoinPoolè¿è¡ŒRecursiveActionç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ25ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ25æ—¥
  */
 public class App {
 
@@ -23,15 +23,15 @@ public class App {
 	public static void main(String[] args) {
 		List<Product> products = ProductFactory.create(10000);
 		
-		// ´´½¨×î³õµÄTask¶ÔÏó
+		// åˆ›å»ºæœ€åˆçš„Taskå¯¹è±¡
 		RecursiveAction task = new UpdatePriceTask(products, 0, products.size(), 0.2);
 		
-		// ´´½¨Ä¬ÈÏForkJoinPoolÊµÀı£¬ÈÎÎñ²¢ĞĞÊıµÈÓÚCPUÊı
+		// åˆ›å»ºé»˜è®¤ForkJoinPoolå®ä¾‹ï¼Œä»»åŠ¡å¹¶è¡Œæ•°ç­‰äºCPUæ•°
 		ForkJoinPool pool = new ForkJoinPool();
-		// Ö´ĞĞÈÎÎñ£¬ÕâÊÇÒ»¸öÒì²½µ÷ÓÃ£¬Ö÷Ïß³Ì»á¼ÌĞøÏòÏÂÖ´ĞĞ¡£
+		// æ‰§è¡Œä»»åŠ¡ï¼Œè¿™æ˜¯ä¸€ä¸ªå¼‚æ­¥è°ƒç”¨ï¼Œä¸»çº¿ç¨‹ä¼šç»§ç»­å‘ä¸‹æ‰§è¡Œã€‚
 		pool.execute(task);
 		
-		// ¼à¿ØForkJoinPoolµÄÔËĞĞÊ±²ÎÊı
+		// ç›‘æ§ForkJoinPoolçš„è¿è¡Œæ—¶å‚æ•°
 		do {
 			System.out.printf("Main: Thread Count: %d\n", pool.getActiveThreadCount());
 			System.out.printf("Main: Thread Steal: %d\n", pool.getStealCount());
@@ -41,16 +41,16 @@ public class App {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		} while (!task.isDone());// ÅĞ¶ÏÈÎÎñÊÇ·ñÒÑ¾­½áÊø£¨°üÀ¨Õı³£½áÊø¡¢Òì³£ÖĞÖ¹¡¢ÈÎÎñÈ¡Ïû£©
+		} while (!task.isDone());// åˆ¤æ–­ä»»åŠ¡æ˜¯å¦å·²ç»ç»“æŸï¼ˆåŒ…æ‹¬æ­£å¸¸ç»“æŸã€å¼‚å¸¸ä¸­æ­¢ã€ä»»åŠ¡å–æ¶ˆï¼‰
 		
-		// Í£Ö¹poolµÄÔËĞĞ
+		// åœæ­¢poolçš„è¿è¡Œ
 		pool.shutdown();
-		// ÅĞ¶ÏÈÎÎñÊÇ·ñÊÇÕı³£½áÊø£¨Òì³£ÖĞÖ¹ºÍÈÎÎñÈ¡Ïû¶¼²»ÊôÓÚÕı³£½áÊø£©
+		// åˆ¤æ–­ä»»åŠ¡æ˜¯å¦æ˜¯æ­£å¸¸ç»“æŸï¼ˆå¼‚å¸¸ä¸­æ­¢å’Œä»»åŠ¡å–æ¶ˆéƒ½ä¸å±äºæ­£å¸¸ç»“æŸï¼‰
 		if (task.isCompletedNormally()) {
 			System.out.printf("Main: The process has completed normally.\n");
 		}
 		
-		// ²âÊÔÈÎÎñËù×öµÄ²Ù×÷ÊÇ·ñÕıÈ·
+		// æµ‹è¯•ä»»åŠ¡æ‰€åšçš„æ“ä½œæ˜¯å¦æ­£ç¡®
 		for (int i = 0; i < products.size(); i++) {
 			Product product = products.get(i);
 			if (product.getPrice() != 12) {

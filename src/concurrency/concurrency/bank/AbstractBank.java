@@ -4,23 +4,23 @@
 package concurrency.bank;
 
 /**
- * ÒøĞĞ»ùÀà
+ * é“¶è¡ŒåŸºç±»
  * <p>
- * Ö»Ìá¹©Ò»Ğ©¹¤¾ß·½·¨µÄÄ¬ÈÏÊµÏÖ£¬²»Ìá¹©×ªÕË²Ù×÷¡£
+ * åªæä¾›ä¸€äº›å·¥å…·æ–¹æ³•çš„é»˜è®¤å®ç°ï¼Œä¸æä¾›è½¬è´¦æ“ä½œã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public abstract class AbstractBank implements Bank {
 
-	private Account[] accounts;// ËùÓĞµÄÕË»§
+	private Account[] accounts;// æ‰€æœ‰çš„è´¦æˆ·
 
 	/**
 	 * @param accNumber
-	 *            ÕË»§ÊıÄ¿
+	 *            è´¦æˆ·æ•°ç›®
 	 * @param initialBalance
-	 *            ÕË»§³õÊ¼Óà¶î
+	 *            è´¦æˆ·åˆå§‹ä½™é¢
 	 */
 	public AbstractBank(int accNumber, double initialBalance) {
 		this.accounts = new Account[accNumber];
@@ -30,15 +30,15 @@ public abstract class AbstractBank implements Bank {
 	}
 
 	/**
-	 * ×ªÕË²Ù×÷µÄÕËºÅ´¦ÀíÏ¸½Ú
+	 * è½¬è´¦æ“ä½œçš„è´¦å·å¤„ç†ç»†èŠ‚
 	 */
 	protected void processAccount(Account from, Account to, double amount) {
 		if (from.getBalance() < amount)
 			return;
 		from.out(amount);
 		to.in(amount);
-		System.out.println("´Ó  " + from.getID() +" ×ª³ö  " + amount +" µ½  " + to.getID());
-		System.out.println("Total balance£º" + getTotalBalance());
+		System.out.println("ä»  " + from.getID() +" è½¬å‡º  " + amount +" åˆ°  " + to.getID());
+		System.out.println("Total balanceï¼š" + getTotalBalance());
 	}
 
 	public Account[] getAccounts() {
@@ -46,7 +46,7 @@ public abstract class AbstractBank implements Bank {
 	}
 
 	/**
-	 * ·µ»ØÒøĞĞ×ÜÓà¶î
+	 * è¿”å›é“¶è¡Œæ€»ä½™é¢
 	 */
 	protected double getTotalBalance() {
 		double sum = 0;

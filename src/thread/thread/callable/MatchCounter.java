@@ -14,14 +14,14 @@ import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
 /**
- * Æ¥ÅäÍ³¼ÆÆ÷
+ * åŒ¹é…ç»Ÿè®¡å™¨
  * <p>
- * ±¾ÀıÓëconcurrency.queue.BlockingQueueTestµÄÀı×ÓÏàËÆ¡£
- * µ«ÏÖÔÚ½ö½öÊÇ¼ÆËãÆ¥Åä¹Ø¼ü×ÖµÄÎÄ¼şÊıÁ¿£¬Òò´ËĞèÒªÒ»¸ö³¤Ê±¼äÔËĞĞµÄÈÎÎñ£¬·µ»ØÒ»¸öÕûÊı¡£
+ * æœ¬ä¾‹ä¸concurrency.queue.BlockingQueueTestçš„ä¾‹å­ç›¸ä¼¼ã€‚
+ * ä½†ç°åœ¨ä»…ä»…æ˜¯è®¡ç®—åŒ¹é…å…³é”®å­—çš„æ–‡ä»¶æ•°é‡ï¼Œå› æ­¤éœ€è¦ä¸€ä¸ªé•¿æ—¶é—´è¿è¡Œçš„ä»»åŠ¡ï¼Œè¿”å›ä¸€ä¸ªæ•´æ•°ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-17
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-17
  */
 public class MatchCounter implements Callable<Integer> {
 
@@ -40,26 +40,26 @@ public class MatchCounter implements Callable<Integer> {
 		File dirFile = new File(dir);
 		File[] files = dirFile.listFiles();
 
-		// ÓÃÀ´´æ·Å¸÷¸öÏß³ÌµÄ¼ÆËã½á¹û
+		// ç”¨æ¥å­˜æ”¾å„ä¸ªçº¿ç¨‹çš„è®¡ç®—ç»“æœ
 		List<Future<Integer>> results = new ArrayList<Future<Integer>>();
 		
 		for (File file : files) {
-			// ¶ÔÓÚÃ¿Ò»¸ö×ÓÄ¿Â¼¶¼Ê¹ÓÃÒ»¸öµ¥¶ÀµÄÏß³ÌÈ¥Ö´ĞĞÈÎÎñ
+			// å¯¹äºæ¯ä¸€ä¸ªå­ç›®å½•éƒ½ä½¿ç”¨ä¸€ä¸ªå•ç‹¬çš„çº¿ç¨‹å»æ‰§è¡Œä»»åŠ¡
 			if (file.isDirectory()) {
 				MatchCounter mcounter = new MatchCounter(file.getAbsolutePath(), keyword);
 				FutureTask<Integer> task = new FutureTask<Integer>(mcounter);
 				new Thread(task).start();
 				results.add(task);
 			} else {
-				// ¶ÔÓÚÎÄ¼şÖ±½Ó½øĞĞËÑË÷£¬ÈôÆ¥ÅäÉÏ¾Í½«¼ÆÊıÆ÷+1
+				// å¯¹äºæ–‡ä»¶ç›´æ¥è¿›è¡Œæœç´¢ï¼Œè‹¥åŒ¹é…ä¸Šå°±å°†è®¡æ•°å™¨+1
 				if (search(file)) {
 					counter++;
 				}
 			}
 		}
-		// ×îºó½«ËùÓĞµÄ×ÓÄ¿Â¼½á¹û½øĞĞºÏ¼Æ
+		// æœ€åå°†æ‰€æœ‰çš„å­ç›®å½•ç»“æœè¿›è¡Œåˆè®¡
 		for (Future<Integer> result : results) {
-			// ËäÈ»Ã¿´Îµ÷ÓÃget()¶¼»á×èÈûÖ±µ½½á¹û¿É»ñµÃÎªÖ¹£¬µ«Ïß³ÌÊÇ²¢ĞĞÔËĞĞµÄ£¬ËùÒÔ²¢²»ĞèÒªµÈ´ı¶à¾Ã
+			// è™½ç„¶æ¯æ¬¡è°ƒç”¨get()éƒ½ä¼šé˜»å¡ç›´åˆ°ç»“æœå¯è·å¾—ä¸ºæ­¢ï¼Œä½†çº¿ç¨‹æ˜¯å¹¶è¡Œè¿è¡Œçš„ï¼Œæ‰€ä»¥å¹¶ä¸éœ€è¦ç­‰å¾…å¤šä¹…
 			counter += result.get();
 		}
 		return counter;

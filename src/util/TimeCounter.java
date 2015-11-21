@@ -7,11 +7,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * ¼ÆÊ±Æ÷
+ * è®¡æ—¶å™¨
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê8ÔÂ27ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´8æœˆ27æ—¥
  */
 public class TimeCounter {
 
@@ -19,28 +19,28 @@ public class TimeCounter {
 	private long stopTime;
 
 	/**
-	 * ¿ªÊ¼¼ÆÊ±
+	 * å¼€å§‹è®¡æ—¶
 	 */
 	public void start() {
 		this.startTime = System.currentTimeMillis();
 	}
 
 	/**
-	 * Í£Ö¹¼ÆÊ±
+	 * åœæ­¢è®¡æ—¶
 	 */
 	public void stop() {
 		this.stopTime = System.currentTimeMillis();
 	}
 
 	/**
-	 * ¼ÆËãºÄÊ±£¬ÒÔºÁÃëÎªµ¥Î»
+	 * è®¡ç®—è€—æ—¶ï¼Œä»¥æ¯«ç§’ä¸ºå•ä½
 	 */
 	public long consume() {
 		return stopTime - startTime;
 	}
 
 	/**
-	 * ¼ÆËãºÄÊ±£¬ÒÔÃëÎªµ¥Î»
+	 * è®¡ç®—è€—æ—¶ï¼Œä»¥ç§’ä¸ºå•ä½
 	 */
 	public double consumeBySecond() {
 		return BigDecimal.valueOf(consume() / 1000.0)
@@ -48,12 +48,12 @@ public class TimeCounter {
 	}
 	
 	/**
-	 * ¼ÆËãºÄÊ±£¬ÒÔX·ÖYÃëµÄĞÎÊ½Õ¹ÏÖ
+	 * è®¡ç®—è€—æ—¶ï¼Œä»¥Xåˆ†Yç§’çš„å½¢å¼å±•ç°
 	 */
 	public String consumeByMinute() {
 		double seconds = consume() / 1000.0;
 		int minutes = (int) (seconds / 60);
 		long secondsLeft = ((int) seconds) % 60;
-		return minutes + "·Ö " + secondsLeft + "Ãë";
+		return minutes + "åˆ† " + secondsLeft + "ç§’";
 	}
 }

@@ -4,28 +4,28 @@
 package concurrency.bank;
 
 /**
- * ÒøĞĞ½Ó¿Ú(Ä£Äâ×ªÕË)
+ * é“¶è¡Œæ¥å£(æ¨¡æ‹Ÿè½¬è´¦)
  *
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  *
- * ´´½¨ÈÕÆÚ£º2013-6-7
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-7
  */
 public interface Bank {
 
 	/**
-	 * ×ªÕË²Ù×÷
+	 * è½¬è´¦æ“ä½œ
 	 * 
 	 * @param from
-	 *            ×ª³öÕË»§
+	 *            è½¬å‡ºè´¦æˆ·
 	 * @param to
-	 *            ×ªÈëÕË»§
+	 *            è½¬å…¥è´¦æˆ·
 	 * @param amount
-	 *            ×ªÕË½ğ¶î
+	 *            è½¬è´¦é‡‘é¢
 	 */
 	public void transfer(Account from, Account to, double amount);
 	
 	/**
-	 * ·µ»ØËùÓĞÕË»§ĞÅÏ¢
+	 * è¿”å›æ‰€æœ‰è´¦æˆ·ä¿¡æ¯
 	 */
 	public Account[] getAccounts();
 }

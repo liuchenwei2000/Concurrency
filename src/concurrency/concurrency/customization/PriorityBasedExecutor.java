@@ -8,15 +8,15 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * й╣ож╩Ысзсеох╪╤╣дж╢ппфВй╬юЩ
+ * Е╝·Г▌╟Е÷╨Д╨▌Д╪≤Е┘┬Г╨╖Г └Ф┴╖Х║▄Е≥╗Г╓╨Д╬▀
  * <p>
- * тздз╡©ё╛ж╢ппфВй╧сцвХхШ╤сапю╢╢Ф╢╒╢Щж╢ппхннЯё╛уБп╘хннЯ╟╢уу╣╫╢Ож╢ппфВ╣дох╨СкЁпРееап║ё
- * аМр╩╦Ж©идэ╣дя║тЯйгй╧сцсеох╤сап╢Ф╢╒╢Щж╢ппхннЯё╛тзуБжж╥╫й╫обё╛
- * р╩╦Ж╬ъсп╫о╦ъсеох╪╤╣дпбхннЯ╣╫╢Ож╢ппфВ╨С╩А╠хдгп╘╦ЭтГ╣╫╢О╣╚сеох╪╤╣м╣дхннЯохж╢пп║ё
+ * Е°╗Е├┘И┐╗О╪▄Ф┴╖Х║▄Е≥╗Д╫©Г■╗И≤╩Е║·И≤÷Е┬≈Ф²╔Е╜≤Е┌╗Е╬┘Ф┴╖Х║▄Д╩╩Е┼║О╪▄Х©≥Д╨⌡Д╩╩Е┼║Ф▄┴Г┘╖Е┬╟Х╬╬Ф┴╖Х║▄Е≥╗Г └Е┘┬Е░▌И║╨Е╨▐Ф▌▓Е┬≈Ц─┌
+ * Е▐╕Д╦─Д╦╙Е▐╞Х┐╫Г └И─┴Ф▀╘Ф≤╞Д╫©Г■╗Д╪≤Е┘┬И≤÷Е┬≈Е╜≤Е┌╗Е╬┘Ф┴╖Х║▄Д╩╩Е┼║О╪▄Е°╗Х©≥Г╖█Ф√╧Е╪▐Д╦▀О╪▄
+ * Д╦─Д╦╙Е┘╥Ф°┴Х╬┐И╚≤Д╪≤Е┘┬Г╨╖Г └Ф√╟Д╩╩Е┼║Е┬╟Х╬╬Ф┴╖Х║▄Е≥╗Е░▌Д╪ Ф╞■И┌ёД╨⌡Ф⌡╢Ф≈╘Е┬╟Х╬╬Д╫├Д╪≤Е┘┬Г╨╖Д╫▌Г └Д╩╩Е┼║Е┘┬Ф┴╖Х║▄Ц─┌
  * 
- * @author аУЁ©н╟
+ * @author Е┬≤Ф≥╗Д╪÷
  * 
- * ╢╢╫╗хуфзё╨2015дЙ1тб22ху
+ * Е┬⌡Е╩╨Ф≈╔Ф°÷О╪ 2015Е╧╢1Ф°┬22Ф≈╔
  */
 public class PriorityBasedExecutor {
 
@@ -24,7 +24,7 @@ public class PriorityBasedExecutor {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// 1ё╛й╧сц сеох╤сап PriorityBlockingQueue вВн╙╢Ф╢╒╢Щж╢ппхннЯ╣д╤сап
+		// 1О╪▄Д╫©Г■╗ Д╪≤Е┘┬И≤÷Е┬≈ PriorityBlockingQueue Д╫°Д╦╨Е╜≤Е┌╗Е╬┘Ф┴╖Х║▄Д╩╩Е┼║Г └И≤÷Е┬≈
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 2, 1,
 				TimeUnit.SECONDS, new PriorityBlockingQueue<Runnable>());
 
@@ -56,7 +56,7 @@ public class PriorityBasedExecutor {
 	}
 	
 	/**
-	 * 2ё╛╬ъспсеох╪╤╣дхннЯпХр╙й╣ож Runnable║╒Comparable а╫╦Ж╫с©з
+	 * 2О╪▄Е┘╥Ф°┴Д╪≤Е┘┬Г╨╖Г └Д╩╩Е┼║И°─Х╕│Е╝·Г▌╟ RunnableЦ─│Comparable Д╦╓Д╦╙Ф▌╔Е▐ё
 	 */
 	private static class MyPriorityTask implements Runnable, Comparable<MyPriorityTask> {
 
@@ -70,7 +70,7 @@ public class PriorityBasedExecutor {
 
 		@Override
 		public int compareTo(MyPriorityTask o) {
-			// сеох╪╤╦ъ╣деетзг╟цФ
+			// Д╪≤Е┘┬Г╨╖И╚≤Г └Ф▌▓Е°╗Е┴█И²╒
 			if(this.getPriority() > o.getPriority()) {
 				return -1;
 			}else if (this.getPriority() < o.getPriority()){

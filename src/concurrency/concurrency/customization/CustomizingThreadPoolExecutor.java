@@ -12,14 +12,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¶¨ÖÆ ThreadPoolExecutor Ê¾Àı
+ * å®šåˆ¶ ThreadPoolExecutor ç¤ºä¾‹
  * <p>
- * ±¾Àı½«¼Ì³Ğ ThreadPoolExecutor ÊµÏÖ¾ßÓĞ¼ÆÊ±ºÍÍ³¼Æ¹¦ÄÜµÄÖ´ĞĞÆ÷£º
- * ËüÄÜ¹»¼ÆËãÃ¿¸öÈÎÎñµÄÔËĞĞÊ±¼ä£¬²¢ÄÜÔÚÖ´ĞĞÆ÷¹Ø±ÕÊ±Ö´ĞĞÍ³¼Æ¹¤×÷¡£
+ * æœ¬ä¾‹å°†ç»§æ‰¿ ThreadPoolExecutor å®ç°å…·æœ‰è®¡æ—¶å’Œç»Ÿè®¡åŠŸèƒ½çš„æ‰§è¡Œå™¨ï¼š
+ * å®ƒèƒ½å¤Ÿè®¡ç®—æ¯ä¸ªä»»åŠ¡çš„è¿è¡Œæ—¶é—´ï¼Œå¹¶èƒ½åœ¨æ‰§è¡Œå™¨å…³é—­æ—¶æ‰§è¡Œç»Ÿè®¡å·¥ä½œã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ22ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ22æ—¥
  */
 public class CustomizingThreadPoolExecutor {
 	
@@ -54,11 +54,11 @@ public class CustomizingThreadPoolExecutor {
 }
 
 /**
- * ¶¨ÖÆ ThreadPoolExecutor Àà
+ * å®šåˆ¶ ThreadPoolExecutor ç±»
  */
 class MyThreadPoolExecutor extends ThreadPoolExecutor {
 
-	// ´æ·ÅÈÎÎñÔËĞĞµÄÆğÊ¼Ê±¼ä
+	// å­˜æ”¾ä»»åŠ¡è¿è¡Œçš„èµ·å§‹æ—¶é—´
 	private ConcurrentHashMap<String, Date> startTimes;
 	
 	public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize,
@@ -68,7 +68,7 @@ class MyThreadPoolExecutor extends ThreadPoolExecutor {
 	}
 	
 	/**
-	 * ÖØĞ´ÈÎÎñ½«ÒªÖ´ĞĞÇ°¶¯×÷
+	 * é‡å†™ä»»åŠ¡å°†è¦æ‰§è¡Œå‰åŠ¨ä½œ
 	 * 
 	 * @see java.util.concurrent.ThreadPoolExecutor#beforeExecute(java.lang.Thread, java.lang.Runnable)
 	 */
@@ -76,18 +76,18 @@ class MyThreadPoolExecutor extends ThreadPoolExecutor {
 	protected void beforeExecute(Thread t, Runnable r) {
 		System.out.printf("MyThreadPoolExecutor: A task is beginning: %s : %s\n",
 				t.getName(), r.hashCode());
-		// ¼ÇÂ¼ÈÎÎñÖ´ĞĞµÄÆğÊ¼Ê±¼ä
+		// è®°å½•ä»»åŠ¡æ‰§è¡Œçš„èµ·å§‹æ—¶é—´
 		startTimes.put(String.valueOf(r.hashCode()), new Date());
 	}
 
 	/**
-	 * ÖØĞ´ÈÎÎñÖ´ĞĞÍê³Éºó¶¯×÷
+	 * é‡å†™ä»»åŠ¡æ‰§è¡Œå®ŒæˆååŠ¨ä½œ
 	 * 
 	 * @see java.util.concurrent.ThreadPoolExecutor#afterExecute(java.lang.Runnable, java.lang.Throwable)
 	 */
 	@Override
 	protected void afterExecute(Runnable r, Throwable t) {
-		// ¼ÆËãÈÎÎñÔËĞĞÊ±¼ä
+		// è®¡ç®—ä»»åŠ¡è¿è¡Œæ—¶é—´
 		Date startDate = startTimes.remove(String.valueOf(r.hashCode()));
 		Date finishDate = new Date();
 		long diff = finishDate.getTime() - startDate.getTime();
@@ -96,7 +96,7 @@ class MyThreadPoolExecutor extends ThreadPoolExecutor {
 	}
 
 	/**
-	 * ÖØĞ´shutdown()·½·¨£¬¼ÓÈë´òÓ¡Í³¼ÆĞÅÏ¢µÄ¹¦ÄÜ
+	 * é‡å†™shutdown()æ–¹æ³•ï¼ŒåŠ å…¥æ‰“å°ç»Ÿè®¡ä¿¡æ¯çš„åŠŸèƒ½
 	 * 
 	 * @see java.util.concurrent.ThreadPoolExecutor#shutdown()
 	 */
@@ -108,7 +108,7 @@ class MyThreadPoolExecutor extends ThreadPoolExecutor {
 	}
 
 	/**
-	 * ÖØĞ´shutdownNow()·½·¨£¬¼ÓÈë´òÓ¡Í³¼ÆĞÅÏ¢µÄ¹¦ÄÜ
+	 * é‡å†™shutdownNow()æ–¹æ³•ï¼ŒåŠ å…¥æ‰“å°ç»Ÿè®¡ä¿¡æ¯çš„åŠŸèƒ½
 	 * 
 	 * @see java.util.concurrent.ThreadPoolExecutor#shutdownNow()
 	 */
@@ -120,11 +120,11 @@ class MyThreadPoolExecutor extends ThreadPoolExecutor {
 	}
 
 	private void statistics() {
-		// ÒÑÖ´ĞĞ½áÊøµÄÈÎÎñÊı
+		// å·²æ‰§è¡Œç»“æŸçš„ä»»åŠ¡æ•°
 		System.out.printf("MyThreadPoolExecutor: Executed tasks: %d\n", getCompletedTaskCount());
-		// ÉĞÔÚÔËĞĞÖĞµÄÈÎÎñÊı
+		// å°šåœ¨è¿è¡Œä¸­çš„ä»»åŠ¡æ•°
 		System.out.printf("MyThreadPoolExecutor: Running tasks: %d\n", getActiveCount());
-		// ÒÑÌá½»µ«ÉĞÎ´Ö´ĞĞµÄÈÎÎñÊı
+		// å·²æäº¤ä½†å°šæœªæ‰§è¡Œçš„ä»»åŠ¡æ•°
 		System.out.printf("MyThreadPoolExecutor: Pending tasks: %d\n", getQueue().size());
 	}
 }

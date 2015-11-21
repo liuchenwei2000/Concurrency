@@ -10,13 +10,13 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * È¡Ïû Executor ÖĞµÄÈÎÎñÊ¾Àı
+ * å–æ¶ˆ Executor ä¸­çš„ä»»åŠ¡ç¤ºä¾‹
  * <p>
- * ¿ÉÒÔÊ¹ÓÃ Future ¶ÔÏóµÄcancel()·½·¨À´È¡ÏûExecutorÖĞµÄÈÎÎñ¡£
+ * å¯ä»¥ä½¿ç”¨ Future å¯¹è±¡çš„cancel()æ–¹æ³•æ¥å–æ¶ˆExecutorä¸­çš„ä»»åŠ¡ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ15ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ15æ—¥
  */
 public class CancelTaskInExecutorTest {
 
@@ -27,7 +27,7 @@ public class CancelTaskInExecutorTest {
 		ExecutorService executor = Executors.newCachedThreadPool();
 		
 		System.out.printf("Main: Executing the Task\n");
-		// Ìá½»ÈÎÎñ²¢Á¢¼´Ö´ĞĞ
+		// æäº¤ä»»åŠ¡å¹¶ç«‹å³æ‰§è¡Œ
 		Future<String> result = executor.submit(new Task());
 		
 		try {
@@ -38,18 +38,18 @@ public class CancelTaskInExecutorTest {
 		
 		System.out.printf("Main: Canceling the Task\n");
 		/*
-		 * È¡ÏûÈÎÎñ
+		 * å–æ¶ˆä»»åŠ¡
 		 * 
-		 * 1£¬Èç¹ûÈÎÎñÒÑ¾­½áÊø£¬»òÕßÔçÒÑ±»È¡Ïû£¬»òÕßÒòÎªÆäËûÔ­Òò²»ÄÜ±»È¡Ïû£¬±¾·½·¨½«·µ»Øfalse²¢ÇÒÈÎÎñ²»»á±»È¡Ïû¡£
-		 * 2£¬Èç¹ûÈÎÎñÕıÔÚ Executor ÖĞµÈ´ı¿ÕÏĞÏß³Ì£¬ÔòËü»áÔÚÉĞÎ´ÔËĞĞÇ°¾Í±»È¡Ïû¡£
-		 * Èç¹ûÈÎÎñÒÑ¾­ÔÚÔËĞĞÖĞ£¬ËüÊÇ·ñ»á±»È¡ÏûÈ¡¾öÓÚ±¾·½·¨µÄ²ÎÊı£º
-		 * true£º¼´±ãÈÎÎñÔÚÔËĞĞÖĞÒ²Ò»Ñù»á±»È¡Ïû¡£
-		 * false£ºÈç¹ûÈÎÎñÔÚÔËĞĞÖĞÔò²»»á±»È¡Ïû¡£
+		 * 1ï¼Œå¦‚æœä»»åŠ¡å·²ç»ç»“æŸï¼Œæˆ–è€…æ—©å·²è¢«å–æ¶ˆï¼Œæˆ–è€…å› ä¸ºå…¶ä»–åŸå› ä¸èƒ½è¢«å–æ¶ˆï¼Œæœ¬æ–¹æ³•å°†è¿”å›falseå¹¶ä¸”ä»»åŠ¡ä¸ä¼šè¢«å–æ¶ˆã€‚
+		 * 2ï¼Œå¦‚æœä»»åŠ¡æ­£åœ¨ Executor ä¸­ç­‰å¾…ç©ºé—²çº¿ç¨‹ï¼Œåˆ™å®ƒä¼šåœ¨å°šæœªè¿è¡Œå‰å°±è¢«å–æ¶ˆã€‚
+		 * å¦‚æœä»»åŠ¡å·²ç»åœ¨è¿è¡Œä¸­ï¼Œå®ƒæ˜¯å¦ä¼šè¢«å–æ¶ˆå–å†³äºæœ¬æ–¹æ³•çš„å‚æ•°ï¼š
+		 * trueï¼šå³ä¾¿ä»»åŠ¡åœ¨è¿è¡Œä¸­ä¹Ÿä¸€æ ·ä¼šè¢«å–æ¶ˆã€‚
+		 * falseï¼šå¦‚æœä»»åŠ¡åœ¨è¿è¡Œä¸­åˆ™ä¸ä¼šè¢«å–æ¶ˆã€‚
 		 */
 		result.cancel(true);
 		
-		System.out.printf("Main: Canceled: %s\n", result.isCancelled());// ÊÇ·ñ±»È¡Ïû
-		System.out.printf("Main: Done: %s\n", result.isDone());// ÊÇ·ñÒÑ½áÊø
+		System.out.printf("Main: Canceled: %s\n", result.isCancelled());// æ˜¯å¦è¢«å–æ¶ˆ
+		System.out.printf("Main: Done: %s\n", result.isDone());// æ˜¯å¦å·²ç»“æŸ
 
 		executor.shutdown();
 		System.out.printf("Main: The executor has finished\n");

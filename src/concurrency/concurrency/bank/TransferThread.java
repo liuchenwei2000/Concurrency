@@ -6,23 +6,23 @@ package concurrency.bank;
 import java.util.Random;
 
 /**
- * ×ªÕËÏß³Ì
+ * è½¬è´¦çº¿ç¨‹
  * <p>
- * ´ÓÖ¸¶¨ÕË»§²»¶ÏµØÏòËæ»úÕË»§×ªÕËËæ»ú½ğ¶î
+ * ä»æŒ‡å®šè´¦æˆ·ä¸æ–­åœ°å‘éšæœºè´¦æˆ·è½¬è´¦éšæœºé‡‘é¢
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public class TransferThread extends Thread {
 
 	private static final Random RANDOM = new Random();
 	
-	private Bank bank;// ÒøĞĞ
-	private Account from;// ×ª³öÕË»§
-	private double amount;// ×ª³ö½ğ¶î
+	private Bank bank;// é“¶è¡Œ
+	private Account from;// è½¬å‡ºè´¦æˆ·
+	private double amount;// è½¬å‡ºé‡‘é¢
 	
-	private int totalAcounts;// ÒøĞĞµÄËùÓĞÕË»§Êı
+	private int totalAcounts;// é“¶è¡Œçš„æ‰€æœ‰è´¦æˆ·æ•°
 
 	public TransferThread(Bank bank, Account from, double amount) {
 		this.bank = bank;

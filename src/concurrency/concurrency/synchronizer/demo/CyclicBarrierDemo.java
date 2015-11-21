@@ -8,11 +8,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CyclicBarrier;
 
 /**
- * ÏÖÊµÊ¹ÓÃCyclicBarrierµÄ³¡¾°
+ * ç°å®ä½¿ç”¨CyclicBarrierçš„åœºæ™¯
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-25
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-25
  */
 public class CyclicBarrierDemo {
 
@@ -24,41 +24,41 @@ public class CyclicBarrierDemo {
 	}
 	
 	/**
-	 * Ä£Äâ¹ú¼ÒÍ³¼Æ¾Ö£¬ÓÃÀ´Í³¼Æ¸÷Ê¡ÊĞ(±¾ÀıÖ»ÓÃÈı¸öÖ±Ï½ÊĞ½øĞĞÄ£Äâ)µÄGDP×ÜºÍ¡£
+	 * æ¨¡æ‹Ÿå›½å®¶ç»Ÿè®¡å±€ï¼Œç”¨æ¥ç»Ÿè®¡å„çœå¸‚(æœ¬ä¾‹åªç”¨ä¸‰ä¸ªç›´è¾–å¸‚è¿›è¡Œæ¨¡æ‹Ÿ)çš„GDPæ€»å’Œã€‚
 	 * <p>
-	 * ÒòÎª¸÷Ê¡ÊĞµÄGDP¶¼´æÔÚ×Ô¼ºµÄÊı¾İ¿âÖĞ£¬ËùÒÔ¸÷Ê¡ÊĞ¶ÀÁ¢Í³¼ÆÆäGDP£¬
-	 * È»ºó½«Êı¾İÌá½»¸ø¹ú¼ÒÍ³¼Æ¾Ö£¬Í³¼Æ¾ÖÔÚËùÓĞÊı¾İ»ã¼¯Ö®ºó¶ÔGDP½øĞĞºÏ¼Æ¡£
+	 * å› ä¸ºå„çœå¸‚çš„GDPéƒ½å­˜åœ¨è‡ªå·±çš„æ•°æ®åº“ä¸­ï¼Œæ‰€ä»¥å„çœå¸‚ç‹¬ç«‹ç»Ÿè®¡å…¶GDPï¼Œ
+	 * ç„¶åå°†æ•°æ®æäº¤ç»™å›½å®¶ç»Ÿè®¡å±€ï¼Œç»Ÿè®¡å±€åœ¨æ‰€æœ‰æ•°æ®æ±‡é›†ä¹‹åå¯¹GDPè¿›è¡Œåˆè®¡ã€‚
 	 */
 	static class Statistic {
 
-		// ¹²ÏíÄÚ´æ£¬ÓÃÓÚ´æ·Å¸÷Ê¡µÄGDPÊı¾İ
+		// å…±äº«å†…å­˜ï¼Œç”¨äºå­˜æ”¾å„çœçš„GDPæ•°æ®
 		private Map<String, Double> province_gdp_map = new ConcurrentHashMap<String, Double>();
-		// Õ¤À¸
+		// æ …æ 
 		private CyclicBarrier barrier;
 
 		public Statistic() {
-			// µ±¸÷Ê¡ÊĞGDP¼ÆËãÈÎÎñ½áÊøÊ±£¬Ö´ĞĞºÏ¼ÆGDPÈÎÎñ
+			// å½“å„çœå¸‚GDPè®¡ç®—ä»»åŠ¡ç»“æŸæ—¶ï¼Œæ‰§è¡Œåˆè®¡GDPä»»åŠ¡
 			this.barrier = new CyclicBarrier(3, new TotalTask());
 		}
 
 		/**
-		 * ºÏ¼Æ¸÷Ê¡ÊĞGDP
+		 * åˆè®¡å„çœå¸‚GDP
 		 */
 		public void totalGDP() {
-			// ·Ö±ğ¼ÆËã¸÷Ê¡ÊĞGDP
+			// åˆ†åˆ«è®¡ç®—å„çœå¸‚GDP
 			new Thread(new ProvinceStatTask(new BeiJingGDPService())).start();
 			new Thread(new ProvinceStatTask(new ShangHaiGDPService())).start();
 			new Thread(new ProvinceStatTask(new TianJinGDPService())).start();
 		}
 
 		/**
-		 * GDPºÏ¼ÆÈÎÎñ
+		 * GDPåˆè®¡ä»»åŠ¡
 		 */
 		class TotalTask implements Runnable {
 
 			@Override
 			public void run() {
-				System.out.println("¸÷Ê¡GDPÊÕ¼¯Íê±Ï£¬¿ªÊ¼¼ÆËã......");
+				System.out.println("å„çœGDPæ”¶é›†å®Œæ¯•ï¼Œå¼€å§‹è®¡ç®—......");
 				double total = 0;
 				for (Double value : province_gdp_map.values()) {
 					total += value;
@@ -68,7 +68,7 @@ public class CyclicBarrierDemo {
 		}
 
 		/**
-		 * ¸÷Ê¡ÊĞGDPÍ³¼ÆÈÎÎñ
+		 * å„çœå¸‚GDPç»Ÿè®¡ä»»åŠ¡
 		 */
 		class ProvinceStatTask implements Runnable {
 
@@ -81,14 +81,14 @@ public class CyclicBarrierDemo {
 			@Override
 			public void run() {
 				double gdp = service.getGDP();
-				System.out.println(service.getName() + " GDP Í³¼ÆÍê±Ï......");
+				System.out.println(service.getName() + " GDP ç»Ÿè®¡å®Œæ¯•......");
 				province_gdp_map.put(service.getName(), gdp);
 				try {
 					barrier.await();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				System.out.println(service.getName() + " ÈÎÎñ½áÊø.");
+				System.out.println(service.getName() + " ä»»åŠ¡ç»“æŸ.");
 			}
 		}
 	}
@@ -105,7 +105,7 @@ class BeiJingGDPService implements ProvinceGDPService {
 
 	@Override
 	public String getName() {
-		return "±±¾©ÊĞ";
+		return "åŒ—äº¬å¸‚";
 	}
 	
 	@Override
@@ -123,7 +123,7 @@ class ShangHaiGDPService implements ProvinceGDPService {
 
 	@Override
 	public String getName() {
-		return "ÉÏº£ÊĞ";
+		return "ä¸Šæµ·å¸‚";
 	}
 	
 	@Override
@@ -141,7 +141,7 @@ class TianJinGDPService implements ProvinceGDPService {
 
 	@Override
 	public String getName() {
-		return "Ìì½òÊĞ";
+		return "å¤©æ´¥å¸‚";
 	}
 	
 	@Override

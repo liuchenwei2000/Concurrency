@@ -8,22 +8,22 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 
 /**
- * ×Ô¶¨ÒåForkJoinTaskÊ¾Àı
+ * è‡ªå®šä¹‰ForkJoinTaskç¤ºä¾‹
  * <p>
  * Customizing tasks running in the Fork/Join framework.
  * <p>
- * Ä¬ÈÏÇé¿öÏÂ£¬Ê¹ÓÃ ForkJoinPool Ö´ĞĞµÄÈÎÎñ¶¼ÊÇ ForkJoinTask ¶ÔÏó¡£
- * ËäÈ»Ò²¿ÉÒÔÊÇ Runnable »ò Callable ¶ÔÏó£¬µ«ËüÃÇ²»ÄÜÀûÓÃ Fork/Join ¿ò¼ÜµÄ¹¤×÷ÇÔÈ¡Ëã·¨¡£
+ * é»˜è®¤æƒ…å†µä¸‹ï¼Œä½¿ç”¨ ForkJoinPool æ‰§è¡Œçš„ä»»åŠ¡éƒ½æ˜¯ ForkJoinTask å¯¹è±¡ã€‚
+ * è™½ç„¶ä¹Ÿå¯ä»¥æ˜¯ Runnable æˆ– Callable å¯¹è±¡ï¼Œä½†å®ƒä»¬ä¸èƒ½åˆ©ç”¨ Fork/Join æ¡†æ¶çš„å·¥ä½œçªƒå–ç®—æ³•ã€‚
  * <p>
- * Ò»°ãÇé¿öÏÂ£¬Ö»ĞèÒª¼Ì³ĞÏÂÃæÁ½¸ö ForkJoinTask µÄÊµÏÖÀà¼´¿É£º
- * <li>RecursiveAction: Èç¹ûÈÎÎñ²»ĞèÒª·µ»Ø½á¹û¡£
- * <li>RecursiveTask: Èç¹ûÈÎÎñĞèÒª·µ»Ø½á¹û¡£
+ * ä¸€èˆ¬æƒ…å†µä¸‹ï¼Œåªéœ€è¦ç»§æ‰¿ä¸‹é¢ä¸¤ä¸ª ForkJoinTask çš„å®ç°ç±»å³å¯ï¼š
+ * <li>RecursiveAction: å¦‚æœä»»åŠ¡ä¸éœ€è¦è¿”å›ç»“æœã€‚
+ * <li>RecursiveTask: å¦‚æœä»»åŠ¡éœ€è¦è¿”å›ç»“æœã€‚
  * <p>
- * µ«Ò²¿ÉÒÔÖ±½Ó¼Ì³ĞForkJoinTaskÀàÊµÏÖ×Ô¶¨ÒåÈÎÎñ£¬´Ó¶ø¿ØÖÆÕû¸öÔËËã¹ı³Ì¡£
+ * ä½†ä¹Ÿå¯ä»¥ç›´æ¥ç»§æ‰¿ForkJoinTaskç±»å®ç°è‡ªå®šä¹‰ä»»åŠ¡ï¼Œä»è€Œæ§åˆ¶æ•´ä¸ªè¿ç®—è¿‡ç¨‹ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ26ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ26æ—¥
  */
 public class MyForkJoinTaskTest {
 
@@ -34,7 +34,7 @@ public class MyForkJoinTaskTest {
 		int array[] = new int[10000];
 		ForkJoinPool pool = new ForkJoinPool();
 		Task task = new Task("Task", array, 0, array.length);
-		// ½«ÈÎÎñÌá½»µ½ ForkJoinPool Ö´ĞĞ²¢µÈ´ı½áÊø
+		// å°†ä»»åŠ¡æäº¤åˆ° ForkJoinPool æ‰§è¡Œå¹¶ç­‰å¾…ç»“æŸ
 		pool.invoke(task);
 		pool.shutdown();
 
@@ -42,43 +42,43 @@ public class MyForkJoinTaskTest {
 	}
 
 	/**
-	 * ×Ô¶¨Òå ForkJoinTask Ê¾Àı
+	 * è‡ªå®šä¹‰ ForkJoinTask ç¤ºä¾‹
 	 * <p>
-	 * ±¾ÊµÏÖÀàµÄÒâÒåºÍ RecursiveAction£¨¼° RecursiveTask£©ÊÇÀàËÆµÄ¡£
+	 * æœ¬å®ç°ç±»çš„æ„ä¹‰å’Œ RecursiveActionï¼ˆåŠ RecursiveTaskï¼‰æ˜¯ç±»ä¼¼çš„ã€‚
 	 */
-	private abstract static class MyWorkerTask extends ForkJoinTask<Void> {// Void ±íÊ¾Ã»ÓĞ·µ»Ø½á¹û
+	private abstract static class MyWorkerTask extends ForkJoinTask<Void> {// Void è¡¨ç¤ºæ²¡æœ‰è¿”å›ç»“æœ
 
 		private static final long serialVersionUID = 1L;
 		
-		private String name;// ÈÎÎñÃû³Æ
+		private String name;// ä»»åŠ¡åç§°
 		
 		public MyWorkerTask(String name) {
 			this.name = name;
 		}
 
-		/** ÏÂÃæÈı¸ö³éÏó·½·¨±ØĞëÊµÏÖ */
+		/** ä¸‹é¢ä¸‰ä¸ªæŠ½è±¡æ–¹æ³•å¿…é¡»å®ç° */
 		
 		/**
-		 * ·µ»ØÔËËã½á¹û
+		 * è¿”å›è¿ç®—ç»“æœ
 		 */
 		@Override
 		public Void getRawResult() {
-			// ÒòÎª±¾ÈÎÎñÃ»ÓĞ½á¹û£¬ËùÒÔ·µ»Ønull
+			// å› ä¸ºæœ¬ä»»åŠ¡æ²¡æœ‰ç»“æœï¼Œæ‰€ä»¥è¿”å›null
 			return null;
 		}
 
 		/**
-		 * ÉèÖÃÔËËã½á¹û
+		 * è®¾ç½®è¿ç®—ç»“æœ
 		 */
 		@Override
 		protected void setRawResult(Void value) {
-			// ÒòÎª±¾ÈÎÎñÃ»ÓĞ½á¹û£¬ËùÒÔ¿ÕÊµÏÖ
+			// å› ä¸ºæœ¬ä»»åŠ¡æ²¡æœ‰ç»“æœï¼Œæ‰€ä»¥ç©ºå®ç°
 		}
 
 		/**
-		 * ÈÎÎñÂß¼­µÄ¾ßÌåÊµÏÖ
+		 * ä»»åŠ¡é€»è¾‘çš„å…·ä½“å®ç°
 		 * <p>
-		 * ±¾Àı½«¾ßÌåÊµÏÖÎ¯ÍĞ¸ø compute() ·½·¨£¬²¢Í³¼Æ´òÓ¡¸Ã·½·¨ÔËĞĞÊ±¼ä¡£
+		 * æœ¬ä¾‹å°†å…·ä½“å®ç°å§”æ‰˜ç»™ compute() æ–¹æ³•ï¼Œå¹¶ç»Ÿè®¡æ‰“å°è¯¥æ–¹æ³•è¿è¡Œæ—¶é—´ã€‚
 		 */
 		@Override
 		protected boolean exec() {
@@ -91,7 +91,7 @@ public class MyForkJoinTaskTest {
 		}
 		
 		/**
-		 * ±¾ÈÎÎñĞÂÔöµÄ³éÏó·½·¨£¬ÓÃÓÚÊµÏÖ¾ßÌåµÄÈÎÎñÂß¼­¡£
+		 * æœ¬ä»»åŠ¡æ–°å¢çš„æŠ½è±¡æ–¹æ³•ï¼Œç”¨äºå®ç°å…·ä½“çš„ä»»åŠ¡é€»è¾‘ã€‚
 		 */
 		protected abstract void compute();
 
@@ -101,7 +101,7 @@ public class MyForkJoinTaskTest {
 	}
 	
 	/**
-	 * Ò»¸ö¾ßÌåÈÎÎñÊµÏÖ
+	 * ä¸€ä¸ªå…·ä½“ä»»åŠ¡å®ç°
 	 */
 	private static class Task extends MyWorkerTask {
 		
@@ -120,7 +120,7 @@ public class MyForkJoinTaskTest {
 		}
 		
 		/**
-		 * ÊµÏÖ¸¸ÀàµÄ compute() ·½·¨
+		 * å®ç°çˆ¶ç±»çš„ compute() æ–¹æ³•
 		 */
 		@Override
 		protected void compute() {

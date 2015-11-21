@@ -7,11 +7,11 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 /**
- * MatchCounterÊ¾Àı
+ * MatchCounterç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-17
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-17
  */
 public class MatchCounterTest {
 
@@ -19,7 +19,7 @@ public class MatchCounterTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String dirPath = "./src";// ËÑ±¾ProjectÏÂµÄÔ´ÂëÎÄ¼ş
+		String dirPath = "./src";// æœæœ¬Projectä¸‹çš„æºç æ–‡ä»¶
 		String keyword = "java";
 		
 		MatchCounter counter = new MatchCounter(dirPath, keyword);
@@ -27,7 +27,7 @@ public class MatchCounterTest {
 		new Thread(task).start();
 		
 		try {
-			// ¶Ôget()·½·¨µÄµ÷ÓÃ»á·¢Éú×èÈûÖ±µ½ÓĞ¿É»ñµÃµÄ½á¹ûÎªÖ¹
+			// å¯¹get()æ–¹æ³•çš„è°ƒç”¨ä¼šå‘ç”Ÿé˜»å¡ç›´åˆ°æœ‰å¯è·å¾—çš„ç»“æœä¸ºæ­¢
 			System.out.println(task.get() + " files matched.");
 		} catch (InterruptedException e) {
 			e.printStackTrace();

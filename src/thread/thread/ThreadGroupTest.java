@@ -4,17 +4,17 @@
 package thread;
 
 /**
- * Ïß³Ì×é
+ * çº¿ç¨‹ç»„
  * <p>
- * Ä³Ğ©³ÌĞòÖ»ÓĞºÜÉÙµÄÏß³Ì£¬ÈôÄÜ½«ËüÃÇ°´¹¦ÄÜ½øĞĞ¹éÀà½«ºÜÓĞÓÃ¡£
- * ÒÔÍøÂçä¯ÀÀÆ÷ÎªÀı£¬Èç¹û´óÁ¿Ïß³ÌÕıÊÔÍ¼´Ó·şÎñÆ÷ÉÏ»ñÈ¡Í¼Æ¬£¬´ËÊ±ÓÃ»§µã»÷stop°´Å¥À´ÖĞ¶Ïµ±Ç°½çÃæÔØÈë¡£
- * ÄÇÃ´Ó¦¸ÃÓĞºÜ·½±ãµÄ·½·¨Í¬Ê±ÖĞ¶ÏËùÓĞÕâĞ©Ïß³Ì£¬Ïß³Ì×é¾ÍÊÇÓÃÀ´¸ÉÕâÖÖÊÂÇéµÄ¡£
+ * æŸäº›ç¨‹åºåªæœ‰å¾ˆå°‘çš„çº¿ç¨‹ï¼Œè‹¥èƒ½å°†å®ƒä»¬æŒ‰åŠŸèƒ½è¿›è¡Œå½’ç±»å°†å¾ˆæœ‰ç”¨ã€‚
+ * ä»¥ç½‘ç»œæµè§ˆå™¨ä¸ºä¾‹ï¼Œå¦‚æœå¤§é‡çº¿ç¨‹æ­£è¯•å›¾ä»æœåŠ¡å™¨ä¸Šè·å–å›¾ç‰‡ï¼Œæ­¤æ—¶ç”¨æˆ·ç‚¹å‡»stopæŒ‰é’®æ¥ä¸­æ–­å½“å‰ç•Œé¢è½½å…¥ã€‚
+ * é‚£ä¹ˆåº”è¯¥æœ‰å¾ˆæ–¹ä¾¿çš„æ–¹æ³•åŒæ—¶ä¸­æ–­æ‰€æœ‰è¿™äº›çº¿ç¨‹ï¼Œçº¿ç¨‹ç»„å°±æ˜¯ç”¨æ¥å¹²è¿™ç§äº‹æƒ…çš„ã€‚
  * <p>
- * ´ÓJDK5ÆğÒıÈëÁË¸üºÃµÄÌØĞÔÓÃÓÚÏß³Ì¼¯ºÏµÄ²Ù×÷£¬ËùÒÔ²»ÍÆ¼öÔÙÊ¹ÓÃÏß³Ì×éÁË¡£
+ * ä»JDK5èµ·å¼•å…¥äº†æ›´å¥½çš„ç‰¹æ€§ç”¨äºçº¿ç¨‹é›†åˆçš„æ“ä½œï¼Œæ‰€ä»¥ä¸æ¨èå†ä½¿ç”¨çº¿ç¨‹ç»„äº†ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  *
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public class ThreadGroupTest {
 
@@ -22,7 +22,7 @@ public class ThreadGroupTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Ïß³Ì×é¿ÉÒÔÓÃÀ´¶ÔÒ»×éÏß³ÌÖ´ĞĞÍ³Ò»²Ù×÷
+		// çº¿ç¨‹ç»„å¯ä»¥ç”¨æ¥å¯¹ä¸€ç»„çº¿ç¨‹æ‰§è¡Œç»Ÿä¸€æ“ä½œ
 		ThreadGroup g = new ThreadGroup("ThreadGroup");
 
 		Thread t1 = new Thread(g, new RunnableImpl(), "t1");
@@ -31,11 +31,11 @@ public class ThreadGroupTest {
 		Thread t2 = new Thread(g, new RunnableImpl(), "t2");
 		t2.start();
 
-		// ·µ»ØÏß³Ì×éÖĞ´¦ÓÚÔËĞĞ×´Ì¬µÄÏß³ÌÊı
+		// è¿”å›çº¿ç¨‹ç»„ä¸­å¤„äºè¿è¡ŒçŠ¶æ€çš„çº¿ç¨‹æ•°
 		System.out.println("now there are " + g.activeCount()
 				+ " active threads in ThreadGroup:" + g.getName());
 
-		// ÖĞ¶ÏÏß³Ì×éºÍËüµÄËùÓĞ×ÓÏß³Ì×é
+		// ä¸­æ–­çº¿ç¨‹ç»„å’Œå®ƒçš„æ‰€æœ‰å­çº¿ç¨‹ç»„
 		g.interrupt();
 		try {
 			Thread.sleep(1000);
@@ -47,7 +47,7 @@ public class ThreadGroupTest {
 	}
 	
 	/**
-	 * ÊµÏÖ×Ô¼ºµÄThreadGroup
+	 * å®ç°è‡ªå·±çš„ThreadGroup
 	 */
 	static class MyThreadGroup extends ThreadGroup {
 
@@ -56,7 +56,7 @@ public class ThreadGroupTest {
 		}
 
 		/**
-		 * ÖØĞ´¸Ã·½·¨£¬Ïß³Ì×éÄÚµÄÈÎºÎÏß³ÌÅ×³öÎ´±»²¶×½µÄ·ÇÊÜ²éÒì³£Ê±»áµ÷ÓÃ¸Ã·½·¨
+		 * é‡å†™è¯¥æ–¹æ³•ï¼Œçº¿ç¨‹ç»„å†…çš„ä»»ä½•çº¿ç¨‹æŠ›å‡ºæœªè¢«æ•æ‰çš„éå—æŸ¥å¼‚å¸¸æ—¶ä¼šè°ƒç”¨è¯¥æ–¹æ³•
 		 * 
 		 * @see java.lang.ThreadGroup#uncaughtException(java.lang.Thread, java.lang.Throwable)
 		 */
@@ -65,7 +65,7 @@ public class ThreadGroupTest {
 			System.out.printf("The thread %s has thrown an Exception\n", t.getId());
 			e.printStackTrace(System.out);
 			System.out.printf("Terminating the rest of the Threads\n");
-			interrupt();// ÖĞ¶Ï×éÄÚËùÓĞÏß³Ì
+			interrupt();// ä¸­æ–­ç»„å†…æ‰€æœ‰çº¿ç¨‹
 		}
 	}
 }

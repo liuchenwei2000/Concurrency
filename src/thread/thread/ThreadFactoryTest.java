@@ -10,13 +10,13 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ThreadFactoryÊ¾Àı
+ * ThreadFactoryç¤ºä¾‹
  * <p>
- * ¹¤³§Ä£Ê½ÔÚÏß³ÌÖĞµÄÊ¹ÓÃ£¬JDKÖĞµÄºÜ¶àAPI¶¼ÊÇÊ¹ÓÃµÄThreadFactory´´½¨Ïß³Ì¶ø²»ÊÇnew¡£
+ * å·¥å‚æ¨¡å¼åœ¨çº¿ç¨‹ä¸­çš„ä½¿ç”¨ï¼ŒJDKä¸­çš„å¾ˆå¤šAPIéƒ½æ˜¯ä½¿ç”¨çš„ThreadFactoryåˆ›å»ºçº¿ç¨‹è€Œä¸æ˜¯newã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ7ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ7æ—¥
  */
 public class ThreadFactoryTest {
 
@@ -34,13 +34,13 @@ public class ThreadFactoryTest {
 	}
 
 	/**
-	 * ×Ô¶¨ÒåThreadFactory
+	 * è‡ªå®šä¹‰ThreadFactory
 	 */
 	private static class MyThreadFactory implements ThreadFactory {
 
-		private String basicName;// »ù±¾Ãû³Æ
-		private int counter;// ¼ÆÊıÆ÷
-		private List<String> stats;// Í³¼ÆĞÅÏ¢
+		private String basicName;// åŸºæœ¬åç§°
+		private int counter;// è®¡æ•°å™¨
+		private List<String> stats;// ç»Ÿè®¡ä¿¡æ¯
 	
 		public MyThreadFactory(String basicName) {
 			super();
@@ -50,7 +50,7 @@ public class ThreadFactoryTest {
 		}
 
 		/**
-		 * ±ØĞëÊµÏÖµÄ·½·¨£¬¸Ã·½·¨¿ÉÒÔ¿ØÖÆ´´½¨Ïß³ÌµÄ¹ı³Ì£¬±ÈÈçÔö¼ÓÒ»Ğ©Í³¼ÆĞÅÏ¢¡¢ÏŞÖÆÏß³ÌÊıÁ¿µÈµÈ¡£
+		 * å¿…é¡»å®ç°çš„æ–¹æ³•ï¼Œè¯¥æ–¹æ³•å¯ä»¥æ§åˆ¶åˆ›å»ºçº¿ç¨‹çš„è¿‡ç¨‹ï¼Œæ¯”å¦‚å¢åŠ ä¸€äº›ç»Ÿè®¡ä¿¡æ¯ã€é™åˆ¶çº¿ç¨‹æ•°é‡ç­‰ç­‰ã€‚
 		 * 
 		 * @see java.util.concurrent.ThreadFactory#newThread(java.lang.Runnable)
 		 */
@@ -65,7 +65,7 @@ public class ThreadFactoryTest {
 
 		@Override
 		public String toString() {
-			return "MyThreadFactory ¡¾stats=" + stats + "\n¡¿";
+			return "MyThreadFactory ã€stats=" + stats + "\nã€‘";
 		}
 	}
 	

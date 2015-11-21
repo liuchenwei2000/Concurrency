@@ -7,11 +7,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * ÒøĞĞ×ªÕË²âÊÔÆ÷
+ * é“¶è¡Œè½¬è´¦æµ‹è¯•å™¨
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public class TransferTest {
 	
@@ -19,9 +19,9 @@ public class TransferTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int accNumber = 10;// ÒøĞĞ×ÜÕËºÅÊı
+		int accNumber = 10;// é“¶è¡Œæ€»è´¦å·æ•°
 		
-		// Ê¹ÓÃ ×èÈû¶ÓÁĞ ¿ØÖÆÍ¬²½
+		// ä½¿ç”¨ é˜»å¡é˜Ÿåˆ— æ§åˆ¶åŒæ­¥
 		BlockingQueue<TransferCommand> commands = new LinkedBlockingQueue<TransferCommand>(20);
 
 		for (int i = 0; i < accNumber; i++) {

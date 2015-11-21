@@ -10,13 +10,13 @@ import concurrency.bank.Bank;
 import concurrency.bank.UnsynBank;
 
 /**
- * ÕæÕıµÄ×ªÕËÈÎÎñ
+ * çœŸæ­£çš„è½¬è´¦ä»»åŠ¡
  * <p>
- * ÕâÊµ¼ÊÉÏÊÇÒ»¸öÏû·ÑÕß½ÇÉ«¡£
+ * è¿™å®é™…ä¸Šæ˜¯ä¸€ä¸ªæ¶ˆè´¹è€…è§’è‰²ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê8ÔÂ3ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´8æœˆ3æ—¥
  */
 public class TransferTask implements Runnable {
 
@@ -33,8 +33,8 @@ public class TransferTask implements Runnable {
 	public void run() {
 		while(true){
 			try {
-				// Õâ¸öµØ·½ËäÈ»¿ØÖÆÁË²¢·¢£¬µ«È¡µ½ TransferCommand Ö®ºó¶ÔBankµÄ²Ù×÷²¢Ã»ÓĞ²¢·¢±£»¤£¬
-				// °´ÀíËµÓ¦¸Ã»áÓĞÎÊÌâ£¬µ«ÊÂÊµÃ»ÓĞ¡£
+				// è¿™ä¸ªåœ°æ–¹è™½ç„¶æ§åˆ¶äº†å¹¶å‘ï¼Œä½†å–åˆ° TransferCommand ä¹‹åå¯¹Bankçš„æ“ä½œå¹¶æ²¡æœ‰å¹¶å‘ä¿æŠ¤ï¼Œ
+				// æŒ‰ç†è¯´åº”è¯¥ä¼šæœ‰é—®é¢˜ï¼Œä½†äº‹å®æ²¡æœ‰ã€‚
 				TransferCommand command = commands.take();
 				Account[] accounts = bank.getAccounts();
 				bank.transfer(accounts[command.getFrom()], accounts[command.getTo()], command.getAmount());

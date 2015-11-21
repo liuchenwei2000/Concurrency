@@ -4,17 +4,17 @@
 package concurrency.collections.bank;
 
 /**
- * ×ªÕËÃüÁî
+ * è½¬è´¦å‘½ä»¤
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê8ÔÂ3ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´8æœˆ3æ—¥
  */
 public class TransferCommand {
 
-	private int from;// ×ª³öÕË»§
-	private int to;// ×ªÈëÕË»§
-	private double amount;// ×ªÕËÊıÁ¿
+	private int from;// è½¬å‡ºè´¦æˆ·
+	private int to;// è½¬å…¥è´¦æˆ·
+	private double amount;// è½¬è´¦æ•°é‡
 
 	public TransferCommand(int from, int to, double amount) {
 		this.from = from;

@@ -1,7 +1,7 @@
 
-Java5��ʼ�ṩ��Executor ��ܣ����� Executor �ӿڡ����ӽӿ� ExecutorService ��ʵ�����������ӿڵ��� ThreadPoolExecutor Ϊ���ġ�
-�������߳�����Ĵ�����ִ�з��뿪�������� Executor ����ֻ��Ҫʵ�� Runnable �ӿڣ�Ȼ����������͵� Executor ���ɣ�Executor ���������ִ�С�
+Java5开始提供了Executor 框架，它以 Executor 接口、其子接口 ExecutorService 及实现了这两个接口的类 ThreadPoolExecutor 为核心。
+它将多线程任务的创建和执行分离开来，有了 Executor ，你只需要实现 Runnable 接口，然后将任务对象发送到 Executor 即可，Executor 负责任务的执行。
 
-Executor ��ܾ��������ŵ㣺
-1��ͨ��ʹ���̳߳أ����Ա���������������������̶߳��Ͽ�ϵͳ��
-2�����Խ� Callable ����ͨ�� Executor ִ�У����� Runnable �����һ����Է���һ�������
+Executor 框架具有如下优点：
+1，通过使用线程池，可以避免因持续产生大量连续线程而拖垮系统。
+2，可以将 Callable 对象通过 Executor 执行，它比 Runnable 更灵活并且还可以返回一个结果。

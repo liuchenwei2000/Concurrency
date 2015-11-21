@@ -7,11 +7,11 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 /**
- * CallableÏà¹ØÀàÊ¾Àı
+ * Callableç›¸å…³ç±»ç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-17
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-17
  */
 public class CallableTest {
 
@@ -19,35 +19,35 @@ public class CallableTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Æô¶¯Ò»¸öRunnableÈÎÎñµÄ·½Ê½
+		// å¯åŠ¨ä¸€ä¸ªRunnableä»»åŠ¡çš„æ–¹å¼
 		new Thread(new Calculation()).start();
 		
-		// Æô¶¯Ò»¸öCallableÈÎÎñµÄ·½Ê½
+		// å¯åŠ¨ä¸€ä¸ªCallableä»»åŠ¡çš„æ–¹å¼
 		/**
-		 * FutureTask°ü×°Æ÷ÊÇÒ»¸öºÜ·½±ãµÄ½«Callable×ª»»³ÉFutureºÍRunnableµÄ»úÖÆ£¬ÒòÎªËüÍ¬Ê±ÊµÏÖÁËÕâÁ½¸ö½Ó¿Ú¡£
+		 * FutureTaskåŒ…è£…å™¨æ˜¯ä¸€ä¸ªå¾ˆæ–¹ä¾¿çš„å°†Callableè½¬æ¢æˆFutureå’ŒRunnableçš„æœºåˆ¶ï¼Œå› ä¸ºå®ƒåŒæ—¶å®ç°äº†è¿™ä¸¤ä¸ªæ¥å£ã€‚
 		 */
 		FutureTask<Integer> futureTask = new FutureTask<Integer>(new IntegerCalculation());
-		// ÕâÀï½«FutureTask¶ÔÏóÊÓÎªÒ»¸öRunnable
+		// è¿™é‡Œå°†FutureTaskå¯¹è±¡è§†ä¸ºä¸€ä¸ªRunnable
 		new Thread(futureTask).start();
 		try {
 			/*
-			 * ÕâÀï½«FutureTask¶ÔÏóÊÓÎªÒ»¸öFutrue
+			 * è¿™é‡Œå°†FutureTaskå¯¹è±¡è§†ä¸ºä¸€ä¸ªFutrue
 			 * <p>
-			 * Future±£´æÒì²½¼ÆËãµÄ½á¹û£¬¿ÉÒÔÆô¶¯Ò»¸ö¼ÆËã£¬°ÑFuture¶ÔÏó½»¸øÄ³Ïß³Ì¡£
-			 * È»ºóÖ÷Ïß³Ì¾Í¿ÉÒÔÈ¥¸ÉÆäËûÊÂÇé£¬µÈµ½½á¹û¼ÆËãºÃÖ®ºó¾Í¿ÉÒÔµÃµ½Ëü¡£
+			 * Futureä¿å­˜å¼‚æ­¥è®¡ç®—çš„ç»“æœï¼Œå¯ä»¥å¯åŠ¨ä¸€ä¸ªè®¡ç®—ï¼ŒæŠŠFutureå¯¹è±¡äº¤ç»™æŸçº¿ç¨‹ã€‚
+			 * ç„¶åä¸»çº¿ç¨‹å°±å¯ä»¥å»å¹²å…¶ä»–äº‹æƒ…ï¼Œç­‰åˆ°ç»“æœè®¡ç®—å¥½ä¹‹åå°±å¯ä»¥å¾—åˆ°å®ƒã€‚
 			 */
-			// ÅĞ¶ÏÈÎÎñÊÇ·ñÒÑ¾­Íê³É
+			// åˆ¤æ–­ä»»åŠ¡æ˜¯å¦å·²ç»å®Œæˆ
 			System.out.println("main:Future task is done? " + futureTask.isDone());
-			// ÅĞ¶ÏÈÎÎñÊÇ·ñÒÑ¾­È¡Ïû
+			// åˆ¤æ–­ä»»åŠ¡æ˜¯å¦å·²ç»å–æ¶ˆ
 			System.out.println("main:Future task is cancelled? " + futureTask.isCancelled());
-			// get()·½·¨ÓÃÀ´·µ»Ø¼ÆËã½á¹û£¬Èç¹û¼ÆËãÉĞÎ´Íê³É£¬¸Ã·½·¨»á×èÈûÖ±µ½¼ÆËãÍê³É¡£
+			// get()æ–¹æ³•ç”¨æ¥è¿”å›è®¡ç®—ç»“æœï¼Œå¦‚æœè®¡ç®—å°šæœªå®Œæˆï¼Œè¯¥æ–¹æ³•ä¼šé˜»å¡ç›´åˆ°è®¡ç®—å®Œæˆã€‚
 			Integer result = futureTask.get();
 			System.out.println("main:Toatl number is " + result);
 			/*
-			 * È¡ÏûÈÎÎñ
+			 * å–æ¶ˆä»»åŠ¡
 			 * <p>
-			 * Èç¹ûÈÎÎñÉĞÎ´¿ªÊ¼£¬Ëü±»È¡Ïûºó¾Í²»»áÔÙ¿ªÊ¼ÁË¡£
-			 * Èç¹ûÈÎÎñÕıÔÚ½øĞĞ£¬Èô²ÎÊıÊÇtrue£¬Ëü¾Í»á±»Ç¿ĞĞÖĞ¶Ï¡£
+			 * å¦‚æœä»»åŠ¡å°šæœªå¼€å§‹ï¼Œå®ƒè¢«å–æ¶ˆåå°±ä¸ä¼šå†å¼€å§‹äº†ã€‚
+			 * å¦‚æœä»»åŠ¡æ­£åœ¨è¿›è¡Œï¼Œè‹¥å‚æ•°æ˜¯trueï¼Œå®ƒå°±ä¼šè¢«å¼ºè¡Œä¸­æ–­ã€‚
 			 */
 			futureTask.cancel(true);
 		} catch (Exception e) {
@@ -56,7 +56,7 @@ public class CallableTest {
 	}
 
 	/**
-	 * Runnable·â×°Ò»¸öÒì²½ÔËĞĞµÄÈÎÎñ£¬ÊÇÒ»¸öÃ»ÓĞÈÎºÎ²ÎÊıºÍ·µ»ØÖµµÄÒì²½·½·¨¡£
+	 * Runnableå°è£…ä¸€ä¸ªå¼‚æ­¥è¿è¡Œçš„ä»»åŠ¡ï¼Œæ˜¯ä¸€ä¸ªæ²¡æœ‰ä»»ä½•å‚æ•°å’Œè¿”å›å€¼çš„å¼‚æ­¥æ–¹æ³•ã€‚
 	 */
 	private static class Calculation implements Runnable {
 
@@ -73,7 +73,7 @@ public class CallableTest {
 	}
 
 	/**
-	 * Callable¸úRunnableÀàËÆ£¬Ò²·â×°ÁËÒ»¸öÒì²½ÔËĞĞµÄÈÎÎñ£¬µ«ÓĞ·µ»ØÖµ¡£
+	 * Callableè·ŸRunnableç±»ä¼¼ï¼Œä¹Ÿå°è£…äº†ä¸€ä¸ªå¼‚æ­¥è¿è¡Œçš„ä»»åŠ¡ï¼Œä½†æœ‰è¿”å›å€¼ã€‚
 	 */
 	private static class IntegerCalculation implements Callable<Integer> {
 

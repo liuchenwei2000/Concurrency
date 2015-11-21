@@ -4,11 +4,11 @@
 package concurrency.bank;
 
 /**
- * Ê¹ÓÃsynchronized¹Ø¼ü×Ö¿ØÖÆ²¢·¢µÄÒøĞĞ
+ * ä½¿ç”¨synchronizedå…³é”®å­—æ§åˆ¶å¹¶å‘çš„é“¶è¡Œ
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2007-12-12
+ * åˆ›å»ºæ—¥æœŸï¼š2007-12-12
  */
 public class BankWithSynchronized extends AbstractBank {
 
@@ -17,26 +17,26 @@ public class BankWithSynchronized extends AbstractBank {
 	}
 	
 	/**
-	 * ×ªÕË²Ù×÷(Ê¹ÓÃsynchronized¹Ø¼ü×ÖÊµÏÖËø)
+	 * è½¬è´¦æ“ä½œ(ä½¿ç”¨synchronizedå…³é”®å­—å®ç°é”)
 	 */
 	public synchronized void transfer(Account from, Account to, double amount) {
 		if (from.getID().equals(to.getID()))
 			return;
 		while (from.getBalance() < amount) {
 			try {
-				// ½«¸ÃÏß³Ì·Åµ½µÈ´ı¼¯ÖĞ£¬¸Ã·½·¨Ö»ÄÜÔÚÒ»¸öÍ¬²½µÄ·½·¨ÖĞ±»µ÷ÓÃ
+				// å°†è¯¥çº¿ç¨‹æ”¾åˆ°ç­‰å¾…é›†ä¸­ï¼Œè¯¥æ–¹æ³•åªèƒ½åœ¨ä¸€ä¸ªåŒæ­¥çš„æ–¹æ³•ä¸­è¢«è°ƒç”¨
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 		processAccount(from, to, amount);
-		// ½â³ıÔÚ¸Ã¶ÔÏóÉÏµ÷ÓÃwaitµÄ½ø³ÌµÄ×èÈû×´Ì¬£¬Ö»ÄÜÔÚÍ¬²½·½·¨ÄÚµ÷ÓÃ
+		// è§£é™¤åœ¨è¯¥å¯¹è±¡ä¸Šè°ƒç”¨waitçš„è¿›ç¨‹çš„é˜»å¡çŠ¶æ€ï¼Œåªèƒ½åœ¨åŒæ­¥æ–¹æ³•å†…è°ƒç”¨
 		notifyAll();
 	}
 
 	/**
-	 * ·µ»ØÒøĞĞ×ÜÓà¶î
+	 * è¿”å›é“¶è¡Œæ€»ä½™é¢
 	 */
 	protected synchronized double getTotalBalance() {
 		return super.getTotalBalance();

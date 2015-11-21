@@ -10,14 +10,14 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * ÊµÏÖ×Ô¶¨ÒåµÄLockÀàÊ¾Àı
+ * å®ç°è‡ªå®šä¹‰çš„Lockç±»ç¤ºä¾‹
  * <p>
- * ËøÊÇJava²¢·¢APIÌá¹©µÄ»ù±¾Í¬²½»úÖÆÖ®Ò»¡£
- * ËüÔÊĞí³ÌĞòÔ±±£»¤´úÂëµÄÁÙ½çÇø£¬Ò²¾ÍÊÇËµÔÚÄ³¸öÊ±¿ÌÖ»ÓĞÒ»¸öÏß³ÌÄÜÖ´ĞĞÕâ¸öÁÙ½çÇø´úÂë¿é¡£
+ * é”æ˜¯Javaå¹¶å‘APIæä¾›çš„åŸºæœ¬åŒæ­¥æœºåˆ¶ä¹‹ä¸€ã€‚
+ * å®ƒå…è®¸ç¨‹åºå‘˜ä¿æŠ¤ä»£ç çš„ä¸´ç•ŒåŒºï¼Œä¹Ÿå°±æ˜¯è¯´åœ¨æŸä¸ªæ—¶åˆ»åªæœ‰ä¸€ä¸ªçº¿ç¨‹èƒ½æ‰§è¡Œè¿™ä¸ªä¸´ç•ŒåŒºä»£ç å—ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ23ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ23æ—¥
  */
 public class ImplementingLock {
 
@@ -31,11 +31,11 @@ public class ImplementingLock {
 			new Thread(new ShareLockTask("Task-" + i, lock)).start();
 		}
 		
-		// Ö÷Ïß³ÌÒ²²ÎÓë Ëø µÄ»ñÈ¡ºÍÊÍ·Å
+		// ä¸»çº¿ç¨‹ä¹Ÿå‚ä¸ é” çš„è·å–å’Œé‡Šæ”¾
 		boolean value;
 		do {
 			try {
-				// Ê¹ÓÃtryLock()·½·¨³¢ÊÔ»ñÈ¡Ëø¡£µÈ´ı1Ãë£¬Èç¹ûÎŞ·¨»ñµÃËøÔò´òÓ¡Ò»ÌõĞÅÏ¢²¢ÖØĞÂ³¢ÊÔ¡£
+				// ä½¿ç”¨tryLock()æ–¹æ³•å°è¯•è·å–é”ã€‚ç­‰å¾…1ç§’ï¼Œå¦‚æœæ— æ³•è·å¾—é”åˆ™æ‰“å°ä¸€æ¡ä¿¡æ¯å¹¶é‡æ–°å°è¯•ã€‚
 				value = lock.tryLock(1, TimeUnit.SECONDS);
 				if (!value) {
 					System.out.printf("Main: Trying to get the Lock\n");
@@ -47,28 +47,28 @@ public class ImplementingLock {
 		} while (!value);
 		
 		System.out.printf("Main: Got the lock\n");
-		lock.unlock();// ÊÍ·ÅËø
+		lock.unlock();// é‡Šæ”¾é”
 		
 		System.out.printf("Main: End of the program\n");
 	}
 
 	/**
-	 * ×Ô¶¨ÒåÍ¬²½Æ÷
+	 * è‡ªå®šä¹‰åŒæ­¥å™¨
 	 * <p>
-	 * Java²¢·¢APIÌá¹©ÁË AbstractQueuedSynchronizer ÀàÓÃÀ´ÊµÏÖÓµÓĞËø»òĞÅºÅÁ¿ÌØÕ÷µÄÍ¬²½»úÖÆ¡£
-	 * ËüÊÇÒ»¸ö³éÏóÀà£¬ËüÌá¹©ÈçÏÂÁ½¸ö²Ù×÷£º¿ØÖÆ¶ÔÁÙ½çÇøµÄ·ÃÎÊ¡¢¹ÜÀíÕıÔÚµÈ´ı·ÃÎÊÁÙ½çÇøµÄ×èÈûÏß³Ì¶ÓÁĞ¡£
-	 * ÕâÁ½¸ö²Ù×÷ÊÇ»ùÓÚÒÔÏÂÁ½¸ö³éÏó·½·¨£ºtryAcquire¡¢tryRelease
+	 * Javaå¹¶å‘APIæä¾›äº† AbstractQueuedSynchronizer ç±»ç”¨æ¥å®ç°æ‹¥æœ‰é”æˆ–ä¿¡å·é‡ç‰¹å¾çš„åŒæ­¥æœºåˆ¶ã€‚
+	 * å®ƒæ˜¯ä¸€ä¸ªæŠ½è±¡ç±»ï¼Œå®ƒæä¾›å¦‚ä¸‹ä¸¤ä¸ªæ“ä½œï¼šæ§åˆ¶å¯¹ä¸´ç•ŒåŒºçš„è®¿é—®ã€ç®¡ç†æ­£åœ¨ç­‰å¾…è®¿é—®ä¸´ç•ŒåŒºçš„é˜»å¡çº¿ç¨‹é˜Ÿåˆ—ã€‚
+	 * è¿™ä¸¤ä¸ªæ“ä½œæ˜¯åŸºäºä»¥ä¸‹ä¸¤ä¸ªæŠ½è±¡æ–¹æ³•ï¼štryAcquireã€tryRelease
 	 * <p>
-	 * AbstractQueuedSynchronizer ÀàµÄÆäËûÊµÏÖÀà¶¼ÊÇË½ÓĞµÄÄÚ²¿Àà£¬ËùÒÔ²»ÄÜÖ±½ÓÊ¹ÓÃËüÃÇ¡£
+	 * AbstractQueuedSynchronizer ç±»çš„å…¶ä»–å®ç°ç±»éƒ½æ˜¯ç§æœ‰çš„å†…éƒ¨ç±»ï¼Œæ‰€ä»¥ä¸èƒ½ç›´æ¥ä½¿ç”¨å®ƒä»¬ã€‚
 	 */
 	private static class MyQueuedSynchronizer extends AbstractQueuedSynchronizer {
 
 		private static final long serialVersionUID = 1L;
 		
 		/*
-		 * Ê¹ÓÃ AtomicInteger Ô­×Ó±äÁ¿À´¿ØÖÆ¶ÔÁÙ½çÇøµÄ·ÃÎÊ¡£
-		 * Èç¹ûËøÊÇ×ÔÓÉµÄ£¬Õâ¸ö±äÁ¿µÄÖµÎª0£¬±íÃ÷Ïß³Ì¿ÉÒÔ·ÃÎÊÁÙ½çÇø¡£
-		 * Èç¹ûËøÊÇ×èÈûµÄ£¬Õâ¸ö±äÁ¿µÄÖµÎª1£¬±íÃ÷Ïß³Ì²»ÄÜ·ÃÎÊÕâ¸öÁÙ½çÇø¡£
+		 * ä½¿ç”¨ AtomicInteger åŸå­å˜é‡æ¥æ§åˆ¶å¯¹ä¸´ç•ŒåŒºçš„è®¿é—®ã€‚
+		 * å¦‚æœé”æ˜¯è‡ªç”±çš„ï¼Œè¿™ä¸ªå˜é‡çš„å€¼ä¸º0ï¼Œè¡¨æ˜çº¿ç¨‹å¯ä»¥è®¿é—®ä¸´ç•ŒåŒºã€‚
+		 * å¦‚æœé”æ˜¯é˜»å¡çš„ï¼Œè¿™ä¸ªå˜é‡çš„å€¼ä¸º1ï¼Œè¡¨æ˜çº¿ç¨‹ä¸èƒ½è®¿é—®è¿™ä¸ªä¸´ç•ŒåŒºã€‚
 		 */
 		private AtomicInteger state;
 
@@ -77,34 +77,34 @@ public class ImplementingLock {
 		}
 
 		/**
-		 * µ±³¢ÊÔ·ÃÎÊÁÙ½çÇøÊ±µ÷ÓÃÕâ¸ö·½·¨¡£
+		 * å½“å°è¯•è®¿é—®ä¸´ç•ŒåŒºæ—¶è°ƒç”¨è¿™ä¸ªæ–¹æ³•ã€‚
 		 * <p>
-		 * Èôµ÷ÓÃÕâ¸ö·½·¨µÄÏß³Ì¿ÉÒÔ·ÃÎÊÁÙ½çÇø£¬´Ë·½·¨·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+		 * è‹¥è°ƒç”¨è¿™ä¸ªæ–¹æ³•çš„çº¿ç¨‹å¯ä»¥è®¿é—®ä¸´ç•ŒåŒºï¼Œæ­¤æ–¹æ³•è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 		 * 
 		 * @see java.util.concurrent.locks.AbstractQueuedSynchronizer#tryAcquire(int)
 		 */
 		@Override
 		protected boolean tryAcquire(int arg) {
-			// ¸Ã·½·¨ÊÔÍ¼½«±äÁ¿stateµÄÖµ´Ó0±ä³É1¡£Èç¹û³É¹¦£¬Ôò·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+			// è¯¥æ–¹æ³•è¯•å›¾å°†å˜é‡stateçš„å€¼ä»0å˜æˆ1ã€‚å¦‚æœæˆåŠŸï¼Œåˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 			return state.compareAndSet(0, 1);
 		}
 		
 		/**
-		 * µ±³¢ÊÔÍË³ö¶ÔÁÙ½çÇøµÄ·ÃÎÊÊ±µ÷ÓÃÕâ¸ö·½·¨¡£
+		 * å½“å°è¯•é€€å‡ºå¯¹ä¸´ç•ŒåŒºçš„è®¿é—®æ—¶è°ƒç”¨è¿™ä¸ªæ–¹æ³•ã€‚
 		 * <p>
-		 * Èôµ÷ÓÃÕâ¸ö·½·¨µÄÏß³Ì¿ÉÒÔÊÍ·Å¶ÔÁÙ½çÇøµÄ·ÃÎÊ£¬´Ë·½·¨·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+		 * è‹¥è°ƒç”¨è¿™ä¸ªæ–¹æ³•çš„çº¿ç¨‹å¯ä»¥é‡Šæ”¾å¯¹ä¸´ç•ŒåŒºçš„è®¿é—®ï¼Œæ­¤æ–¹æ³•è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 		 * 
 		 * @see java.util.concurrent.locks.AbstractQueuedSynchronizer#tryAcquire(int)
 		 */
 		@Override
 		protected boolean tryRelease(int arg) {
-			// ¸Ã·½·¨ÊÔÍ¼½«±äÁ¿stateµÄÖµ´Ó1±ä³É0¡£Èç¹û³É¹¦£¬Ôò·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+			// è¯¥æ–¹æ³•è¯•å›¾å°†å˜é‡stateçš„å€¼ä»1å˜æˆ0ã€‚å¦‚æœæˆåŠŸï¼Œåˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 			return state.compareAndSet(1, 0);
 		}
 	}
 	
 	/**
-	 * ×Ô¶¨ÒåµÄËø
+	 * è‡ªå®šä¹‰çš„é”
 	 */
 	private static class MyLock implements Lock {
 
@@ -115,8 +115,8 @@ public class ImplementingLock {
 		}
 
 		/**
-		 * µ±½«Òª·ÃÎÊÒ»¸öÁÙ½çÇøÊ±£¬µ÷ÓÃÕâ¸ö·½·¨¡£
-		 * Èç¹ûÓĞÏß³ÌÕıÔÚ·ÃÎÊÕâ¸öÁÙ½çÇø£¬ÆäËûÏß³Ì½«×èÈû£¬Ö±µ½ËøÊÍ·ÅºóËüÃÇ±»»½ĞÑ£¬´Ó¶ø»ñÈ¡¶ÔÁÙ½çÇøµÄ·ÃÎÊÈ¨¡£
+		 * å½“å°†è¦è®¿é—®ä¸€ä¸ªä¸´ç•ŒåŒºæ—¶ï¼Œè°ƒç”¨è¿™ä¸ªæ–¹æ³•ã€‚
+		 * å¦‚æœæœ‰çº¿ç¨‹æ­£åœ¨è®¿é—®è¿™ä¸ªä¸´ç•ŒåŒºï¼Œå…¶ä»–çº¿ç¨‹å°†é˜»å¡ï¼Œç›´åˆ°é”é‡Šæ”¾åå®ƒä»¬è¢«å”¤é†’ï¼Œä»è€Œè·å–å¯¹ä¸´ç•ŒåŒºçš„è®¿é—®æƒã€‚
 		 * 
 		 * @see java.util.concurrent.locks.Lock#lock()
 		 */
@@ -152,7 +152,7 @@ public class ImplementingLock {
 		}
 
 		/**
-		 * ÔÚÁÙ½çÇø½áÊøÊ±µ÷ÓÃÕâ¸ö·½·¨£¬ÒÔ±ãÊÍ·ÅËøÔÊĞíÆäËûÏß³Ì·ÃÎÊ´ËÁÙ½çÇø¡£
+		 * åœ¨ä¸´ç•ŒåŒºç»“æŸæ—¶è°ƒç”¨è¿™ä¸ªæ–¹æ³•ï¼Œä»¥ä¾¿é‡Šæ”¾é”å…è®¸å…¶ä»–çº¿ç¨‹è®¿é—®æ­¤ä¸´ç•ŒåŒºã€‚
 		 * 
 		 * @see java.util.concurrent.locks.Lock#unlock()
 		 */
@@ -163,7 +163,7 @@ public class ImplementingLock {
 
 		@Override
 		public Condition newCondition() {
-			// ´´½¨ synchronizer ¶ÔÏóµÄÄÚ²¿Àà ConditionObject ÊµÀı
+			// åˆ›å»º synchronizer å¯¹è±¡çš„å†…éƒ¨ç±» ConditionObject å®ä¾‹
 			return synchronizer.new ConditionObject();
 		}
 	}
@@ -179,7 +179,7 @@ public class ImplementingLock {
 		}
 
 		/**
-		 * »ñµÃËøºóË¯Ãß2ÃëÈ»ºóÊÍ·ÅËø
+		 * è·å¾—é”åç¡çœ 2ç§’ç„¶åé‡Šæ”¾é”
 		 * 
 		 * @see java.lang.Runnable#run()
 		 */

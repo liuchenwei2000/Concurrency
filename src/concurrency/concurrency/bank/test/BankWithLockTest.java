@@ -8,13 +8,13 @@ import concurrency.bank.BankWithLock;
 import concurrency.bank.TransferTest;
 
 /**
- * Ê¹ÓÃËø¿ØÖÆ²¢·¢µÄ×ªÕË
+ * ä½¿ç”¨é”æ§åˆ¶å¹¶å‘çš„è½¬è´¦
  * <p>
- * ±¾ÀıÓÀÔ¶²»»á³öÏÖTotal balance²»µÈÓÚ1000µÄÇé¿ö¡£
+ * æœ¬ä¾‹æ°¸è¿œä¸ä¼šå‡ºç°Total balanceä¸ç­‰äº1000çš„æƒ…å†µã€‚
  *
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  *
- * ´´½¨ÈÕÆÚ£º2013-6-7
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-7
  */
 public class BankWithLockTest {
 

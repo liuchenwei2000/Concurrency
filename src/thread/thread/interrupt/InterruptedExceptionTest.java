@@ -6,14 +6,14 @@ package thread.interrupt;
 import java.io.File;
 
 /**
- * InterruptedExceptionÑİÊ¾
+ * InterruptedExceptionæ¼”ç¤º
  * <p>
- * Èç¹ûÏß³ÌÖĞÔËĞĞµÄÈÎÎñËã·¨¸´ÔÓÇÒ·Ö½âµ½ÁË¶à¸ö·½·¨ÖĞ£¬»òÕß·½·¨ÖĞÓĞµİ¹éµ÷ÓÃÊ±£¬¿ÉÒÔÊ¹ÓÃÒ»ÖÖ¸üºÃµÄ»úÖÆÀ´¿ØÖÆÏß³ÌÖĞ¶Ï¡£
- * InterruptedException ±»ÓÃÀ´´ïµ½Õâ¸öÄ¿µÄ£¬¿ÉÒÔÔÚÌ½²âµ½Ïß³ÌÖĞ¶ÏÊ±Å×³öÕâ¸öÒì³£²¢ÔÚrun()·½·¨ÖĞcatchËü¡£
+ * å¦‚æœçº¿ç¨‹ä¸­è¿è¡Œçš„ä»»åŠ¡ç®—æ³•å¤æ‚ä¸”åˆ†è§£åˆ°äº†å¤šä¸ªæ–¹æ³•ä¸­ï¼Œæˆ–è€…æ–¹æ³•ä¸­æœ‰é€’å½’è°ƒç”¨æ—¶ï¼Œå¯ä»¥ä½¿ç”¨ä¸€ç§æ›´å¥½çš„æœºåˆ¶æ¥æ§åˆ¶çº¿ç¨‹ä¸­æ–­ã€‚
+ * InterruptedException è¢«ç”¨æ¥è¾¾åˆ°è¿™ä¸ªç›®çš„ï¼Œå¯ä»¥åœ¨æ¢æµ‹åˆ°çº¿ç¨‹ä¸­æ–­æ—¶æŠ›å‡ºè¿™ä¸ªå¼‚å¸¸å¹¶åœ¨run()æ–¹æ³•ä¸­catchå®ƒã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-6
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-6
  */
 public class InterruptedExceptionTest {
 
@@ -40,7 +40,7 @@ public class InterruptedExceptionTest {
 	}
 	
 	/**
-	 * ÔÚÄ¿±êÎÄ¼ş¼ĞÖĞ²éÕÒÖ¸¶¨ÎÄ¼şÈÎÎñ£¬Ëã·¨ÓĞµİ¹éµ÷ÓÃ
+	 * åœ¨ç›®æ ‡æ–‡ä»¶å¤¹ä¸­æŸ¥æ‰¾æŒ‡å®šæ–‡ä»¶ä»»åŠ¡ï¼Œç®—æ³•æœ‰é€’å½’è°ƒç”¨
 	 */
 	private static class FileSearchTask implements Runnable {
 
@@ -59,11 +59,11 @@ public class InterruptedExceptionTest {
 			if (home.exists() && home.isDirectory()) {
 				try {
 					/*
-					 * Ò»µ©processDirectory()·½·¨ÖĞ£¨²»ÂÛÆäÄÚµİ¹éµ÷ÓÃµÄÄÄ¸ö²ã¼¶µÄ·½·¨£©Å×³öInterruptedException£¬
-					 * run()·½·¨¾Í»ácatchËü²¢ÏòÏÂÔËĞĞ£¬¶ø²»ÓÃ¹ØĞÄÓĞ¶àÉÙ²ãµİ¹éµ÷ÓÃ¡£
+					 * ä¸€æ—¦processDirectory()æ–¹æ³•ä¸­ï¼ˆä¸è®ºå…¶å†…é€’å½’è°ƒç”¨çš„å“ªä¸ªå±‚çº§çš„æ–¹æ³•ï¼‰æŠ›å‡ºInterruptedExceptionï¼Œ
+					 * run()æ–¹æ³•å°±ä¼šcatchå®ƒå¹¶å‘ä¸‹è¿è¡Œï¼Œè€Œä¸ç”¨å…³å¿ƒæœ‰å¤šå°‘å±‚é€’å½’è°ƒç”¨ã€‚
 					 */
 					processDirectory(home);
-				} catch (InterruptedException e) {// µ±Ïß³Ì±»ÖĞ¶ÏÊ±µÄ´¦Àí
+				} catch (InterruptedException e) {// å½“çº¿ç¨‹è¢«ä¸­æ–­æ—¶çš„å¤„ç†
 					System.out.printf("%s: The search has been interrupted",
 							Thread.currentThread().getName());
 				}
@@ -81,7 +81,7 @@ public class InterruptedExceptionTest {
 					}
 				}
 			}
-			// ¼ì²éÏß³ÌÊÇ·ñ±»ÖĞ¶Ï£¬Èç¹ûÊÇÔòÅ×³öInterruptedException
+			// æ£€æŸ¥çº¿ç¨‹æ˜¯å¦è¢«ä¸­æ–­ï¼Œå¦‚æœæ˜¯åˆ™æŠ›å‡ºInterruptedException
 			if(Thread.currentThread().isInterrupted()) {
 				throw new InterruptedException();
 			}
@@ -93,7 +93,7 @@ public class InterruptedExceptionTest {
 						Thread.currentThread().getName(),
 						file.getAbsolutePath());
 			}
-			// ¼ì²éÏß³ÌÊÇ·ñ±»ÖĞ¶Ï£¬Èç¹ûÊÇÔòÅ×³öInterruptedException
+			// æ£€æŸ¥çº¿ç¨‹æ˜¯å¦è¢«ä¸­æ–­ï¼Œå¦‚æœæ˜¯åˆ™æŠ›å‡ºInterruptedException
 			if(Thread.currentThread().isInterrupted()) {
 				throw new InterruptedException();
 			}

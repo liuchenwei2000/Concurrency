@@ -9,13 +9,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¼à¿Ø Executor ¶ÔÏóÊ¾Àı
+ * ç›‘æ§ Executor å¯¹è±¡ç¤ºä¾‹
  * <p>
- * ÑİÊ¾ ThreadPoolExecutor ¶ÔÏóËùÄÜÌá¹©µÄ×´Ì¬ĞÅÏ¢ÒÔ¼°ÈçºÎ»ñÈ¡ËüÃÇ¡£
+ * æ¼”ç¤º ThreadPoolExecutor å¯¹è±¡æ‰€èƒ½æä¾›çš„çŠ¶æ€ä¿¡æ¯ä»¥åŠå¦‚ä½•è·å–å®ƒä»¬ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ26ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ26æ—¥
  */
 public class MonitoringExecutorTest {
 
@@ -26,19 +26,19 @@ public class MonitoringExecutorTest {
 		ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newCachedThreadPool();
 		
 		Random random = new Random();
-		// Ìá½»ÔËĞĞÊ®¸öÈÎÎñ
+		// æäº¤è¿è¡Œåä¸ªä»»åŠ¡
 		for (int i = 0; i < 10; i++) {
 			executor.submit(new Task(random.nextInt(10000)));
 		}
-		// ¼à¿Ø 5Ãë
+		// ç›‘æ§ 5ç§’
 		for (int i = 0; i < 5; i++) {
 			showLog(executor);
 			TimeUnit.SECONDS.sleep(1);
 		}
-		// ¹Ø±ÕÏß³Ì³Ø
+		// å…³é—­çº¿ç¨‹æ± 
 		executor.shutdown();
 		System.out.println("Main: Shutdown the thread pool.\n");
-		// ÔÙ¼à¿Ø 5Ãë
+		// å†ç›‘æ§ 5ç§’
 		for (int i = 0; i < 5; i++) {
 			showLog(executor);
 			TimeUnit.SECONDS.sleep(1);
@@ -49,32 +49,32 @@ public class MonitoringExecutorTest {
 	}
 	
 	/**
-	 * ´òÓ¡Ïß³Ì³Ø×´Ì¬ĞÅÏ¢
+	 * æ‰“å°çº¿ç¨‹æ± çŠ¶æ€ä¿¡æ¯
 	 */
 	private static void showLog(ThreadPoolExecutor executor) {
 		System.out.printf("*********************\n");
 		System.out.printf("Main: Executor Log");
 		System.out.printf("Main: Executor: Core Pool Size: %d\n",
-				executor.getCorePoolSize());// ·µ»ØºËĞÄÏß³ÌÊı£¬¼´µ±Ïß³Ì³ØÃ»ÓĞÈÎÎñÔËĞĞÊ±Ëù±£ÓĞµÄ×îĞ¡Ïß³ÌÊı
+				executor.getCorePoolSize());// è¿”å›æ ¸å¿ƒçº¿ç¨‹æ•°ï¼Œå³å½“çº¿ç¨‹æ± æ²¡æœ‰ä»»åŠ¡è¿è¡Œæ—¶æ‰€ä¿æœ‰çš„æœ€å°çº¿ç¨‹æ•°
 		System.out.printf("Main: Executor: Pool Size: %d\n",
-				executor.getPoolSize());// ·µ»Ø³ØÄÚµ±Ç°Ïß³ÌÊı
+				executor.getPoolSize());// è¿”å›æ± å†…å½“å‰çº¿ç¨‹æ•°
 		System.out.printf("Main: Executor: Active Count: %d\n",
-				executor.getActiveCount());// ·µ»ØÕıÔÚÖ´ĞĞÈÎÎñµÄÏß³ÌÊı
+				executor.getActiveCount());// è¿”å›æ­£åœ¨æ‰§è¡Œä»»åŠ¡çš„çº¿ç¨‹æ•°
 		System.out.printf("Main: Executor: Task Count: %d\n",
-				executor.getTaskCount());// ·µ»ØÔø¼Æ»®Ö´ĞĞµÄÈÎÎñ×ÜÊı
+				executor.getTaskCount());// è¿”å›æ›¾è®¡åˆ’æ‰§è¡Œçš„ä»»åŠ¡æ€»æ•°
 		System.out.printf("Main: Executor: Completed Task Count: %d\n",
-				executor.getCompletedTaskCount());// ·µ»ØÒÑÍê³ÉµÄÈÎÎñÊı
+				executor.getCompletedTaskCount());// è¿”å›å·²å®Œæˆçš„ä»»åŠ¡æ•°
 		System.out.printf("Main: Executor: Shutdown: %s\n",
-				executor.isShutdown());// ÊÇ·ñÒÑµ÷ÓÃ shutdown()·½·¨¹Ø±ÕÏß³Ì³Ø
+				executor.isShutdown());// æ˜¯å¦å·²è°ƒç”¨ shutdown()æ–¹æ³•å…³é—­çº¿ç¨‹æ± 
 		System.out.printf("Main: Executor: Terminating: %s\n",
-				executor.isTerminating());// ÊÇ·ñÒÑµ÷ÓÃ shutdown() Ïà¹Ø·½·¨¶øµ¼ÖÂÏß³Ì³ØÕı¹Ø±Õ
+				executor.isTerminating());// æ˜¯å¦å·²è°ƒç”¨ shutdown() ç›¸å…³æ–¹æ³•è€Œå¯¼è‡´çº¿ç¨‹æ± æ­£å…³é—­
 		System.out.printf("Main: Executor: Terminated: %s\n",
-				executor.isTerminated());// Ïß³Ì³ØÊÇ·ñÒÑ¹Ø±Õ
+				executor.isTerminated());// çº¿ç¨‹æ± æ˜¯å¦å·²å…³é—­
 		System.out.printf("*********************\n");
 	}
 
 	/**
-	 * Ò»¸ö»áË¯ÃßÖ¸¶¨ºÁÃëµÄÈÎÎñ
+	 * ä¸€ä¸ªä¼šç¡çœ æŒ‡å®šæ¯«ç§’çš„ä»»åŠ¡
 	 */
 	private static class Task implements Runnable {
 
@@ -85,7 +85,7 @@ public class MonitoringExecutorTest {
 		}
 
 		/**
-		 * Ë¯ÃßÖ¸¶¨ºÁÃë
+		 * ç¡çœ æŒ‡å®šæ¯«ç§’
 		 */
 		@Override
 		public void run() {

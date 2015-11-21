@@ -6,13 +6,13 @@ package concurrency.customization;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ×Ô¶¨ÒåÔ­×Ó¶ÔÏóÀàÊ¾Àý
+ * è‡ªå®šä¹‰åŽŸå­å¯¹è±¡ç±»ç¤ºä¾‹
  * <p>
- * Í¨¹ý¼Ì³ÐÔ­×Ó¶ÔÏóÀàÀ´ÊµÏÖ×Ô¶¨ÒåÔ­×Ó¶ÔÏó£¬´Ó¶ø±£Ö¤Ä³Ð©²Ù×÷¿ÉÒÔÒÔÔ­×ÓµÄ·½Ê½Íê³É¡£
+ * é€šè¿‡ç»§æ‰¿åŽŸå­å¯¹è±¡ç±»æ¥å®žçŽ°è‡ªå®šä¹‰åŽŸå­å¯¹è±¡ï¼Œä»Žè€Œä¿è¯æŸäº›æ“ä½œå¯ä»¥ä»¥åŽŸå­çš„æ–¹å¼å®Œæˆã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ22ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ22æ—¥
  */
 public class CustomizingAtomicObject {
 
@@ -43,29 +43,29 @@ public class CustomizingAtomicObject {
 	}
 
 	/**
-	 * Í£³µ¼ÆÊýÆ÷£¬ÕâÊÇ¸ö×Ô¶¨ÒåÔ­×Ó¶ÔÏóÀà
+	 * åœè½¦è®¡æ•°å™¨ï¼Œè¿™æ˜¯ä¸ªè‡ªå®šä¹‰åŽŸå­å¯¹è±¡ç±»
 	 */
 	private static class ParkingCounter extends AtomicInteger {
 		
 		private static final long serialVersionUID = 1L;
 		
-		private int maxNumber;// ×î´óÍ£³µÊý
+		private int maxNumber;// æœ€å¤§åœè½¦æ•°
 
 		public ParkingCounter(int maxNumber) {
 			this.maxNumber = maxNumber;
-			set(0);// ¼ÆÊýÆ÷³õÊ¼Öµ
+			set(0);// è®¡æ•°å™¨åˆå§‹å€¼
 		}
 		
 		/**
-		 * Æû³µ½øÈë£¬Òª±£Ö¤±¾²Ù×÷ÊÇÔ­×ÓµÄ
+		 * æ±½è½¦è¿›å…¥ï¼Œè¦ä¿è¯æœ¬æ“ä½œæ˜¯åŽŸå­çš„
 		 * <p>
-		 * Í¨¹ý±È½ÏÍ£³µ³¡ÖÐÊµ¼ÊÍ£³µÊýºÍ×î´óÍ£³µÊý£¬Èç¹ûËüÃÇÏàµÈÔòÎÞ·¨ÔÙÈÃ³µ½øÈë£¬·½·¨·µ»Øfalse£»·ñÔòÊ¹ÓÃÈçÏÂµÄ½á¹¹À´±£Ö¤²Ù×÷Ô­×ÓÐÔ£º
-		 * 1£¬ÓÃÒ»¸ö±¾µØ±äÁ¿»ñÈ¡Ô­×Ó¶ÔÏóµÄÖµ¡£
-		 * 2£¬ÓÃÁíÒ»¸ö±¾µØ±äÁ¿´æ´¢ÐÂÖµ¡£
-		 * 3£¬Ê¹ÓÃcompareAndSet()·½·¨³¢ÊÔ½«¾ÉÖµÌæ»»³ÉÐÂÖµ¡£Èç¹ûÕâ¸ö·½·¨·µ»Øtrue£¬±íÃ÷×÷Îª²ÎÊý´«ÈëµÄ¾ÉÖµ»¹ÊÇÕâ¸ö±äÁ¿µÄÖµ£¬
-		 * ÐÂÖµ½«»á±»¸³¸ø±äÁ¿¡£Ëæ×ÅcarIn()·½·¨·µ»ØtrueÖµ£¬Õâ¸ö²Ù×÷½«ÒÔÔ­×Ó·½Ê½Íê³É¡£
-		 * Èç¹ûcompareAndSet()·½·¨·µ»Øfalse£¬±íÃ÷×÷Îª²ÎÊý´«ÈëµÄ¾ÉÖµ²»ÔÙÊÇÕâ¸ö±äÁ¿µÄÖµ£¨ÆäËûÏß³ÌÒÑÐÞ¸ÄÁËËü£©£¬
-		 * ËùÒÔÕâ¸ö²Ù×÷²»ÄÜÒÔÔ­×Ó·½Ê½Íê³É¡£Õâ¸ö²Ù×÷½«ÖØÐÂ¿ªÊ¼£¬Ö±µ½Ëü¿ÉÒÔÒÔÔ­×Ó·½Ê½Íê³É¡£
+		 * é€šè¿‡æ¯”è¾ƒåœè½¦åœºä¸­å®žé™…åœè½¦æ•°å’Œæœ€å¤§åœè½¦æ•°ï¼Œå¦‚æžœå®ƒä»¬ç›¸ç­‰åˆ™æ— æ³•å†è®©è½¦è¿›å…¥ï¼Œæ–¹æ³•è¿”å›žfalseï¼›å¦åˆ™ä½¿ç”¨å¦‚ä¸‹çš„ç»“æž„æ¥ä¿è¯æ“ä½œåŽŸå­æ€§ï¼š
+		 * 1ï¼Œç”¨ä¸€ä¸ªæœ¬åœ°å˜é‡èŽ·å–åŽŸå­å¯¹è±¡çš„å€¼ã€‚
+		 * 2ï¼Œç”¨å¦ä¸€ä¸ªæœ¬åœ°å˜é‡å­˜å‚¨æ–°å€¼ã€‚
+		 * 3ï¼Œä½¿ç”¨compareAndSet()æ–¹æ³•å°è¯•å°†æ—§å€¼æ›¿æ¢æˆæ–°å€¼ã€‚å¦‚æžœè¿™ä¸ªæ–¹æ³•è¿”å›žtrueï¼Œè¡¨æ˜Žä½œä¸ºå‚æ•°ä¼ å…¥çš„æ—§å€¼è¿˜æ˜¯è¿™ä¸ªå˜é‡çš„å€¼ï¼Œ
+		 * æ–°å€¼å°†ä¼šè¢«èµ‹ç»™å˜é‡ã€‚éšç€carIn()æ–¹æ³•è¿”å›žtrueå€¼ï¼Œè¿™ä¸ªæ“ä½œå°†ä»¥åŽŸå­æ–¹å¼å®Œæˆã€‚
+		 * å¦‚æžœcompareAndSet()æ–¹æ³•è¿”å›žfalseï¼Œè¡¨æ˜Žä½œä¸ºå‚æ•°ä¼ å…¥çš„æ—§å€¼ä¸å†æ˜¯è¿™ä¸ªå˜é‡çš„å€¼ï¼ˆå…¶ä»–çº¿ç¨‹å·²ä¿®æ”¹äº†å®ƒï¼‰ï¼Œ
+		 * æ‰€ä»¥è¿™ä¸ªæ“ä½œä¸èƒ½ä»¥åŽŸå­æ–¹å¼å®Œæˆã€‚è¿™ä¸ªæ“ä½œå°†é‡æ–°å¼€å§‹ï¼Œç›´åˆ°å®ƒå¯ä»¥ä»¥åŽŸå­æ–¹å¼å®Œæˆã€‚
 		 */
 		public boolean carIn() {
 			int value = get();// 1
@@ -86,9 +86,9 @@ public class CustomizingAtomicObject {
 		}
 
 		/**
-		 * Æû³µÀë¿ª£¬Òª±£Ö¤±¾²Ù×÷ÊÇÔ­×ÓµÄ
+		 * æ±½è½¦ç¦»å¼€ï¼Œè¦ä¿è¯æœ¬æ“ä½œæ˜¯åŽŸå­çš„
 		 * <p>
-		 * Ô­ÀíÍ¬ carIn() ·½·¨¡£
+		 * åŽŸç†åŒ carIn() æ–¹æ³•ã€‚
 		 */
 		public boolean carOut() {
 			int value = get();
@@ -110,7 +110,7 @@ public class CustomizingAtomicObject {
 	}
 	
 	/**
-	 * ´«¸ÐÆ÷1£¬Ö¸»Ó¶à¸ö³µµÄ½ø³ö
+	 * ä¼ æ„Ÿå™¨1ï¼ŒæŒ‡æŒ¥å¤šä¸ªè½¦çš„è¿›å‡º
 	 */
 	private static class Sensor1 implements Runnable {
 
@@ -136,7 +136,7 @@ public class CustomizingAtomicObject {
 	}
 	
 	/**
-	 * ´«¸ÐÆ÷2£¬Ö¸»Ó¶à¸ö³µµÄ½ø³ö
+	 * ä¼ æ„Ÿå™¨2ï¼ŒæŒ‡æŒ¥å¤šä¸ªè½¦çš„è¿›å‡º
 	 */
 	private static class Sensor2 implements Runnable {
 

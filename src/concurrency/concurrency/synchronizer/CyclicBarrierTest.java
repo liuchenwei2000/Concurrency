@@ -6,24 +6,24 @@ package concurrency.synchronizer;
 import java.util.concurrent.CyclicBarrier;
 
 /**
- * CyclicBarrierÊ¾Àý
+ * CyclicBarrierç¤ºä¾‹
  * <p>
- * CyclicBarrierÊµÏÖÁËÒ»¸ö³ÆÎªÕ¤À¸µÄ¼¯ºÏµã¡£
+ * CyclicBarrierå®žçŽ°äº†ä¸€ä¸ªç§°ä¸ºæ …æ çš„é›†åˆç‚¹ã€‚
  * <p>
- * CyclicBarrier ¿ÉÒÔÓÉÒ»¸öÖ¸¶¨ÊýÖµ³õÊ¼»¯£¬À´×÷ÎªÐèÒªÔÚ¼¯ºÏµãµÈ´ýµÄÏß³Ì×ÜÊý¡£
- * µ±ÆäÖÐÒ»¸öÏß³Ìµ½´ï¼¯ºÏµãÊ±£¬ÐèÒªµ÷ÓÃ CyclicBarrier µÄawait()·½·¨À´µÈ´ýÆäËûÏß³ÌµÄµ½À´£¬¶øCyclicBarrier 
- * »á½«¸ÃÏß³Ì×èÈûÖ±µ½ËùÐèÊýÁ¿µÄÏß³ÌÈ«²¿µ½À´¡£µ±×îºóÒ»¸öÏß³Ìµ÷ÓÃ CyclicBarrier µÄawait()·½·¨ºó£¬Ëü»á»½ÐÑËùÓÐµÈ´ýµÄÆäËûÏß³Ì¡£
+ * CyclicBarrier å¯ä»¥ç”±ä¸€ä¸ªæŒ‡å®šæ•°å€¼åˆå§‹åŒ–ï¼Œæ¥ä½œä¸ºéœ€è¦åœ¨é›†åˆç‚¹ç­‰å¾…çš„çº¿ç¨‹æ€»æ•°ã€‚
+ * å½“å…¶ä¸­ä¸€ä¸ªçº¿ç¨‹åˆ°è¾¾é›†åˆç‚¹æ—¶ï¼Œéœ€è¦è°ƒç”¨ CyclicBarrier çš„await()æ–¹æ³•æ¥ç­‰å¾…å…¶ä»–çº¿ç¨‹çš„åˆ°æ¥ï¼Œè€ŒCyclicBarrier 
+ * ä¼šå°†è¯¥çº¿ç¨‹é˜»å¡žç›´åˆ°æ‰€éœ€æ•°é‡çš„çº¿ç¨‹å…¨éƒ¨åˆ°æ¥ã€‚å½“æœ€åŽä¸€ä¸ªçº¿ç¨‹è°ƒç”¨ CyclicBarrier çš„await()æ–¹æ³•åŽï¼Œå®ƒä¼šå”¤é†’æ‰€æœ‰ç­‰å¾…çš„å…¶ä»–çº¿ç¨‹ã€‚
  * <p>
- * ÁíÍâ CyclicBarrier ¿ÉÒÔÊ¹ÓÃÒ»¸ö¶îÍâµÄ Runnable ¶ÔÏó×÷Îª³õÊ¼»¯²ÎÊý£¬µ±ËùÓÐÏß³Ìµ½´ï¼¯ºÏµãºó£¬¸Ã Runnable 
- * ¶ÔÏó½«±»·Åµ½Ä³¸öÏß³ÌÖÐÖ´ÐÐ¡£Õâ¸öÌØÐÔÊ¹µÃ CyclicBarrier ·Ç³£ÊÊºÏÊ¹ÓÃ·Ö¶øÖÎÖ®£¨divide and conquer£©¼¼ÊõµÄ²¢ÐÐÈÎÎñ¡£
- * ±ÈÈçÔÚÒ»´Î¼ÆËãÖÐ£¬ÐèÒª´óÁ¿Ïß³ÌÔËÐÐ¼ÆËãµÄ²»Í¬²¿·Ö¡£µ±ËùÓÐ²¿·Ö¶¼×¼±¸ºÃÊ±£¬½á¹ûÐèÒª±»ÕûºÏ²Å¿ÉÓÃ¡£
- * µ±Ò»¸öÏß³ÌÍê³ÉÁËËüÄÇ²¿·ÖÈÎÎñºó£¬¾ÍÈÃËüÔËÐÐµ½Õ¤À¸´¦¡£Ò»µ©ËùÓÐÏß³Ì¶¼µ½´ïÁËÕâ¸öÕ¤À¸£¬Õ¤À¸¾Í»á±»³·Ïú£¬ËùÓÐÏß³Ì¾Í¿ÉÒÔ¼ÌÐøÔËÐÐ¡£
+ * å¦å¤– CyclicBarrier å¯ä»¥ä½¿ç”¨ä¸€ä¸ªé¢å¤–çš„ Runnable å¯¹è±¡ä½œä¸ºåˆå§‹åŒ–å‚æ•°ï¼Œå½“æ‰€æœ‰çº¿ç¨‹åˆ°è¾¾é›†åˆç‚¹åŽï¼Œè¯¥ Runnable 
+ * å¯¹è±¡å°†è¢«æ”¾åˆ°æŸä¸ªçº¿ç¨‹ä¸­æ‰§è¡Œã€‚è¿™ä¸ªç‰¹æ€§ä½¿å¾— CyclicBarrier éžå¸¸é€‚åˆä½¿ç”¨åˆ†è€Œæ²»ä¹‹ï¼ˆdivide and conquerï¼‰æŠ€æœ¯çš„å¹¶è¡Œä»»åŠ¡ã€‚
+ * æ¯”å¦‚åœ¨ä¸€æ¬¡è®¡ç®—ä¸­ï¼Œéœ€è¦å¤§é‡çº¿ç¨‹è¿è¡Œè®¡ç®—çš„ä¸åŒéƒ¨åˆ†ã€‚å½“æ‰€æœ‰éƒ¨åˆ†éƒ½å‡†å¤‡å¥½æ—¶ï¼Œç»“æžœéœ€è¦è¢«æ•´åˆæ‰å¯ç”¨ã€‚
+ * å½“ä¸€ä¸ªçº¿ç¨‹å®Œæˆäº†å®ƒé‚£éƒ¨åˆ†ä»»åŠ¡åŽï¼Œå°±è®©å®ƒè¿è¡Œåˆ°æ …æ å¤„ã€‚ä¸€æ—¦æ‰€æœ‰çº¿ç¨‹éƒ½åˆ°è¾¾äº†è¿™ä¸ªæ …æ ï¼Œæ …æ å°±ä¼šè¢«æ’¤é”€ï¼Œæ‰€æœ‰çº¿ç¨‹å°±å¯ä»¥ç»§ç»­è¿è¡Œã€‚
  * <p>
- * ÒòÎªCyclicBarrierÔÚÊÍ·ÅµÈ´ýÏß³Ìºó¿ÉÒÔÖØÓÃ£¬ËùÒÔ³ÆËüÎªÑ­»·µÄbarrier¡£
+ * å› ä¸ºCyclicBarrieråœ¨é‡Šæ”¾ç­‰å¾…çº¿ç¨‹åŽå¯ä»¥é‡ç”¨ï¼Œæ‰€ä»¥ç§°å®ƒä¸ºå¾ªçŽ¯çš„barrierã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-25
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-25
  */
 public class CyclicBarrierTest {
 
@@ -36,51 +36,51 @@ public class CyclicBarrierTest {
 }
 
 /**
- * ¼ÆËã»úÀà£¬Ä£Äâ½«Ä³ÈÎÎñ·Ö½â³É¶àÈÎÎñ½øÐÐÔËËã
+ * è®¡ç®—æœºç±»ï¼Œæ¨¡æ‹Ÿå°†æŸä»»åŠ¡åˆ†è§£æˆå¤šä»»åŠ¡è¿›è¡Œè¿ç®—
  */
 class Computer {
 	
-	// Õ¤À¸
+	// æ …æ 
 	private CyclicBarrier barrier;
 	
 	public Computer(int subtask) {
 		/*
-		 * ´´½¨Ò»¸öCyclicBarrier£¬Ëü½«ÔÚ¸ø¶¨ÊýÁ¿(±¾Àýsubtask)µÄ²ÎÓëÕßÏß³Ì´¦ÓÚµÈ´ý×´Ì¬Ê±Æô¶¯¡£
-		 * ÁíÍâ»¹Ö§³ÖÒ»¸ö¿ÉÑ¡µÄRunnableÃüÁî(±¾ÀýMainTask)£¬ÔÚÒ»×éÏß³ÌÖÐ×îºóÒ»¸öÏß³Ìµ½´ïÖ®ºó
-		 * (µ«ÔÚÊÍ·ÅËùÓÐÏß³ÌÖ®Ç°)ÔËÐÐ(¸Ã²Ù×÷½«ÓÉ×îºóÒ»¸ö½øÈë barrierµÄÏß³ÌÖ´ÐÐ)¡£
-		 * ¸ÃRunnableÃüÁîÖ»ÔÚÃ¿¸öÆÁÕÏµãÔËÐÐÒ»´Î£¬ÈôÏëÔÚÊÍ·ÅËùÓÐ²ÎÓëÏß³ÌÖ®Ç° ¸üÐÂ¹²Ïí×´Ì¬£¬´ËÆÁÕÏ²Ù×÷ºÜÓÐÓÃ¡£
+		 * åˆ›å»ºä¸€ä¸ªCyclicBarrierï¼Œå®ƒå°†åœ¨ç»™å®šæ•°é‡(æœ¬ä¾‹subtask)çš„å‚ä¸Žè€…çº¿ç¨‹å¤„äºŽç­‰å¾…çŠ¶æ€æ—¶å¯åŠ¨ã€‚
+		 * å¦å¤–è¿˜æ”¯æŒä¸€ä¸ªå¯é€‰çš„Runnableå‘½ä»¤(æœ¬ä¾‹MainTask)ï¼Œåœ¨ä¸€ç»„çº¿ç¨‹ä¸­æœ€åŽä¸€ä¸ªçº¿ç¨‹åˆ°è¾¾ä¹‹åŽ
+		 * (ä½†åœ¨é‡Šæ”¾æ‰€æœ‰çº¿ç¨‹ä¹‹å‰)è¿è¡Œ(è¯¥æ“ä½œå°†ç”±æœ€åŽä¸€ä¸ªè¿›å…¥ barrierçš„çº¿ç¨‹æ‰§è¡Œ)ã€‚
+		 * è¯¥Runnableå‘½ä»¤åªåœ¨æ¯ä¸ªå±éšœç‚¹è¿è¡Œä¸€æ¬¡ï¼Œè‹¥æƒ³åœ¨é‡Šæ”¾æ‰€æœ‰å‚ä¸Žçº¿ç¨‹ä¹‹å‰ æ›´æ–°å…±äº«çŠ¶æ€ï¼Œæ­¤å±éšœæ“ä½œå¾ˆæœ‰ç”¨ã€‚
 		 */
 		 this.barrier = new CyclicBarrier(subtask, new MainTask());
 	}
 	
 	public void doWork() {
-		// getParties()·µ»ØÒªÇóÆô¶¯´ËbarrierµÄ²ÎÓëÕßÊýÄ¿
+		// getParties()è¿”å›žè¦æ±‚å¯åŠ¨æ­¤barrierçš„å‚ä¸Žè€…æ•°ç›®
 		int total = barrier.getParties();
-		// ½«ÈÎÎñ·Ö½â³É¶à¸ö×ÓÈÎÎñ£¬Ìá¸ßÔËËãËÙ¶È
+		// å°†ä»»åŠ¡åˆ†è§£æˆå¤šä¸ªå­ä»»åŠ¡ï¼Œæé«˜è¿ç®—é€Ÿåº¦
 		for (int i = 0; i < total; i++) {
 			new Thread(new SubTask("task " + (i + 1))).start();
 		}
 	}
 
 	/**
-	 * Ö÷ÈÎÎñ
+	 * ä¸»ä»»åŠ¡
 	 */
 	class MainTask implements Runnable {
 
 		@Override
 		public void run() {
-			System.out.println("¸÷×ÓÈÎÎñÖ´ÐÐÍê±Ï£¬¿ªÊ¼Ö´ÐÐÖ÷ÈÎÎñ......");
+			System.out.println("å„å­ä»»åŠ¡æ‰§è¡Œå®Œæ¯•ï¼Œå¼€å§‹æ‰§è¡Œä¸»ä»»åŠ¡......");
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Ö÷ÈÎÎñÖ´ÐÐÍê±Ï......");
+			System.out.println("ä¸»ä»»åŠ¡æ‰§è¡Œå®Œæ¯•......");
 		}
 	}
 
 	/**
-	 * ×ÓÈÎÎñ
+	 * å­ä»»åŠ¡
 	 */
 	class SubTask implements Runnable {
 
@@ -94,29 +94,29 @@ class Computer {
 		public void run() {
 			try {
 				Thread.sleep((long) (Math.random() * 5000));
-				// getNumberWaiting() ·µ»Øµ±Ç°ÔÚÆÁÕÏ´¦µÈ´ýµÄ²ÎÓëÕßÊýÄ¿
-				System.out.println("¹²ÓÐ " + (barrier.getNumberWaiting() + 1) + " ¸öÏß³Ìµ½´ïÕ¤À¸ÔÚµÈ´ý");
+				// getNumberWaiting() è¿”å›žå½“å‰åœ¨å±éšœå¤„ç­‰å¾…çš„å‚ä¸Žè€…æ•°ç›®
+				System.out.println("å…±æœ‰ " + (barrier.getNumberWaiting() + 1) + " ä¸ªçº¿ç¨‹åˆ°è¾¾æ …æ åœ¨ç­‰å¾…");
 				/*
-				 * ±¾Ïß³Ì½«»áÔÚbarrierÉÏµÈ´ý£¬Ö±µ½ËùÓÐ²ÎÓëÕßÏß³Ì¶¼µ½´ïbarrier(¼´È«¶¼µ÷ÓÃÁËawait·½·¨)
+				 * æœ¬çº¿ç¨‹å°†ä¼šåœ¨barrierä¸Šç­‰å¾…ï¼Œç›´åˆ°æ‰€æœ‰å‚ä¸Žè€…çº¿ç¨‹éƒ½åˆ°è¾¾barrier(å³å…¨éƒ½è°ƒç”¨äº†awaitæ–¹æ³•)
 				 * <p>
-				 * Èç¹ûÈÎÒâÒ»¸öÔÚÕ¤À¸´¦µÈ´ýµÄÏß³ÌÀë¿ªÁË(±ÈÈç³¬Ê±»òÕß±»ÖÐ¶Ï)£¬ÄÇÃ´Õ¤À¸¾Í±»ÆÆ»µÁË¡£
-				 * ÄÇÑùµÄ»°£¬ËùÓÐÆäËûÏß³Ìµ÷ÓÃawait·½·¨¶¼½«Å×³öÒ»¸öBrokenBarrierException¡£
+				 * å¦‚æžœä»»æ„ä¸€ä¸ªåœ¨æ …æ å¤„ç­‰å¾…çš„çº¿ç¨‹ç¦»å¼€äº†(æ¯”å¦‚è¶…æ—¶æˆ–è€…è¢«ä¸­æ–­)ï¼Œé‚£ä¹ˆæ …æ å°±è¢«ç ´åäº†ã€‚
+				 * é‚£æ ·çš„è¯ï¼Œæ‰€æœ‰å…¶ä»–çº¿ç¨‹è°ƒç”¨awaitæ–¹æ³•éƒ½å°†æŠ›å‡ºä¸€ä¸ªBrokenBarrierExceptionã€‚
 				 */
-				int index = barrier.await();// ·µ»Øµ±Ç°µ½´ïÏß³ÌµÄË÷Òý¡£
+				int index = barrier.await();// è¿”å›žå½“å‰åˆ°è¾¾çº¿ç¨‹çš„ç´¢å¼•ã€‚
 				
-				if (index == 0) {// 0±íÊ¾×îºóÒ»¸öµ½´ï
-					System.out.println(name + " ÊÇ×îºóÒ»¸öÀ´µÄ");
-					// ÖØÖÃ CyclicBarrier ÒÔ±ã¼ÌÐøÊ¹ÓÃ
+				if (index == 0) {// 0è¡¨ç¤ºæœ€åŽä¸€ä¸ªåˆ°è¾¾
+					System.out.println(name + " æ˜¯æœ€åŽä¸€ä¸ªæ¥çš„");
+					// é‡ç½® CyclicBarrier ä»¥ä¾¿ç»§ç»­ä½¿ç”¨
 					barrier.reset();
 				}
-				// barrier.getParties() - 1 ±íÊ¾µÚÒ»¸öµ½´ï
+				// barrier.getParties() - 1 è¡¨ç¤ºç¬¬ä¸€ä¸ªåˆ°è¾¾
 				if (index == barrier.getParties() - 1) {
-					System.out.println(name + " ÊÇµÚÒ»¸öÀ´µÄ");
+					System.out.println(name + " æ˜¯ç¬¬ä¸€ä¸ªæ¥çš„");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println(name + " ×ÓÈÎÎñ½áÊø.");
+			System.out.println(name + " å­ä»»åŠ¡ç»“æŸ.");
 		}
 	}
 }

@@ -11,19 +11,19 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * ×èÈû¶ÓÁĞÑİÊ¾
+ * é˜»å¡é˜Ÿåˆ—æ¼”ç¤º
  * <p>
- * ¹¦ÄÜ£ºËÑË÷Ö¸¶¨ÎÄ¼ş¼Ğ£¨¼°Æä×ÓÎÄ¼ş¼Ğ£©ÏÂµÄÎÄ¼şÖĞ°üº¬¸ø¶¨¹Ø¼ü×ÖµÄĞÅÏ¢¡£
+ * åŠŸèƒ½ï¼šæœç´¢æŒ‡å®šæ–‡ä»¶å¤¹ï¼ˆåŠå…¶å­æ–‡ä»¶å¤¹ï¼‰ä¸‹çš„æ–‡ä»¶ä¸­åŒ…å«ç»™å®šå…³é”®å­—çš„ä¿¡æ¯ã€‚
  * <p>
- * ÏÈÍ¨¹ıÒ»¸öÏß³ÌÃ¶¾ÙÖ¸¶¨ÎÄ¼ş¼ĞÏÂµÄËùÓĞÎÄ¼ş£¬È»ºóÆô¶¯10¸öËÑË÷Ïß³ÌÍ¬Ê±Õ¹¿ªËÑË÷¡£
- * Õâ¾ÍÉæ¼°µ½Ã¶¾ÙÏß³ÌºÍËÑË÷Ïß³ÌµÄµÈ´ıÎÊÌâºÍËÑË÷Ïß³ÌÖ®¼äµÄ²¢·¢ÎÊÌâ£¨²»ÄÜÖØ¸´ËÑË÷Í¬Ò»¸öÎÄ¼ş£©¡£
- * Êµ¼ÊÉÏÃ¶¾ÙÏß³ÌÄ£ÄâµÄÊÇÉú²úÕßÏß³Ì£¬ËÑË÷Ïß³ÌÄ£ÄâµÄÊÇÏû·ÑÕßÏß³Ì¡£
+ * å…ˆé€šè¿‡ä¸€ä¸ªçº¿ç¨‹æšä¸¾æŒ‡å®šæ–‡ä»¶å¤¹ä¸‹çš„æ‰€æœ‰æ–‡ä»¶ï¼Œç„¶åå¯åŠ¨10ä¸ªæœç´¢çº¿ç¨‹åŒæ—¶å±•å¼€æœç´¢ã€‚
+ * è¿™å°±æ¶‰åŠåˆ°æšä¸¾çº¿ç¨‹å’Œæœç´¢çº¿ç¨‹çš„ç­‰å¾…é—®é¢˜å’Œæœç´¢çº¿ç¨‹ä¹‹é—´çš„å¹¶å‘é—®é¢˜ï¼ˆä¸èƒ½é‡å¤æœç´¢åŒä¸€ä¸ªæ–‡ä»¶ï¼‰ã€‚
+ * å®é™…ä¸Šæšä¸¾çº¿ç¨‹æ¨¡æ‹Ÿçš„æ˜¯ç”Ÿäº§è€…çº¿ç¨‹ï¼Œæœç´¢çº¿ç¨‹æ¨¡æ‹Ÿçš„æ˜¯æ¶ˆè´¹è€…çº¿ç¨‹ã€‚
  * <p>
- * ÔÚ±¾Ê¾ÀıÖĞ£¬³ÌĞò²»ĞèÒªÈÎºÎÏÔÊ¾µÄÏß³ÌÍ¬²½£¬¶øÊÇ½«×èÈû¶ÓÁĞÊı¾İ½á¹¹×÷ÎªÒ»ÖÖÍ¬²½»úÖÆ¡£
+ * åœ¨æœ¬ç¤ºä¾‹ä¸­ï¼Œç¨‹åºä¸éœ€è¦ä»»ä½•æ˜¾ç¤ºçš„çº¿ç¨‹åŒæ­¥ï¼Œè€Œæ˜¯å°†é˜»å¡é˜Ÿåˆ—æ•°æ®ç»“æ„ä½œä¸ºä¸€ç§åŒæ­¥æœºåˆ¶ã€‚
  *
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  *
- * ´´½¨ÈÕÆÚ£º2013-6-12
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-12
  */
 public class ArrayBlockingQueueTest {
 
@@ -31,14 +31,14 @@ public class ArrayBlockingQueueTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String dirPath = "./src";// ËÑ±¾ProjectÏÂµÄÔ´ÂëÎÄ¼ş
+		String dirPath = "./src";// æœæœ¬Projectä¸‹çš„æºç æ–‡ä»¶
 		String keyword = "Test";
 		
-		// ÈİÁ¿Îª10µÄ×èÈû¶ÓÁĞ
+		// å®¹é‡ä¸º10çš„é˜»å¡é˜Ÿåˆ—
 		BlockingQueue<File> queue = new ArrayBlockingQueue<File>(10);
-		// ÏÈÆô¶¯ÎÄ¼şÃ¶¾ÙÏß³Ì
+		// å…ˆå¯åŠ¨æ–‡ä»¶æšä¸¾çº¿ç¨‹
 		new Thread(new FileListTask(dirPath, queue)).start();
-		// Æô¶¯10¸öËÑË÷Ïß³ÌÍ¬Ê±Õ¹¿ªËÑË÷
+		// å¯åŠ¨10ä¸ªæœç´¢çº¿ç¨‹åŒæ—¶å±•å¼€æœç´¢
 		for (int i = 0; i < 10; i++) {
 			new Thread(new SearchTask(keyword, queue)).start();
 		}
@@ -46,14 +46,14 @@ public class ArrayBlockingQueueTest {
 }
 
 /**
- * ÎÄ¼şÃ¶¾ÙÈÎÎñ
+ * æ–‡ä»¶æšä¸¾ä»»åŠ¡
  */
 class FileListTask implements Runnable {
 
-	// ½áÊøÎÄ¼ş±êÖ¾
+	// ç»“æŸæ–‡ä»¶æ ‡å¿—
 	public static final File END = new File("");
 	
-	private String dirPath;// ÆğÊ¼Ä¿Â¼
+	private String dirPath;// èµ·å§‹ç›®å½•
 	private BlockingQueue<File> queue;
 	
 	public FileListTask(String dirPath, BlockingQueue<File> queue) {
@@ -65,7 +65,7 @@ class FileListTask implements Runnable {
 	public void run() {
 		try {
 			listFile(new File(dirPath));
-			queue.put(END);// ×îºó½«Õâ¸öÌØ¶¨µÄ½áÊø±êÖ¾¼ÓÈë×èÈû¶ÓÁĞ
+			queue.put(END);// æœ€åå°†è¿™ä¸ªç‰¹å®šçš„ç»“æŸæ ‡å¿—åŠ å…¥é˜»å¡é˜Ÿåˆ—
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -77,7 +77,7 @@ class FileListTask implements Runnable {
 			if (file.isDirectory()) {
 				listFile(file);
 			} else {
-				// ²»¶ÏµØ½«ÖĞ¼ä½á¹û¼ÓÈë×èÈû¶ÓÁĞ
+				// ä¸æ–­åœ°å°†ä¸­é—´ç»“æœåŠ å…¥é˜»å¡é˜Ÿåˆ—
 				queue.put(file);
 			}
 		}
@@ -85,7 +85,7 @@ class FileListTask implements Runnable {
 }
 
 /**
- * ËÑË÷ÈÎÎñ
+ * æœç´¢ä»»åŠ¡
  */
 class SearchTask implements Runnable {
 
@@ -100,12 +100,12 @@ class SearchTask implements Runnable {
 	@Override
 	public void run() {
 		try {
-			boolean complete = false;// ÊÇ·ñËùÓĞÎÄ¼ş¶¼ËÑË÷Íê±Ï
-			// ²»¶ÏµÄ´Ó×èÈû¶ÓÁĞÖĞÄÃ³öÎÄ¼ş½øĞĞËÑË÷£¬Ö±µ½È«²¿ÎÄ¼ş¶¼ËÑË÷Íê¡£
+			boolean complete = false;// æ˜¯å¦æ‰€æœ‰æ–‡ä»¶éƒ½æœç´¢å®Œæ¯•
+			// ä¸æ–­çš„ä»é˜»å¡é˜Ÿåˆ—ä¸­æ‹¿å‡ºæ–‡ä»¶è¿›è¡Œæœç´¢ï¼Œç›´åˆ°å…¨éƒ¨æ–‡ä»¶éƒ½æœç´¢å®Œã€‚
 			while (!complete) {
 				File file = queue.take();
-				if (FileListTask.END == file) {// Í¨¹ıÌØ¶¨±êÊ¶ÅĞ¶ÏÊÇ·ñÈ«²¿ËÑË÷Íê³É
-					queue.put(file);// ÕâÀïÒª°Ñ±êÊ¶ÔÙ·Å½ø¶ÓÁĞ£¬ÒÔ±ãÆäËûÏß³ÌÖªÏş
+				if (FileListTask.END == file) {// é€šè¿‡ç‰¹å®šæ ‡è¯†åˆ¤æ–­æ˜¯å¦å…¨éƒ¨æœç´¢å®Œæˆ
+					queue.put(file);// è¿™é‡Œè¦æŠŠæ ‡è¯†å†æ”¾è¿›é˜Ÿåˆ—ï¼Œä»¥ä¾¿å…¶ä»–çº¿ç¨‹çŸ¥æ™“
 					complete = true;
 				} else {
 					search(file);

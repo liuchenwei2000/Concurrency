@@ -4,14 +4,14 @@
 package concurrency;
 
 /**
- * ÔÚsynchronized¿éÖÐÊ¹ÓÃÌõ¼þÊ¾Àý
+ * åœ¨synchronizedå—ä¸­ä½¿ç”¨æ¡ä»¶ç¤ºä¾‹
  * <p>
- * ObjectÀàÖÐµÄwait()¡¢notify()¡¢notifyAll()·½·¨±»ÓÃÀ´½â¾öÍ¬²½¿éÖÐµÄÌõ¼þÎÊÌâ¡£
- * ÉÏÊöÈý¸ö·½·¨Ö»ÄÜÔÚÍ¬²½¿éÖÐµ÷ÓÃ£¬·ñÔò»áÅ×³öÒì³£¡£
+ * Objectç±»ä¸­çš„wait()ã€notify()ã€notifyAll()æ–¹æ³•è¢«ç”¨æ¥è§£å†³åŒæ­¥å—ä¸­çš„æ¡ä»¶é—®é¢˜ã€‚
+ * ä¸Šè¿°ä¸‰ä¸ªæ–¹æ³•åªèƒ½åœ¨åŒæ­¥å—ä¸­è°ƒç”¨ï¼Œå¦åˆ™ä¼šæŠ›å‡ºå¼‚å¸¸ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ7ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ7æ—¥
  */
 public class SynBlockWithConditionTest {
 	
@@ -26,18 +26,18 @@ public class SynBlockWithConditionTest {
 	
 	public void add(int amount) {
 		synchronized (this) {
-			// ²¢·¢Ê±Ìõ¼þÅÐ¶ÏµÄµäÐÍ´úÂë½á¹¹
+			// å¹¶å‘æ—¶æ¡ä»¶åˆ¤æ–­çš„å…¸åž‹ä»£ç ç»“æž„
 			while (balance + amount > MAX_BALANCE) {
 				try {
-					// JVM»á½«µ±Ç°Ïß³Ì¹ÒÆð£¨Ö±µ½³¬Ê±»ò±»»½ÐÑ£©²¢ÊÍ·ÅËü³ÖÓÐµÄ¶ÔÏóËø£¬´Ó¶øÔÊÐíÆäËûÏß³ÌÖ´ÐÐ¸Ã¶ÔÏóµÄÍ¬²½¿é´úÂë¡£
-					// µ±Ïß³Ì±»»½ÐÑÊ±£¨ÆäËûÏß³Ìµ÷ÓÃÁËnotify()»ònotifyAll()·½·¨Ê±£©£¬Ëü»áÏÈÕùÈ¡»ñµÃ¶ÔÏóËø£¬È»ºóÔÙ¼ì²éÌõ¼þÊÇ·ñÂú×ã¡£
+					// JVMä¼šå°†å½“å‰çº¿ç¨‹æŒ‚èµ·ï¼ˆç›´åˆ°è¶…æ—¶æˆ–è¢«å”¤é†’ï¼‰å¹¶é‡Šæ”¾å®ƒæŒæœ‰çš„å¯¹è±¡é”ï¼Œä»Žè€Œå…è®¸å…¶ä»–çº¿ç¨‹æ‰§è¡Œè¯¥å¯¹è±¡çš„åŒæ­¥å—ä»£ç ã€‚
+					// å½“çº¿ç¨‹è¢«å”¤é†’æ—¶ï¼ˆå…¶ä»–çº¿ç¨‹è°ƒç”¨äº†notify()æˆ–notifyAll()æ–¹æ³•æ—¶ï¼‰ï¼Œå®ƒä¼šå…ˆäº‰å–èŽ·å¾—å¯¹è±¡é”ï¼Œç„¶åŽå†æ£€æŸ¥æ¡ä»¶æ˜¯å¦æ»¡è¶³ã€‚
 					wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 			balance += amount;
-			// »½ÐÑÆäËûËùÓÐÏß³Ì£¬notify()·½·¨»áËæ»ú»½ÐÑÄ³Ò»¸öÏß³Ì
+			// å”¤é†’å…¶ä»–æ‰€æœ‰çº¿ç¨‹ï¼Œnotify()æ–¹æ³•ä¼šéšæœºå”¤é†’æŸä¸€ä¸ªçº¿ç¨‹
 			notifyAll();
 		}
 	}

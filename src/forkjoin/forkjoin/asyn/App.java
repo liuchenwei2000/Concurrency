@@ -8,11 +8,11 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ÔÚÖ¸¶¨Ä¿Â¼ÖĞ²éÕÒ¾ßÓĞÖ¸¶¨À©Õ¹ÃûµÄÎÄ¼şÊ¾Àı
+ * åœ¨æŒ‡å®šç›®å½•ä¸­æŸ¥æ‰¾å…·æœ‰æŒ‡å®šæ‰©å±•åçš„æ–‡ä»¶ç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class App {
 
@@ -26,7 +26,7 @@ public class App {
 		FileProcessor webTask = new FileProcessor("E:/Programs/Web","java");
 		
 		ForkJoinPool pool = new ForkJoinPool();
-		// Òì²½Ö´ĞĞËÄ¸öÈÎÎñ
+		// å¼‚æ­¥æ‰§è¡Œå››ä¸ªä»»åŠ¡
 		pool.execute(noteTask);
 		pool.execute(techTask);
 		pool.execute(toysTask);
@@ -49,7 +49,7 @@ public class App {
 		
 		pool.shutdown();
 		
-		// »ñÈ¡Ã¿¸öÈÎÎñµÄ½á¹û
+		// è·å–æ¯ä¸ªä»»åŠ¡çš„ç»“æœ
 		List<String> results = noteTask.join();
 		System.out.printf("Note : %d files found.\n", results.size());
 		results = techTask.join();

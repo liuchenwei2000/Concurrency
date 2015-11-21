@@ -6,17 +6,17 @@ package concurrency.atomic;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
 /**
- * ¿ÉÒÔÓÃÔ­×Ó·½Ê½¸üĞÂÆäÔªËØµÄÊı×éÊ¾Àı
+ * å¯ä»¥ç”¨åŸå­æ–¹å¼æ›´æ–°å…¶å…ƒç´ çš„æ•°ç»„ç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ21ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ21æ—¥
  */
 public class AtomicArrayTest {
 
 	/**
-	 * ¶ÔÓÚÍ¬Ò»¸öAtomicIntegerArrayÖĞµÄÔªËØ£¬Ê¹ÓÃ100¸öÏß³Ì½«ÆäÄÚÔªËØÖ´ĞĞ +1 ²Ù×÷£¬ÁíÍâ100¸öÏß³ÌÖ´ĞĞ -1 ²Ù×÷¡£
-	 * ¿´×îºóAtomicIntegerArrayµÄÔªËØÊÇ·ñ»¹ÊÇ³õÊ¼Öµ 100£¬Èç¹û¶¼»¹ÊÇ100ÔòÖ¤Ã÷ AtomicIntegerArray ¿ÉÒÔÓÃÔ­×Ó·½Ê½¸üĞÂÆäÔªËØ¡£
+	 * å¯¹äºåŒä¸€ä¸ªAtomicIntegerArrayä¸­çš„å…ƒç´ ï¼Œä½¿ç”¨100ä¸ªçº¿ç¨‹å°†å…¶å†…å…ƒç´ æ‰§è¡Œ +1 æ“ä½œï¼Œå¦å¤–100ä¸ªçº¿ç¨‹æ‰§è¡Œ -1 æ“ä½œã€‚
+	 * çœ‹æœ€åAtomicIntegerArrayçš„å…ƒç´ æ˜¯å¦è¿˜æ˜¯åˆå§‹å€¼ 100ï¼Œå¦‚æœéƒ½è¿˜æ˜¯100åˆ™è¯æ˜ AtomicIntegerArray å¯ä»¥ç”¨åŸå­æ–¹å¼æ›´æ–°å…¶å…ƒç´ ã€‚
 	 */
 	public static void main(String[] args) {
 		int threadsNumber = 100;
@@ -24,12 +24,12 @@ public class AtomicArrayTest {
 		Thread[] threads1 = new Thread[threadsNumber];
 		Thread[] threads2 = new Thread[threadsNumber];
 		
-		// ´´½¨Ô­×ÓÕûĞÎÊı×é£¬ÁíÍâ»¹ÓĞ AtomicLongArray ¹©Ê¹ÓÃ
+		// åˆ›å»ºåŸå­æ•´å½¢æ•°ç»„ï¼Œå¦å¤–è¿˜æœ‰ AtomicLongArray ä¾›ä½¿ç”¨
 		AtomicIntegerArray array = new AtomicIntegerArray(1000);
 		for (int i = 0; i < array.length(); i++) {
-			array.set(i, 100);// ÉèÖÃÊı×éÖ¸¶¨Î»ÖÃµÄÔªËØÖµ
+			array.set(i, 100);// è®¾ç½®æ•°ç»„æŒ‡å®šä½ç½®çš„å…ƒç´ å€¼
 		}
-		// ·Ö±ğÆô¶¯100¸öÏß³ÌÖ´ĞĞµİÔöºÍµİ¼õ²Ù×÷
+		// åˆ†åˆ«å¯åŠ¨100ä¸ªçº¿ç¨‹æ‰§è¡Œé€’å¢å’Œé€’å‡æ“ä½œ
 		for (int i = 0; i < threadsNumber; i++) {
 			threads1[i] = new Thread(new Incrementer(array));
 			threads2[i] = new Thread(new Decrementer(array));
@@ -37,7 +37,7 @@ public class AtomicArrayTest {
 			threads1[i].start();
 			threads2[i].start();
 		}
-		// µÈ´ıÏß³ÌÈ«²¿½áÊø
+		// ç­‰å¾…çº¿ç¨‹å…¨éƒ¨ç»“æŸ
 		for (int i = 0; i < threadsNumber; i++) {
 			try {
 				threads1[i].join();
@@ -48,8 +48,8 @@ public class AtomicArrayTest {
 		}
 
 		for (int i = 0; i < array.length(); i++) {
-			// »ñÈ¡Êı×éÖĞÖ¸¶¨Î»ÖÃµÄÔªËØ
-			if (array.get(i) != 100) {// Èç¹ûÔªËØÖµ²»µÈÓÚ³õÊ¼ÖµÔòËµÃ÷³öÏÖÁËÊı¾İ²»Ò»ÖÂ
+			// è·å–æ•°ç»„ä¸­æŒ‡å®šä½ç½®çš„å…ƒç´ 
+			if (array.get(i) != 100) {// å¦‚æœå…ƒç´ å€¼ä¸ç­‰äºåˆå§‹å€¼åˆ™è¯´æ˜å‡ºç°äº†æ•°æ®ä¸ä¸€è‡´
 				System.out.println("Array[" + i + "] : " + array.get(i));
 			}
 		}
@@ -58,7 +58,7 @@ public class AtomicArrayTest {
 	}
 
 	/**
-	 * µİÔöÆ÷
+	 * é€’å¢å™¨
 	 */
 	private static class Incrementer implements Runnable {
 
@@ -70,15 +70,15 @@ public class AtomicArrayTest {
 
 		@Override
 		public void run() {
-			// ¶ÔÊı×éÖĞµÄÃ¿Ò»¸öÔªËØ¶¼ +1
+			// å¯¹æ•°ç»„ä¸­çš„æ¯ä¸€ä¸ªå…ƒç´ éƒ½ +1
 			for (int i = 0; i < array.length(); i++) {
-				array.getAndIncrement(i);// ÒÔÔ­×Ó·½Ê½½«Ë÷Òı i µÄÔªËØ¼Ó 1
+				array.getAndIncrement(i);// ä»¥åŸå­æ–¹å¼å°†ç´¢å¼• i çš„å…ƒç´ åŠ  1
 			}
 		}
 	}
 
 	/**
-	 * µİ¼õÆ÷
+	 * é€’å‡å™¨
 	 */
 	private static class Decrementer implements Runnable {
 
@@ -90,9 +90,9 @@ public class AtomicArrayTest {
 
 		@Override
 		public void run() {
-			// ¶ÔÊı×éÖĞµÄÃ¿Ò»¸öÔªËØ¶¼ -1
+			// å¯¹æ•°ç»„ä¸­çš„æ¯ä¸€ä¸ªå…ƒç´ éƒ½ -1
 			for (int i = 0; i < array.length(); i++) {
-				array.getAndDecrement(i);// ÒÔÔ­×Ó·½Ê½½«Ë÷Òı i µÄÔªËØ¼õ 1
+				array.getAndDecrement(i);// ä»¥åŸå­æ–¹å¼å°†ç´¢å¼• i çš„å…ƒç´ å‡ 1
 			}
 		}
 	}

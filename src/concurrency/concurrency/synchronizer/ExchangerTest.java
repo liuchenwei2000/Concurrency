@@ -8,21 +8,21 @@ import java.util.concurrent.Exchanger;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ExchangerÊ¾Àı
+ * Exchangerç¤ºä¾‹
  * <p>
- * Exchanger ÔÊĞíÎªÁ½¸öÏß³Ì¶¨ÒåÒ»¸öÍ¬²½µã£¨synchronization point£©¡£µ±ÕâÁ½¸öÏß³Ì¶¼µ½´ïÍ¬²½µãÊ±£¬ËüÃÇ»á½»»»Êı¾İ½á¹¹¡£
- * Ã¿¸öÏß³ÌÍ¨¹ıexchange()·½·¨µÄ²ÎÊıÌá¹©Êı¾İ¸ø»ï°éÏß³Ì£¬²¢½ÓÊÕ»ï°éÏß³ÌÌá¹©µÄÊı¾İ£¬È»ºó·µ»Ø¡£
- * µ±Á½¸öÏß³ÌÍ¨¹ıExchanger½»»»ÁËÊı¾İ£¬Õâ¸ö½»»»¶ÔÓÚÁ½¸öÏß³ÌÀ´Ëµ¶¼ÊÇ°²È«µÄ¡£ 
- * »»¾ä»°ËµExchangerÌá¹©µÄÊÇÒ»¸ö½»»»·şÎñ£¬ÔÊĞíÔ­×ÓĞÔµÄ½»»»Á½¸ö(¶à¸ö)¶ÔÏó£¬µ«Í¬Ê±Ö»ÓĞÒ»¶Ô²Å»á³É¹¦¡£
+ * Exchanger å…è®¸ä¸ºä¸¤ä¸ªçº¿ç¨‹å®šä¹‰ä¸€ä¸ªåŒæ­¥ç‚¹ï¼ˆsynchronization pointï¼‰ã€‚å½“è¿™ä¸¤ä¸ªçº¿ç¨‹éƒ½åˆ°è¾¾åŒæ­¥ç‚¹æ—¶ï¼Œå®ƒä»¬ä¼šäº¤æ¢æ•°æ®ç»“æ„ã€‚
+ * æ¯ä¸ªçº¿ç¨‹é€šè¿‡exchange()æ–¹æ³•çš„å‚æ•°æä¾›æ•°æ®ç»™ä¼™ä¼´çº¿ç¨‹ï¼Œå¹¶æ¥æ”¶ä¼™ä¼´çº¿ç¨‹æä¾›çš„æ•°æ®ï¼Œç„¶åè¿”å›ã€‚
+ * å½“ä¸¤ä¸ªçº¿ç¨‹é€šè¿‡Exchangeräº¤æ¢äº†æ•°æ®ï¼Œè¿™ä¸ªäº¤æ¢å¯¹äºä¸¤ä¸ªçº¿ç¨‹æ¥è¯´éƒ½æ˜¯å®‰å…¨çš„ã€‚ 
+ * æ¢å¥è¯è¯´Exchangeræä¾›çš„æ˜¯ä¸€ä¸ªäº¤æ¢æœåŠ¡ï¼Œå…è®¸åŸå­æ€§çš„äº¤æ¢ä¸¤ä¸ª(å¤šä¸ª)å¯¹è±¡ï¼Œä½†åŒæ—¶åªæœ‰ä¸€å¯¹æ‰ä¼šæˆåŠŸã€‚
  * <p>
- * ExchangerÀà·½±ãÁËÁ½¸ö¹²Í¬²Ù×÷Ïß³ÌÖ®¼äµÄË«Ïò½»»»¡£
- * ¾ÍÏñ¾ßÓĞ¼ÆÊıÎª 2µÄ CyclicBarrier£¬²¢ÇÒÁ½¸öÏß³ÌÔÚ¶¼µ½´ïÆÁÕÏÊ±¿ÉÒÔ½»»»Ò»Ğ©×´Ì¬¡£
+ * Exchangerç±»æ–¹ä¾¿äº†ä¸¤ä¸ªå…±åŒæ“ä½œçº¿ç¨‹ä¹‹é—´çš„åŒå‘äº¤æ¢ã€‚
+ * å°±åƒå…·æœ‰è®¡æ•°ä¸º 2çš„ CyclicBarrierï¼Œå¹¶ä¸”ä¸¤ä¸ªçº¿ç¨‹åœ¨éƒ½åˆ°è¾¾å±éšœæ—¶å¯ä»¥äº¤æ¢ä¸€äº›çŠ¶æ€ã€‚
  * <p>
- * ExchangerÍ¨³£ÓÃÓÚÒ»¸öÏß³ÌÌî³ä»º³å£¬¶øÁíÒ»¸öÏß³ÌÇå¿Õ»º³åµÄÇé¿ö¡£µ±Á½¸öÏß³ÌÔÚÆÁÕÏ´¦¼¯ºÏÊ±£¬ËüÃÇ½»»»»º³å¡£
+ * Exchangeré€šå¸¸ç”¨äºä¸€ä¸ªçº¿ç¨‹å¡«å……ç¼“å†²ï¼Œè€Œå¦ä¸€ä¸ªçº¿ç¨‹æ¸…ç©ºç¼“å†²çš„æƒ…å†µã€‚å½“ä¸¤ä¸ªçº¿ç¨‹åœ¨å±éšœå¤„é›†åˆæ—¶ï¼Œå®ƒä»¬äº¤æ¢ç¼“å†²ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-26
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-26
  */
 public class ExchangerTest {
 
@@ -44,10 +44,10 @@ public class ExchangerTest {
 	}
 	
 	/**
-	 * Ìî³ä»º³åÇøÈÎÎñ
+	 * å¡«å……ç¼“å†²åŒºä»»åŠ¡
 	 * <p>
-	 * Ê¹ÓÃ Exchanger ÔÚÏß³Ì¼ä½»»»»º³åÇø£¬ÔÚĞèÒªÊ±Ìî³ä»º³åÇøµÄÏß³Ì»ñÈ¡
-	 * Ò»¸öĞÂÇå¿ÕµÄ»º³åÇø£¬²¢½«ÌîÂúµÄ»º³åÇø´«µİ¸øÌÚ¿Õ»º³åÇøµÄÏß³Ì¡£
+	 * ä½¿ç”¨ Exchanger åœ¨çº¿ç¨‹é—´äº¤æ¢ç¼“å†²åŒºï¼Œåœ¨éœ€è¦æ—¶å¡«å……ç¼“å†²åŒºçš„çº¿ç¨‹è·å–
+	 * ä¸€ä¸ªæ–°æ¸…ç©ºçš„ç¼“å†²åŒºï¼Œå¹¶å°†å¡«æ»¡çš„ç¼“å†²åŒºä¼ é€’ç»™è…¾ç©ºç¼“å†²åŒºçš„çº¿ç¨‹ã€‚
 	 */
 	private static class FillingLoop implements Runnable {
 		
@@ -66,13 +66,13 @@ public class ExchangerTest {
 				while (currentBuffer != null) {
 					if (currentBuffer.isFull()) {
 						/*
-						 * µÈ´ıÁíÒ»¸öÏß³Ìµ½´ïÍ¬²½µã£¬È»ºó½«¸ø¶¨µÄ¶ÔÏó(±¾ÀıDataBuffer)´«¸ø¸ÃÏß³Ì£¬²¢½ÓÊÜ¸ÃÏß³ÌµÄ¶ÔÏó¡£
-						 * Èç¹û»¹Ã»ÓĞÆäËûÏß³ÌÔÚ½»»»µãµÈ´ı£¬Ôòµ±Ç°Ïß³Ì»á´¦ÓÚĞİÃß×´Ì¬µÈ´ı¡£
+						 * ç­‰å¾…å¦ä¸€ä¸ªçº¿ç¨‹åˆ°è¾¾åŒæ­¥ç‚¹ï¼Œç„¶åå°†ç»™å®šçš„å¯¹è±¡(æœ¬ä¾‹DataBuffer)ä¼ ç»™è¯¥çº¿ç¨‹ï¼Œå¹¶æ¥å—è¯¥çº¿ç¨‹çš„å¯¹è±¡ã€‚
+						 * å¦‚æœè¿˜æ²¡æœ‰å…¶ä»–çº¿ç¨‹åœ¨äº¤æ¢ç‚¹ç­‰å¾…ï¼Œåˆ™å½“å‰çº¿ç¨‹ä¼šå¤„äºä¼‘çœ çŠ¶æ€ç­‰å¾…ã€‚
 						 * 
-						 * ¸Ã·½·¨µÄ²ÎÊıÊÇÒª½»»»µÄ¶ÔÏó£¬·µ»ØµÄÊÇÁíÒ»¸öÏß³ÌÌá¹©µÄ¶ÔÏó¡£
+						 * è¯¥æ–¹æ³•çš„å‚æ•°æ˜¯è¦äº¤æ¢çš„å¯¹è±¡ï¼Œè¿”å›çš„æ˜¯å¦ä¸€ä¸ªçº¿ç¨‹æä¾›çš„å¯¹è±¡ã€‚
 						 */
 						currentBuffer = exchanger.exchange(currentBuffer);
-						System.out.println("FillingLoop£ºbuffer is full. exchange an empty one.");
+						System.out.println("FillingLoopï¼šbuffer is full. exchange an empty one.");
 					}
 					addToBuffer(currentBuffer);
 				}
@@ -85,12 +85,12 @@ public class ExchangerTest {
 			double d = Math.random() * 1000;
 			Thread.sleep((long) d);
 			currentBuffer.add(d + "");
-			System.out.println("FillingLoop£ºadd " + d);
+			System.out.println("FillingLoopï¼šadd " + d);
 		}
 	}
 	
 	/**
-	 * Çå¿Õ»º³åÇøÈÎÎñ
+	 * æ¸…ç©ºç¼“å†²åŒºä»»åŠ¡
 	 */
 	private static class EmptyingLoop implements Runnable {
 
@@ -109,7 +109,7 @@ public class ExchangerTest {
 				while (currentBuffer != null) {
 					if (currentBuffer.isEmpty()) {
 						currentBuffer = exchanger.exchange(currentBuffer);
-						System.out.println("EmptyingLoop£ºbuffer is empty. exchange a full one.");
+						System.out.println("EmptyingLoopï¼šbuffer is empty. exchange a full one.");
 					}
 					takeFromBuffer(currentBuffer);
 				}
@@ -121,7 +121,7 @@ public class ExchangerTest {
 		private void takeFromBuffer(DataBuffer currentBuffer) throws InterruptedException {
 			double d = Math.random() * 1000;
 			Thread.sleep((long) d);
-			System.out.println("EmptyingLoop£ºtake " + currentBuffer.take());
+			System.out.println("EmptyingLoopï¼štake " + currentBuffer.take());
 		}
 	}
 	

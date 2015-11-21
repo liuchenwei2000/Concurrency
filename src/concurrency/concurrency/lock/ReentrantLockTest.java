@@ -6,13 +6,13 @@ package concurrency.lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ReentrantLockÊ¾Àı
+ * ReentrantLockç¤ºä¾‹
  * <p>
- * ReentrantLockÊÇ¿ÉÖØÈëµÄËø¡£
+ * ReentrantLockæ˜¯å¯é‡å…¥çš„é”ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-8
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-8
  */
 public class ReentrantLockTest {
 
@@ -24,12 +24,12 @@ public class ReentrantLockTest {
 		try {
 			showThreadHoldCount("test() add lock...");
 			/*
-			 * ÒòÎªÏß³ÌÄÜ¹»ÖØ¸´µÄ»ñÈ¡ËüÒÑ¾­ÓµÓĞµÄËø£¬ Ëø¶ÔÏóÎ¬»¤Ò»¸ö³ÖÓĞ¼ÆÊıÀ´×·×Ù¶Ôlock·½·¨µÄÇ¶Ì×µ÷ÓÃ¡£
-			 * Ïß³ÌÔÚÃ¿´Îµ÷ÓÃlockºó¶¼Òªµ÷ÓÃunlockÀ´ÊÍ·ÅËø£¬ÓÉÓÚÕâ¸öÌØĞÔ£¬±»Ò»¸öËø±£»¤µÄ´úÂë¿ÉÒÔµ÷ÓÃÁíÒ»¸öÊ¹ÓÃÏàÍ¬Ëø±£»¤µÄ·½·¨¡£ 
+			 * å› ä¸ºçº¿ç¨‹èƒ½å¤Ÿé‡å¤çš„è·å–å®ƒå·²ç»æ‹¥æœ‰çš„é”ï¼Œ é”å¯¹è±¡ç»´æŠ¤ä¸€ä¸ªæŒæœ‰è®¡æ•°æ¥è¿½è¸ªå¯¹lockæ–¹æ³•çš„åµŒå¥—è°ƒç”¨ã€‚
+			 * çº¿ç¨‹åœ¨æ¯æ¬¡è°ƒç”¨lockåéƒ½è¦è°ƒç”¨unlockæ¥é‡Šæ”¾é”ï¼Œç”±äºè¿™ä¸ªç‰¹æ€§ï¼Œè¢«ä¸€ä¸ªé”ä¿æŠ¤çš„ä»£ç å¯ä»¥è°ƒç”¨å¦ä¸€ä¸ªä½¿ç”¨ç›¸åŒé”ä¿æŠ¤çš„æ–¹æ³•ã€‚ 
 			 * 
-			 * ÔËĞĞÔ­ÀíÈçÏÂ£º
-			 * test·½·¨µ÷ÓÃanotherMethod·½·¨£¬¶øanotherMethod·½·¨Ò²»áËø×¡lock¶ÔÏó£¬ÏÖÔÚ¸Ãlock¶ÔÏóµÄ³ÖÓĞÊıÊÇ2¡£
-			 * µ±anotherMethod·½·¨ÍË³öºó£¬³ÖÓĞÊı±ä»Ø1£¬µ±test·½·¨ÍË³öºó£¬³ÖÓĞÊı±à³Ì0£¬Ïß³Ì¾Í°ÑËøÊÍ·ÅÁË¡£
+			 * è¿è¡ŒåŸç†å¦‚ä¸‹ï¼š
+			 * testæ–¹æ³•è°ƒç”¨anotherMethodæ–¹æ³•ï¼Œè€ŒanotherMethodæ–¹æ³•ä¹Ÿä¼šé”ä½lockå¯¹è±¡ï¼Œç°åœ¨è¯¥lockå¯¹è±¡çš„æŒæœ‰æ•°æ˜¯2ã€‚
+			 * å½“anotherMethodæ–¹æ³•é€€å‡ºåï¼ŒæŒæœ‰æ•°å˜å›1ï¼Œå½“testæ–¹æ³•é€€å‡ºåï¼ŒæŒæœ‰æ•°ç¼–ç¨‹0ï¼Œçº¿ç¨‹å°±æŠŠé”é‡Šæ”¾äº†ã€‚
 			 */
 			anotherMethod();
 			showThreadHoldCount("anotherMethod() done...");
@@ -56,7 +56,7 @@ public class ReentrantLockTest {
 	private void showThreadHoldCount(String msg){
 		System.out.println(msg);
 		Thread t = Thread.currentThread();
-		// ²éÑ¯µ±Ç°Ïß³Ì±£³Ö´ËËøµÄ´ÎÊı¡£
+		// æŸ¥è¯¢å½“å‰çº¿ç¨‹ä¿æŒæ­¤é”çš„æ¬¡æ•°ã€‚
 		int holdCount = lock.getHoldCount();
 		System.out.println(t.getName() + " holds lock count=" + holdCount);
 	}

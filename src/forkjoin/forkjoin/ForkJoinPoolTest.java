@@ -10,13 +10,13 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
 
 /**
- * ForkJoinPoolÊ¾Àı
+ * ForkJoinPoolç¤ºä¾‹
  * <p>
- * ±¾ÀıÖ÷Òª½²ÊöForkJoinPoolÓëÆäËûExecutorServiceµÄ²»Í¬Ö®´¦¡£
+ * æœ¬ä¾‹ä¸»è¦è®²è¿°ForkJoinPoolä¸å…¶ä»–ExecutorServiceçš„ä¸åŒä¹‹å¤„ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ25ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ25æ—¥
  */
 public class ForkJoinPoolTest {
 
@@ -24,25 +24,25 @@ public class ForkJoinPoolTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Í¨¹ıÖ¸¶¨²¢ĞĞÊı´´½¨ForkJoinPoolÊµÀı
+		// é€šè¿‡æŒ‡å®šå¹¶è¡Œæ•°åˆ›å»ºForkJoinPoolå®ä¾‹
 		ForkJoinPool pool = new ForkJoinPool(5);
-		// Ö´ĞĞForkJoinTask£¬»áÊ¹ÓÃ¹¤×÷ÇÔÈ¡Ëã·¨
+		// æ‰§è¡ŒForkJoinTaskï¼Œä¼šä½¿ç”¨å·¥ä½œçªƒå–ç®—æ³•
 		pool.execute(new MyForkJoinTask());
-		// Ö´ĞĞRunnable£¬²»»áÊ¹ÓÃ¹¤×÷ÇÔÈ¡Ëã·¨£¬¹ı³ÌÓëÆäËûExecutorServiceÀàËÆ¡£
+		// æ‰§è¡ŒRunnableï¼Œä¸ä¼šä½¿ç”¨å·¥ä½œçªƒå–ç®—æ³•ï¼Œè¿‡ç¨‹ä¸å…¶ä»–ExecutorServiceç±»ä¼¼ã€‚
 		pool.execute(new MyRunnableTask());
 		
-		// Óë execute(ForkJoinTask)²»Í¬µÄÊÇ£ºinvoke(ForkJoinTask)ÊÇÍ¬²½µ÷ÓÃ£¬Ö±µ½ForkJoinTaskÔËĞĞ½áÊøinvoke·½·¨²Å»á·µ»Ø¡£
+		// ä¸ execute(ForkJoinTask)ä¸åŒçš„æ˜¯ï¼šinvoke(ForkJoinTask)æ˜¯åŒæ­¥è°ƒç”¨ï¼Œç›´åˆ°ForkJoinTaskè¿è¡Œç»“æŸinvokeæ–¹æ³•æ‰ä¼šè¿”å›ã€‚
 		pool.invoke(new MyForkJoinTask());
 		
 		try {
-			// ÒòÎªForkJoinPoolÊµÏÖÁËExecutorService½Ó¿Ú£¬ËùÒÔÒ²ÊµÏÖÁËÏÂÃæµÄÁ½¸ö·½·¨£¬ÕâÁ½¸ö·½·¨Ò²²»»áÊ¹ÓÃ¹¤×÷ÇÔÈ¡Ëã·¨¡£
+			// å› ä¸ºForkJoinPoolå®ç°äº†ExecutorServiceæ¥å£ï¼Œæ‰€ä»¥ä¹Ÿå®ç°äº†ä¸‹é¢çš„ä¸¤ä¸ªæ–¹æ³•ï¼Œè¿™ä¸¤ä¸ªæ–¹æ³•ä¹Ÿä¸ä¼šä½¿ç”¨å·¥ä½œçªƒå–ç®—æ³•ã€‚
 			pool.invokeAll(Arrays.asList(new MyCallableTask()));
 			pool.invokeAny(Arrays.asList(new MyCallableTask()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// ¿ÉÒÔÊ¹ÓÃForkJoinTask.adapt·½·¨½«´«Í³µÄRunnable»òCallableÈÎÎñÊÊÅä³ÉForkJoinTask
+		// å¯ä»¥ä½¿ç”¨ForkJoinTask.adaptæ–¹æ³•å°†ä¼ ç»Ÿçš„Runnableæˆ–Callableä»»åŠ¡é€‚é…æˆForkJoinTask
 		pool.execute(ForkJoinTask.adapt(new MyRunnableTask()));
 		pool.execute(ForkJoinTask.adapt(new MyCallableTask()));
 	}

@@ -7,13 +7,13 @@ import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ¼à¿Ø Phaser ¶ÔÏóÊ¾Àı
+ * ç›‘æ§ Phaser å¯¹è±¡ç¤ºä¾‹
  * <p>
- * ÑİÊ¾ Phaser ¶ÔÏóËùÄÜÌá¹©µÄ×´Ì¬ĞÅÏ¢ÒÔ¼°ÈçºÎ»ñÈ¡ËüÃÇ¡£
+ * æ¼”ç¤º Phaser å¯¹è±¡æ‰€èƒ½æä¾›çš„çŠ¶æ€ä¿¡æ¯ä»¥åŠå¦‚ä½•è·å–å®ƒä»¬ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ26ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ26æ—¥
  */
 public class MonitoringPhaserTest {
 
@@ -29,13 +29,13 @@ public class MonitoringPhaserTest {
 		
 		for (int i = 0; i < 10; i++) {
 			System.out.printf("********************\n");
-			// ·µ»Ø Phaser ¶ÔÏóµÄµ±Ç°½×¶ÎÊı
+			// è¿”å› Phaser å¯¹è±¡çš„å½“å‰é˜¶æ®µæ•°
 			System.out.printf("Main: Phaser: Phase: %d\n", phaser.getPhase());
-			// ·µ»Ø×¢²áµ½ Phaser ¶ÔÏóÖĞµÄÈÎÎñÊı
+			// è¿”å›æ³¨å†Œåˆ° Phaser å¯¹è±¡ä¸­çš„ä»»åŠ¡æ•°
 			System.out.printf("Main: Phaser: Registered Parties: %d\n", phaser.getRegisteredParties());
-			// ·µ»ØÒÑ½áÊøµ±Ç°½×¶Î£¨µÈ´ıÏÂÒ»½×¶Î¿ªÊ¼£©µÄÈÎÎñÊı
+			// è¿”å›å·²ç»“æŸå½“å‰é˜¶æ®µï¼ˆç­‰å¾…ä¸‹ä¸€é˜¶æ®µå¼€å§‹ï¼‰çš„ä»»åŠ¡æ•°
 			System.out.printf("Main: Phaser: Arrived Parties: %d\n", phaser.getArrivedParties());
-			// ·µ»ØÉĞÎ´½áÊøµ±Ç°½×¶ÎµÄÈÎÎñÊı
+			// è¿”å›å°šæœªç»“æŸå½“å‰é˜¶æ®µçš„ä»»åŠ¡æ•°
 			System.out.printf("Main: Phaser: Unarrived Parties: %d\n", phaser.getUnarrivedParties());
 			System.out.printf("********************\n");
 			
@@ -48,7 +48,7 @@ public class MonitoringPhaserTest {
 	}
 
 	/**
-	 * Ò»¸öÊ¹ÓÃ Phaser ¶ÔÏó¿ØÖÆ½×¶ÎÍ¬²½µÄÈÎÎñ
+	 * ä¸€ä¸ªä½¿ç”¨ Phaser å¯¹è±¡æ§åˆ¶é˜¶æ®µåŒæ­¥çš„ä»»åŠ¡
 	 */
 	private static class Task implements Runnable {
 
@@ -61,7 +61,7 @@ public class MonitoringPhaserTest {
 		}
 
 		/**
-		 * Ã¿¸ö½×¶ÎË¯ÃßÖ¸¶¨time£¬¹²Èı´Î
+		 * æ¯ä¸ªé˜¶æ®µç¡çœ æŒ‡å®štimeï¼Œå…±ä¸‰æ¬¡
 		 */
 		@Override
 		public void run() {
@@ -80,7 +80,7 @@ public class MonitoringPhaserTest {
 			System.out.printf("%s: Entering phase 3.\n", Thread.currentThread().getName());
 			sleep();
 			System.out.printf("%s: Finishing phase 3.\n", Thread.currentThread().getName());
-			phaser.arriveAndDeregister();// ×îºóÒ»´ÎÔÚ Phaser ÖĞ×¢Ïú
+			phaser.arriveAndDeregister();// æœ€åä¸€æ¬¡åœ¨ Phaser ä¸­æ³¨é”€
 		}
 		
 		private void sleep(){

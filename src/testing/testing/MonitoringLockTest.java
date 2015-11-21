@@ -9,13 +9,13 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ¼à¿ØËø¶ÔÏóÊ¾Àı
+ * ç›‘æ§é”å¯¹è±¡ç¤ºä¾‹
  * <p>
- * ÑİÊ¾ Lock ¶ÔÏóËùÄÜÌá¹©µÄĞÅÏ¢ÒÔ¼°ÈçºÎ»ñÈ¡ËüÃÇ¡£
+ * æ¼”ç¤º Lock å¯¹è±¡æ‰€èƒ½æä¾›çš„ä¿¡æ¯ä»¥åŠå¦‚ä½•è·å–å®ƒä»¬ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ26ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ26æ—¥
  */
 public class MonitoringLockTest {
 
@@ -23,7 +23,7 @@ public class MonitoringLockTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// 5¸öÏß³Ì¾ºÕùÍ¬Ò»¸öËø
+		// 5ä¸ªçº¿ç¨‹ç«äº‰åŒä¸€ä¸ªé”
 		MyLock lock = new MyLock();
 		
 		Thread[] threads = new Thread[5];
@@ -33,14 +33,14 @@ public class MonitoringLockTest {
 			threads[i].start();
 		}
 		
-		// ¼à¿Ø15ÃëÄÚËøµÄ»ñÈ¡/ÊÍ·ÅÇé¿ö
+		// ç›‘æ§15ç§’å†…é”çš„è·å–/é‡Šæ”¾æƒ…å†µ
 		for (int i=0; i<15; i++) {
 			System.out.printf("************************\n");
 			System.out.printf("Lock: Owner : %s\n", lock.getOwnerName());
 			System.out.printf("Lock: Queued Threads: %s\n", lock.hasQueuedThreads());
 			
-			if (lock.hasQueuedThreads()) {// ÊÇ·ñ»¹ÓĞÏß³ÌÔÚµÈ´ı»ñµÃËø
-				// ·µ»ØµÈ´ı»ñµÃËøµÄÏß³ÌÊıÁ¿
+			if (lock.hasQueuedThreads()) {// æ˜¯å¦è¿˜æœ‰çº¿ç¨‹åœ¨ç­‰å¾…è·å¾—é”
+				// è¿”å›ç­‰å¾…è·å¾—é”çš„çº¿ç¨‹æ•°é‡
 				System.out.printf("Lock: Queue Length: %d\n", lock.getQueueLength());
 				System.out.printf("Lock: Queued Threads: ");
 				
@@ -51,8 +51,8 @@ public class MonitoringLockTest {
 				System.out.printf("\n");
 			}
 			
-			System.out.printf("Lock: Fairness: %s\n", lock.isFair());// ËøÊÇ·ñÊÇ¹«Æ½Ä£Ê½
-			System.out.printf("Lock: Locked: %s\n", lock.isLocked());// ËøÊÇ·ñ±»Ä³¸öÏß³Ì³ÖÓĞ
+			System.out.printf("Lock: Fairness: %s\n", lock.isFair());// é”æ˜¯å¦æ˜¯å…¬å¹³æ¨¡å¼
+			System.out.printf("Lock: Locked: %s\n", lock.isLocked());// é”æ˜¯å¦è¢«æŸä¸ªçº¿ç¨‹æŒæœ‰
 			System.out.printf("************************\n");
 			
 			try {
@@ -64,29 +64,29 @@ public class MonitoringLockTest {
 	}
 
 	/**
-	 * Ò»¸ö×Ô¶¨ÒåµÄËø¶ÔÏó
+	 * ä¸€ä¸ªè‡ªå®šä¹‰çš„é”å¯¹è±¡
 	 * <p>
-	 * ReentrantLock ÀàÄÚÓĞÒ»Ğ© protected ·½·¨¿ÉÒÔ»ñÈ¡ËøµÄÏà¹ØĞÅÏ¢£¬ËùÒÔ±¾Àà¼Ì³ĞËü£¬
-	 * ²¢°ÑÕâĞ©ĞÅÏ¢Í¨¹ıĞÂµÄ public ·½·¨±©Â¶³öÀ´ÒÔ¹©¼à¿Ø³ÌĞòÊ¹ÓÃ¡£
+	 * ReentrantLock ç±»å†…æœ‰ä¸€äº› protected æ–¹æ³•å¯ä»¥è·å–é”çš„ç›¸å…³ä¿¡æ¯ï¼Œæ‰€ä»¥æœ¬ç±»ç»§æ‰¿å®ƒï¼Œ
+	 * å¹¶æŠŠè¿™äº›ä¿¡æ¯é€šè¿‡æ–°çš„ public æ–¹æ³•æš´éœ²å‡ºæ¥ä»¥ä¾›ç›‘æ§ç¨‹åºä½¿ç”¨ã€‚
 	 */
 	private static class MyLock extends ReentrantLock {
 
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * ·µ»Øµ±Ç°³ÖÓĞËøµÄÏß³ÌÃû³Æ
+		 * è¿”å›å½“å‰æŒæœ‰é”çš„çº¿ç¨‹åç§°
 		 */
 		public String getOwnerName() {
 			if (getOwner() == null) {
 				return "NONE";
 			} else {
-				// getOwner() ·µ»Ø³ÖÓĞËøµÄÏß³Ì¶ÔÏó
+				// getOwner() è¿”å›æŒæœ‰é”çš„çº¿ç¨‹å¯¹è±¡
 				return getOwner().getName();
 			}
 		}
 		
 		/**
-		 * ·µ»Øµ±Ç°µÈ´ı»ñµÃËøµÄ¼¯ºÏ
+		 * è¿”å›å½“å‰ç­‰å¾…è·å¾—é”çš„é›†åˆ
 		 */
 		public Collection<Thread> getThreads() {
 			return this.getQueuedThreads();
@@ -102,7 +102,7 @@ public class MonitoringLockTest {
 		}
 
 		/**
-		 * ³ÖÓĞËø0.5ÃëÔÙÊÍ·Å
+		 * æŒæœ‰é”0.5ç§’å†é‡Šæ”¾
 		 */
 		@Override
 		public void run() {

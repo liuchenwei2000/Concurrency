@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class App {
 
@@ -33,10 +33,10 @@ public class App {
 			e.printStackTrace();
 		}
 
-		// ÅĞ¶ÏÈÎÎñÊÇ·ñ·ÇÕı³£½áÊø£¨Èç¹ûtaskÅ×³öÒì³£»òÕßËüµÄ×ÓtaskÅ×³öÒì³£Ôò·µ»Øtrue£©
+		// åˆ¤æ–­ä»»åŠ¡æ˜¯å¦éæ­£å¸¸ç»“æŸï¼ˆå¦‚æœtaskæŠ›å‡ºå¼‚å¸¸æˆ–è€…å®ƒçš„å­taskæŠ›å‡ºå¼‚å¸¸åˆ™è¿”å›trueï¼‰
 		if (task.isCompletedAbnormally()) {
 			System.out.printf("Main: An exception has ocurred\n");
-			System.out.printf("Main: %s\n", task.getException().getMessage());// ÄÜ¹»ÄÃµ½Òì³£¶ÔÏó
+			System.out.printf("Main: %s\n", task.getException().getMessage());// èƒ½å¤Ÿæ‹¿åˆ°å¼‚å¸¸å¯¹è±¡
 		}
 
 		System.out.printf("Main: result is %d\n", task.join());

@@ -6,18 +6,18 @@ package thread;
 import java.util.concurrent.TimeUnit;
 
 /**
- * �ػ��߳�ʾ��
+ * 守护线程示例
  * <p>
- * �ػ��̵߳����ȼ��ǳ��ͣ�����ֻ���������̲߳�ִ�У��ȴ�������״̬��ʱ�Żᱻִ�С�
- * ��������ֻʣ���ػ��߳�ʱ��JVM��������ǲ��˳���
+ * 守护线程的优先级非常低，并且只有在其他线程不执行（等待或阻塞状态）时才会被执行。
+ * 当程序中只剩下守护线程时，JVM会结束它们并退出。
  * <p>
- * �ػ��߳�ͨ������Ϊ�����̵߳ķ����ṩ�ߣ�service provider�������һ�ʹ��һ������ѭ�����ȴ���������
- * �ػ��߳�Ӧ����Զ��ȥ������Դ�����ļ������ݿ�ȣ���Ϊ�������κ�ʱ�����жϡ�
- * ���͵��ػ��߳��м�ʱ����������������GC����
+ * 守护线程通常会作为正常线程的服务提供者（service provider），并且会使用一个无线循环来等待服务请求。
+ * 守护线程应该永远不去访问资源，如文件、数据库等，因为它会在任何时候发生中断。
+ * 典型的守护线程有计时器、垃圾回收器（GC）。
  * 
- * @author ����ΰ
+ * @author 刘晨伟
  * 
- * �������ڣ�2015��1��6��
+ * 创建日期：2015年1月6日
  */
 public class DaemonThreadTest {
 	
@@ -27,7 +27,7 @@ public class DaemonThreadTest {
 	public static void main(String args[]) {
 		Thread gc = new GarbageCollector();
 		
-		// ���߳���Ϊ�ػ��̣߳��������߳�����ǰ���á�
+		// 将线程设为守护线程，必须在线程启动前设置。
 		gc.setDaemon(true);
 		gc.start();
 		
@@ -54,7 +54,7 @@ public class DaemonThreadTest {
 	}
 
 	/**
-	 * ģ������������
+	 * 模拟垃圾回收器
 	 */
 	private static class GarbageCollector extends Thread {
 

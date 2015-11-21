@@ -9,13 +9,13 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 /**
- * LinkedBlockingDeque Ê¾Àı
+ * LinkedBlockingDeque ç¤ºä¾‹
  * <p>
- * LinkedBlockingDeque ÀàÊµÏÖÁË×èÈû²¢·¢ListµÄ¹¦ÄÜ¡£
+ * LinkedBlockingDeque ç±»å®ç°äº†é˜»å¡å¹¶å‘Listçš„åŠŸèƒ½ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2015Äê1ÔÂ16ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2015å¹´1æœˆ16æ—¥
  */
 public class LinkedBlockingDequeTest {
 
@@ -46,7 +46,7 @@ public class LinkedBlockingDequeTest {
 	}
 
 	/**
-	 * Ä£Äâ·¢³öÇëÇóµÄ¿Í»§¶Ë
+	 * æ¨¡æ‹Ÿå‘å‡ºè¯·æ±‚çš„å®¢æˆ·ç«¯
 	 */
 	private static class Client implements Runnable {
 
@@ -65,7 +65,7 @@ public class LinkedBlockingDequeTest {
 					request.append("-");
 					request.append(j);
 					try {
-						// Ê¹ÓÃ put()·½·¨Ìí¼ÓÔªËØ£¬Èç¹û LinkedBlockingDeque ÒÑÂú£¬Ôò»á×èÈûµÈ´ıÖ±µ½¿ÉÒÔÌí¼ÓÔªËØ¡£
+						// ä½¿ç”¨ put()æ–¹æ³•æ·»åŠ å…ƒç´ ï¼Œå¦‚æœ LinkedBlockingDeque å·²æ»¡ï¼Œåˆ™ä¼šé˜»å¡ç­‰å¾…ç›´åˆ°å¯ä»¥æ·»åŠ å…ƒç´ ã€‚
 						requestList.put(request.toString());
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -83,7 +83,7 @@ public class LinkedBlockingDequeTest {
 	}
 	
 	/**
-	 * Ä£Äâ½ÓÊÜÇëÇóµÄ·şÎñÆ÷¶Ë
+	 * æ¨¡æ‹Ÿæ¥å—è¯·æ±‚çš„æœåŠ¡å™¨ç«¯
 	 */
 	private static class Server implements Runnable {
 
@@ -98,9 +98,9 @@ public class LinkedBlockingDequeTest {
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < 3; j++) {
 					try {
-						// Ê¹ÓÃ take()·½·¨»ñÈ¡²¢ÒÆ³ıÔªËØ£¬Èç¹û LinkedBlockingDeque ÒÑ¿Õ£¬Ôò»á×èÈûµÈ´ıÖ±µ½ÓĞÔªËØ¿ÉÒÔÒÆ³ı¡£
+						// ä½¿ç”¨ take()æ–¹æ³•è·å–å¹¶ç§»é™¤å…ƒç´ ï¼Œå¦‚æœ LinkedBlockingDeque å·²ç©ºï¼Œåˆ™ä¼šé˜»å¡ç­‰å¾…ç›´åˆ°æœ‰å…ƒç´ å¯ä»¥ç§»é™¤ã€‚
 						String request = requestList.take();
-						// take()·½·¨»¹ÓĞÈçÏÂÁ½ÖÖĞÎÊ½£¬·Ö±ğ»ñÈ¡Ê×¸ö¡¢×îÄ©ÔªËØ²¢É¾³ı
+						// take()æ–¹æ³•è¿˜æœ‰å¦‚ä¸‹ä¸¤ç§å½¢å¼ï¼Œåˆ†åˆ«è·å–é¦–ä¸ªã€æœ€æœ«å…ƒç´ å¹¶åˆ é™¤
 //						requestList.takeFirst();
 //						requestList.takeLast();
 						System.out.printf("Server: Request: %s at %s. Size: %d\n", request, getFormattedDate(), requestList.size());

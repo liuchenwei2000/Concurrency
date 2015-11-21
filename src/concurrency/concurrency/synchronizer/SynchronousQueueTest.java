@@ -6,21 +6,21 @@ package concurrency.synchronizer;
 import java.util.concurrent.SynchronousQueue;
 
 /**
- * SynchronousQueueÊ¾Àı
+ * SynchronousQueueç¤ºä¾‹
  * <p>
- * Í¬²½¶ÓÁĞÊÇÒ»ÖÖ½«Éú²úÕßºÍÏû·ÑÕßÏß³ÌÅä¶ÔµÄ»úÖÆ¡£
- * µ±Ò»¸öÏß³Ìµ÷ÓÃSynchronousQueueÉÏµÄput·½·¨Ê±£¬Ëü»á×èÈûÖ±µ½ÁíÒ»¸öÏß³Ìµ÷ÓÃtake·½·¨ÎªÖ¹£¬·´Ö®ÒàÈ»¡£
- * ÓëExchanger²»Í¬£¬Í¬²½¶ÓÁĞµÄÊı¾İÖ»ÔÚÒ»¸ö·½ÏòÉÏ´«µİ£¬´ÓÉú²úÕßµ½Ïû·ÑÕß¡£
+ * åŒæ­¥é˜Ÿåˆ—æ˜¯ä¸€ç§å°†ç”Ÿäº§è€…å’Œæ¶ˆè´¹è€…çº¿ç¨‹é…å¯¹çš„æœºåˆ¶ã€‚
+ * å½“ä¸€ä¸ªçº¿ç¨‹è°ƒç”¨SynchronousQueueä¸Šçš„putæ–¹æ³•æ—¶ï¼Œå®ƒä¼šé˜»å¡ç›´åˆ°å¦ä¸€ä¸ªçº¿ç¨‹è°ƒç”¨takeæ–¹æ³•ä¸ºæ­¢ï¼Œåä¹‹äº¦ç„¶ã€‚
+ * ä¸Exchangerä¸åŒï¼ŒåŒæ­¥é˜Ÿåˆ—çš„æ•°æ®åªåœ¨ä¸€ä¸ªæ–¹å‘ä¸Šä¼ é€’ï¼Œä»ç”Ÿäº§è€…åˆ°æ¶ˆè´¹è€…ã€‚
  * <p>
- * SynchronousQueueÊÇÕâÑù Ò»ÖÖ×èÈû¶ÓÁĞ£¬ÆäÖĞÃ¿¸öput±ØĞëµÈ´ıÒ»¸ötake£¬·´Ö®ÒàÈ»¡£
- * Í¬²½¶ÓÁĞÃ»ÓĞÈÎºÎÄÚ²¿ÈİÁ¿£¬ÉõÖÁÁ¬Ò»¸ö¶ÓÁĞµÄÈİÁ¿¶¼Ã»ÓĞ¡£
- * ²»ÄÜÔÚÍ¬²½¶ÓÁĞÉÏ½øĞĞ peek£¬ÒòÎª½öÔÚÊÔÍ¼ÒªÈ¡µÃÔªËØÊ±£¬¸ÃÔªËØ²Å´æÔÚ£»
- * ³ı·ÇÁíÒ»¸öÏß³ÌÊÔÍ¼ÒÆ³ıÄ³¸öÔªËØ£¬·ñÔòÒ²²»ÄÜ£¨Ê¹ÓÃÈÎºÎ·½·¨£©Ìí¼ÓÔªËØ£»
- * Ò²²»ÄÜµü´ú¶ÓÁĞ£¬ÒòÎªÆäÖĞÃ»ÓĞÔªËØ¿ÉÓÃÓÚµü´ú¡£
+ * SynchronousQueueæ˜¯è¿™æ · ä¸€ç§é˜»å¡é˜Ÿåˆ—ï¼Œå…¶ä¸­æ¯ä¸ªputå¿…é¡»ç­‰å¾…ä¸€ä¸ªtakeï¼Œåä¹‹äº¦ç„¶ã€‚
+ * åŒæ­¥é˜Ÿåˆ—æ²¡æœ‰ä»»ä½•å†…éƒ¨å®¹é‡ï¼Œç”šè‡³è¿ä¸€ä¸ªé˜Ÿåˆ—çš„å®¹é‡éƒ½æ²¡æœ‰ã€‚
+ * ä¸èƒ½åœ¨åŒæ­¥é˜Ÿåˆ—ä¸Šè¿›è¡Œ peekï¼Œå› ä¸ºä»…åœ¨è¯•å›¾è¦å–å¾—å…ƒç´ æ—¶ï¼Œè¯¥å…ƒç´ æ‰å­˜åœ¨ï¼›
+ * é™¤éå¦ä¸€ä¸ªçº¿ç¨‹è¯•å›¾ç§»é™¤æŸä¸ªå…ƒç´ ï¼Œå¦åˆ™ä¹Ÿä¸èƒ½ï¼ˆä½¿ç”¨ä»»ä½•æ–¹æ³•ï¼‰æ·»åŠ å…ƒç´ ï¼›
+ * ä¹Ÿä¸èƒ½è¿­ä»£é˜Ÿåˆ—ï¼Œå› ä¸ºå…¶ä¸­æ²¡æœ‰å…ƒç´ å¯ç”¨äºè¿­ä»£ã€‚
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2013-6-27
+ * åˆ›å»ºæ—¥æœŸï¼š2013-6-27
  */
 public class SynchronousQueueTest {
 
@@ -47,7 +47,7 @@ public class SynchronousQueueTest {
 		}
 		
 		/**
-		 * Éú²úÕß
+		 * ç”Ÿäº§è€…
 		 */
 		private class Worker implements Runnable {
 
@@ -57,9 +57,9 @@ public class SynchronousQueueTest {
 					try {
 						double value = Math.random() * 1000;
 						Thread.sleep((long) value);
-						System.out.println("worker£ºput " + value);
+						System.out.println("workerï¼šput " + value);
 						/*
-						 * put½«Ö¸¶¨ÔªËØÌí¼Óµ½´Ë¶ÓÁĞ£¬ÈçÓĞ±ØÒªÔòµÈ´ıÁíÒ»¸öÏß³Ì½ÓÊÕËü¡£
+						 * putå°†æŒ‡å®šå…ƒç´ æ·»åŠ åˆ°æ­¤é˜Ÿåˆ—ï¼Œå¦‚æœ‰å¿…è¦åˆ™ç­‰å¾…å¦ä¸€ä¸ªçº¿ç¨‹æ¥æ”¶å®ƒã€‚
 						 */
 						squeue.put(value + "");
 					} catch (InterruptedException e) {
@@ -70,7 +70,7 @@ public class SynchronousQueueTest {
 		}
 
 		/**
-		 * Ïû·ÑÕß
+		 * æ¶ˆè´¹è€…
 		 */
 		private class Consumer implements Runnable {
 
@@ -80,9 +80,9 @@ public class SynchronousQueueTest {
 					try {
 						Thread.sleep((long) (Math.random() * 1000));
 						/*
-						 * take»ñÈ¡²¢ÒÆ³ı´Ë¶ÓÁĞµÄÍ·£¬ÈçÓĞ±ØÒªÔòµÈ´ıÁíÒ»¸öÏß³Ì²åÈëËü¡£
+						 * takeè·å–å¹¶ç§»é™¤æ­¤é˜Ÿåˆ—çš„å¤´ï¼Œå¦‚æœ‰å¿…è¦åˆ™ç­‰å¾…å¦ä¸€ä¸ªçº¿ç¨‹æ’å…¥å®ƒã€‚
 						 */
-						System.out.println("consumer£ºtake " + squeue.take());
+						System.out.println("consumerï¼štake " + squeue.take());
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

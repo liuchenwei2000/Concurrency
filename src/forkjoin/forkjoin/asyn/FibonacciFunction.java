@@ -8,11 +8,11 @@ import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ì³²¨ÄÇÆõº¯ÊıÊ¾Àı
+ * æ–æ³¢é‚£å¥‘å‡½æ•°ç¤ºä¾‹
  * 
- * @author Áõ³¿Î°
+ * @author åˆ˜æ™¨ä¼Ÿ
  * 
- * ´´½¨ÈÕÆÚ£º2014Äê12ÔÂ29ÈÕ
+ * åˆ›å»ºæ—¥æœŸï¼š2014å¹´12æœˆ29æ—¥
  */
 public class FibonacciFunction extends RecursiveTask<Integer> {
 	
@@ -21,7 +21,7 @@ public class FibonacciFunction extends RecursiveTask<Integer> {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	/** ì³²¨ÄÇÆõÊıÁĞµÄÇ°10ÏîÖµ */
+	/** æ–æ³¢é‚£å¥‘æ•°åˆ—çš„å‰10é¡¹å€¼ */
 	private static int[] result = { 1, 1, 2, 3, 5, 8, 13, 21, 34 };
 
 	private int n;
@@ -32,7 +32,7 @@ public class FibonacciFunction extends RecursiveTask<Integer> {
 
 	@Override
 	protected Integer compute() {
-		if (n < 10) {// Ç°Ê®ÏîÖ±½Ó·µ»Ø½á¹û
+		if (n < 10) {// å‰åé¡¹ç›´æ¥è¿”å›ç»“æœ
 			return result[n - 1];
 		}
 		
