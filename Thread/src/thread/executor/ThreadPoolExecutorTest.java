@@ -66,10 +66,10 @@ public class ThreadPoolExecutorTest {
 		 */
 		List<Runnable> unRunTask = pool.shutdownNow();
 		System.out.println(unRunTask.size());
-		
-		// 若已调用 shutdown()或 shutdownNow()则返回 true
+
+		// 如果关闭后所有任务都已完成，则返回 true
 		System.out.println(pool.isTerminated());
-		// 若已调用 shutdown()则返回 true
+		// 如果此执行程序已关闭，则返回 true
 		System.out.println(pool.isShutdown());
 		
 		// 阻塞调用线程直到超时或池内所有任务都已完成

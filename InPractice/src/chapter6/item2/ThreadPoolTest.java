@@ -3,7 +3,7 @@ package chapter6.item2;
 import java.util.concurrent.Executors;
 
 /**
- * 线程池
+ * 2，线程池
  * <p>
  *     线程池是指管理一组同构工作线程的资源池。通过重用现有的线程而不是创建新线程，
  *     可以在处理多个请求时分摊在线程创建和销毁过程中产生的巨大开销。

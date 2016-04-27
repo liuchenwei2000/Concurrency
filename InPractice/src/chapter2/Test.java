@@ -1,9 +1,6 @@
 package chapter2;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * <p>
@@ -45,13 +42,17 @@ public class Test {
 
         static {
             instance = new Facade();
-            instance.starts();
+            instance.start();
         }
 
-        private BlockingQueue<String> contents;
+        private final BlockingQueue<String> contents;
+
+        private final ExecutorService threadPool;
 
         private Facade(){
             this.contents = new LinkedBlockingQueue<>(500);
+            // 单线程执行
+            this.threadPool = Executors.newSingleThreadExecutor();
         }
 
         public static Facade getInstance(){
@@ -66,8 +67,8 @@ public class Test {
             }
         }
 
-        private void starts() {
-            Executors.newSingleThreadExecutor().execute(new Task());
+        private void start() {
+            threadPool.execute(new Task());
         }
 
         private class Task implements Runnable {
