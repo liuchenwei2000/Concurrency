@@ -28,3 +28,7 @@ Executors.newFixedThreadPool 方法和 Executors.newSingleThreadExecutor 方法�
 JDK 提供了几种不同的 RejectedExecutionHandler 实现对应不同的饱和策略：AbortPolicy、CallerRunsPolicy、DiscardPolicy、DiscardOldestPolicy。详见 SaturationPolicyTest.java。
 
 当工作队列被填满后，没有预定义的饱和策略来阻塞 execute 方法（以阻止继续提交新任务）。然而通过使用 Semaphore 来限制任务的到达率就可以实现这个功能。详见 BoundedExecutor.java。
+
+### 线程工厂
+
+每当线程池需要创建一个线程时，都是通过线程工厂（ThreadFactory）的 newThread 方法来完成的。默认的线程工厂将创建一个新的、非守护的线程，并且不包含特殊的配置信息。通过指定一个线程工厂，可以定制线程池的配置信息。详见 ThreadFactoryTest.java。
