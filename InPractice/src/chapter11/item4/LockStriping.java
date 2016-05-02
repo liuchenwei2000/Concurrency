@@ -1,4 +1,4 @@
-package chapter11.item4;
+﻿package chapter11.item4;
 
 import net.jcip.annotations.ThreadSafe;
 
@@ -16,6 +16,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p>
  *     锁分段的劣势在于，与采用单个锁来实现独占访问相比，要获取多个锁来实现独占访问将更加困难并且开销更高。
  *     通常，在执行一个操作时最多只需获取一个锁，但在某些情况下需要加锁整个容器。
+ * <p>
+ *     在同步 Map 的实现中（Collections.synchronizedMap），可伸缩性的最主要障碍在于整个 Map 中只有一个锁，
+ *     因此每次只有一个线程能够访问这个 Map。不同的是，ConcurrentHashMap 对于大多数读操作并不会加锁，
+ *     并且在写入操作以及其他一些需要锁的读操作中使用了锁分段技术，因此能提供更高的性能和并发性。
  * <p>
  * Created by liuchenwei on 2016/5/2
  */
