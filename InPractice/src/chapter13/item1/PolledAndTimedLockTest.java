@@ -132,7 +132,7 @@ public class PolledAndTimedLockTest {
             * 在进入此方法时已经设置了该线程的中断状态；或者在获取锁时被中断，并且支持对锁获取的中断，
             * 则将抛出 InterruptedException，并清除当前线程的已中断状态。
             */
-            lock.lockInterruptibly();
+             lock.lockInterruptibly();
             try {
                 return cancellableSendMessage(message);
             } finally {
